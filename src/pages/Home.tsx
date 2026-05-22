@@ -63,13 +63,11 @@ export default function Home() {
           <span className={styles.sectionLabel}>Mój cel</span>
           <div className={styles.manifestoLayout}>
             <p className={styles.manifesto}>
-              Wiem, że Twoja strona ma jedno zadanie: <span className={styles.highlight}>zarabiać</span>. Jako
-              student informatyki na PL, lacze najnowsza wiedze techniczna z bezposrednim, biznesowym
-              podejsciem. Bez zbednego lania wody, tylko konkretne rezultaty.
+              Wiem, że Twoja strona ma jedno zadanie: <span className={styles.highlight}>zarabiać</span>. Łączę rzetelną wiedzę technologiczną z bezpośrednim, biznesowym podejściem. Bez zbędnego lania wody, tylko konkretne rezultaty.
             </p>
             <div className={styles.portraitFrame}>
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80"
+                src={`${import.meta.env.BASE_URL}profile/NorbertFilaAvatar.webp`}
                 alt="Profesjonalne zdjecie autora strony"
                 className={styles.portraitImage}
                 loading="lazy"
