@@ -4,6 +4,27 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import styles from './Home.module.css'
 
+const portfolioProjects = [
+  {
+    title: 'Strona usługowa dla kancelarii',
+    description: 'Nowoczesna wizytowka z naciskiem na kontakt i konwersje.',
+    image:
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80',
+  },
+  {
+    title: 'Landing page dla konsultanta',
+    description: 'Strona sprzedazowa prowadzaca klienta od problemu do zapytania.',
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80',
+  },
+  {
+    title: 'Serwis lokalnej firmy B2B',
+    description: 'Przejrzysta architektura tresci i szybkie dzialanie na mobile.',
+    image:
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80',
+  },
+]
+
 export default function Home() {
   useEffect(() => {
     setSeo({
@@ -40,11 +61,21 @@ export default function Home() {
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
           <span className={styles.sectionLabel}>Mój cel</span>
-          <p className={styles.manifesto}>
-            Wiem, że Twoja strona ma jedno zadanie: <span className={styles.highlight}>zarabiać</span>. 
-            Jako student informatyki na PŁ, łączę najnowszą wiedzę techniczną z bezpośrednim, 
-            biznesowym podejściem. Bez zbędnego lania wody, tylko konkretne rezultaty.
-          </p>
+          <div className={styles.manifestoLayout}>
+            <p className={styles.manifesto}>
+              Wiem, że Twoja strona ma jedno zadanie: <span className={styles.highlight}>zarabiać</span>. Jako
+              student informatyki na PL, lacze najnowsza wiedze techniczna z bezposrednim, biznesowym
+              podejsciem. Bez zbednego lania wody, tylko konkretne rezultaty.
+            </p>
+            <div className={styles.portraitFrame}>
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80"
+                alt="Profesjonalne zdjecie autora strony"
+                className={styles.portraitImage}
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -75,21 +106,43 @@ export default function Home() {
           <span className={styles.sectionLabel}>W czym pomogę?</span>
           <div className={styles.servicesList}>
             <div className={styles.serviceItem}>
+              <span className={styles.serviceIcon}>01</span>
               <span>Przejrzyste strony wizytówki</span>
               <ArrowUpRight size={32} />
             </div>
             <div className={styles.serviceItem}>
+              <span className={styles.serviceIcon}>02</span>
               <span>Skuteczne Landing Pages</span>
               <ArrowUpRight size={32} />
             </div>
             <div className={styles.serviceItem}>
+              <span className={styles.serviceIcon}>03</span>
               <span>Optymalizacja i opieka techniczna</span>
               <ArrowUpRight size={32} />
             </div>
             <div className={styles.serviceItem}>
+              <span className={styles.serviceIcon}>04</span>
               <span>Doradztwo w wyborze hostingu i domeny</span>
               <ArrowUpRight size={32} />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Selected Projects */}
+      <section className={styles.bigTextSection} style={{ background: '#fff' }}>
+        <div className={styles.container}>
+          <span className={styles.sectionLabel}>Wybrane realizacje</span>
+          <div className={styles.projectsGrid}>
+            {portfolioProjects.map((project) => (
+              <article className={styles.projectCard} key={project.title}>
+                <img src={project.image} alt={project.title} className={styles.projectImage} loading="lazy" />
+                <div className={styles.projectContent}>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -121,7 +174,7 @@ export default function Home() {
       {/* Final Call */}
       <section className={styles.bigTextSection} style={{ textAlign: 'center' }}>
         <div className={styles.container}>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontFamily: 'Archivo Black', marginBottom: '2rem' }}>
+          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, marginBottom: '2rem' }}>
             Masz pomysł na projekt?
           </h2>
           <a href="mailto:contact@norbertfila.com" className={styles.ctaButton} style={{ margin: '0 auto' }}>

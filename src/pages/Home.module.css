@@ -34,7 +34,8 @@
 
 .heroContent h1 {
   font-size: clamp(3rem, 8vw, 5.5rem);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.04em;
   line-height: 0.9;
@@ -78,7 +79,8 @@
   background: var(--text-main);
   color: #fff;
   padding: 1.5rem 3rem;
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   font-size: 1.1rem;
   text-transform: uppercase;
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
@@ -117,6 +119,28 @@
   max-width: 900px;
 }
 
+.manifestoLayout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.portraitFrame {
+  background: linear-gradient(135deg, #0f0f0f 0%, #2a2a2a 100%);
+  padding: 0.8rem;
+  border-radius: 18px;
+  box-shadow: -10px 10px 0 var(--accent-color);
+}
+
+.portraitImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
 /* Benefits - Bento Grid style */
 .grid {
   display: grid;
@@ -138,7 +162,8 @@
 .benefitCard:nth-child(1) { grid-column: span 8; background: var(--accent-color); border: none; }
 
 .benefitCard h3 {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   font-size: 2rem;
   margin-bottom: 1.5rem;
 }
@@ -160,13 +185,68 @@
   align-items: center;
 }
 
+.serviceIcon {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border: 1px solid #d0d0d0;
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
 .serviceItem span:first-child {
-  max-width: 70%;
+  flex-shrink: 0;
+}
+
+.serviceItem span:nth-child(2) {
+  max-width: 65%;
+  margin-right: auto;
+  margin-left: 1.5rem;
 }
 
 .serviceItem:hover {
   padding-left: 1rem;
   background: rgba(255, 209, 0, 0.1);
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.projectCard {
+  border: 1px solid #e0e0e0;
+  background: #fff;
+}
+
+.projectImage {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.projectContent {
+  padding: 1.25rem;
+}
+
+.projectContent h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.projectContent p {
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* Process - Horizontal Scroll/Flex */
@@ -181,7 +261,8 @@
 }
 
 .stepNumber {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   font-size: 4rem;
   opacity: 0.2;
   line-height: 1;
@@ -191,7 +272,8 @@
 .footerLink {
   margin-top: 6rem;
   display: inline-block;
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   font-size: 1.2rem;
   text-decoration: underline;
   text-underline-offset: 8px;
@@ -201,6 +283,15 @@
   .hero {
     grid-template-columns: 1fr;
     padding-top: 6rem;
+  }
+  .manifestoLayout {
+    grid-template-columns: 1fr;
+  }
+  .portraitFrame {
+    max-width: 400px;
+  }
+  .projectsGrid {
+    grid-template-columns: 1fr;
   }
   .benefitCard {
     grid-column: span 12 !important;
