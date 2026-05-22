@@ -169,9 +169,29 @@
   border: 2px solid var(--text-main);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 2rem;
   min-height: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefitIcon {
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid var(--text-main);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-white);
+  box-shadow: 4px 4px 0 var(--text-main);
+  color: var(--text-main);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.benefitCard:hover .benefitIcon {
+  transform: scale(1.1) rotate(-5deg);
 }
 
 .benefitCard:hover {
@@ -183,6 +203,16 @@
   grid-column: span 8; 
   background: var(--accent-color); 
 }
+.benefitCard:nth-child(1) .benefitIcon { background: #fff; }
+
+.benefitCard:nth-child(2) .benefitIcon { background: var(--accent-color); }
+.benefitCard:nth-child(3) .benefitIcon { background: var(--accent-color); }
+
+.benefitCard:nth-child(4) { 
+  grid-column: span 8; 
+  background: var(--bg-white); 
+}
+.benefitCard:nth-child(4) .benefitIcon { background: var(--accent-color); }
 
 .benefitCard h3 {
   font-family: 'Space Grotesk', sans-serif;
