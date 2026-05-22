@@ -52,7 +52,7 @@
   filter: grayscale(80%) contrast(120%);
 }
 
-.imageButton:hover img {
+.card:hover .imageButton img {
   transform: scale(1.05);
   filter: grayscale(0%) contrast(100%);
 }
