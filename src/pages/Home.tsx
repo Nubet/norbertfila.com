@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { setSeo } from '../utils/seo'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import styles from './Home.module.css'
 
@@ -83,16 +83,32 @@ export default function Home() {
           <span className={styles.sectionLabel}>Dlaczego ja?</span>
           <div className={styles.grid}>
             <div className={styles.benefitCard}>
-              <h3>Buduję zaufanie od pierwszego kliknięcia.</h3>
-              <p>Profesjonalny design to nie tylko estetyka, to sygnał dla klienta, że traktujesz swój biznes poważnie.</p>
+              <div className={styles.benefitIcon}><ShieldCheck size={32} /></div>
+              <div>
+                <h3>Design budujący autorytet</h3>
+                <p>Twoja strona to Twój najlepszy handlowiec. Projektuję interfejsy, które od pierwszego kliknięcia krzyczą „jesteśmy profesjonalistami”, budując ekstremalne zaufanie u Twoich potencjalnych klientów.</p>
+              </div>
             </div>
             <div className={styles.benefitCard}>
-              <h3>Szybkość to pieniądz.</h3>
-              <p>Twoja strona będzie ładować się błyskawicznie, co realnie przekłada się na wyższą konwersję.</p>
+              <div className={styles.benefitIcon}><Zap size={32} /></div>
+              <div>
+                <h3>Szybkość to pieniądz</h3>
+                <p>Każda sekunda ładowania to utraceni klienci. Moje strony ładują się błyskawicznie, maksymalizując wskaźnik konwersji i obniżając koszty kampanii reklamowych.</p>
+              </div>
             </div>
             <div className={styles.benefitCard}>
-              <h3>Jasne zasady.</h3>
-              <p>Tłumaczę technologię na język korzyści. Zawsze wiesz, na jakim etapie jest Twój projekt.</p>
+              <div className={styles.benefitIcon}><MessageSquare size={32} /></div>
+              <div>
+                <h3>Jasne zasady</h3>
+                <p>Zero technologicznego bełkotu. Tłumaczę kod na język biznesu i zysków. Zawsze dokładnie wiesz, za co płacisz i na jakim etapie jest projekt.</p>
+              </div>
+            </div>
+            <div className={styles.benefitCard}>
+              <div className={styles.benefitIcon}><Code2 size={32} /></div>
+              <div>
+                <h3>Kod gotowy na rozwój</h3>
+                <p>Nie korzystam z ociężałych, gotowych szablonów. Piszę czysty, autorski kod, który bez problemu zniesie rosnący ruch i rozwój Twojej firmy przez kolejne lata. Inwestujesz raz a dobrze.</p>
+              </div>
             </div>
           </div>
         </div>
