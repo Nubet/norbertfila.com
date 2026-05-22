@@ -117,6 +117,7 @@
   font-weight: 600;
   line-height: 1.2;
   max-width: 900px;
+  margin: 0;
 }
 
 .manifestoLayout {
@@ -234,7 +235,7 @@
 }
 
 .projectContent {
-  padding: 1.25rem;
+  padding: 1.6rem;
 }
 
 .projectContent h3 {
