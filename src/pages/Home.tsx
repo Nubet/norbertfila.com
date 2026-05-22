@@ -152,18 +152,18 @@ export default function Home() {
           <div className={styles.processSteps}>
             <div className={styles.step}>
               <div className={styles.stepNumber}>01</div>
-              <h3>Rozmowa</h3>
-              <p>Analizujemy Twoje potrzeby i cele biznesowe. Ustalamy priorytety.</p>
+              <h3>Analiza Biznesowa</h3>
+              <p>Zaczynamy od zrozumienia Twojej oferty i grupy docelowej. Ustalamy, jak strona ma generować zyski.</p>
             </div>
             <div className={styles.step}>
               <div className={styles.stepNumber}>02</div>
-              <h3>Projekt</h3>
-              <p>Tworzę koncepcję, która najlepiej sprzeda Twoją ofertę.</p>
+              <h3>Projekt & Kod</h3>
+              <p>Tworzę dedykowane rozwiązanie – od architektury informacji, przez UX/UI, aż po błyskawiczny kod.</p>
             </div>
             <div className={styles.step}>
               <div className={styles.stepNumber}>03</div>
-              <h3>Start</h3>
-              <p>Uruchamiam stronę i dbam o to, by wszystko działało perfekcyjnie.</p>
+              <h3>Wdrożenie & Skalowanie</h3>
+              <p>Strona trafia do sieci, a my dbamy o jej najwyższą wydajność, bezpieczeństwo i ciągłą optymalizację konwersji.</p>
             </div>
           </div>
         </div>
@@ -172,11 +172,14 @@ export default function Home() {
       {/* Final Call */}
       <section className={styles.bigTextSection} style={{ textAlign: 'center' }}>
         <div className={styles.container}>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, marginBottom: '2rem' }}>
-            Masz pomysł na projekt?
+          <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, marginBottom: '1rem', lineHeight: 1.1 }}>
+            Zbudujmy stronę, która <span className={styles.highlight}>sprzedaje</span>.
           </h2>
-          <a href="mailto:contact@norbertfila.com" className={styles.ctaButton} style={{ margin: '0 auto' }}>
-            Porozmawiajmy o szczegółach
+          <p style={{ fontSize: '1.2rem', marginBottom: '3rem', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 3rem' }}>
+            Porozmawiajmy o tym, jak nowoczesna wizytówka lub landing page może pomóc w skalowaniu Twojej firmy.
+          </p>
+          <a href="mailto:contact@norbertfila.com" className={styles.ctaButton} style={{ margin: '0 auto', width: 'fit-content' }}>
+            Bezpłatna konsultacja <ArrowRight size={24} />
           </a>
           
           <Link to="/cv" className={styles.footerLink}>

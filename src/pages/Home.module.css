@@ -10,6 +10,18 @@
   line-height: 1.4;
   font-family: 'Outfit', sans-serif;
   animation: fadeIn 0.8s ease-out;
+  position: relative;
+}
+
+/* Subtelny szum w tle - likwiduje "plastikowy" cyfrowy wygląd */
+.home::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
 }
 
 @keyframes fadeIn {
@@ -87,13 +99,14 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  border: 2px solid var(--text-main);
 }
 
 .ctaButton:hover {
   background: var(--accent-color);
   color: var(--text-main);
-  transform: translate(5px, -5px);
-  box-shadow: -5px 5px 0 var(--text-main);
+  transform: translate(-4px, -4px);
+  box-shadow: 6px 6px 0 var(--text-main);
 }
 
 /* Big Text Sections */
@@ -153,14 +166,23 @@
   grid-column: span 4;
   background: #fff;
   padding: 3rem;
-  border: 1px solid #e0e0e0;
+  border: 2px solid var(--text-main);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.benefitCard:nth-child(1) { grid-column: span 8; background: var(--accent-color); border: none; }
+.benefitCard:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 6px 6px 0 var(--text-main);
+}
+
+.benefitCard:nth-child(1) { 
+  grid-column: span 8; 
+  background: var(--accent-color); 
+}
 
 .benefitCard h3 {
   font-family: 'Space Grotesk', sans-serif;
@@ -179,11 +201,17 @@
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-family: 'Archivo', sans-serif;
   font-weight: 600;
-  padding: 2rem 0;
-  border-bottom: 1px solid #ddd;
+  padding: 2.5rem 1rem;
+  border-bottom: 2px solid var(--text-main);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.servicesList {
+  border-top: 2px solid var(--text-main);
 }
 
 .serviceIcon {
@@ -191,14 +219,15 @@
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: 0.08em;
-  color: var(--text-muted);
-  border: 1px solid #d0d0d0;
-  width: 3rem;
-  height: 3rem;
+  color: var(--text-main);
+  border: 2px solid var(--text-main);
+  width: 3.5rem;
+  height: 3.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
 .serviceItem span:first-child {
@@ -208,12 +237,29 @@
 .serviceItem span:nth-child(2) {
   max-width: 65%;
   margin-right: auto;
-  margin-left: 1.5rem;
+  margin-left: 2.5rem;
+  transition: transform 0.3s ease;
 }
 
 .serviceItem:hover {
-  padding-left: 1rem;
-  background: rgba(255, 209, 0, 0.1);
+  background: var(--accent-color);
+}
+
+.serviceItem:hover span:nth-child(2) {
+  transform: translateX(1rem);
+}
+
+.serviceItem:hover .serviceIcon {
+  background: var(--text-main);
+  color: var(--accent-color);
+}
+
+.serviceItem svg {
+  transition: transform 0.3s ease;
+}
+
+.serviceItem:hover svg {
+  transform: rotate(45deg);
 }
 
 .projectsGrid {
@@ -223,8 +269,15 @@
 }
 
 .projectCard {
-  border: 1px solid #e0e0e0;
+  border: 2px solid var(--text-main);
   background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.projectCard:hover {
+  transform: translate(-6px, -6px);
+  box-shadow: 8px 8px 0 var(--text-main);
 }
 
 .projectImage {
@@ -232,6 +285,12 @@
   height: 240px;
   object-fit: cover;
   display: block;
+  border-bottom: 2px solid var(--text-main);
+  transition: transform 0.5s ease;
+}
+
+.projectCard:hover .projectImage {
+  transform: scale(1.05);
 }
 
 .projectContent {
@@ -253,20 +312,39 @@
 /* Process - Horizontal Scroll/Flex */
 .processSteps {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   margin-top: 4rem;
 }
 
 .step {
   flex: 1;
+  border-top: 2px solid var(--accent-color);
+  padding-top: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-8px);
 }
 
 .stepNumber {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: 4rem;
-  opacity: 0.2;
+  font-size: 3rem;
+  color: var(--accent-color);
   line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.step h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.step p {
+  color: #ccc;
+  line-height: 1.6;
 }
 
 /* Footer Link */
