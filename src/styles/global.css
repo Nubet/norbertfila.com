@@ -1,58 +1,4 @@
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('/portfolio/fonts/archivo-500-latin.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/portfolio/fonts/archivo-600-latin.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Archivo Black';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/portfolio/fonts/archivo-black-400-latin.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('/portfolio/fonts/outfit-400-latin.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/portfolio/fonts/outfit-400-latin.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/portfolio/fonts/outfit-600-latin.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url('/portfolio/fonts/outfit-600-latin.woff2') format('woff2');
-}
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600&family=Outfit:wght@300;400;600;800&display=swap&subset=latin-ext');
 
 html {
   scroll-behavior: smooth;
@@ -75,20 +21,25 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background-color: var(--bg-primary);
-  background-image: 
-    linear-gradient(var(--color-black) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-black) 1px, transparent 1px);
-  background-size: 3.75rem 3.75rem;
-  background-position: center top;
-  background-attachment: fixed;
   color: var(--text-primary);
   font-family: 'Outfit', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
+.neo-brutalist-theme {
+  min-height: 100vh;
+  background-image: 
+    linear-gradient(var(--color-black) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-black) 1px, transparent 1px);
+  background-size: 3.75rem 3.75rem;
+  background-position: center top;
+  background-attachment: fixed;
+  position: relative;
+}
+
 /* Subtle overlay to soften the grid */
-body::before {
+.neo-brutalist-theme::before {
   content: '';
   position: fixed;
   inset: 0;
@@ -103,6 +54,19 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   line-height: 1.1;
   letter-spacing: -0.02em;
+}
+
+.neo-brutalist-theme h2 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: var(--color-black);
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  background: var(--color-yellow);
+  padding: 0.5rem 1rem;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-solid);
+  transform: rotate(-2deg); /* Slight tension */
 }
 
 a {
@@ -143,7 +107,7 @@ img {
   position: relative;
 }
 
-.section-heading h2 {
+.neo-brutalist-theme .section-heading h2 {
   font-size: clamp(2.5rem, 8vw, 5rem);
   color: var(--color-black);
   position: relative;
@@ -224,7 +188,7 @@ img {
     gap: 6.25rem;
   }
   
-  .section-heading h2 {
+  .neo-brutalist-theme .section-heading h2 {
     transform: rotate(0deg);
     box-shadow: 0.25rem 0.25rem 0px 0px var(--color-black);
   }
