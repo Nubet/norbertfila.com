@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 import { setSeo } from '../utils/seo'
-import { ArrowRight, Zap, Shield, MessageSquare } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import styles from './Home.module.css'
 
 export default function Home() {
   useEffect(() => {
     setSeo({
-      title: 'Norbert Fila - Strony internetowe dla Twojego biznesu',
+      title: 'Norbert Fila - Web Developer dla Biznesu',
       description:
-        'Projektuję i tworzę nowoczesne strony internetowe, które budują zaufanie i pozyskują klientów. Sprawdź, jak mogę pomóc Twojej firmie.',
+        'Projektuję i tworzę strony internetowe, które zdobywają klientów. Połączenie pasji programistycznej z biznesowym podejściem.',
       canonicalUrl: 'https://norbertfila.com/portfolio/',
     })
   }, [])
@@ -17,106 +17,119 @@ export default function Home() {
   return (
     <div className={styles.home}>
       {/* Hero Section */}
-      <header className={styles.hero}>
-        <div className={styles.container}>
-          <h1>Projektuję i tworzę strony internetowe, które zdobywają klientów dla Twojej firmy</h1>
-          <p>
-            Pomagam małym i średnim firmom zaistnieć w sieci dzięki nowoczesnym, szybkim i skutecznym rozwiązaniom webowym.
-          </p>
-          <a href="mailto:contact@norbertfila.com" className={styles.ctaButton}>
-            Darmowa wycena <ArrowRight size={18} style={{ marginLeft: '8px', verticalAlign: 'middle' }} />
-          </a>
-        </div>
-      </header>
-
-      {/* Benefits Section */}
-      <section className={styles.benefits}>
-        <div className={styles.container}>
-          <div className={styles.sectionTitle}>
-            <h2>Dlaczego warto ze mną pracować?</h2>
+      <section className={styles.container}>
+        <div className={styles.hero}>
+          <div className={styles.heroContent}>
+            <div className={styles.statusBadge}>Dostępny na nowe projekty</div>
+            <h1>
+              Tworzę strony, które <span className={styles.highlight}>sprzedają</span> Twoje usługi.
+            </h1>
+            <p className={styles.heroSub}>
+              Pomagam firmom budować zaufanie w sieci poprzez szybkie i nowoczesne rozwiązania webowe.
+            </p>
           </div>
+          <div className={styles.heroActions}>
+            <a href="mailto:contact@norbertfila.com" className={styles.ctaButton}>
+              Darmowa wycena <ArrowRight size={24} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Manifesto Section */}
+      <section className={styles.bigTextSection}>
+        <div className={styles.container}>
+          <span className={styles.sectionLabel}>Mój cel</span>
+          <p className={styles.manifesto}>
+            Wiem, że Twoja strona ma jedno zadanie: <span className={styles.highlight}>zarabiać</span>. 
+            Jako student informatyki na PŁ, łączę najnowszą wiedzę techniczną z bezpośrednim, 
+            biznesowym podejściem. Bez zbędnego lania wody, tylko konkretne rezultaty.
+          </p>
+        </div>
+      </section>
+
+      {/* Benefits - Bento Grid */}
+      <section className={styles.bigTextSection} style={{ background: '#fff' }}>
+        <div className={styles.container}>
+          <span className={styles.sectionLabel}>Dlaczego ja?</span>
           <div className={styles.grid}>
             <div className={styles.benefitCard}>
-              <Zap size={40} color="var(--color-yellow)" style={{ marginBottom: '1rem' }} />
-              <h3>Szybkość działania</h3>
-              <p>Twoja strona będzie ładować się błyskawicznie, co poprawi doświadczenia użytkowników i pozycję w Google.</p>
+              <h3>Buduję zaufanie od pierwszego kliknięcia.</h3>
+              <p>Profesjonalny design to nie tylko estetyka, to sygnał dla klienta, że traktujesz swój biznes poważnie.</p>
             </div>
             <div className={styles.benefitCard}>
-              <Shield size={40} color="var(--color-yellow)" style={{ marginBottom: '1rem' }} />
-              <h3>Budowanie zaufania</h3>
-              <p>Profesjonalny i nowoczesny design sprawi, że klienci chętniej skorzystają z Twoich usług.</p>
+              <h3>Szybkość to pieniądz.</h3>
+              <p>Twoja strona będzie ładować się błyskawicznie, co realnie przekłada się na wyższą konwersję.</p>
             </div>
             <div className={styles.benefitCard}>
-              <MessageSquare size={40} color="var(--color-yellow)" style={{ marginBottom: '1rem' }} />
-              <h3>Jasna komunikacja</h3>
-              <p>Tłumaczę zawiłości techniczne na ludzki język i zawsze dowożę projekty w ustalonym terminie.</p>
+              <h3>Jasne zasady.</h3>
+              <p>Tłumaczę technologię na język korzyści. Zawsze wiesz, na jakim etapie jest Twój projekt.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About / Services Section */}
-      <section className={styles.about}>
+      {/* Services - Editorial List */}
+      <section className={styles.bigTextSection}>
         <div className={styles.container}>
-          <div className={styles.aboutContent}>
-            <p>
-              Wiem, że Twoja strona internetowa ma jedno główne zadanie: <strong>budować zaufanie i pozyskiwać klientów</strong>. 
-              Jako programista i student informatyki na PŁ (poniżej 26. r.ż), łączę pasję do kodowania z biznesowym podejściem do projektów.
-            </p>
-            
-            <h3>W czym mogę Ci pomóc?</h3>
-            <ul className={styles.servicesList}>
-              <li>Stworzę dla Ciebie przejrzystą stronę wizytówkę, która wyróżni Cię na tle konkurencji.</li>
-              <li>Zadbam o to, by formularz kontaktowy działał bez zarzutu i nie zapychał Twojej skrzynki spamem.</li>
-              <li>Chętnie podejmę się bardziej skomplikowanych projektów!</li>
-              <li>Pomogę dobrać najtańszy hosting i domenę, by nie generować zbędnych kosztów stałych.</li>
-            </ul>
-            
-            <p>
-              Działam sprawnie, komunikuję się jasno i zawsze dowożę projekty w terminie. Jeśli szukasz kogoś, 
-              kto ogarnie temat od A do Z i nie zostawi Cię z niedziałającym linkiem - napisz do mnie!
-            </p>
+          <span className={styles.sectionLabel}>W czym pomogę?</span>
+          <div className={styles.servicesList}>
+            <div className={styles.serviceItem}>
+              <span>Przejrzyste strony wizytówki</span>
+              <ArrowUpRight size={32} />
+            </div>
+            <div className={styles.serviceItem}>
+              <span>Skuteczne Landing Pages</span>
+              <ArrowUpRight size={32} />
+            </div>
+            <div className={styles.serviceItem}>
+              <span>Optymalizacja i opieka techniczna</span>
+              <ArrowUpRight size={32} />
+            </div>
+            <div className={styles.serviceItem}>
+              <span>Doradztwo w wyborze hostingu i domeny</span>
+              <ArrowUpRight size={32} />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className={styles.process}>
+      {/* Process */}
+      <section className={styles.bigTextSection} style={{ background: '#0F0F0F', color: '#fff' }}>
         <div className={styles.container}>
-          <div className={styles.sectionTitle}>
-            <h2>Proces współpracy</h2>
-          </div>
+          <span className={styles.sectionLabel} style={{ color: 'var(--accent-color)' }}>Proces</span>
           <div className={styles.processSteps}>
             <div className={styles.step}>
-              <div className={styles.stepNumber}>1</div>
+              <div className={styles.stepNumber}>01</div>
               <h3>Rozmowa</h3>
-              <p>Analizujemy Twoje potrzeby i cele biznesowe.</p>
+              <p>Analizujemy Twoje potrzeby i cele biznesowe. Ustalamy priorytety.</p>
             </div>
             <div className={styles.step}>
-              <div className={styles.stepNumber}>2</div>
+              <div className={styles.stepNumber}>02</div>
               <h3>Projekt</h3>
-              <p>Tworzę wizualną i techniczną koncepcję Twojej strony.</p>
+              <p>Tworzę koncepcję, która najlepiej sprzeda Twoją ofertę.</p>
             </div>
             <div className={styles.step}>
-              <div className={styles.stepNumber}>3</div>
-              <h3>Wdrożenie</h3>
-              <p>Uruchamiam gotową stronę pod Twoją domeną.</p>
+              <div className={styles.stepNumber}>03</div>
+              <h3>Start</h3>
+              <p>Uruchamiam stronę i dbam o to, by wszystko działało perfekcyjnie.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className={styles.hero} style={{ background: 'var(--bg-soft)', padding: '5rem 0' }}>
+      {/* Final Call */}
+      <section className={styles.bigTextSection} style={{ textAlign: 'center' }}>
         <div className={styles.container}>
-          <h2>Gotowy na nową stronę?</h2>
-          <p>Porozmawiajmy o Twoim projekcie i przygotujmy darmową wycenę.</p>
-          <a href="mailto:contact@norbertfila.com" className={styles.ctaButton}>
-            Porozmawiajmy o Twoim projekcie
+          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontFamily: 'Archivo Black', marginBottom: '2rem' }}>
+            Masz pomysł na projekt?
+          </h2>
+          <a href="mailto:contact@norbertfila.com" className={styles.ctaButton} style={{ margin: '0 auto' }}>
+            Porozmawiajmy o szczegółach
           </a>
           
           <Link to="/cv" className={styles.footerLink}>
-            Jesteś rekruterem? Zobacz moje techniczne portfolio i CV
+            Sprawdź moje techniczne doświadczenie (CV)
           </Link>
         </div>
       </section>
