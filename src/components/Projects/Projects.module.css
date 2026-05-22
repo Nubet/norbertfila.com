@@ -101,7 +101,8 @@
 
 .title {
   font-size: clamp(2rem, 3vw + 1rem, 3rem);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   color: var(--color-black);
   margin: 0;
   line-height: 1.1;
@@ -111,7 +112,8 @@
 .featuredBadge {
   background: var(--color-red);
   color: var(--color-white);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   padding: 0.25rem 0.75rem;
   border: var(--border-thick);
   font-size: 1rem;
@@ -159,7 +161,8 @@
   gap: 0.5rem;
   background: var(--color-black);
   color: var(--color-white);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   padding: 0.75rem 1.5rem;
   border: var(--border-thick);
   border-color: var(--color-black);
@@ -195,7 +198,8 @@
   gap: 0.75rem;
   background: var(--color-yellow);
   color: var(--color-black);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   font-size: 1.5rem;
   padding: 1rem 2rem;
   border: var(--border-thick);
@@ -308,7 +312,8 @@
 }
 
 .lightboxIndicator {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   color: var(--color-white);
   font-size: 1.5rem;
 }
