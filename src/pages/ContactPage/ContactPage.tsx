@@ -81,7 +81,7 @@ export default function ContactPage() {
               
               {/* Interactive Pills - Project Type */}
               <div className={styles.formGroup}>
-                <label className={styles.groupLabel}>1) Rodzaj projektu</label>
+                <label className={styles.groupLabel}>Rodzaj projektu</label>
                 <div className={styles.pillGroup}>
                   {['Strona firmowa', 'Landing page', 'Wizytówka', 'Przeróbki istniejącej strony', 'Inne'].map((type) => (
                     <button
@@ -101,7 +101,7 @@ export default function ContactPage() {
               <div className={styles.inputGrid}>
                 {/* Select - Materials */}
                 <div className={styles.formGroup}>
-                  <label className={styles.groupLabel} htmlFor="materialy">2) Czy posiadasz materiały?</label>
+                  <label className={styles.groupLabel} htmlFor="materialy">Czy posiadasz materiały?</label>
                   <select id="materialy" name="materialy" className={styles.input} defaultValue="" required>
                     <option value="" disabled>Wybierz opcję</option>
                     <option value="komplet">Tak, mam komplet materiałów</option>
@@ -112,7 +112,7 @@ export default function ContactPage() {
 
                 {/* Select - Pages */}
                 <div className={styles.formGroup}>
-                  <label className={styles.groupLabel} htmlFor="liczba-podstron">3) Liczba podstron</label>
+                  <label className={styles.groupLabel} htmlFor="liczba-podstron">Liczba podstron</label>
                   <select id="liczba-podstron" name="liczba-podstron" className={styles.input} defaultValue="" required>
                     <option value="" disabled>Wybierz opcję</option>
                     <option value="nie-wiem">Nie wiem</option>
@@ -126,7 +126,7 @@ export default function ContactPage() {
 
               {/* Text Area - Description */}
               <div className={styles.formGroup}>
-                <label className={styles.groupLabel} htmlFor="opis">4) Opis projektu lub Twoje oczekiwania</label>
+                <label className={styles.groupLabel} htmlFor="opis">Opis projektu lub Twoje oczekiwania</label>
                 <textarea 
                   id="opis"
                   name="opis" 
@@ -137,21 +137,9 @@ export default function ContactPage() {
                 ></textarea>
               </div>
 
-              {/* Text Area - Features */}
-              <div className={styles.formGroup}>
-                <label className={styles.groupLabel} htmlFor="funkcje">5) Dodatkowe, specjalne funkcje (opcjonalnie)</label>
-                <textarea 
-                  id="funkcje"
-                  name="funkcje" 
-                  rows={3} 
-                  className={styles.textarea}
-                  placeholder="Np. formularz leadowy, blog, rezerwacje, integracje, sklep online, wielojęzyczność."
-                ></textarea>
-              </div>
-
               {/* Interactive Pills - Budget */}
               <div className={styles.formGroup}>
-                <label className={styles.groupLabel}>6) Planowany budżet</label>
+                <label className={styles.groupLabel}>Planowany budżet</label>
                 <div className={styles.pillGroup}>
                   {['Nie wiem', 'Do 800 zł', '800-1500 zł', '1500-2500 zł', 'Powyżej 2500 zł'].map((amount) => (
                     <button
@@ -171,7 +159,7 @@ export default function ContactPage() {
               {/* Standard Inputs - Contact Details */}
               <div className={styles.inputGrid}>
                 <div className={styles.formGroup}>
-                  <label className={styles.groupLabel} htmlFor="name">7) Twoje imię i nazwisko *</label>
+                  <label className={styles.groupLabel} htmlFor="name">Imię i nazwisko *</label>
                   <div className={styles.inputWrapper}>
                     <User size={20} className={styles.inputIcon} />
                     <input type="text" id="name" name="imie-nazwisko" required className={styles.input} placeholder="Jan Kowalski" />
@@ -179,7 +167,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label className={styles.groupLabel} htmlFor="email">8) Twój e-mail *</label>
+                  <label className={styles.groupLabel} htmlFor="email">Twój e-mail *</label>
                   <div className={styles.inputWrapper}>
                     <Mail size={20} className={styles.inputIcon} />
                     <input type="email" id="email" name="email" required className={styles.input} placeholder="jan@firma.pl" />
@@ -188,7 +176,7 @@ export default function ContactPage() {
               </div>
               
               <div className={styles.formGroup}>
-                <label className={styles.groupLabel} htmlFor="phone">9) Numer telefonu (opcjonalnie)</label>
+                <label className={styles.groupLabel} htmlFor="phone">Numer telefonu (opcjonalnie)</label>
                 <div className={styles.inputWrapper}>
                   <Phone size={20} className={styles.inputIcon} />
                   <input type="tel" id="phone" name="telefon" className={styles.input} placeholder="+48 000 000 000" />
