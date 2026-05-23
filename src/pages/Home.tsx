@@ -135,6 +135,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Educational - Why websites lose clients */}
+      <section className={styles.bigTextSection} style={{ background: '#fff' }}>
+        <div className={styles.container}>
+          <span className={styles.sectionLabel}>Szybki audyt</span>
+          <div className={styles.educationWrap}>
+            <h2>Dlaczego Twoja strona traci klientów?</h2>
+            <p className={styles.educationLead}>
+              Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest wolna,
+              nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim klient pozna ofertę.
+            </p>
+
+            <div className={styles.educationGrid}>
+              <article className={styles.educationCard}>
+                <h3>Brak mobile-first</h3>
+                <p>Za mały tekst i niewygodne przyciski sprawiają, że użytkownik wychodzi po kilku sekundach.</p>
+              </article>
+              <article className={styles.educationCard}>
+                <h3>Słaba dostępność (WCAG)</h3>
+                <p>Niski kontrast i brak czytelnej struktury utrudniają korzystanie i obniżają zaufanie do marki.</p>
+              </article>
+              <article className={styles.educationCard}>
+                <h3>Za ciężkie obrazy</h3>
+                <p>Duże pliki wydłużają ładowanie, a każda sekunda opóźnienia zmniejsza szansę na kontakt.</p>
+              </article>
+              <article className={styles.educationCard}>
+                <h3>Chaos w CTA</h3>
+                <p>Gdy nie wiadomo, co kliknąć dalej, potencjalny klient nie podejmuje żadnej akcji.</p>
+              </article>
+            </div>
+
+            <p className={styles.educationOutro}>
+              Dobra wersja mobilna buduje zaufanie w pierwszych sekundach i prowadzi użytkownika prosto do kontaktu.
+            </p>
+
+            <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
+              Pobierz darmową checklistę: 12 błędów strony <ArrowRight size={20} />
+            </a>
+            <p className={styles.educationMicrocopy}>Bez spamu. Jedna wiadomość i konkretne wskazówki.</p>
+          </div>
+        </div>
+      </section>
+
       {/* Selected Projects */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
