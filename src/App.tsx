@@ -4,7 +4,9 @@ import CVPage from './pages/CVPage/CVPage'
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage'
 import NotFound from './components/NotFound/NotFound'
 import ContactPage from './pages/ContactPage/ContactPage'
+import CookiePolicyPage from './pages/LegalPages/CookiePolicyPage'
 import { Footer } from './components/Footer/Footer'
+import { CookieConsentManager } from './features/cookies/CookieConsentManager'
 
 function App() {
   return (
@@ -16,10 +18,12 @@ function App() {
             <Route path="/cv" element={<CVPage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/cookie-policy" element={<CookiePolicyPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
+        <CookieConsentManager />
       </div>
     </Router>
   )
