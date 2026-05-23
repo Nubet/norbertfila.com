@@ -42,6 +42,7 @@
   padding: 0 2rem;
 }
 
+
 /* Hero Section - Asymmetrical & Bold */
 .hero {
   padding: 10rem 0 6rem;
@@ -170,7 +171,7 @@
 }
 
 .ctaButton:active {
-  transform: translate(-1px, -1px);
+  transform: translate(-1px, -1px) scale(0.99);
   box-shadow: 3px 3px 0 var(--text-main);
 }
 
@@ -391,6 +392,10 @@
   transform: rotate(45deg);
 }
 
+.serviceItem:active {
+  transform: translateX(2px) scale(0.995);
+}
+
 .educationWrap {
   border: 2px solid var(--text-main);
   background: #fff;
@@ -514,6 +519,10 @@
 
 .educationCta:hover svg {
   transform: translateX(3px);
+}
+
+.educationCta:active {
+  transform: translate(-1px, -1px) scale(0.99);
 }
 
 .educationMicrocopy {
@@ -873,6 +882,7 @@
     opacity: 1;
     transform: none;
   }
+
 
   .ctaButton svg,
   .benefitIcon,
