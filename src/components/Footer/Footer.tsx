@@ -1,9 +1,19 @@
+import type { MouseEvent } from 'react'
 import { Github, Linkedin, Mail } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { scrollToTopSmooth } from '../../infrastructure/browser/scroll'
 import styles from './Footer.module.css'
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const { pathname } = useLocation()
+
+  const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== '/') return
+
+    event.preventDefault()
+    scrollToTopSmooth()
+  }
 
   return (
     <footer className={styles.footer}>
@@ -21,7 +31,7 @@ export function Footer() {
             <div className={styles.linkGroup}>
               <span className={styles.groupLabel}>Na skróty</span>
               <ul className={styles.linkList}>
-                <li><Link to="/">Strona Główna</Link></li>
+                <li><Link to="/" onClick={handleHomeClick}>Strona Główna</Link></li>
                 <li><Link to="/cv">Doświadczenie (CV)</Link></li>
                 <li><Link to="/contact">Darmowa Wycena</Link></li>
               </ul>
