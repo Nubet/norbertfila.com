@@ -1,0 +1,44 @@
+.stickyCta {
+  display: none; /* Ukryte na desktopie */
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: var(--color-black, #0f0f0f);
+  color: var(--color-white, #ffffff);
+  padding: 0.875rem 1.25rem;
+  border-radius: 50px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stickyCta:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .stickyCta {
+    display: flex; /* Widoczne tylko na mobile */
+    animation: popIn 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation-delay: 1s; /* Opóźnienie pojawienia się przycisku */
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
