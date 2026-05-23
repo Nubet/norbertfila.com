@@ -52,7 +52,7 @@ export default function Home() {
       {/* Manifesto Section */}
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
-          <span className={styles.sectionLabel}>Mój cel</span>
+          <h2 className={styles.sectionLabel}>Mój cel</h2>
           <div className={styles.manifestoLayout}>
             <p className={styles.manifesto}>
               Wiem, że Twoja strona ma jedno zadanie: <span className={styles.highlight}>zarabiać</span>. Łączę rzetelną wiedzę technologiczną z bezpośrednim, biznesowym podejściem. Bez zbędnego lania wody, tylko konkretne rezultaty.
@@ -72,7 +72,7 @@ export default function Home() {
       {/* Benefits - Bento Grid */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
-          <span className={styles.sectionLabel}>Dlaczego ja?</span>
+          <h2 className={styles.sectionLabel}>Dlaczego ja?</h2>
           <div className={styles.grid}>
             <div className={styles.benefitCard}>
               <div className={styles.benefitIcon}><ShieldCheck size={32} /></div>
@@ -109,28 +109,44 @@ export default function Home() {
       {/* Services - Editorial List */}
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
-          <span className={styles.sectionLabel}>W czym pomogę?</span>
+          <h2 className={styles.sectionLabel}>W czym pomogę?</h2>
           <div className={styles.servicesList}>
-            <div className={styles.serviceItem}>
+            <a
+              href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20strona%20wizytowka"
+              className={styles.serviceItem}
+              aria-label="Zapytaj o przejrzysta strone wizytowke"
+            >
               <span className={styles.serviceIcon}>01</span>
               <span>Przejrzyste strony wizytówki</span>
               <ArrowUpRight size={32} />
-            </div>
-            <div className={styles.serviceItem}>
+            </a>
+            <a
+              href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20landing%20page"
+              className={styles.serviceItem}
+              aria-label="Zapytaj o skuteczny landing page"
+            >
               <span className={styles.serviceIcon}>02</span>
               <span>Skuteczne Landing Pages</span>
               <ArrowUpRight size={32} />
-            </div>
-            <div className={styles.serviceItem}>
+            </a>
+            <a
+              href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20opieka%20techniczna"
+              className={styles.serviceItem}
+              aria-label="Zapytaj o optymalizacje i opieke techniczna"
+            >
               <span className={styles.serviceIcon}>03</span>
               <span>Optymalizacja i opieka techniczna</span>
               <ArrowUpRight size={32} />
-            </div>
-            <div className={styles.serviceItem}>
+            </a>
+            <a
+              href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20hosting%20i%20domena"
+              className={styles.serviceItem}
+              aria-label="Zapytaj o doradztwo w wyborze hostingu i domeny"
+            >
               <span className={styles.serviceIcon}>04</span>
               <span>Doradztwo w wyborze hostingu i domeny</span>
               <ArrowUpRight size={32} />
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -138,7 +154,7 @@ export default function Home() {
       {/* Educational - Why websites lose clients */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
-          <span className={styles.sectionLabel}>Szybki audyt</span>
+          <h2 className={styles.sectionLabel}>Szybki audyt</h2>
           <div className={styles.educationWrap}>
             <h2>Dlaczego Twoja strona traci klientów?</h2>
             <p className={styles.educationLead}>
@@ -165,10 +181,6 @@ export default function Home() {
               </article>
             </div>
 
-            <p className={styles.educationOutro}>
-              Dobra wersja mobilna buduje zaufanie w pierwszych sekundach i prowadzi użytkownika prosto do kontaktu.
-            </p>
-
             <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
               Pobierz darmową checklistę: 12 błędów strony <ArrowRight size={20} />
             </a>
@@ -180,7 +192,7 @@ export default function Home() {
       {/* Selected Projects */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
-          <span className={styles.sectionLabel}>Wybrane realizacje</span>
+          <h2 className={styles.sectionLabel}>Wybrane realizacje</h2>
           <div className={styles.projectsGrid}>
             {portfolioProjects.map((project) => (
               <article className={styles.projectCard} key={project.title}>
@@ -198,7 +210,7 @@ export default function Home() {
       {/* Process */}
       <section className={styles.bigTextSection} style={{ background: '#0F0F0F', color: '#fff' }}>
         <div className={styles.container}>
-          <span className={styles.sectionLabel} style={{ color: 'var(--accent-color)' }}>Proces</span>
+          <h2 className={styles.sectionLabel} style={{ color: 'var(--accent-color)' }}>Proces</h2>
           <div className={styles.processSteps}>
             <div className={styles.step}>
               <div className={styles.stepNumber}>01</div>

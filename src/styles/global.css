@@ -32,9 +32,7 @@ body {
 
 .neo-brutalist-theme {
   min-height: 100vh;
-  background-image: 
-    linear-gradient(var(--color-black) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-black) 1px, transparent 1px);
+  background-image: none;
   background-size: 3.75rem 3.75rem;
   background-position: center top;
   background-attachment: fixed;
