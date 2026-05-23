@@ -1,37 +1,56 @@
-import { Github, Linkedin, ArrowUpRight } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 
-export default function Footer() {
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className={styles.footer} id="contact">
-      <div className={styles.cta}>
-        <h2 className={styles.heading}>Porozmawiajmy o Twojej stronie.</h2>
-        <p className={styles.subhead}>
-          Wypełnij formularz i otrzymaj bezpłatną, niezobowiązującą wycenę.
-        </p>
-        <div className={styles.actions}>
-          <Link className={styles.primaryAction} to="/contact">
-            PRZEJDŹ DO FORMULARZA <ArrowUpRight size={24} strokeWidth={3} />
-          </Link>
-          <div className={styles.secondaryActions}>
-            <a className={styles.socialLink} href="mailto:contact@norbertfila.com">
-              E-MAIL: CONTACT@NORBERTFILA.COM
-            </a>
-            <a href="https://www.linkedin.com/in/norbert-fila/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-              <Linkedin size={24} strokeWidth={2.5} /> LINKEDIN
-            </a>
-            <a href="https://github.com/nubet" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-              <Github size={24} strokeWidth={2.5} /> GITHUB
-            </a>
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div className={styles.topSection}>
+          <div className={styles.brand}>
+            <h3>Norbert Fila</h3>
+            <p>Web Developer dla Biznesu.</p>
+            <p className={styles.brandSub}>Projektuję strony, które zarabiają.</p>
+          </div>
+          
+          <div className={styles.linksGrid}>
+            <div className={styles.linkGroup}>
+              <h4>Na skróty</h4>
+              <Link to="/">Strona Główna</Link>
+              <Link to="/cv">Moje CV</Link>
+              <Link to="/contact">Darmowa Wycena</Link>
+            </div>
+            
+            <div className={styles.linkGroup}>
+              <h4>Legalne</h4>
+              {/* Odnośniki do podstron, które stworzymy */}
+              <Link to="/polityka-prywatnosci">Polityka Prywatności</Link>
+              <Link to="/polityka-cookies">Polityka Cookies</Link>
+            </div>
+
+            <div className={styles.linkGroup}>
+              <h4>Social</h4>
+              <div className={styles.socialIcons}>
+                <a href="https://www.linkedin.com/in/norbert-fila/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <Linkedin size={24} />
+                </a>
+                <a href="https://github.com/nubet" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                  <Github size={24} />
+                </a>
+                <a href="mailto:contact@norbertfila.com" aria-label="E-mail">
+                  <Mail size={24} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={styles.bottomBar}>
-        <p className={styles.text}>&copy; {new Date().getFullYear()} NORBERT FILA. ALL RIGHTS RESERVED.</p>
-        <div className={styles.shapes}>
-           <div className={styles.shapeSmallCircle}></div>
-           <div className={styles.shapeSmallSquare}></div>
+
+        <div className={styles.bottomSection}>
+          <p className={styles.copyright}>
+            &copy; {currentYear} Norbert Fila. Wszelkie prawa zastrzeżone.
+          </p>
         </div>
       </div>
     </footer>
