@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import CVPage from './pages/CVPage/CVPage'
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage'
 import NotFound from './components/NotFound/NotFound'
+import ContactPage from './pages/ContactPage/ContactPage'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cv" element={<CVPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
