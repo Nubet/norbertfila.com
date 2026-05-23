@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { setSeo } from '../utils/seo'
 import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { FAQ } from '../components/FAQ/FAQ'
 import styles from './Home.module.css'
 
 const portfolioProjects = [
@@ -233,6 +234,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* Final Call */}
       <section className={styles.bigTextSection} style={{ textAlign: 'center' }}>
