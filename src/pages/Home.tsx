@@ -147,7 +147,7 @@ export default function Home() {
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
           <ScrollReveal>
-            <h2 className={styles.sectionLabel}>W czym pomogę?</h2>
+            <h2 className={styles.sectionLabel}>Co mogę dla Ciebie zrobić?</h2>
             <div className={styles.servicesList}>
               <a
                 href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20strona%20wizytowka"
