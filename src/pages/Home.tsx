@@ -21,9 +21,9 @@ const portfolioProjects = [
     title: 'Centrum Badań Jutrzejszych',
     description: 'Czytelna, wzbudzająca autorytet strona placówki medycznej. Przejrzysta struktura sekcji, ułatwiająca pacjentom zapis na badania.',
     image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-klinika-projekt.png`,
-    url: 'https://github.com/Nubet/klinika-centrum-badan-landing-page',
-    urlLabel: 'Zobacz kod na GitHub',
-    isGithub: true
+    url: 'https://nubet.github.io/klinika-centrum-badan-landing-page/',
+    urlLabel: 'Zobacz stronę na żywo',
+    isGithub: false
   },
 ]
 
