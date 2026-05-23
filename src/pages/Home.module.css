@@ -542,8 +542,8 @@
 
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
 }
 
 .projectCard {
@@ -552,6 +552,8 @@
   transition: transform var(--dur-small) var(--ease-out), box-shadow var(--dur-small) var(--ease-out);
   overflow: hidden;
   will-change: transform;
+  display: flex;
+  flex-direction: column;
 }
 
 .projectCard:hover {
@@ -559,17 +561,94 @@
   box-shadow: 8px 8px 0 var(--text-main);
 }
 
+.projectImageWrapper {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+  cursor: zoom-in;
+  border-bottom: 2px solid var(--text-main);
+}
+
 .projectImage {
   width: 100%;
-  height: 240px;
+  height: 400px;
   object-fit: cover;
+  object-position: top;
   display: block;
-  border-bottom: 2px solid var(--text-main);
-  transition: transform var(--dur-medium) var(--ease-in-out);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .projectCard:hover .projectImage {
-  transform: scale(1.05);
+  transform: scale(1.03);
+}
+
+.projectZoomOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 15, 0.85);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.projectImageWrapper:hover .projectZoomOverlay {
+  opacity: 1;
+}
+
+.zoomIcon {
+  transform: scale(0.5);
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  color: var(--accent-color);
+}
+
+.projectImageWrapper:hover .zoomIcon {
+  transform: scale(1);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(15, 15, 15, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: zoom-out;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.lightboxClose:hover {
+  transform: scale(1.1);
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
 }
 
 .projectContent {
