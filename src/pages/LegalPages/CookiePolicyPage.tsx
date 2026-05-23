@@ -73,8 +73,8 @@ export default function CookiePolicyPage() {
           <section>
             <h2>5. Kontakt</h2>
             <p>
-              W razie pytań dotyczących polityki cookies, zapraszam do kontaktu pod adresem e-mail:{' '}
-              <a href="mailto:contact@norbertfila.com">contact@norbertfila.com</a>.
+              W razie pytań dotyczących polityki cookies zapraszam do kontaktu przez{' '}
+              <Link to="/contact">formularz kontaktowy</Link>.
             </p>
           </section>
         </article>

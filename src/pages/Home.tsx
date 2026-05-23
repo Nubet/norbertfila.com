@@ -69,9 +69,9 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.heroActions}>
-              <a href="mailto:contact@norbertfila.com" className={styles.ctaButton}>
+              <Link to="/contact" className={styles.ctaButton}>
                 Darmowa wycena <ArrowRight size={24} />
-              </a>
+              </Link>
             </div>
           </div>
         </ScrollReveal>
@@ -149,42 +149,42 @@ export default function Home() {
           <ScrollReveal>
             <h2 className={styles.sectionLabel}>Co mogę dla Ciebie zrobić?</h2>
             <div className={styles.servicesList}>
-              <a
-                href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20strona%20wizytowka"
+              <Link
+                to="/contact"
                 className={styles.serviceItem}
-                aria-label="Zapytaj o przejrzysta strone wizytowke"
+                aria-label="Zapytaj o przejrzystą stronę wizytówkę"
               >
                 <span className={styles.serviceIcon}>01</span>
                 <span>Przejrzyste strony wizytówki</span>
                 <ArrowUpRight size={32} />
-              </a>
-              <a
-                href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20landing%20page"
+              </Link>
+              <Link
+                to="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o skuteczny landing page"
               >
                 <span className={styles.serviceIcon}>02</span>
                 <span>Skuteczne Landing Pages</span>
                 <ArrowUpRight size={32} />
-              </a>
-              <a
-                href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20opieka%20techniczna"
+              </Link>
+              <Link
+                to="/contact"
                 className={styles.serviceItem}
-                aria-label="Zapytaj o optymalizacje i opieke techniczna"
+                aria-label="Zapytaj o optymalizację i opiekę techniczną"
               >
                 <span className={styles.serviceIcon}>03</span>
                 <span>Optymalizacja i opieka techniczna</span>
                 <ArrowUpRight size={32} />
-              </a>
-              <a
-                href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20hosting%20i%20domena"
+              </Link>
+              <Link
+                to="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o doradztwo w wyborze hostingu i domeny"
               >
                 <span className={styles.serviceIcon}>04</span>
                 <span>Doradztwo w wyborze hostingu i domeny</span>
                 <ArrowUpRight size={32} />
-              </a>
+              </Link>
             </div>
           </ScrollReveal>
         </div>
@@ -226,9 +226,9 @@ export default function Home() {
               </div>
 
               <div className={styles.educationActions}>
-                <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
+                <Link to="/contact" className={styles.educationCta}>
                   <Download size={20} /> Pobierz darmową checklistę: 12 błędów strony
-                </a>
+                </Link>
               </div>
             </div>
           </ScrollReveal>

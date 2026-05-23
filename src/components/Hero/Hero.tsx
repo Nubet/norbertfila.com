@@ -38,9 +38,9 @@ export default function Hero() {
             <a href="https://github.com/nubet" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
               <Github size={28} strokeWidth={2.5} />
             </a>
-            <a href="mailto:nubet2137@gmail.com" className={styles.socialIcon} aria-label="Email">
+            <Link to="/contact" className={styles.socialIcon} aria-label="Kontakt">
               <Mail size={28} strokeWidth={2.5} />
-            </a>
+            </Link>
             <Link to="/resume.pdf" target="_blank" className={styles.socialIcon} aria-label="Resume / CV">
               <FileText size={28} strokeWidth={2.5} />
             </Link>

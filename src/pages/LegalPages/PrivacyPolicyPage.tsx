@@ -41,8 +41,7 @@ export default function PrivacyPolicyPage() {
             <h2>1. Administrator Danych Osobowych</h2>
             <p>
               Administratorem danych osobowych gromadzonych za pośrednictwem Strony jest Norbert Fila,
-              kontaktujący się z użytkownikami pod adresem e-mail:{' '}
-              <a href="mailto:contact@norbertfila.com">contact@norbertfila.com</a>.
+              kontaktujący się z użytkownikami przez <Link to="/contact">formularz kontaktowy</Link>.
             </p>
           </section>
 
@@ -118,8 +117,8 @@ export default function PrivacyPolicyPage() {
               </li>
             </ul>
             <p>
-              Aby skorzystać ze swoich praw, wystarczy wysłać stosowną prośbę na adres:{' '}
-              <a href="mailto:contact@norbertfila.com">contact@norbertfila.com</a>.
+              Aby skorzystać ze swoich praw, wystarczy wysłać stosowną prośbę przez{' '}
+              <Link to="/contact">formularz kontaktowy</Link>.
             </p>
           </section>
 

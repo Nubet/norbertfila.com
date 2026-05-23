@@ -54,9 +54,9 @@ export function Footer() {
                 <a href="https://github.com/nubet" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub">
                   <Github size={22} />
                 </a>
-                <a href="mailto:contact@norbertfila.com" aria-label="Wyślij e-mail">
+                <Link to="/contact" aria-label="Przejdź do formularza kontaktowego">
                   <Mail size={22} />
-                </a>
+                </Link>
               </div>
             </div>
           </nav>
