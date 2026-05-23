@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { setSeo } from '../utils/seo'
-import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2, Search, X } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2, Search, X, ExternalLink, Github } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
 import { TechMarquee } from '../components/TechMarquee/TechMarquee'
@@ -13,11 +13,17 @@ const portfolioProjects = [
     title: 'Doradztwo Podatkowe',
     description: 'Nowoczesny landing page dla eksperta podatkowego. Zaprojektowany z myślą o budowaniu zaufania i szybkiej konwersji (lead generation).',
     image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-biuro-podatkowe-projekt.png`,
+    url: 'https://nubet.github.io/biuro-podatkowe-wizytowka/',
+    urlLabel: 'Zobacz stronę na żywo',
+    isGithub: false
   },
   {
     title: 'Centrum Badań Jutrzejszych',
     description: 'Czytelna, wzbudzająca autorytet strona placówki medycznej. Przejrzysta struktura sekcji, ułatwiająca pacjentom zapis na badania.',
     image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-klinika-projekt.png`,
+    url: 'https://github.com/Nubet/klinika-centrum-badan-landing-page',
+    urlLabel: 'Zobacz kod na GitHub',
+    isGithub: true
   },
 ]
 
@@ -248,6 +254,17 @@ export default function Home() {
                   <div className={styles.projectContent}>
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
+                    {project.url && (
+                      <a 
+                        href={project.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={styles.projectLink}
+                      >
+                        {project.urlLabel}
+                        {project.isGithub ? <Github size={18} /> : <ExternalLink size={18} />}
+                      </a>
+                    )}
                   </div>
                 </article>
               ))}
