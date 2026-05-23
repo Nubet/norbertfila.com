@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
 import { TechMarquee } from '../components/TechMarquee/TechMarquee'
 import { StickyCTA } from '../components/StickyCTA/StickyCTA'
+import { ScrollReveal } from '../components/ScrollReveal/ScrollReveal'
 import styles from './Home.module.css'
 
 const portfolioProjects = [
@@ -37,80 +38,88 @@ export default function Home() {
       
       {/* Hero Section */}
       <section className={styles.container}>
-        <div className={styles.hero}>
-          <div className={styles.heroContent}>
-            <div className={styles.statusBadge}>DEDYKOWANE STRONY WWW</div>
-            <h1>
-              Tworzę strony, które <span className={styles.highlight}>sprzedają</span> Twoje usługi.
-            </h1>
-            <p className={styles.heroSub}>
-              Pomagam firmom budować zaufanie w sieci poprzez szybkie i nowoczesne rozwiązania webowe.
-            </p>
+        <ScrollReveal>
+          <div className={styles.hero}>
+            <div className={styles.heroContent}>
+              <div className={styles.statusBadge}>DEDYKOWANE STRONY WWW</div>
+              <h1>
+                Tworzę strony, które <span className={styles.highlight}>sprzedają</span> Twoje usługi.
+              </h1>
+              <p className={styles.heroSub}>
+                Pomagam firmom budować zaufanie w sieci poprzez szybkie i nowoczesne rozwiązania webowe.
+              </p>
+            </div>
+            <div className={styles.heroActions}>
+              <a href="mailto:contact@norbertfila.com" className={styles.ctaButton}>
+                Darmowa wycena <ArrowRight size={24} />
+              </a>
+            </div>
           </div>
-          <div className={styles.heroActions}>
-            <a href="mailto:contact@norbertfila.com" className={styles.ctaButton}>
-              Darmowa wycena <ArrowRight size={24} />
-            </a>
-          </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Tech Marquee Section */}
-      <TechMarquee />
+      <ScrollReveal delay={200}>
+        <TechMarquee />
+      </ScrollReveal>
 
       {/* Manifesto Section */}
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionLabel}>Mój cel</h2>
-          <div className={styles.manifestoLayout}>
-            <p className={styles.manifesto}>
-              Wiem, że Twoja strona ma jedno zadanie: <span className={styles.highlight}>zarabiać</span>. Łączę rzetelną wiedzę technologiczną z bezpośrednim, biznesowym podejściem. Bez zbędnego lania wody, tylko konkretne rezultaty.
-            </p>
-            <div className={styles.portraitFrame}>
-              <img
-                src={`${import.meta.env.BASE_URL}profile/NorbertFilaAvatar.webp`}
-                alt="Profesjonalne zdjecie autora strony"
-                className={styles.portraitImage}
-                loading="lazy"
-              />
+          <ScrollReveal>
+            <h2 className={styles.sectionLabel}>Mój cel</h2>
+            <div className={styles.manifestoLayout}>
+              <p className={styles.manifesto}>
+                Wiem, że Twoja strona ma jedno zadanie: <span className={styles.highlight}>zarabiać</span>. Łączę rzetelną wiedzę technologiczną z bezpośrednim, biznesowym podejściem. Bez zbędnego lania wody, tylko konkretne rezultaty.
+              </p>
+              <div className={styles.portraitFrame}>
+                <img
+                  src={`${import.meta.env.BASE_URL}profile/NorbertFilaAvatar.webp`}
+                  alt="Profesjonalne zdjecie autora strony"
+                  className={styles.portraitImage}
+                  loading="lazy"
+                />
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Benefits - Bento Grid */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
-          <h2 className={styles.sectionLabel}>Dlaczego ja?</h2>
+          <ScrollReveal>
+            <h2 className={styles.sectionLabel}>Dlaczego ja?</h2>
+          </ScrollReveal>
           <div className={styles.grid}>
-            <div className={styles.benefitCard}>
+            <ScrollReveal delay={0} className={styles.benefitCard}>
               <div className={styles.benefitIcon}><ShieldCheck size={32} /></div>
               <div>
                 <h3>Design budujący autorytet</h3>
                 <p>Twoja strona to Twój najlepszy handlowiec. Projektuję interfejsy, które od pierwszego kliknięcia krzyczą „jesteśmy profesjonalistami”, budując ekstremalne zaufanie u Twoich potencjalnych klientów.</p>
               </div>
-            </div>
-            <div className={styles.benefitCard}>
+            </ScrollReveal>
+            <ScrollReveal delay={100} className={styles.benefitCard}>
               <div className={styles.benefitIcon}><Zap size={32} /></div>
               <div>
                 <h3>Szybkość to pieniądz</h3>
                 <p>Każda sekunda ładowania to utraceni klienci. Moje strony ładują się błyskawicznie, maksymalizując wskaźnik konwersji i obniżając koszty kampanii reklamowych.</p>
               </div>
-            </div>
-            <div className={styles.benefitCard}>
+            </ScrollReveal>
+            <ScrollReveal delay={200} className={styles.benefitCard}>
               <div className={styles.benefitIcon}><MessageSquare size={32} /></div>
               <div>
                 <h3>Jasne zasady</h3>
                 <p>Zero technologicznego bełkotu. Tłumaczę kod na język biznesu i zysków. Zawsze dokładnie wiesz, za co płacisz i na jakim etapie jest projekt.</p>
               </div>
-            </div>
-            <div className={styles.benefitCard}>
+            </ScrollReveal>
+            <ScrollReveal delay={300} className={styles.benefitCard}>
               <div className={styles.benefitIcon}><Code2 size={32} /></div>
               <div>
                 <h3>Kod gotowy na rozwój</h3>
                 <p>Nie korzystam z ociężałych, gotowych szablonów. Piszę czysty, autorski kod, który bez problemu zniesie rosnący ruch i rozwój Twojej firmy przez kolejne lata. Inwestujesz raz a dobrze.</p>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -118,150 +127,162 @@ export default function Home() {
       {/* Services - Editorial List */}
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionLabel}>W czym pomogę?</h2>
-          <div className={styles.servicesList}>
-            <a
-              href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20strona%20wizytowka"
-              className={styles.serviceItem}
-              aria-label="Zapytaj o przejrzysta strone wizytowke"
-            >
-              <span className={styles.serviceIcon}>01</span>
-              <span>Przejrzyste strony wizytówki</span>
-              <ArrowUpRight size={32} />
-            </a>
-            <a
-              href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20landing%20page"
-              className={styles.serviceItem}
-              aria-label="Zapytaj o skuteczny landing page"
-            >
-              <span className={styles.serviceIcon}>02</span>
-              <span>Skuteczne Landing Pages</span>
-              <ArrowUpRight size={32} />
-            </a>
-            <a
-              href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20opieka%20techniczna"
-              className={styles.serviceItem}
-              aria-label="Zapytaj o optymalizacje i opieke techniczna"
-            >
-              <span className={styles.serviceIcon}>03</span>
-              <span>Optymalizacja i opieka techniczna</span>
-              <ArrowUpRight size={32} />
-            </a>
-            <a
-              href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20hosting%20i%20domena"
-              className={styles.serviceItem}
-              aria-label="Zapytaj o doradztwo w wyborze hostingu i domeny"
-            >
-              <span className={styles.serviceIcon}>04</span>
-              <span>Doradztwo w wyborze hostingu i domeny</span>
-              <ArrowUpRight size={32} />
-            </a>
-          </div>
+          <ScrollReveal>
+            <h2 className={styles.sectionLabel}>W czym pomogę?</h2>
+            <div className={styles.servicesList}>
+              <a
+                href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20strona%20wizytowka"
+                className={styles.serviceItem}
+                aria-label="Zapytaj o przejrzysta strone wizytowke"
+              >
+                <span className={styles.serviceIcon}>01</span>
+                <span>Przejrzyste strony wizytówki</span>
+                <ArrowUpRight size={32} />
+              </a>
+              <a
+                href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20landing%20page"
+                className={styles.serviceItem}
+                aria-label="Zapytaj o skuteczny landing page"
+              >
+                <span className={styles.serviceIcon}>02</span>
+                <span>Skuteczne Landing Pages</span>
+                <ArrowUpRight size={32} />
+              </a>
+              <a
+                href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20opieka%20techniczna"
+                className={styles.serviceItem}
+                aria-label="Zapytaj o optymalizacje i opieke techniczna"
+              >
+                <span className={styles.serviceIcon}>03</span>
+                <span>Optymalizacja i opieka techniczna</span>
+                <ArrowUpRight size={32} />
+              </a>
+              <a
+                href="mailto:contact@norbertfila.com?subject=Zapytanie%20-%20hosting%20i%20domena"
+                className={styles.serviceItem}
+                aria-label="Zapytaj o doradztwo w wyborze hostingu i domeny"
+              >
+                <span className={styles.serviceIcon}>04</span>
+                <span>Doradztwo w wyborze hostingu i domeny</span>
+                <ArrowUpRight size={32} />
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Educational - Why websites lose clients */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
-          <h2 className={styles.sectionLabel}>Szybki audyt</h2>
-          <div className={styles.educationWrap}>
-            <h2>Dlaczego Twoja strona traci klientów?</h2>
-            <p className={styles.educationLead}>
-              Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest wolna,
-              nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim klient pozna ofertę.
-            </p>
+          <ScrollReveal>
+            <h2 className={styles.sectionLabel}>Szybki audyt</h2>
+            <div className={styles.educationWrap}>
+              <h2>Dlaczego Twoja strona traci klientów?</h2>
+              <p className={styles.educationLead}>
+                Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest wolna,
+                nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim klient pozna ofertę.
+              </p>
 
-            <div className={styles.educationGrid}>
-              <article className={styles.educationCard}>
-                <h3>Brak mobile-first</h3>
-                <p>Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest wolna, nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim klient pozna ofertę.</p>
-              </article>
-              <article className={styles.educationCard}>
-                <h3>Słaba dostępność (WCAG)</h3>
-                <p>Niski kontrast i brak czytelnej struktury utrudniają korzystanie i obniżają zaufanie do marki.</p>
-              </article>
-              <article className={styles.educationCard}>
-                <h3>Za ciężkie obrazy</h3>
-                <p>Duże pliki wydłużają ładowanie, a każda sekunda opóźnienia zmniejsza szansę na kontakt.</p>
-              </article>
-              <article className={styles.educationCard}>
-                <h3>Chaos w CTA</h3>
-                <p>Gdy nie wiadomo, co kliknąć dalej, potencjalny klient nie podejmuje żadnej akcji.</p>
-              </article>
-            </div>
+              <div className={styles.educationGrid}>
+                <article className={styles.educationCard}>
+                  <h3>Brak mobile-first</h3>
+                  <p>Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest wolna, nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim klient pozna ofertę.</p>
+                </article>
+                <article className={styles.educationCard}>
+                  <h3>Słaba dostępność (WCAG)</h3>
+                  <p>Niski kontrast i brak czytelnej struktury utrudniają korzystanie i obniżają zaufanie do marki.</p>
+                </article>
+                <article className={styles.educationCard}>
+                  <h3>Za ciężkie obrazy</h3>
+                  <p>Duże pliki wydłużają ładowanie, a każda sekunda opóźnienia zmniejsza szansę na kontakt.</p>
+                </article>
+                <article className={styles.educationCard}>
+                  <h3>Chaos w CTA</h3>
+                  <p>Gdy nie wiadomo, co kliknąć dalej, potencjalny klient nie podejmuje żadnej akcji.</p>
+                </article>
+              </div>
 
-            <div className={styles.educationActions}>
-              <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
-                Pobierz darmową checklistę: 12 błędów strony <ArrowRight size={20} />
-              </a>
-              <p className={styles.educationMicrocopy}>Bez spamu. Jedna wiadomość i konkretne wskazówki.</p>
+              <div className={styles.educationActions}>
+                <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
+                  Pobierz darmową checklistę: 12 błędów strony <ArrowRight size={20} />
+                </a>
+                <p className={styles.educationMicrocopy}>Bez spamu. Jedna wiadomość i konkretne wskazówki.</p>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Selected Projects */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
-          <h2 className={styles.sectionLabel}>Wybrane realizacje</h2>
-          <div className={styles.projectsGrid}>
-            {portfolioProjects.map((project) => (
-              <article className={styles.projectCard} key={project.title}>
-                <img src={project.image} alt={project.title} className={styles.projectImage} loading="lazy" />
-                <div className={styles.projectContent}>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <ScrollReveal>
+            <h2 className={styles.sectionLabel}>Wybrane realizacje</h2>
+            <div className={styles.projectsGrid}>
+              {portfolioProjects.map((project) => (
+                <article className={styles.projectCard} key={project.title}>
+                  <img src={project.image} alt={project.title} className={styles.projectImage} loading="lazy" />
+                  <div className={styles.projectContent}>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Process */}
       <section className={styles.bigTextSection} style={{ background: '#0F0F0F', color: '#fff' }}>
         <div className={styles.container}>
-          <h2 className={styles.sectionLabel} style={{ color: 'var(--accent-color)' }}>Proces</h2>
-          <div className={styles.processSteps}>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>01</div>
-              <h3>Analiza Biznesowa</h3>
-              <p>Zaczynamy od zrozumienia Twojej oferty i grupy docelowej. Ustalamy, jak strona ma generować zyski.</p>
+          <ScrollReveal>
+            <h2 className={styles.sectionLabel} style={{ color: 'var(--accent-color)' }}>Proces</h2>
+            <div className={styles.processSteps}>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>01</div>
+                <h3>Analiza Biznesowa</h3>
+                <p>Zaczynamy od zrozumienia Twojej oferty i grupy docelowej. Ustalamy, jak strona ma generować zyski.</p>
+              </div>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>02</div>
+                <h3>Projekt & Kod</h3>
+                <p>Tworzę dedykowane rozwiązanie – od architektury informacji, przez UX/UI, aż po błyskawiczny kod.</p>
+              </div>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>03</div>
+                <h3>Wdrożenie & Skalowanie</h3>
+                <p>Strona trafia do sieci, a my dbamy o jej najwyższą wydajność, bezpieczeństwo i ciągłą optymalizację konwersji.</p>
+              </div>
             </div>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>02</div>
-              <h3>Projekt & Kod</h3>
-              <p>Tworzę dedykowane rozwiązanie – od architektury informacji, przez UX/UI, aż po błyskawiczny kod.</p>
-            </div>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>03</div>
-              <h3>Wdrożenie & Skalowanie</h3>
-              <p>Strona trafia do sieci, a my dbamy o jej najwyższą wydajność, bezpieczeństwo i ciągłą optymalizację konwersji.</p>
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <FAQ />
+      <ScrollReveal>
+        <FAQ />
+      </ScrollReveal>
 
       {/* Final Call */}
       <section className={styles.bigTextSection} style={{ textAlign: 'center' }}>
-        <div className={styles.container}>
-          <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, marginBottom: '1rem', lineHeight: 1.1 }}>
-            Zbudujmy stronę, która <span className={styles.highlight}>sprzedaje</span>.
-          </h2>
-          <p style={{ fontSize: '1.2rem', marginBottom: '3rem', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 3rem' }}>
-            Porozmawiajmy o tym, jak nowoczesna wizytówka lub landing page może pomóc w skalowaniu Twojej firmy.
-          </p>
-          <Link to="/contact" className={styles.ctaButton} style={{ margin: '0 auto', width: 'fit-content' }}>
-            Formularz bezpłatnej wyceny <ArrowRight size={24} />
-          </Link>
-          
-          <Link to="/cv" className={styles.footerLink}>
-            Sprawdź moje techniczne doświadczenie (CV)
-          </Link>
-        </div>
+        <ScrollReveal>
+          <div className={styles.container}>
+            <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontFamily: '"Space Grotesk", sans-serif', fontWeight: 700, marginBottom: '1rem', lineHeight: 1.1 }}>
+              Zbudujmy stronę, która <span className={styles.highlight}>sprzedaje</span>.
+            </h2>
+            <p style={{ fontSize: '1.2rem', marginBottom: '3rem', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 3rem' }}>
+              Porozmawiajmy o tym, jak nowoczesna wizytówka lub landing page może pomóc w skalowaniu Twojej firmy.
+            </p>
+            <Link to="/contact" className={styles.ctaButton} style={{ margin: '0 auto', width: 'fit-content' }}>
+              Formularz bezpłatnej wyceny <ArrowRight size={24} />
+            </Link>
+            
+            <Link to="/cv" className={styles.footerLink}>
+              Sprawdź moje techniczne doświadczenie (CV)
+            </Link>
+          </div>
+        </ScrollReveal>
       </section>
     </div>
   )
