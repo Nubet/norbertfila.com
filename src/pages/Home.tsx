@@ -182,9 +182,12 @@ export default function Home() {
               </article>
             </div>
 
-            <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
-              Pobierz darmową checklistę: 12 błędów strony <ArrowRight size={20} />
-            </a>
+            <div className={styles.educationActions}>
+              <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
+                Pobierz darmową checklistę: 12 błędów strony <ArrowRight size={20} />
+              </a>
+              <p className={styles.educationMicrocopy}>Bez spamu. Jedna wiadomość i konkretne wskazówki.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -240,9 +243,9 @@ export default function Home() {
           <p style={{ fontSize: '1.2rem', marginBottom: '3rem', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto 3rem' }}>
             Porozmawiajmy o tym, jak nowoczesna wizytówka lub landing page może pomóc w skalowaniu Twojej firmy.
           </p>
-          <a href="mailto:contact@norbertfila.com" className={styles.ctaButton} style={{ margin: '0 auto', width: 'fit-content' }}>
-            Bezpłatna konsultacja <ArrowRight size={24} />
-          </a>
+          <Link to="/contact" className={styles.ctaButton} style={{ margin: '0 auto', width: 'fit-content' }}>
+            Formularz bezpłatnej wyceny <ArrowRight size={24} />
+          </Link>
           
           <Link to="/cv" className={styles.footerLink}>
             Sprawdź moje techniczne doświadczenie (CV)
