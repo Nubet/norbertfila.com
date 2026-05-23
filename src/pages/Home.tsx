@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { setSeo } from '../utils/seo'
-import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2 } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2, Search, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
 import { TechMarquee } from '../components/TechMarquee/TechMarquee'
@@ -22,6 +22,19 @@ const portfolioProjects = [
 ]
 
 export default function Home() {
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (zoomedImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [zoomedImage]);
+
   useEffect(() => {
     setSeo({
       title: 'Norbert Fila - Web Developer dla Biznesu',
@@ -221,7 +234,17 @@ export default function Home() {
             <div className={styles.projectsGrid}>
               {portfolioProjects.map((project) => (
                 <article className={styles.projectCard} key={project.title}>
-                  <img src={project.image} alt={project.title} className={styles.projectImage} loading="lazy" />
+                  <button 
+                    className={styles.projectImageWrapper}
+                    onClick={() => setZoomedImage(project.image)}
+                    aria-label={`Powiększ projekt ${project.title}`}
+                  >
+                    <img src={project.image} alt={project.title} className={styles.projectImage} loading="lazy" />
+                    <div className={styles.projectZoomOverlay}>
+                      <Search size={48} className={styles.zoomIcon} />
+                      <span>Kliknij, aby analizować</span>
+                    </div>
+                  </button>
                   <div className={styles.projectContent}>
                     <h3>{project.title}</h3>
                     <p>{project.description}</p>
@@ -284,6 +307,16 @@ export default function Home() {
           </div>
         </ScrollReveal>
       </section>
+
+      {/* Lightbox Modal */}
+      {zoomedImage && (
+        <div className={styles.lightbox} onClick={() => setZoomedImage(null)}>
+          <button className={styles.lightboxClose} aria-label="Zamknij podgląd">
+            <X size={36} />
+          </button>
+          <img src={zoomedImage} alt="Powiększona wizualizacja" className={styles.lightboxImage} />
+        </div>
+      )}
     </div>
   )
 }
