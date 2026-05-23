@@ -25,7 +25,7 @@ export default function ContactPage() {
         {/* Navigation */}
         <nav className={styles.nav}>
           <Link to="/" className={styles.backLink}>
-            <ArrowLeft size={20} /> Wróć do portfolio
+            <ArrowLeft size={20} /> Powrót
           </Link>
         </nav>
 
