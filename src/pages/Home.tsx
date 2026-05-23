@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { setSeo } from '../utils/seo'
-import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2, Search, X, ExternalLink, Github, SmartphoneOff, EyeOff, ImageDown, MousePointerClick, Download } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2, Search, X, ExternalLink, Github, Smartphone, EyeOff, ImageDown, MousePointerClick, Download } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
 import { TechMarquee } from '../components/TechMarquee/TechMarquee'
@@ -204,18 +204,22 @@ export default function Home() {
 
               <div className={styles.educationGrid}>
                 <article className={styles.educationCard}>
+                  <div className={styles.educationCardIcon}><Smartphone size={28} /></div>
                   <h3>Brak mobile-first</h3>
                   <p>Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest wolna, nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim klient pozna ofertę.</p>
                 </article>
                 <article className={styles.educationCard}>
+                  <div className={styles.educationCardIcon}><EyeOff size={28} /></div>
                   <h3>Słaba dostępność (WCAG)</h3>
                   <p>Niski kontrast i brak czytelnej struktury utrudniają korzystanie i obniżają zaufanie do marki.</p>
                 </article>
                 <article className={styles.educationCard}>
+                  <div className={styles.educationCardIcon}><ImageDown size={28} /></div>
                   <h3>Za ciężkie obrazy</h3>
                   <p>Duże pliki wydłużają ładowanie, a każda sekunda opóźnienia zmniejsza szansę na kontakt.</p>
                 </article>
                 <article className={styles.educationCard}>
+                  <div className={styles.educationCardIcon}><MousePointerClick size={28} /></div>
                   <h3>Chaos w CTA</h3>
                   <p>Gdy nie wiadomo, co kliknąć dalej, potencjalny klient nie podejmuje żadnej akcji.</p>
                 </article>
@@ -223,7 +227,7 @@ export default function Home() {
 
               <div className={styles.educationActions}>
                 <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
-                  Pobierz darmową checklistę: 12 błędów strony <ArrowRight size={20} />
+                  <Download size={20} /> Pobierz darmową checklistę: 12 błędów strony
                 </a>
                 <p className={styles.educationMicrocopy}>Bez spamu. Jedna wiadomość i konkretne wskazówki.</p>
               </div>
