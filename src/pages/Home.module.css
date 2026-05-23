@@ -443,8 +443,11 @@
 .educationCard {
   border: 2px solid var(--text-main);
   background: #fff;
-  padding: 1.25rem;
+  padding: 1.5rem;
   transition: transform var(--dur-small) var(--ease-out), box-shadow var(--dur-small) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .educationCard:hover {
@@ -452,9 +455,21 @@
   box-shadow: 4px 4px 0 var(--text-main);
 }
 
+.educationCardIcon {
+  color: #DC2626; /* Intensywna czerwień ostrzegawcza */
+  background: rgba(220, 38, 38, 0.08);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
 .educationCard h3 {
   font-family: 'Space Grotesk', sans-serif;
-  margin: 0 0 0.6rem;
+  margin: 0;
   font-size: 1.14rem;
   line-height: 1.22;
 }

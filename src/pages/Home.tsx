@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { setSeo } from '../utils/seo'
-import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2, Search, X, ExternalLink, Github } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2, Search, X, ExternalLink, Github, SmartphoneOff, EyeOff, ImageDown, MousePointerClick, Download } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
 import { TechMarquee } from '../components/TechMarquee/TechMarquee'
