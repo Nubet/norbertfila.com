@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.css'
 
