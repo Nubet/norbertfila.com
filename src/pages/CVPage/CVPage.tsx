@@ -4,7 +4,7 @@ import Career from '../../components/Career/Career'
 import Education from '../../components/Education/Education'
 import Skills from '../../components/Skills/Skills'
 import ContactConsole from '../../components/Inspiration/ContactConsole.tsx'
-import Footer from '../../components/Footer/Footer'
+import { Footer } from '../../components/Footer/Footer'
 import { useEffect } from 'react'
 import { setSeo } from '../../utils/seo'
 
