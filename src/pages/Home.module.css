@@ -292,6 +292,85 @@
   transform: rotate(45deg);
 }
 
+.educationWrap {
+  border: 2px solid var(--text-main);
+  background: linear-gradient(135deg, #fff 0%, #f8f8f4 100%);
+  padding: 2rem;
+}
+
+.educationWrap h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  max-width: 18ch;
+}
+
+.educationLead {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 70ch;
+  margin-bottom: 1.8rem;
+}
+
+.educationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.educationCard {
+  border: 2px solid var(--text-main);
+  background: #fff;
+  padding: 1.25rem;
+}
+
+.educationCard h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0 0 0.6rem;
+  font-size: 1.2rem;
+}
+
+.educationCard p {
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.educationOutro {
+  margin: 1.4rem 0 0.9rem;
+  font-weight: 600;
+  max-width: 68ch;
+}
+
+.educationCta {
+  background: var(--text-main);
+  color: #fff;
+  border: 2px solid var(--text-main);
+  padding: 1rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.educationCta:hover {
+  background: var(--accent-color);
+  color: var(--text-main);
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--text-main);
+}
+
+.educationMicrocopy {
+  margin: 0.8rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
 .projectsGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -400,6 +479,9 @@
     max-width: 400px;
   }
   .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+  .educationGrid {
     grid-template-columns: 1fr;
   }
   .benefitCard {
