@@ -76,7 +76,7 @@ export default function Projects({all = false}: { all?: boolean }) {
     const displayedProjects = all ? projects : projects.slice(0, 2)
     const [lightbox, setLightbox] = useState<null | { projectIndex: number; imageIndex: number }>(null)
     const closeButtonRef = useRef<HTMLButtonElement | null>(null)
-    const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null)
+    const portalTarget = typeof document !== 'undefined' ? document.body : null
 
     const openLightbox = (projectIndex: number) => {
         setLightbox({projectIndex, imageIndex: 0})
@@ -103,10 +103,6 @@ export default function Projects({all = false}: { all?: boolean }) {
     }
 
     useEffect(() => {
-        setPortalTarget(document.body)
-    }, [])
-
-    useEffect(() => {
         if (!lightbox) return
         const scrollY = window.scrollY
         const previousBodyStyle = {
@@ -129,17 +125,28 @@ export default function Projects({all = false}: { all?: boolean }) {
             document.body.style.paddingRight = `${scrollbarWidth}px`
         }
 
+        const shiftImage = (direction: -1 | 1) => {
+            setLightbox((previous) => {
+                if (!previous) return previous
+                const project = displayedProjects[previous.projectIndex]
+                if (!project) return previous
+                const total = project.images.length
+                const nextIndex = (previous.imageIndex + direction + total) % total
+                return {projectIndex: previous.projectIndex, imageIndex: nextIndex}
+            })
+        }
+
         const handleKey = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
                 closeLightbox()
                 return
             }
             if (event.key === 'ArrowLeft') {
-                goToPrevious()
+                shiftImage(-1)
                 return
             }
             if (event.key === 'ArrowRight') {
-                goToNext()
+                shiftImage(1)
             }
         }
 
@@ -158,7 +165,7 @@ export default function Projects({all = false}: { all?: boolean }) {
             })
             window.removeEventListener('keydown', handleKey)
         }
-    }, [lightbox, activeProject])
+    }, [lightbox, displayedProjects])
 
     useEffect(() => {
         if (!activeProject || !lightbox) return
