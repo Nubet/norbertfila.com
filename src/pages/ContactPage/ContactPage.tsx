@@ -1,147 +1,213 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MoveLeft } from 'lucide-react'
+import { ArrowLeft, Mail, Clock, CheckCircle2, User, Send, Phone } from 'lucide-react'
 import { setSeo } from '../../utils/seo'
 import styles from './ContactPage.module.css'
 
 export default function ContactPage() {
+  const [projectType, setProjectType] = useState<string>('')
+  const [budget, setBudget] = useState<string>('')
+
   useEffect(() => {
     window.scrollTo(0, 0)
 
     setSeo({
-      title: 'Kontakt i formularz wyceny - Norbert Fila',
-      description:
-        'Wypełnij formularz wyceny strony internetowej. Napisz, czego potrzebujesz, a przygotuję darmową, niezobowiązującą propozycję.',
+      title: 'Kontakt i wycena | Norbert Fila',
+      description: 'Zbudujmy coś świetnego. Napisz, jakiego projektu potrzebujesz, a przygotuję darmową propozycję.',
       canonicalUrl: 'https://norbertfila.com/portfolio/contact',
     })
   }, [])
 
   return (
     <main className={styles.page}>
-      <div className={styles.wrap}>
-        <Link to="/" className={styles.backLink}>
-          <MoveLeft size={18} /> Powrót na stronę główną
-        </Link>
+      <div className={styles.container}>
+        
+        {/* Navigation */}
+        <nav className={styles.nav}>
+          <Link to="/" className={styles.backLink}>
+            <ArrowLeft size={20} /> Wróć do portfolio
+          </Link>
+        </nav>
 
-        <header className={styles.header}>
-          <p className={styles.eyebrow}>Formularz kontaktowy</p>
-          <h1>Bezpłatna wycena projektu</h1>
-          <p className={styles.lead}>
-            Planujesz stronę internetową lub sklep online? Wypełnij krótki formularz, a przygotuję dla Ciebie
-            indywidualną wycenę dopasowaną do Twoich potrzeb.
-          </p>
-          <p className={styles.lead}>
-            Im więcej szczegółów podasz, tym lepiej będę mogła dopasować ofertę. Nie musisz znać się na
-            technologiach - wystarczy, że opiszesz, czego potrzebujesz, a resztą zajmę się ja.
-          </p>
-          <p className={styles.note}>
-            Odpowiadam zazwyczaj w ciągu 24 godzin. Wycena jest niezobowiązująca i darmowa.
-          </p>
-        </header>
+        <div className={styles.layoutGrid}>
+          
+          {/* Left Panel - Information & Trust */}
+          <aside className={styles.infoPanel}>
+            <div className={styles.stickyWrap}>
+              <h1 className={styles.title}>Porozmawiajmy o Twoim biznesie.</h1>
+              <p className={styles.lead}>
+                Nie musisz znać się na technologii. Opowiedz mi o swoim pomyśle i celach, a ja zajmę się resztą – od koncepcji po kod gotowy do zarabiania.
+              </p>
 
-        <form className={styles.form}>
-          <div className={styles.grid}>
-            <label className={styles.field}>
-              <span>1) Rodzaj projektu</span>
-              <select name="rodzaj-projektu" defaultValue="" required>
-                <option value="" disabled>
-                  Wybierz opcję
-                </option>
-                <option>Strona firmowa</option>
-                <option>Landing page</option>
-                <option>Wizytówka</option>
-                <option>Przeróbki istniejącej strony</option>
-                <option>Strona internetowa</option>
-              </select>
-            </label>
+              <div className={styles.contactCards}>
+                <div className={styles.contactCard}>
+                  <div className={styles.cardIcon}><Clock size={24} /></div>
+                  <div>
+                    <h4>Szybka odpowiedź</h4>
+                    <p>Zazwyczaj odpowiadam w ciągu 24 godzin z gotowym planem działania i wyceną.</p>
+                  </div>
+                </div>
+                
+                <div className={styles.contactCard}>
+                  <div className={styles.cardIcon}><Mail size={24} /></div>
+                  <div>
+                    <h4>Bezpośredni kontakt</h4>
+                    <a href="mailto:contact@norbertfila.com" className={styles.directMail}>
+                      contact@norbertfila.com
+                    </a>
+                  </div>
+                </div>
+              </div>
 
-            <label className={styles.field}>
-              <span>2) Czy posiadasz materiały? (logo, grafiki itd.)</span>
-              <select name="materialy" defaultValue="" required>
-                <option value="" disabled>
-                  Wybierz opcję
-                </option>
-                <option>Tak, mam komplet materiałów</option>
-                <option>Mam część materiałów</option>
-                <option>Nie, potrzebuję wsparcia</option>
-              </select>
-            </label>
+              {/* Founder snippet */}
+              <div className={styles.founderSnippet}>
+                <img 
+                  src={`${import.meta.env.BASE_URL}profile/NorbertFilaAvatar.webp`} 
+                  alt="Norbert Fila" 
+                  className={styles.avatar} 
+                  loading="lazy"
+                />
+                <div>
+                  <strong>Norbert Fila</strong>
+                  <span>Freelancer</span>
+                </div>
+              </div>
+            </div>
+          </aside>
 
-            <label className={styles.field}>
-              <span>3) Jaka jest planowana liczba podstron?</span>
-              <select name="liczba-podstron" defaultValue="" required>
-                <option value="" disabled>
-                  Wybierz opcję
-                </option>
-                <option>Nie wiem</option>
-                <option>1-3</option>
-                <option>4-7</option>
-                <option>8-10</option>
-                <option>Więcej niż 10</option>
-              </select>
-            </label>
+          {/* Right Panel - Interactive Form */}
+          <section className={styles.formPanel}>
+            <form className={styles.form}>
+              
+              {/* Interactive Pills - Project Type */}
+              <div className={styles.formGroup}>
+                <label className={styles.groupLabel}>1) Rodzaj projektu</label>
+                <div className={styles.pillGroup}>
+                  {['Strona firmowa', 'Landing page', 'Wizytówka', 'Przeróbki istniejącej strony', 'Inne'].map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      className={`${styles.pill} ${projectType === type ? styles.pillActive : ''}`}
+                      onClick={() => setProjectType(type)}
+                    >
+                      {projectType === type && <CheckCircle2 size={16} />}
+                      {type}
+                    </button>
+                  ))}
+                </div>
+                <input type="hidden" name="rodzaj-projektu" value={projectType} />
+              </div>
 
-            <label className={styles.field}>
-              <span>6) Planowany budżet</span>
-              <select name="budzet" defaultValue="" required>
-                <option value="" disabled>
-                  Wybierz opcję
-                </option>
-                <option>Nie wiem</option>
-                <option>Do 800 zł</option>
-                <option>800-1500 zł</option>
-                <option>1500-2500 zł</option>
-                <option>Powyżej 2500 zł</option>
-              </select>
-            </label>
+              <div className={styles.inputGrid}>
+                {/* Select - Materials */}
+                <div className={styles.formGroup}>
+                  <label className={styles.groupLabel} htmlFor="materialy">2) Czy posiadasz materiały?</label>
+                  <select id="materialy" name="materialy" className={styles.input} defaultValue="" required>
+                    <option value="" disabled>Wybierz opcję</option>
+                    <option value="komplet">Tak, mam komplet materiałów</option>
+                    <option value="czesc">Mam część materiałów</option>
+                    <option value="brak">Nie, potrzebuję wsparcia</option>
+                  </select>
+                </div>
 
-            <label className={styles.fieldWide}>
-              <span>4) Opis projektu lub Twoje oczekiwania</span>
-              <textarea
-                name="opis"
-                rows={5}
-                required
-                placeholder="Napisz, jaki jest cel strony, do kogo ma trafić i co ma się na niej znaleźć."
-              />
-            </label>
+                {/* Select - Pages */}
+                <div className={styles.formGroup}>
+                  <label className={styles.groupLabel} htmlFor="liczba-podstron">3) Liczba podstron</label>
+                  <select id="liczba-podstron" name="liczba-podstron" className={styles.input} defaultValue="" required>
+                    <option value="" disabled>Wybierz opcję</option>
+                    <option value="nie-wiem">Nie wiem</option>
+                    <option value="1-3">1-3</option>
+                    <option value="4-7">4-7</option>
+                    <option value="8-10">8-10</option>
+                    <option value="powyzej-10">Więcej niż 10</option>
+                  </select>
+                </div>
+              </div>
 
-            <label className={styles.fieldWide}>
-              <span>5) Czy chcesz jakieś dodatkowe specjalne funkcje?</span>
-              <textarea
-                name="funkcje"
-                rows={4}
-                placeholder="Np. formularz leadowy, blog, rezerwacje, integracje, sklep online, wielojęzyczność."
-              />
-            </label>
+              {/* Text Area - Description */}
+              <div className={styles.formGroup}>
+                <label className={styles.groupLabel} htmlFor="opis">4) Opis projektu lub Twoje oczekiwania</label>
+                <textarea 
+                  id="opis"
+                  name="opis" 
+                  rows={4} 
+                  required
+                  className={styles.textarea}
+                  placeholder="Napisz, jaki jest cel strony, do kogo ma trafić i co ma się na niej znaleźć."
+                ></textarea>
+              </div>
 
-            <label className={styles.field}>
-              <span>7) Twoje imię i nazwisko</span>
-              <input name="imie-nazwisko" type="text" required />
-            </label>
+              {/* Text Area - Features */}
+              <div className={styles.formGroup}>
+                <label className={styles.groupLabel} htmlFor="funkcje">5) Dodatkowe, specjalne funkcje (opcjonalnie)</label>
+                <textarea 
+                  id="funkcje"
+                  name="funkcje" 
+                  rows={3} 
+                  className={styles.textarea}
+                  placeholder="Np. formularz leadowy, blog, rezerwacje, integracje, sklep online, wielojęzyczność."
+                ></textarea>
+              </div>
 
-            <label className={styles.field}>
-              <span>8) Twój e-mail</span>
-              <input name="email" type="email" required />
-            </label>
+              {/* Interactive Pills - Budget */}
+              <div className={styles.formGroup}>
+                <label className={styles.groupLabel}>6) Planowany budżet</label>
+                <div className={styles.pillGroup}>
+                  {['Nie wiem', 'Do 800 zł', '800-1500 zł', '1500-2500 zł', 'Powyżej 2500 zł'].map((amount) => (
+                    <button
+                      key={amount}
+                      type="button"
+                      className={`${styles.pill} ${budget === amount ? styles.pillActive : ''}`}
+                      onClick={() => setBudget(amount)}
+                    >
+                      {budget === amount && <CheckCircle2 size={16} />}
+                      {amount}
+                    </button>
+                  ))}
+                </div>
+                <input type="hidden" name="budzet" value={budget} required />
+              </div>
 
-            <label className={styles.fieldWide}>
-              <span>9) Numer telefonu (opcjonalnie)</span>
-              <input name="telefon" type="tel" placeholder="Opcjonalnie" />
-            </label>
-          </div>
+              {/* Standard Inputs - Contact Details */}
+              <div className={styles.inputGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.groupLabel} htmlFor="name">7) Twoje imię i nazwisko *</label>
+                  <div className={styles.inputWrapper}>
+                    <User size={20} className={styles.inputIcon} />
+                    <input type="text" id="name" name="imie-nazwisko" required className={styles.input} placeholder="Jan Kowalski" />
+                  </div>
+                </div>
 
-          <button type="submit" className={styles.submitButton}>
-            Wyślij zapytanie
-          </button>
-        </form>
+                <div className={styles.formGroup}>
+                  <label className={styles.groupLabel} htmlFor="email">8) Twój e-mail *</label>
+                  <div className={styles.inputWrapper}>
+                    <Mail size={20} className={styles.inputIcon} />
+                    <input type="email" id="email" name="email" required className={styles.input} placeholder="jan@firma.pl" />
+                  </div>
+                </div>
+              </div>
+              
+              <div className={styles.formGroup}>
+                <label className={styles.groupLabel} htmlFor="phone">9) Numer telefonu (opcjonalnie)</label>
+                <div className={styles.inputWrapper}>
+                  <Phone size={20} className={styles.inputIcon} />
+                  <input type="tel" id="phone" name="telefon" className={styles.input} placeholder="+48 000 000 000" />
+                </div>
+              </div>
 
-        <aside className={styles.directContact}>
-          <h2>Nie lubisz formularzy?</h2>
-          <p>
-            Możesz skontaktować się ze mną bezpośrednio:{' '}
-            <a href="mailto:contact@norbertfila.com">contact@norbertfila.com</a>
-          </p>
-        </aside>
+              <div className={styles.submitWrapper}>
+                <button type="submit" className={styles.submitBtn}>
+                  Wyślij zapytanie <Send size={20} />
+                </button>
+                <p className={styles.privacyNote}>
+                  Wysyłając formularz, akceptujesz politykę prywatności.
+                </p>
+              </div>
+
+            </form>
+          </section>
+
+        </div>
       </div>
     </main>
   )
