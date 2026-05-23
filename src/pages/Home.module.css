@@ -192,10 +192,11 @@
 .sectionLabel {
   font-family: 'Archivo', sans-serif;
   font-weight: 800;
-  font-size: 0.82rem;
+  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  line-height: 1.25;
   text-transform: uppercase;
   margin-bottom: 1.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   display: block;
 }
 
@@ -863,7 +864,7 @@
   }
 
   .sectionLabel {
-    font-size: 0.74rem;
+    font-size: 1rem;
   }
 
   .projectImage {
