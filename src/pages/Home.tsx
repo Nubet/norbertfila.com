@@ -6,22 +6,14 @@ import styles from './Home.module.css'
 
 const portfolioProjects = [
   {
-    title: 'Strona usługowa dla kancelarii',
-    description: 'Nowoczesna wizytowka z naciskiem na kontakt i konwersje.',
-    image:
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80',
+    title: 'Doradztwo Podatkowe',
+    description: 'Nowoczesny landing page dla eksperta podatkowego. Zaprojektowany z myślą o budowaniu zaufania i szybkiej konwersji (lead generation).',
+    image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-biuro-podatkowe-projekt.png`,
   },
   {
-    title: 'Landing page dla konsultanta',
-    description: 'Strona sprzedazowa prowadzaca klienta od problemu do zapytania.',
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1400&q=80',
-  },
-  {
-    title: 'Serwis lokalnej firmy B2B',
-    description: 'Przejrzysta architektura tresci i szybkie dzialanie na mobile.',
-    image:
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80',
+    title: 'Centrum Badań Jutrzejszych',
+    description: 'Czytelna, wzbudzająca autorytet strona placówki medycznej. Przejrzysta struktura sekcji, ułatwiająca pacjentom zapis na badania.',
+    image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-klinika-projekt.png`,
   },
 ]
 
@@ -41,7 +33,7 @@ export default function Home() {
       <section className={styles.container}>
         <div className={styles.hero}>
           <div className={styles.heroContent}>
-            <div className={styles.statusBadge}>Dostępny na nowe projekty</div>
+            <div className={styles.statusBadge}>DEDYKOWANE STRONY WWW</div>
             <h1>
               Tworzę strony, które <span className={styles.highlight}>sprzedają</span> Twoje usługi.
             </h1>
