@@ -229,7 +229,6 @@ export default function Home() {
                 <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
                   <Download size={20} /> Pobierz darmową checklistę: 12 błędów strony
                 </a>
-                <p className={styles.educationMicrocopy}>Bez spamu. Jedna wiadomość i konkretne wskazówki.</p>
               </div>
             </div>
           </ScrollReveal>
