@@ -30,8 +30,8 @@ export function Footer() {
             <div className={styles.linkGroup}>
               <span className={styles.groupLabel}>Legalne</span>
               <ul className={styles.linkList}>
-                <li><Link to="/polityka-prywatnosci">Polityka Prywatności</Link></li>
-                <li><Link to="/polityka-cookies">Polityka Cookies</Link></li>
+                <li><Link to="/privacy-policy">Polityka Prywatności</Link></li>
+                <li><Link to="/cookie-policy">Polityka Cookies</Link></li>
               </ul>
             </div>
 
