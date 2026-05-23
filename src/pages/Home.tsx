@@ -3,6 +3,7 @@ import { setSeo } from '../utils/seo'
 import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
+import { TechMarquee } from '../components/TechMarquee/TechMarquee'
 import styles from './Home.module.css'
 
 const portfolioProjects = [
@@ -31,6 +32,8 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
+      <StickyCTA />
+      
       {/* Hero Section */}
       <section className={styles.container}>
         <div className={styles.hero}>
@@ -50,6 +53,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Tech Marquee Section */}
+      <TechMarquee />
 
       {/* Manifesto Section */}
       <section className={styles.bigTextSection}>

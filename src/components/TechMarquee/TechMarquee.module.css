@@ -1,0 +1,125 @@
+.wrapper {
+  width: 100%;
+  padding: 3rem 0;
+  background-color: #fafafa;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.label {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #888;
+  margin-bottom: 2rem;
+  font-family: "Archivo", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.trackContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* subtle mask to fade out the edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+/* Pause animation on hover for accessibility */
+.track:hover {
+  animation-play-state: paused;
+}
+
+.techSet {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding-right: 4rem; /* crucial for a seamless loop between sets */
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #a0a0a0;
+  filter: grayscale(100%) opacity(0.6);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.techItem:hover {
+  filter: grayscale(0%) opacity(1);
+  color: #111;
+  transform: translateY(-2px);
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Moves exactly half the track width */
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 2rem 0;
+  }
+  
+  .techSet {
+    gap: 3rem;
+    padding-right: 3rem;
+  }
+  
+  .techItem {
+    font-size: 1rem;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
