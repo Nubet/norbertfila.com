@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, ShieldCheck, Zap, MessageSquare, Code2 } from
 import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
 import { TechMarquee } from '../components/TechMarquee/TechMarquee'
+import { StickyCTA } from '../components/StickyCTA/StickyCTA'
 import styles from './Home.module.css'
 
 const portfolioProjects = [
