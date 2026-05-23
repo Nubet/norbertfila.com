@@ -1,8 +1,8 @@
 .footer {
-  background-color: #0f0f0f;
-  color: #fff;
+  background-color: var(--color-black, #0f0f0f);
+  color: var(--color-white, #ffffff);
   padding: 6rem 0 2rem;
-  border-top: 2px solid var(--accent-color, #FFD100);
+  border-top: 2px solid var(--text-main, #0f0f0f);
   font-family: 'Outfit', sans-serif;
   position: relative;
   z-index: 10;
@@ -15,76 +15,110 @@
 }
 
 .topSection {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   gap: 4rem;
-  flex-wrap: wrap;
-  margin-bottom: 4rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .brand {
-  max-width: 300px;
+  max-width: 320px;
 }
 
-.brand h3 {
+.brandName {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 2rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
-  margin: 0 0 0.5rem 0;
-  letter-spacing: -0.02em;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.04em;
+  display: inline-block;
+  margin-bottom: 1rem;
+  transition: opacity 0.2s ease;
 }
 
-.brand p {
+.brandName:hover {
+  opacity: 0.8;
+}
+
+.brandRole {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--accent-color, #FFD100);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.brandMission {
   color: #a0a0a0;
-  margin: 0;
   font-size: 1rem;
   line-height: 1.6;
-}
-
-.brand .brandSub {
-  color: #fff;
-  font-weight: 500;
-  margin-top: 0.5rem;
+  margin: 0;
 }
 
 .linksGrid {
-  display: flex;
-  gap: 4rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
 .linkGroup {
   display: flex;
   flex-direction: column;
+}
+
+.groupLabel {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
-.linkGroup h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.1rem;
-  color: var(--accent-color, #FFD100);
-  margin: 0 0 0.5rem 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.linkGroup a {
-  color: #a0a0a0;
+.linkList a {
+  color: #d0d0d0;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: color 0.3s ease, transform 0.3s ease;
-  width: fit-content;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  position: relative;
 }
 
-.linkGroup a:hover {
+.linkList a:hover {
   color: #fff;
-  transform: translateX(4px);
+}
+
+.linkList a svg {
+  opacity: 0.5;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.linkList a:hover svg {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  color: var(--accent-color, #FFD100);
 }
 
 .socialIcons {
   display: flex;
   gap: 1rem;
-  margin-top: 0.5rem;
 }
 
 .socialIcons a {
@@ -93,54 +127,58 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 8px;
+  border-radius: 4px;
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .socialIcons a:hover {
   background: var(--accent-color, #FFD100);
-  color: #0f0f0f;
-  transform: translateY(-4px);
+  color: var(--color-black, #0f0f0f);
+  transform: translateY(-2px);
 }
 
 .bottomSection {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.copyright {
-  color: #707070;
+.copyright, .location {
+  color: #666;
   font-size: 0.9rem;
   margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .topSection {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 600px) {
   .footer {
     padding: 4rem 0 2rem;
   }
-  
-  .topSection {
-    flex-direction: column;
-    gap: 3rem;
+
+  .container {
+    padding: 0 1.5rem;
   }
 
   .linksGrid {
-    flex-direction: column;
-    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .brand h3 {
-    font-size: 1.8rem;
-  }
-  
-  .container {
-    padding: 0 1.5rem;
+  .bottomSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-top: 2rem;
   }
 }
