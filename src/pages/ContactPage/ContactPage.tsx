@@ -52,9 +52,9 @@ export default function ContactPage() {
                   <div className={styles.cardIcon}><Mail size={24} /></div>
                   <div>
                     <h4>Bezpośredni kontakt</h4>
-                    <a href="mailto:contact@norbertfila.com" className={styles.directMail}>
+                    <Link to="/contact" className={styles.directMail}>
                       contact@norbertfila.com
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
