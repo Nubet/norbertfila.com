@@ -166,7 +166,7 @@ export default function Home() {
             <div className={styles.educationGrid}>
               <article className={styles.educationCard}>
                 <h3>Brak mobile-first</h3>
-                <p>Za mały tekst i niewygodne przyciski sprawiają, że użytkownik wychodzi po kilku sekundach.</p>
+                <p>Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest wolna, nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim klient pozna ofertę.</p>
               </article>
               <article className={styles.educationCard}>
                 <h3>Słaba dostępność (WCAG)</h3>
@@ -185,7 +185,6 @@ export default function Home() {
             <a href="mailto:contact@norbertfila.com?subject=Checklista%2012%20bledow%20strony" className={styles.educationCta}>
               Pobierz darmową checklistę: 12 błędów strony <ArrowRight size={20} />
             </a>
-            <p className={styles.educationMicrocopy}>Bez spamu. Jedna wiadomość i konkretne wskazówki.</p>
           </div>
         </div>
       </section>
