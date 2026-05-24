@@ -367,10 +367,11 @@ export default function Home() {
               </div>
               <div className={styles.step}>
                 <div className={styles.stepNumber}>03</div>
-                <h3>Wdrożenie & Skalowanie</h3>
+                <h3>Bezpieczne Wdrożenie</h3>
                 <p>
-                  Strona trafia do sieci, a ja dbam o jej najwyższą wydajność, bezpieczeństwo i
-                  ciągłą optymalizację konwersji.
+                  Podpinam domenę, konfiguruję hosting i uruchamiam stronę w sieci. Zabezpieczam ją
+                  certyfikatem SSL, dzięki czemu od pierwszej sekundy działa szybko, stabilnie i
+                  bezpiecznie.
                 </p>
               </div>
             </div>
