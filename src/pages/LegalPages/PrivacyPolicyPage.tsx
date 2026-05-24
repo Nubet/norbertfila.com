@@ -31,9 +31,14 @@ export default function PrivacyPolicyPage() {
 
           <section>
             <p>
-              Niniejsza Polityka Prywatności określa zasady gromadzenia, przetwarzania i wykorzystywania
-              danych osobowych użytkowników korzystających z formularza kontaktowego na stronie internetowej{' '}
-              <strong>norbertfila.com</strong> (dalej jako „Strona”).
+              Niniejsza Polityka Prywatności określa zasady dotyczące gromadzenia, wykorzystywania i ujawniania
+              danych osobowych, które gromadzę podczas korzystania z mojej strony internetowej{' '}
+              (<strong>https://norbertfila.com</strong>) (dalej jako „Strona”).
+            </p>
+            <p>
+              Uzyskując dostęp do Strony lub korzystając z niej, wyrażasz zgodę na gromadzenie,
+              wykorzystywanie i ujawnianie Twoich danych osobowych zgodnie z niniejszą Polityką Prywatności.
+              W przypadku braku zgody, proszę o niekorzystanie ze Strony.
             </p>
           </section>
 
@@ -53,6 +58,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul>
               <li>Imię</li>
+                <li>Naziwsko</li>
               <li>Adres e-mail</li>
               <li>
                 Ewentualne inne dane osobowe, które samodzielnie i dobrowolnie wpiszesz w treści zapytania
@@ -68,8 +74,17 @@ export default function PrivacyPolicyPage() {
               <li>
                 <strong>Obsługi zapytania i udzielenia odpowiedzi:</strong> Podstawą prawną przetwarzania jest
                 realizacja działań na Twoje żądanie przed ewentualnym zawarciem umowy o dzieło/zlecenie (art.
-                6 ust. 1 lit. b RODO) oraz mój prawnie uzasadniony interes, jakim jest komunikacja z osobami
-                odwiedzającymi Stronę (art. 6 ust. 1 lit. f RODO).
+                6 ust. 1 lit. b) oraz mój prawnie uzasadniony interes, jakim jest komunikacja z osobami
+                odwiedzającymi Stronę (art. 6 ust. 1 lit. f).
+              </li>
+              <li>
+                <strong>Zbierania opinii klientów:</strong> Podstawą prawną przetwarzania jest mój prawnie
+                uzasadniony interes polegający na doskonaleniu jakości usług i prezentowaniu referencji.
+              </li>
+              <li>
+                <strong>Wsparcia klienta:</strong> Podstawą prawną przetwarzania jest realizacja działań na Twoje
+                żądanie oraz mój prawnie uzasadniony interes polegający na zapewnieniu bieżącej obsługi
+                posprzedażowej i technicznej.
               </li>
             </ul>
           </section>
@@ -117,26 +132,46 @@ export default function PrivacyPolicyPage() {
               </li>
             </ul>
             <p>
-              Aby skorzystać ze swoich praw, wystarczy wysłać stosowną prośbę przez{' '}
-              <Link to="/contact">formularz kontaktowy</Link>.
+              Aby skorzystać ze swoich praw, wystarczy wysłać stosowną prośbę na adres e-mail{' '}
+              <Link to="/contact">contact@norbertfila.com</Link>.
             </p>
+          <p>
+                Należy pamiętać, że jeśli nie wyrazisz zgody na zbieranie lub przetwarzanie wymaganych danych osobowych lub wycofasz zgodę na przetwarzanie ich w wymaganych celach, możesz nie mieć dostępu do usług, w związku z którymi Twoje dane zostały pozyskane, ani możliwości korzystania z nich.
+          </p>
           </section>
 
           <section>
             <h2>7. Bezpieczeństwo danych</h2>
             <p>
-              Dokładam wszelkich starań, aby zapewnić bezpieczeństwo informacji przesyłanych za pośrednictwem
-              Strony. Transmisja danych w formularzu jest zabezpieczona certyfikatem SSL, który szyfruje
-              połączenie między Twoją przeglądarką a serwerem.
+                Bezpieczeństwo Twoich danych jest dla nas ważne i będziemy stosować rozsądne środki bezpieczeństwa, aby zapobiec utracie, niewłaściwemu wykorzystaniu lub nieautoryzowanej modyfikacji Twoich danych pozostających pod naszą kontrolą. Jednak ze względu na nieodłączne ryzyko nie możemy zagwarantować całkowitego bezpieczeństwa, a co za tym idzie, nie możemy zapewnić ani zagwarantować bezpieczeństwa jakichkolwiek informacji, które nam przekazujesz, a robisz to na własne ryzyko.
+            </p>
+              
+          </section>
+
+          <section>
+            <h2>8. Linki do stron trzecich i wykorzystanie Twoich danych</h2>
+            <p>
+              Serwis może zawierać linki do innych stron internetowych, które nie są przeze mnie obsługiwane.
+              Niniejsza Polityka Prywatności nie dotyczy polityk prywatności ani innych praktyk podmiotów
+              trzecich, w tym stron internetowych i usług, do których możesz przejść przez link dostępny w
+              Serwisie.
+            </p>
+            <p>
+              Zalecam zapoznanie się z polityką prywatności każdej odwiedzanej witryny przed podaniem swoich
+              danych osobowych.
             </p>
           </section>
 
           <section>
-            <h2>8. Pliki cookie (Ciasteczka)</h2>
+            <h2>9. Pliki cookie (Ciasteczka)</h2>
             <p>
               Strona może wykorzystywać pliki cookie w celach statystycznych oraz w celu zapewnienia
               prawidłowego działania jej funkcji technicznych. Szczegółowe informacje na temat zarządzania
               plikami cookie znajdziesz w ustawieniach swojej przeglądarki internetowej.
+            </p>
+            <p>
+              Pełny opis wykorzystywanych ciasteczek oraz ustawień zgody znajdziesz w{' '}
+              <Link to="/cookie-policy">Polityce Cookies</Link>.
             </p>
           </section>
         </article>

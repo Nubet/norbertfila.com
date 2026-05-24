@@ -324,6 +324,17 @@ select.input:focus {
   max-width: 400px;
 }
 
+.privacyNote a {
+  color: var(--text-main, #0f0f0f);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.privacyNote a:hover {
+  color: var(--color-red, #E31837);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .layoutGrid {
