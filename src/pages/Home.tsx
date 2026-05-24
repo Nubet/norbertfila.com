@@ -64,7 +64,7 @@ export default function Home() {
       title: 'Norbert Fila - Web Developer dla Biznesu',
       description:
         'Projektuję i tworzę strony internetowe, które zdobywają klientów. Połączenie pasji programistycznej z biznesowym podejściem.',
-      canonicalUrl: 'https://norbertfila.com/portfolio/',
+      canonicalUrl: 'https://norbertfila.com/',
     })
   }, [])
 

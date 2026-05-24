@@ -23,6 +23,6 @@ export default defineConfig(({ mode }) => {
           ]
         : []),
     ],
-    base: '/portfolio/',
+    base: '/',
   }
 })

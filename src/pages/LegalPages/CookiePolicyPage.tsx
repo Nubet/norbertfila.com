@@ -13,7 +13,7 @@ export default function CookiePolicyPage() {
     setSeo({
       title: 'Polityka Cookies | Norbert Fila',
       description: 'Informacje o plikach cookies wykorzystywanych na stronie norbertfila.com',
-      canonicalUrl: 'https://norbertfila.com/portfolio/cookie-policy',
+      canonicalUrl: 'https://norbertfila.com/cookie-policy',
     })
   }, [])
 

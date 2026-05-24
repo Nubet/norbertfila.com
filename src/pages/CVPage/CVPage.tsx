@@ -12,7 +12,7 @@ export default function CVPage() {
       title: 'Norbert Fila - CV / O mnie',
       description:
         'Szczegółowe informacje o moim wykształceniu, doświadczeniu i umiejętnościach twardych.',
-      canonicalUrl: 'https://norbertfila.com/portfolio/cv',
+      canonicalUrl: 'https://norbertfila.com/cv',
     })
   }, [])
 
