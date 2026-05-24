@@ -1,4 +1,4 @@
-# Norbert Fila - Portfolio 
+# Norbert Fila - Portfolio
 
 A personal portfolio presenting my projects, design skills, and approach to creating digital experience.
 
@@ -12,12 +12,11 @@ A Bauhaus-inspired portfolio with a neobrutalist character - Based on strong con
 
 Designed to be simple, expressive, and memorable.
 
-## 🛠️ Tech Stack 
+## 🛠️ Tech Stack
 
 - **Framework:** React + Vite
 - **Language:** TypeScript
 - **Styling:** Pure CSS
-
 
 ## 📸 Screenshots
 

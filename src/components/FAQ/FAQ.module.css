@@ -14,7 +14,7 @@
 }
 
 .header h2 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   margin-bottom: 1rem;
@@ -63,7 +63,7 @@
   border: none;
   cursor: pointer;
   text-align: left;
-  font-family: "Archivo", sans-serif;
+  font-family: 'Archivo', sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
   color: #0f0f0f;
@@ -78,7 +78,9 @@
   width: 24px;
   height: 24px;
   color: var(--text-muted);
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
   flex-shrink: 0;
   margin-left: 1rem;
 }
@@ -109,7 +111,7 @@
   .faqSection {
     padding: 4rem 1rem;
   }
-  
+
   .header {
     margin-bottom: 3rem;
   }
@@ -118,7 +120,7 @@
     font-size: 1rem;
     padding: 1.25rem;
   }
-  
+
   .open .answer {
     padding: 0 1.25rem 1.25rem;
   }

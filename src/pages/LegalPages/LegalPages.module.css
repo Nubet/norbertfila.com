@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: var(--bg-white, #F4F4F0);
+  background-color: var(--bg-white, #f4f4f0);
   color: var(--text-main, #0f0f0f);
   padding: 8rem 0 6rem;
   font-family: 'Outfit', sans-serif;
@@ -65,7 +65,8 @@
   margin: 0 0 1rem;
 }
 
-.content p, .content ul {
+.content p,
+.content ul {
   font-size: 1.05rem;
   line-height: 1.7;
   color: #333;
@@ -87,14 +88,14 @@
 }
 
 .content a:hover {
-  color: var(--accent-color, #FFD100);
+  color: var(--accent-color, #ffd100);
 }
 
 .manageButton {
   margin-top: 1rem;
   border: var(--border-thin, 0.125rem solid #0f0f0f);
   box-shadow: 4px 4px 0 var(--text-main, #0f0f0f);
-  background: var(--color-yellow, #FFD100);
+  background: var(--color-yellow, #ffd100);
   color: var(--text-main, #0f0f0f);
   padding: 0.75rem 1rem;
   font-family: 'Space Grotesk', sans-serif;
@@ -102,13 +103,16 @@
   text-transform: uppercase;
   letter-spacing: 0.01em;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .manageButton:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--text-main, #0f0f0f);
-  background: var(--color-red, #E31837);
+  background: var(--color-red, #e31837);
   color: #fff;
 }
 
@@ -140,7 +144,7 @@
 }
 
 .cookieTable th {
-  background: var(--bg-secondary, #EBEBE6);
+  background: var(--bg-secondary, #ebebe6);
   font-weight: 700;
   font-family: 'Space Grotesk', sans-serif;
   text-transform: uppercase;

@@ -17,7 +17,7 @@
   font-size: 0.875rem;
   color: #888;
   margin-bottom: 2rem;
-  font-family: "Archivo", sans-serif;
+  font-family: 'Archivo', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 500;
@@ -28,20 +28,8 @@
   width: 100%;
   overflow: hidden;
   /* subtle mask to fade out the edges */
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 10%,
-    black 90%,
-    transparent
-  );
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .track {
@@ -66,7 +54,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
   color: #a0a0a0;
@@ -114,16 +102,16 @@
   .wrapper {
     padding: 2rem 0;
   }
-  
+
   .techSet {
     gap: 3rem;
     padding-right: 3rem;
   }
-  
+
   .techItem {
     font-size: 1rem;
   }
-  
+
   .icon {
     width: 24px;
     height: 24px;

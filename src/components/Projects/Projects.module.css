@@ -13,7 +13,9 @@
   box-shadow: var(--shadow-solid);
   padding: 2rem;
   position: relative;
-  transition: transform var(--duration-fast) var(--ease-sharp), box-shadow var(--duration-fast) var(--ease-sharp);
+  transition:
+    transform var(--duration-fast) var(--ease-sharp),
+    box-shadow var(--duration-fast) var(--ease-sharp);
 }
 
 .card:nth-child(even) {
@@ -48,7 +50,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 300ms var(--ease-sharp), filter 300ms var(--ease-sharp);
+  transition:
+    transform 300ms var(--ease-sharp),
+    filter 300ms var(--ease-sharp);
   filter: grayscale(80%) contrast(120%);
 }
 
@@ -324,7 +328,7 @@
     grid-template-columns: 1fr;
     padding: 1.5rem;
   }
-  
+
   .visual {
     order: -1;
   }

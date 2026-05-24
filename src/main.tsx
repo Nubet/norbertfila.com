@@ -13,5 +13,5 @@ window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )

@@ -54,20 +54,20 @@ export default function Education() {
             </article>
           ))}
         </div>
-        
+
         <div className={styles.certificationsSidebar}>
-           <h3 className={styles.sidebarTitle}>CERTIFICATIONS</h3>
-           <div className={styles.certList}>
-             {certifications.map((cert) => (
-               <div className={styles.certCard} key={cert.name}>
-                 <div className={styles.certHeader}>
-                    <h4 className={styles.certName}>{cert.name}</h4>
-                    <span className={styles.certYear}>{cert.year}</span>
-                 </div>
-                 <p className={styles.certIssuer}>{cert.issuer}</p>
-               </div>
-             ))}
-           </div>
+          <h3 className={styles.sidebarTitle}>CERTIFICATIONS</h3>
+          <div className={styles.certList}>
+            {certifications.map((cert) => (
+              <div className={styles.certCard} key={cert.name}>
+                <div className={styles.certHeader}>
+                  <h4 className={styles.certName}>{cert.name}</h4>
+                  <span className={styles.certYear}>{cert.year}</span>
+                </div>
+                <p className={styles.certIssuer}>{cert.issuer}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
