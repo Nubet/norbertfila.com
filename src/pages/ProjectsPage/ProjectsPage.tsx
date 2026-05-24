@@ -13,7 +13,7 @@ export default function ProjectsPage() {
       title: 'Projects - Norbert Fila Portfolio',
       description:
         'Browse software projects by Norbert Fila, including frontend and full-stack case studies with architecture choices, implementation details, source code links, and practical product outcomes.',
-      canonicalUrl: 'https://norbertfila.com/portfolio/projects',
+      canonicalUrl: 'https://norbertfila.com/projects',
     })
   }, [])
 

@@ -12,7 +12,7 @@ export default function PrivacyPolicyPage() {
       title: 'Polityka Prywatności | Norbert Fila',
       description:
         'Zasady gromadzenia, przetwarzania i wykorzystywania danych osobowych użytkowników strony norbertfila.com.',
-      canonicalUrl: 'https://norbertfila.com/portfolio/privacy-policy',
+      canonicalUrl: 'https://norbertfila.com/privacy-policy',
     })
   }, [])
 

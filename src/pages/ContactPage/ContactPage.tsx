@@ -15,7 +15,7 @@ export default function ContactPage() {
       title: 'Kontakt i wycena | Norbert Fila',
       description:
         'Zbudujmy coś świetnego. Napisz, jakiego projektu potrzebujesz, a przygotuję darmową propozycję.',
-      canonicalUrl: 'https://norbertfila.com/portfolio/contact',
+      canonicalUrl: 'https://norbertfila.com/contact',
     })
   }, [])
 
