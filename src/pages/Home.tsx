@@ -15,7 +15,6 @@ import {
   EyeOff,
   ImageDown,
   MousePointerClick,
-  Download,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
