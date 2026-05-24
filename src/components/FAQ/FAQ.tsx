@@ -26,7 +26,7 @@ const faqs = [
   {
     question: 'Dlaczego kodujesz strony od podstaw, zamiast używać WordPressa?',
     answer:
-      'Tworzę czysty kod w nowoczesnym stacku (Next.js, React), aby zapewnić Twojej stronie błyskawiczne ładowanie, maksymalne bezpieczeństwo i znacznie lepsze pozycjonowanie w Google.',
+      'Technologię dobieram pod Twój projekt: dla dużych witryn z panelem CMS wybieram Next.js, a dla lżejszych, interaktywnych stron stawiam na ultraszybki zestaw React + Vite – dzięki temu zawsze zyskujesz czysty kod, bezpieczną strukturę, świetne SEO i błyskawiczne ładowanie bez wad ciężkich szablonów.',
   },
   {
     question: 'Czy mogę samodzielnie edytować treści na stronie?',

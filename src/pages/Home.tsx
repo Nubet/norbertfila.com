@@ -115,7 +115,7 @@ export default function Home() {
               </p>
               <div className={styles.portraitFrame}>
                 <img
-                  src={`${import.meta.env.BASE_URL}profile/NorbertFilaAvatar.webp`}
+                  src={`${import.meta.env.BASE_URL}profile/avatar.webp`}
                   alt="Profesjonalne zdjecie autora strony"
                   className={styles.portraitImage}
                   loading="lazy"
@@ -241,12 +241,6 @@ export default function Home() {
             <h2 className={styles.sectionLabel}>Szybki audyt</h2>
             <div className={styles.educationWrap}>
               <h2>Dlaczego Twoja strona traci klientów?</h2>
-              <p className={styles.educationLead}>
-                Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest wolna,
-                nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim klient pozna
-                ofertę.
-              </p>
-
               <div className={styles.educationGrid}>
                 <article className={styles.educationCard}>
                   <div className={styles.educationCardIcon}>
@@ -375,7 +369,7 @@ export default function Home() {
                 <div className={styles.stepNumber}>03</div>
                 <h3>Wdrożenie & Skalowanie</h3>
                 <p>
-                  Strona trafia do sieci, a my dbamy o jej najwyższą wydajność, bezpieczeństwo i
+                  Strona trafia do sieci, a ja dbam o jej najwyższą wydajność, bezpieczeństwo i
                   ciągłą optymalizację konwersji.
                 </p>
               </div>

@@ -148,12 +148,12 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2>7. Bezpieczeństwo danych</h2>
             <p>
-              Bezpieczeństwo Twoich danych jest dla nas ważne i będziemy stosować rozsądne środki
+              Bezpieczeństwo Twoich danych jest dla mnie ważne i będę stosować rozsądne środki
               bezpieczeństwa, aby zapobiec utracie, niewłaściwemu wykorzystaniu lub nieautoryzowanej
-              modyfikacji Twoich danych pozostających pod naszą kontrolą. Jednak ze względu na
-              nieodłączne ryzyko nie możemy zagwarantować całkowitego bezpieczeństwa, a co za tym
-              idzie, nie możemy zapewnić ani zagwarantować bezpieczeństwa jakichkolwiek informacji,
-              które nam przekazujesz, a robisz to na własne ryzyko.
+              modyfikacji Twoich danych pozostających pod moją kontrolą. Jednak ze względu na
+              nieodłączne ryzyko nie mogę zagwarantować całkowitego bezpieczeństwa, a co za tym
+              idzie, nie mogę zapewnić ani zagwarantować bezpieczeństwa jakichkolwiek informacji,
+              które mi przekazujesz, a robisz to na własne ryzyko.
             </p>
           </section>
 
