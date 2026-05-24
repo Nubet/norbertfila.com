@@ -188,7 +188,7 @@ export default function ContactPage() {
                   Wyślij zapytanie <Send size={20} />
                 </button>
                 <p className={styles.privacyNote}>
-                  Wysyłając formularz, akceptujesz politykę prywatności.
+                  Wysyłając formularz, akceptujesz <Link to="/privacy-policy">politykę prywatności</Link>.
                 </p>
               </div>
 

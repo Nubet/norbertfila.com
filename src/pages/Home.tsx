@@ -164,7 +164,7 @@ export default function Home() {
                 aria-label="Zapytaj o skuteczny landing page"
               >
                 <span className={styles.serviceIcon}>02</span>
-                <span>Skuteczne Landing Pages</span>
+                <span>Skuteczne Landing Page'e</span>
                 <ArrowUpRight size={32} />
               </Link>
               <Link
