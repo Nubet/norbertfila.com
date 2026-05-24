@@ -1,9 +1,9 @@
 .home {
   --max-width: 1200px;
-  --accent-color: #FFD100;
-  --text-main: #0F0F0F;
+  --accent-color: #ffd100;
+  --text-main: #0f0f0f;
   --text-muted: #4a4a4a;
-  --bg-white: #F4F4F0; /* Off-white canvas z CV dla spójności */
+  --bg-white: #f4f4f0; /* Off-white canvas z CV dla spójności */
   --dur-micro: 130ms;
   --dur-small: 240ms;
   --dur-medium: 360ms;
@@ -11,7 +11,7 @@
   --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  
+
   color: var(--text-main);
   background-color: var(--bg-white);
   line-height: 1.5;
@@ -32,8 +32,12 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .container {
@@ -41,7 +45,6 @@
   margin: 0 auto;
   padding: 0 2rem;
 }
-
 
 /* Hero Section - Asymmetrical & Bold */
 .hero {
@@ -58,9 +61,15 @@
   animation: heroIn 700ms var(--ease-sharp, cubic-bezier(0.19, 1, 0.22, 1)) forwards;
 }
 
-.heroContent > *:nth-child(1) { animation-delay: 80ms; }
-.heroContent > *:nth-child(2) { animation-delay: 180ms; }
-.heroContent > *:nth-child(3) { animation-delay: 300ms; }
+.heroContent > *:nth-child(1) {
+  animation-delay: 80ms;
+}
+.heroContent > *:nth-child(2) {
+  animation-delay: 180ms;
+}
+.heroContent > *:nth-child(3) {
+  animation-delay: 300ms;
+}
 
 .heroActions {
   opacity: 0;
@@ -125,7 +134,11 @@
   font-weight: 700;
   font-size: 1.1rem;
   text-transform: uppercase;
-  transition: transform var(--dur-small) var(--ease-out), box-shadow var(--dur-small) var(--ease-out), background-color var(--dur-small) var(--ease-out), color var(--dur-small) var(--ease-out);
+  transition:
+    transform var(--dur-small) var(--ease-out),
+    box-shadow var(--dur-small) var(--ease-out),
+    background-color var(--dur-small) var(--ease-out),
+    color var(--dur-small) var(--ease-out);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -221,7 +234,9 @@
   padding: 0.8rem;
   border-radius: 18px;
   box-shadow: -10px 10px 0 var(--accent-color);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .manifestoLayout:hover .portraitFrame {
@@ -254,7 +269,10 @@
   justify-content: flex-start;
   gap: 2rem;
   min-height: 300px;
-  transition: transform var(--dur-small) var(--ease-out), box-shadow var(--dur-small) var(--ease-out), border-color var(--dur-small) var(--ease-out);
+  transition:
+    transform var(--dur-small) var(--ease-out),
+    box-shadow var(--dur-small) var(--ease-out),
+    border-color var(--dur-small) var(--ease-out);
   will-change: transform;
 }
 
@@ -283,20 +301,28 @@
   border-color: #000;
 }
 
-.benefitCard:nth-child(1) { 
-  grid-column: span 8; 
-  background: var(--accent-color); 
+.benefitCard:nth-child(1) {
+  grid-column: span 8;
+  background: var(--accent-color);
 }
-.benefitCard:nth-child(1) .benefitIcon { background: #fff; }
-
-.benefitCard:nth-child(2) .benefitIcon { background: var(--accent-color); }
-.benefitCard:nth-child(3) .benefitIcon { background: var(--accent-color); }
-
-.benefitCard:nth-child(4) { 
-  grid-column: span 8; 
-  background: var(--bg-white); 
+.benefitCard:nth-child(1) .benefitIcon {
+  background: #fff;
 }
-.benefitCard:nth-child(4) .benefitIcon { background: var(--accent-color); }
+
+.benefitCard:nth-child(2) .benefitIcon {
+  background: var(--accent-color);
+}
+.benefitCard:nth-child(3) .benefitIcon {
+  background: var(--accent-color);
+}
+
+.benefitCard:nth-child(4) {
+  grid-column: span 8;
+  background: var(--bg-white);
+}
+.benefitCard:nth-child(4) .benefitIcon {
+  background: var(--accent-color);
+}
 
 .benefitCard h3 {
   font-family: 'Space Grotesk', sans-serif;
@@ -328,7 +354,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform var(--dur-small) var(--ease-out), background-color var(--dur-small) var(--ease-out), color var(--dur-small) var(--ease-out);
+  transition:
+    transform var(--dur-small) var(--ease-out),
+    background-color var(--dur-small) var(--ease-out),
+    color var(--dur-small) var(--ease-out);
   cursor: pointer;
   line-height: 1.25;
   color: inherit;
@@ -444,7 +473,9 @@
   border: 2px solid var(--text-main);
   background: #fff;
   padding: 1.5rem;
-  transition: transform var(--dur-small) var(--ease-out), box-shadow var(--dur-small) var(--ease-out);
+  transition:
+    transform var(--dur-small) var(--ease-out),
+    box-shadow var(--dur-small) var(--ease-out);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -456,7 +487,7 @@
 }
 
 .educationCardIcon {
-  color: #DC2626; /* Intensywna czerwień ostrzegawcza */
+  color: #dc2626; /* Intensywna czerwień ostrzegawcza */
   background: rgba(220, 38, 38, 0.08);
   width: 48px;
   height: 48px;
@@ -499,7 +530,11 @@
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  transition: transform var(--dur-small) var(--ease-out), box-shadow var(--dur-small) var(--ease-out), background-color var(--dur-small) var(--ease-out), color var(--dur-small) var(--ease-out);
+  transition:
+    transform var(--dur-small) var(--ease-out),
+    box-shadow var(--dur-small) var(--ease-out),
+    background-color var(--dur-small) var(--ease-out),
+    color var(--dur-small) var(--ease-out);
   position: relative;
   overflow: hidden;
 }
@@ -522,7 +557,9 @@
   background: currentColor;
   opacity: 0;
   transform: scaleX(0.65);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .educationCta:hover {
@@ -564,7 +601,9 @@
 .projectCard {
   border: 2px solid var(--text-main);
   background: #fff;
-  transition: transform var(--dur-small) var(--ease-out), box-shadow var(--dur-small) var(--ease-out);
+  transition:
+    transform var(--dur-small) var(--ease-out),
+    box-shadow var(--dur-small) var(--ease-out);
   overflow: hidden;
   will-change: transform;
   display: flex;
@@ -696,7 +735,9 @@
   text-decoration: none;
   border-bottom: 2px solid var(--accent-color);
   padding-bottom: 0.2rem;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
   width: fit-content;
 }
 
@@ -724,7 +765,9 @@
   flex: 1;
   border-top: 2px solid var(--accent-color);
   padding-top: 2rem;
-  transition: transform var(--dur-small) var(--ease-out), border-color var(--dur-small) var(--ease-out);
+  transition:
+    transform var(--dur-small) var(--ease-out),
+    border-color var(--dur-small) var(--ease-out);
 }
 
 .step:hover {
@@ -763,7 +806,9 @@
   font-size: 1.12rem;
   text-decoration: underline;
   text-underline-offset: 8px;
-  transition: color var(--dur-micro) var(--ease-out), text-underline-offset var(--dur-micro) var(--ease-out);
+  transition:
+    color var(--dur-micro) var(--ease-out),
+    text-underline-offset var(--dur-micro) var(--ease-out);
 }
 
 .footerLink:hover {
@@ -1023,7 +1068,6 @@
     opacity: 1;
     transform: none;
   }
-
 
   .ctaButton svg,
   .benefitIcon,

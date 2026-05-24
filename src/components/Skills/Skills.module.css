@@ -11,7 +11,9 @@
   box-shadow: var(--shadow-solid);
   display: flex;
   flex-direction: column;
-  transition: transform var(--duration-fast) var(--ease-sharp), box-shadow var(--duration-fast) var(--ease-sharp);
+  transition:
+    transform var(--duration-fast) var(--ease-sharp),
+    box-shadow var(--duration-fast) var(--ease-sharp);
   position: relative;
 }
 
@@ -103,7 +105,9 @@
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--duration-fast) var(--ease-sharp), transform var(--duration-fast) var(--ease-sharp);
+  transition:
+    opacity var(--duration-fast) var(--ease-sharp),
+    transform var(--duration-fast) var(--ease-sharp);
   border: var(--border-thin);
   border-color: var(--color-white);
   z-index: 10;

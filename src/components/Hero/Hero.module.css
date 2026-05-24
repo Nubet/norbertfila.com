@@ -203,22 +203,24 @@
     text-align: left;
     gap: 5rem;
   }
-  
+
   .badge {
     right: 0;
     top: -1.875rem;
     transform: rotate(0deg); /* Flatten on mobile for readability and spacing */
   }
-  
+
   .visual {
     order: -1; /* Image first on mobile */
   }
-  
-  .shape1, .shape2, .shape3 {
+
+  .shape1,
+  .shape2,
+  .shape3 {
     opacity: 0.3; /* Tone down on mobile */
     transform: scale(0.6);
   }
-  
+
   .title {
     font-size: clamp(3.5rem, 12vw, 5rem);
   }

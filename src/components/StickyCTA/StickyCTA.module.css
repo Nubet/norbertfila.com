@@ -7,7 +7,7 @@
   color: var(--color-white, #ffffff);
   padding: 0.875rem 1.25rem;
   border-radius: 50px;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
   font-size: 0.9375rem;
   text-decoration: none;
@@ -15,7 +15,9 @@
   z-index: 999;
   align-items: center;
   gap: 0.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .stickyCta:active {

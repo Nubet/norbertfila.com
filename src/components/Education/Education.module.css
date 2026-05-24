@@ -18,7 +18,9 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  transition: transform var(--duration-fast) var(--ease-sharp), box-shadow var(--duration-fast) var(--ease-sharp);
+  transition:
+    transform var(--duration-fast) var(--ease-sharp),
+    box-shadow var(--duration-fast) var(--ease-sharp);
   position: relative;
 }
 
@@ -193,7 +195,7 @@
   .container {
     grid-template-columns: 1fr;
   }
-  
+
   .timelineCard {
     padding: 1.5rem;
   }

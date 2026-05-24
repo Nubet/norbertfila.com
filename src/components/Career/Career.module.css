@@ -15,7 +15,9 @@
   flex-direction: column;
   gap: 2rem;
   position: relative;
-  transition: transform var(--duration-fast) var(--ease-sharp), box-shadow var(--duration-fast) var(--ease-sharp);
+  transition:
+    transform var(--duration-fast) var(--ease-sharp),
+    box-shadow var(--duration-fast) var(--ease-sharp);
 }
 
 .card:hover {
@@ -128,17 +130,17 @@
   .card {
     padding: 1.5rem;
   }
-  
+
   .header {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .meta {
     align-items: flex-start;
     text-align: left;
   }
-  
+
   .role {
     transform: rotate(0deg);
   }

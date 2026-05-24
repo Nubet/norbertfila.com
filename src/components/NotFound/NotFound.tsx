@@ -17,9 +17,7 @@ export default function NotFound() {
 
         <div className={styles.messageBox}>
           <h2 className={styles.messageTitle}>LOST IN THE GRID?</h2>
-          <p className={styles.messageText}>
-              Sorry, that page doesn't exist.
-          </p>
+          <p className={styles.messageText}>Sorry, that page doesn't exist.</p>
         </div>
 
         <div className={styles.actions}>

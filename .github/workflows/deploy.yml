@@ -31,8 +31,8 @@ jobs:
           host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: "dist/*"
-          target: "/var/www/norbertfila.com/portfolio"
+          source: 'dist/*'
+          target: '/var/www/norbertfila.com/portfolio'
           strip_components: 1
 
       - name: Cleanup on failure

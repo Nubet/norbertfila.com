@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: var(--bg-white, #F4F4F0);
+  background-color: var(--bg-white, #f4f4f0);
   color: var(--text-main, #0f0f0f);
   padding: 8rem 0 6rem;
   font-family: 'Outfit', sans-serif;
@@ -85,7 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 3px 3px 0 var(--accent-color, #FFD100);
+  box-shadow: 3px 3px 0 var(--accent-color, #ffd100);
   flex-shrink: 0;
   color: var(--text-main, #0f0f0f);
 }
@@ -113,7 +113,7 @@
 }
 
 .directMail:hover {
-  color: var(--accent-color, #FFD100);
+  color: var(--accent-color, #ffd100);
 }
 
 .founderSnippet {
@@ -142,7 +142,6 @@
   color: #666;
   font-size: 0.9rem;
 }
-
 
 /* Right Panel - Form */
 .formPanel {
@@ -204,7 +203,7 @@
   background: var(--text-main, #0f0f0f);
   border-color: var(--text-main, #0f0f0f);
   color: #fff;
-  box-shadow: 4px 4px 0 var(--accent-color, #FFD100);
+  box-shadow: 4px 4px 0 var(--accent-color, #ffd100);
   transform: translateY(-2px);
 }
 
@@ -223,7 +222,9 @@
   font-size: 1rem;
   color: var(--text-main, #0f0f0f);
   resize: vertical;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .inputGrid {
@@ -254,14 +255,16 @@ select.input {
   font-family: 'Outfit', sans-serif;
   font-size: 1rem;
   color: var(--text-main, #0f0f0f);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 select.input {
   padding-left: 1rem; /* Select doesn't have an icon inside in this design */
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%230F0F0F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%230F0F0F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
   background-position: right 1rem top 50%;
   background-size: 0.65rem auto;
@@ -301,12 +304,14 @@ select.input:focus {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  transition:
+    transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .submitBtn:hover {
   transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 var(--accent-color, #FFD100);
+  box-shadow: 8px 8px 0 var(--accent-color, #ffd100);
 }
 
 .submitBtn svg {
@@ -332,7 +337,7 @@ select.input:focus {
 }
 
 .privacyNote a:hover {
-  color: var(--color-red, #E31837);
+  color: var(--color-red, #e31837);
 }
 
 /* Responsive Design */
@@ -341,7 +346,7 @@ select.input:focus {
     grid-template-columns: 1fr;
     gap: 4rem;
   }
-  
+
   .stickyWrap {
     position: relative;
     top: 0;
@@ -352,7 +357,7 @@ select.input:focus {
   .page {
     padding: 6rem 0 4rem;
   }
-  
+
   .container {
     padding: 0 1.5rem;
   }
