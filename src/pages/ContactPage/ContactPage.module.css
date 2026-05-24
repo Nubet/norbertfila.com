@@ -233,6 +233,10 @@
   gap: 1.5rem;
 }
 
+.inputGrid .formGroup {
+  justify-content: space-between;
+}
+
 .inputWrapper {
   position: relative;
   display: flex;

@@ -68,7 +68,7 @@ export default function ContactPage() {
               {/* Founder snippet */}
               <div className={styles.founderSnippet}>
                 <img
-                  src={`${import.meta.env.BASE_URL}profile/NorbertFilaAvatar.webp`}
+                  src={`${import.meta.env.BASE_URL}profile/avatar.webp`}
                   alt="Norbert Fila"
                   className={styles.avatar}
                   loading="lazy"
