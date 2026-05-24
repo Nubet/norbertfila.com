@@ -286,9 +286,11 @@ export default function Home() {
               </div>
 
               <div className={styles.educationActions}>
-                <Link to="/contact" className={styles.educationCta}>
+                {/*
+                  <Link to="/contact" className={styles.educationCta}>
                   <Download size={20} /> Pobierz darmową checklistę: 12 błędów strony
                 </Link>
+                  */}
               </div>
             </div>
           </ScrollReveal>
