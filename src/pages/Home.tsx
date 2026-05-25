@@ -34,7 +34,7 @@ const portfolioProjects = [
     isGithub: false,
   },
   {
-    title: 'Centrum Badań Jutrzejszych',
+    title: 'Centrum Badań klinicznych',
     description:
       'Czytelna, wzbudzająca autorytet strona placówki medycznej. Przejrzysta struktura sekcji, ułatwiająca pacjentom zapis na badania.',
     image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-klinika-projekt.png`,
