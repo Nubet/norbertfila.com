@@ -41,10 +41,10 @@ const faqs = [
 ]
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null)
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
+  const toggleFAQ = (question: string) => {
+    setOpenQuestion(openQuestion === question ? null : question)
   }
 
   return (
@@ -57,15 +57,16 @@ export function FAQ() {
           </p>
         </div>
         <div className={styles.faqList}>
-          {faqs.map((faq, index) => (
+          {faqs.map((faq) => (
             <div
-              key={index}
-              className={`${styles.faqItem} ${openIndex === index ? styles.open : ''}`}
+              key={faq.question}
+              className={`${styles.faqItem} ${openQuestion === faq.question ? styles.open : ''}`}
             >
               <button
+                type="button"
                 className={styles.question}
-                onClick={() => toggleFAQ(index)}
-                aria-expanded={openIndex === index}
+                onClick={() => toggleFAQ(faq.question)}
+                aria-expanded={openQuestion === faq.question}
               >
                 <span>{faq.question}</span>
                 <ChevronDown className={styles.icon} />
@@ -73,7 +74,7 @@ export function FAQ() {
               <div
                 className={styles.answerWrapper}
                 style={{
-                  gridTemplateRows: openIndex === index ? '1fr' : '0fr',
+                  gridTemplateRows: openQuestion === faq.question ? '1fr' : '0fr',
                 }}
               >
                 <div className={styles.answer}>
