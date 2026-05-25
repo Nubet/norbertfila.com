@@ -139,8 +139,10 @@ export default function ContactPage() {
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.groupLabel}>Rodzaj projektu</label>
-                <div className={styles.pillGroup}>
+                <p id="project-type-label" className={styles.groupLabel}>
+                  Rodzaj projektu
+                </p>
+                <div className={styles.pillGroup} role="group" aria-labelledby="project-type-label">
                   {[
                     'Strona firmowa',
                     'Landing page',
@@ -151,6 +153,7 @@ export default function ContactPage() {
                     <button
                       key={type}
                       type="button"
+                      aria-label={`Rodzaj projektu: ${type}`}
                       className={`${styles.pill} ${projectType === type ? styles.pillActive : ''}`}
                       onClick={() => setProjectType(type)}
                     >
@@ -159,7 +162,6 @@ export default function ContactPage() {
                     </button>
                   ))}
                 </div>
-                <input type="hidden" name="rodzaj-projektu" value={projectType} />
               </div>
 
               <div className={styles.inputGrid}>
@@ -221,13 +223,16 @@ export default function ContactPage() {
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.groupLabel}>Planowany budżet</label>
-                <div className={styles.pillGroup}>
+                <p id="budget-label" className={styles.groupLabel}>
+                  Planowany budżet
+                </p>
+                <div className={styles.pillGroup} role="group" aria-labelledby="budget-label">
                   {['Nie wiem', 'Do 800 zł', '800-1500 zł', '1500-2500 zł', 'Powyżej 2500 zł'].map(
                     (amount) => (
                       <button
                         key={amount}
                         type="button"
+                        aria-label={`Budżet: ${amount}`}
                         className={`${styles.pill} ${budget === amount ? styles.pillActive : ''}`}
                         onClick={() => setBudget(amount)}
                       >
@@ -237,7 +242,6 @@ export default function ContactPage() {
                     )
                   )}
                 </div>
-                <input type="hidden" name="budzet" value={budget} required />
               </div>
 
               <div className={styles.inputGrid}>
