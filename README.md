@@ -4,7 +4,7 @@ A personal portfolio presenting my projects, design skills, and approach to crea
 
 ## 🔗 Live Demo
 
-https://nubet.github.io/portfolio/
+https://norbertfila.com/
 
 ## 🎨 Aesthetic Direction
 
