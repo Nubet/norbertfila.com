@@ -71,7 +71,6 @@ export default function Home() {
     <div className={styles.home}>
       <StickyCTA />
 
-      {/* Hero Section */}
       <section className={styles.container}>
         <ScrollReveal>
           <div className={styles.hero}>
@@ -95,12 +94,10 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      {/* Tech Marquee Section */}
       <ScrollReveal delay={200}>
         <TechMarquee />
       </ScrollReveal>
 
-      {/* Manifesto Section */}
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -125,7 +122,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefits - Bento Grid */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -140,8 +136,7 @@ export default function Home() {
                 <h3>Design budujący autorytet</h3>
                 <p>
                   Twoja strona to Twój najlepszy handlowiec. Projektuję interfejsy, które od
-                  pierwszego kliknięcia krzyczą „jesteśmy profesjonalistami”, budując ekstremalne
-                  zaufanie u Twoich potencjalnych klientów.
+                  pierwszego kliknięcia budują zaufanie i pokazują profesjonalizm.
                 </p>
               </div>
             </ScrollReveal>
@@ -164,8 +159,8 @@ export default function Home() {
               <div>
                 <h3>Jasne zasady</h3>
                 <p>
-                  Zero technologicznego bełkotu. Tłumaczę kod na język biznesu i zysków. Zawsze
-                  dokładnie wiesz, za co płacisz i na jakim etapie jest projekt.
+                  Bez technologicznego bełkotu. Tłumaczę kod na język biznesu, więc zawsze dokładnie
+                  wiesz, za co płacisz i na jakim etapie jest projekt.
                 </p>
               </div>
             </ScrollReveal>
@@ -178,7 +173,6 @@ export default function Home() {
                 <p>
                   Nie korzystam z ociężałych, gotowych szablonów. Piszę czysty, autorski kod, który
                   bez problemu zniesie rosnący ruch i rozwój Twojej firmy przez kolejne lata.
-                  Inwestujesz raz a dobrze.
                 </p>
               </div>
             </ScrollReveal>
@@ -186,7 +180,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services - Editorial List */}
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -251,7 +244,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Educational - Why websites lose clients */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -304,20 +296,11 @@ export default function Home() {
                   </p>
                 </article>
               </div>
-
-              <div className={styles.educationActions}>
-                {/*
-                  <Link to="/contact" className={styles.educationCta}>
-                  <Download size={20} /> Pobierz darmową checklistę: 12 błędów strony
-                </Link>
-                  */}
-              </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Selected Projects */}
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -363,7 +346,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process */}
       <section className={styles.bigTextSection} style={{ background: '#0F0F0F', color: '#fff' }}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -401,12 +383,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <ScrollReveal>
         <FAQ />
       </ScrollReveal>
 
-      {/* Final Call */}
       <section className={styles.bigTextSection} style={{ textAlign: 'center' }}>
         <ScrollReveal>
           <div className={styles.container}>
@@ -448,7 +428,6 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      {/* Lightbox Modal */}
       {zoomedImage && (
         <div className={styles.lightbox} onClick={() => setZoomedImage(null)}>
           <button className={styles.lightboxClose} aria-label="Zamknij podgląd">

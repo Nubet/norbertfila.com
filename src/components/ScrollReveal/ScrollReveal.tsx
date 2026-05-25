@@ -16,17 +16,14 @@ export function ScrollReveal({ children, delay = 0, className = '' }: ScrollReve
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Kiedy element wchodzi w obszar widzenia
           if (entry.isIntersecting) {
             setIsVisible(true)
-            // Przestajemy obserwować, aby animacja wykonała się tylko raz
             if (domRef.current) {
               observer.unobserve(domRef.current)
             }
           }
         })
       },
-      // Odpala animację, gdy element jest 10% powyżej dolnej krawędzi ekranu
       { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
     )
 
