@@ -157,6 +157,14 @@
   gap: 2.5rem;
 }
 
+.honeypotField {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -324,6 +332,32 @@ select.input:focus {
 
 .submitBtn:hover svg {
   transform: translate(3px, -3px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submitBtn:disabled svg {
+  transform: none;
+}
+
+.feedbackSuccess,
+.feedbackError {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.feedbackSuccess {
+  color: #166534;
+}
+
+.feedbackError {
+  color: #b91c1c;
 }
 
 .privacyNote {

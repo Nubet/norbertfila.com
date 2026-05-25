@@ -135,7 +135,7 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p>
               Aby skorzystać ze swoich praw, wystarczy wysłać stosowną prośbę na adres e-mail{' '}
-              <Link to="/contact">contact@norbertfila.com</Link>.
+              <Link to="/contact">kontakt@norbertfila.com</Link>.
             </p>
             <p>
               Należy pamiętać, że jeśli nie wyrazisz zgody na zbieranie lub przetwarzanie wymaganych

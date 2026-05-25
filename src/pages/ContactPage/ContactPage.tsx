@@ -2,11 +2,16 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Mail, Clock, CheckCircle2, User, Send, Phone } from 'lucide-react'
 import { setSeo } from '../../utils/seo'
+import { submitContactForm, ContactFormError } from '../../features/contact/submitContactForm'
 import styles from './ContactPage.module.css'
 
 export default function ContactPage() {
   const [projectType, setProjectType] = useState<string>('')
   const [budget, setBudget] = useState<string>('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(
+    null
+  )
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -18,6 +23,54 @@ export default function ContactPage() {
       canonicalUrl: 'https://norbertfila.com/contact',
     })
   }, [])
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formElement = event.currentTarget
+
+    if (isSubmitting) {
+      return
+    }
+
+    const formData = new FormData(formElement)
+
+    const payload = {
+      projectType,
+      budget,
+      materials: String(formData.get('materialy') ?? ''),
+      pagesCount: String(formData.get('liczba-podstron') ?? ''),
+      description: String(formData.get('opis') ?? ''),
+      fullName: String(formData.get('imie-nazwisko') ?? ''),
+      email: String(formData.get('email') ?? ''),
+      phone: String(formData.get('telefon') ?? ''),
+      honeypot: String(formData.get('website') ?? ''),
+    }
+
+    setFeedback(null)
+    setIsSubmitting(true)
+
+    try {
+      await submitContactForm(payload)
+      formElement.reset()
+      setProjectType('')
+      setBudget('')
+      setFeedback({
+        type: 'success',
+        message: 'Dziękuję! Formularz został wysłany. Odpowiem najszybciej, jak to możliwe.',
+      })
+    } catch (error) {
+      if (error instanceof ContactFormError) {
+        setFeedback({ type: 'error', message: error.message })
+      } else {
+        setFeedback({
+          type: 'error',
+          message: 'Wystąpił problem z wysyłką. Napisz bezpośrednio na kontatk@norbertfila.com.',
+        })
+      }
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <main className={styles.page}>
@@ -58,9 +111,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4>Bezpośredni kontakt</h4>
-                    <Link to="/contact" className={styles.directMail}>
-                      contact@norbertfila.com
-                    </Link>
+                    <a href="mailto:kontatk@norbertfila.com" className={styles.directMail}>
+                      kontatk@norbertfila.com
+                    </a>
                   </div>
                 </div>
               </div>
@@ -83,7 +136,12 @@ export default function ContactPage() {
 
           {/* Right Panel - Interactive Form */}
           <section className={styles.formPanel}>
-            <form className={styles.form}>
+            <form className={styles.form} onSubmit={handleSubmit} noValidate>
+              <div className={styles.honeypotField} aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
+
               {/* Interactive Pills - Project Type */}
               <div className={styles.formGroup}>
                 <label className={styles.groupLabel}>Rodzaj projektu</label>
@@ -245,9 +303,19 @@ export default function ContactPage() {
               </div>
 
               <div className={styles.submitWrapper}>
-                <button type="submit" className={styles.submitBtn}>
-                  Wyślij zapytanie <Send size={20} />
+                <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+                  {isSubmitting ? 'Wysyłanie...' : 'Wyślij zapytanie'} <Send size={20} />
                 </button>
+                {feedback && (
+                  <p
+                    className={
+                      feedback.type === 'success' ? styles.feedbackSuccess : styles.feedbackError
+                    }
+                    role={feedback.type === 'error' ? 'alert' : 'status'}
+                  >
+                    {feedback.message}
+                  </p>
+                )}
                 <p className={styles.privacyNote}>
                   Wysyłając formularz, akceptujesz{' '}
                   <Link to="/privacy-policy">politykę prywatności</Link>.
