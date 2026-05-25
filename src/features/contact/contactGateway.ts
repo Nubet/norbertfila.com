@@ -32,7 +32,7 @@ export async function sendContactForm(payload: ContactFormPayload) {
     const httpError = mapHttpError(error)
 
     throw new ContactFormError(
-      'Nie udało się wysłać formularza. Napisz bezpośrednio na kontatk@norbertfila.com.',
+      'Nie udało się wysłać formularza. Napisz bezpośrednio na kontakt@norbertfila.com.',
       httpError.code,
       httpError
     )

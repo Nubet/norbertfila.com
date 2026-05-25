@@ -64,7 +64,7 @@ export default function ContactPage() {
       } else {
         setFeedback({
           type: 'error',
-          message: 'Wystąpił problem z wysyłką. Napisz bezpośrednio na kontatk@norbertfila.com.',
+          message: 'Wystąpił problem z wysyłką. Napisz bezpośrednio na kontakt@norbertfila.com.',
         })
       }
     } finally {
@@ -75,7 +75,6 @@ export default function ContactPage() {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        {/* Navigation */}
         <nav className={styles.nav}>
           <Link to="/" className={styles.backLink}>
             <ArrowLeft size={20} /> Powrót
@@ -83,7 +82,6 @@ export default function ContactPage() {
         </nav>
 
         <div className={styles.layoutGrid}>
-          {/* Left Panel - Information & Trust */}
           <aside className={styles.infoPanel}>
             <div className={styles.stickyWrap}>
               <h1 className={styles.title}>Porozmawiajmy o Twoim biznesie.</h1>
@@ -111,14 +109,13 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h4>Bezpośredni kontakt</h4>
-                    <a href="mailto:kontatk@norbertfila.com" className={styles.directMail}>
-                      kontatk@norbertfila.com
+                    <a href="mailto:kontakt@norbertfila.com" className={styles.directMail}>
+                      kontakt@norbertfila.com
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Founder snippet */}
               <div className={styles.founderSnippet}>
                 <img
                   src={`${import.meta.env.BASE_URL}profile/avatar.webp`}
@@ -134,7 +131,6 @@ export default function ContactPage() {
             </div>
           </aside>
 
-          {/* Right Panel - Interactive Form */}
           <section className={styles.formPanel}>
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
               <div className={styles.honeypotField} aria-hidden="true">
@@ -142,7 +138,6 @@ export default function ContactPage() {
                 <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
               </div>
 
-              {/* Interactive Pills - Project Type */}
               <div className={styles.formGroup}>
                 <label className={styles.groupLabel}>Rodzaj projektu</label>
                 <div className={styles.pillGroup}>
@@ -168,7 +163,6 @@ export default function ContactPage() {
               </div>
 
               <div className={styles.inputGrid}>
-                {/* Select - Materials */}
                 <div className={styles.formGroup}>
                   <label className={styles.groupLabel} htmlFor="materialy">
                     Czy posiadasz materiały?
@@ -189,7 +183,6 @@ export default function ContactPage() {
                   </select>
                 </div>
 
-                {/* Select - Pages */}
                 <div className={styles.formGroup}>
                   <label className={styles.groupLabel} htmlFor="liczba-podstron">
                     Liczba podstron
@@ -213,7 +206,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Text Area - Description */}
               <div className={styles.formGroup}>
                 <label className={styles.groupLabel} htmlFor="opis">
                   Opis projektu lub Twoje oczekiwania
@@ -228,7 +220,6 @@ export default function ContactPage() {
                 ></textarea>
               </div>
 
-              {/* Interactive Pills - Budget */}
               <div className={styles.formGroup}>
                 <label className={styles.groupLabel}>Planowany budżet</label>
                 <div className={styles.pillGroup}>
@@ -249,7 +240,6 @@ export default function ContactPage() {
                 <input type="hidden" name="budzet" value={budget} required />
               </div>
 
-              {/* Standard Inputs - Contact Details */}
               <div className={styles.inputGrid}>
                 <div className={styles.formGroup}>
                   <label className={styles.groupLabel} htmlFor="name">

@@ -5,7 +5,6 @@ import styles from './Hero.module.css'
 export default function Hero() {
   return (
     <header className={styles.hero}>
-      {/* Decorative Bauhaus Shapes */}
       <div className={styles.shape1}></div>
       <div className={styles.shape2}></div>
       <div className={styles.shape3}></div>
