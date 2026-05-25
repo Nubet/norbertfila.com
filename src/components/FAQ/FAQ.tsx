@@ -26,12 +26,12 @@ const faqs = [
   {
     question: 'Dlaczego kodujesz strony od podstaw, zamiast używać WordPressa?',
     answer:
-      'Technologię dobieram pod Twój projekt: dla dużych witryn z panelem CMS wybieram Next.js, a dla lżejszych, interaktywnych stron stawiam na ultraszybki zestaw React + Vite – dzięki temu zawsze zyskujesz czysty kod, bezpieczną strukturę, świetne SEO i błyskawiczne ładowanie bez wad ciężkich szablonów.',
+      'Wiele stron na WordPressie powstaje przez szybkie składanie szablonu, co często ogranicza jakość i możliwości rozwoju. U mnie każda strona jest projektowana i kodowana pod konkretną firmę: pod Twoją ofertę, klientów i cele sprzedażowe. Efekt to większa szybkość, lepsze SEO, lepsza konwersja i pełna elastyczność — mogę wdrożyć praktycznie każdą funkcję, której potrzebujesz teraz lub w przyszłości. Przede wszystkim jednak dostajesz unikalną stronę, która wyróżnia Cię na tle konkurencji, zamiast kolejnej kopii z tego samego szablonu.',
   },
   {
     question: 'Czy mogę samodzielnie edytować treści na stronie?',
     answer:
-      'Tak, na życzenie wdrażam intuicyjny system CMS, który umożliwia łatwą, samodzielną edycję tekstów czy dodawanie produktów za pomocą prostego formularza.',
+      'Tak, na życzenie wdrażam intuicyjny system CMS, dzięki któremu samodzielnie edytujesz treści na stronie: teksty, zdjęcia, realizacje, wpisy blogowe - bez znajomości kodu i bez angażowania programisty do każdej zmiany.',
   },
   {
     question: 'Czy tworzysz strony wielojęzyczne?',
