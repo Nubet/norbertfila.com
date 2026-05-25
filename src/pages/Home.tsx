@@ -309,6 +309,7 @@ export default function Home() {
               {portfolioProjects.map((project) => (
                 <article className={styles.projectCard} key={project.title}>
                   <button
+                    type="button"
                     className={styles.projectImageWrapper}
                     onClick={() => setZoomedImage(project.image)}
                     aria-label={`Powiększ projekt ${project.title}`}
@@ -429,8 +430,20 @@ export default function Home() {
       </section>
 
       {zoomedImage && (
-        <div className={styles.lightbox} onClick={() => setZoomedImage(null)}>
-          <button className={styles.lightboxClose} aria-label="Zamknij podgląd">
+        <div
+          className={styles.lightbox}
+          onClick={() => setZoomedImage(null)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault()
+              setZoomedImage(null)
+            }
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Zamknij podgląd"
+        >
+          <button type="button" className={styles.lightboxClose} aria-label="Zamknij podgląd">
             <X size={36} />
           </button>
           <img src={zoomedImage} alt="Powiększona wizualizacja" className={styles.lightboxImage} />
