@@ -3,7 +3,7 @@
   --accent-color: #ffd100;
   --text-main: #0f0f0f;
   --text-muted: #4a4a4a;
-  --bg-white: #f4f4f0; /* Off-white canvas z CV dla spójności */
+  --bg-white: #f4f4f0;
   --dur-micro: 130ms;
   --dur-small: 240ms;
   --dur-medium: 360ms;
@@ -20,7 +20,6 @@
   position: relative;
 }
 
-/* Subtelny szum w tle - likwiduje "plastikowy" cyfrowy wygląd */
 .home::after {
   content: '';
   position: fixed;
@@ -46,7 +45,7 @@
   padding: 0 2rem;
 }
 
-/* Hero Section - Asymmetrical & Bold */
+/* Hero Section */
 .hero {
   padding: 10rem 0 6rem;
   display: grid;
@@ -252,7 +251,7 @@
   border-radius: 12px;
 }
 
-/* Benefits - Bento Grid style */
+/* Benefits */
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -339,7 +338,7 @@
   color: #262626;
 }
 
-/* Services List - Clean but bold */
+/* Services List  */
 .servicesList {
   list-style: none;
   padding: 0;
@@ -427,96 +426,116 @@
 }
 
 .educationWrap {
-  border: 2px solid var(--text-main);
-  background: #fff;
-  padding: 2.25rem;
+  background: var(--bg-white);
+  color: var(--text-main);
+  padding: 3.5rem;
+  border: 4px solid var(--text-main);
+  box-shadow: 12px 12px 0px 0px var(--accent-color);
   position: relative;
   overflow: hidden;
 }
 
-.educationWrap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 64px;
-  height: 64px;
-  background: var(--accent-color);
-  border-left: 2px solid var(--text-main);
-  border-bottom: 2px solid var(--text-main);
-  pointer-events: none;
-}
-
 .educationWrap h2 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(1.85rem, 3.65vw, 2.7rem);
-  line-height: 1.14;
-  margin: 0 0 1rem;
-  max-width: 18ch;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 2.5rem;
+  max-width: 22ch;
+  color: var(--text-main);
 }
 
 .educationLead {
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   max-width: 70ch;
-  margin-bottom: 1.8rem;
+  margin-bottom: 2rem;
 }
 
 .educationGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .educationCard {
   border: 2px solid var(--text-main);
   background: #fff;
-  padding: 1.5rem;
+  color: var(--text-main);
+  padding: 2rem;
   transition:
     transform var(--dur-small) var(--ease-out),
     box-shadow var(--dur-small) var(--ease-out);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
+  box-shadow: 4px 4px 0px 0px var(--text-main);
 }
 
 .educationCard:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 4px 4px 0 var(--text-main);
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0px 0px var(--text-main);
 }
 
 .educationCardIcon {
-  color: #dc2626; /* Intensywna czerwień ostrzegawcza */
-  background: rgba(220, 38, 38, 0.08);
-  width: 48px;
-  height: 48px;
+  color: var(--text-main);
+  background: var(--bg-white);
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
   margin-bottom: 0.5rem;
+  border: 2px solid var(--text-main);
+  box-shadow: 3px 3px 0px 0px var(--text-main);
+  transition: transform var(--dur-small) var(--ease-out);
+}
+
+.educationCard:hover .educationCardIcon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.educationCard:nth-child(1) .educationCardIcon {
+  background: var(--accent-color);
+}
+
+.educationCard:nth-child(2) .educationCardIcon {
+  background: var(--color-red, #e31837);
+  color: #fff;
+}
+
+.educationCard:nth-child(3) .educationCardIcon {
+  background: var(--color-blue, #005a9c);
+  color: #fff;
+}
+
+.educationCard:nth-child(4) .educationCardIcon {
+  background: var(--text-main);
+  color: #fff;
 }
 
 .educationCard h3 {
   font-family: 'Space Grotesk', sans-serif;
   margin: 0;
-  font-size: 1.14rem;
-  line-height: 1.22;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .educationCard p {
   color: var(--text-muted);
   margin: 0;
-  line-height: 1.62;
-  font-size: 0.98rem;
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
 .educationOutro {
-  margin: 1.4rem 0 0.9rem;
+  margin: 2rem 0 1rem;
   font-weight: 500;
   max-width: 68ch;
-  line-height: 1.62;
+  line-height: 1.6;
+  color: var(--text-main);
 }
 
 .educationCta {

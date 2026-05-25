@@ -257,7 +257,10 @@ export default function Home() {
           <ScrollReveal>
             <h2 className={styles.sectionLabel}>Szybki audyt</h2>
             <div className={styles.educationWrap}>
-              <h2>Dlaczego Twoja strona traci klientów?</h2>
+              <h2>
+                Dlaczego Twoja strona <br />
+                <span className={styles.highlight}>traci klientów?</span>
+              </h2>
               <div className={styles.educationGrid}>
                 <article className={styles.educationCard}>
                   <div className={styles.educationCardIcon}>
