@@ -16,13 +16,13 @@ export default defineConfig(({ mode }) => {
               transformIndexHtml(html: string) {
                 return html.replace(
                   /<link rel="stylesheet" crossorigin href="([^"]+)">/g,
-                  '<link rel="preload" as="style" crossorigin href="$1" onload="this.onload=null;this.rel=\'stylesheet\'">\n    <noscript><link rel="stylesheet" crossorigin href="$1"></noscript>',
+                  '<link rel="preload" as="style" crossorigin href="$1" onload="this.onload=null;this.rel=\'stylesheet\'">\n    <noscript><link rel="stylesheet" crossorigin href="$1"></noscript>'
                 )
               },
             },
           ]
         : []),
     ],
-    base: '/portfolio/',
+    base: '/',
   }
 })

@@ -1,19 +1,19 @@
 :root {
   /* Bauhaus Palette */
-  --bg-primary: #F4F4F0; /* Off-white canvas */
-  --bg-secondary: #EBEBE6; /* Slightly darker canvas for contrast */
-  --color-black: #0F0F0F; /* Near black for stark contrast */
-  --color-white: #FFFFFF;
-  
-  --color-red: #E31837; /* Bauhaus Red */
-  --color-blue: #005A9C; /* Bauhaus Blue */
-  --color-yellow: #FFD100; /* Bauhaus Yellow */
-  
+  --bg-primary: #f4f4f0; /* Off-white canvas */
+  --bg-secondary: #ebebe6; /* Slightly darker canvas for contrast */
+  --color-black: #0f0f0f; /* Near black for stark contrast */
+  --color-white: #ffffff;
+
+  --color-red: #e31837; /* Bauhaus Red */
+  --color-blue: #005a9c; /* Bauhaus Blue */
+  --color-yellow: #ffd100; /* Bauhaus Yellow */
+
   /* Text hierarchy */
   --text-primary: var(--color-black);
   --text-secondary: #404040;
   --text-inverse: var(--bg-primary);
-  
+
   /* Structural */
   --border-thick: 0.25rem solid var(--color-black);
   --border-thin: 0.125rem solid var(--color-black);
@@ -21,7 +21,7 @@
   /* Shadow */
   --shadow-solid: 0.5rem 0.5rem 0px 0px var(--color-black);
   --shadow-solid-hover: 0.75rem 0.75rem 0px 0px var(--color-black);
-  
+
   /* Motion */
   --ease-sharp: cubic-bezier(0.19, 1, 0.22, 1);
   --duration-fast: 150ms;

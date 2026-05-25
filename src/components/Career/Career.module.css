@@ -15,7 +15,9 @@
   flex-direction: column;
   gap: 2rem;
   position: relative;
-  transition: transform var(--duration-fast) var(--ease-sharp), box-shadow var(--duration-fast) var(--ease-sharp);
+  transition:
+    transform var(--duration-fast) var(--ease-sharp),
+    box-shadow var(--duration-fast) var(--ease-sharp);
 }
 
 .card:hover {
@@ -51,7 +53,8 @@
 .company {
   margin: 0;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   color: var(--color-black);
   text-transform: uppercase;
   line-height: 1;
@@ -76,7 +79,8 @@
 .role {
   background: var(--color-yellow);
   color: var(--color-black);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   padding: 0.5rem 1rem;
   border: var(--border-thick);
   font-size: 1.1rem;
@@ -88,7 +92,8 @@
   font-size: 1rem;
   color: var(--color-white);
   background: var(--color-black);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   padding: 0.25rem 0.75rem;
   border: var(--border-thick);
 }
@@ -125,17 +130,17 @@
   .card {
     padding: 1.5rem;
   }
-  
+
   .header {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .meta {
     align-items: flex-start;
     text-align: left;
   }
-  
+
   .role {
     transform: rotate(0deg);
   }

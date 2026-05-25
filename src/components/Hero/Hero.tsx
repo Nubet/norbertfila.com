@@ -5,7 +5,6 @@ import styles from './Hero.module.css'
 export default function Hero() {
   return (
     <header className={styles.hero}>
-      {/* Decorative Bauhaus Shapes */}
       <div className={styles.shape1}></div>
       <div className={styles.shape2}></div>
       <div className={styles.shape3}></div>
@@ -14,7 +13,8 @@ export default function Hero() {
         <div className={styles.titleContainer}>
           <h1 className={styles.title} aria-label="Norbert Fila">
             <span aria-hidden="true">
-              NORBERT<br />
+              NORBERT
+              <br />
               FILA.
             </span>
           </h1>
@@ -22,26 +22,44 @@ export default function Hero() {
         </div>
 
         <p className={styles.subhead}>
-          TRANSFORMING RAW IDEAS<br />
+          TRANSFORMING RAW IDEAS
+          <br />
           INTO WORKING SOLUTIONS.
         </p>
-        
+
         <div className={styles.actions}>
           <a href="#projects" className={styles.primaryButton}>
-              VIEW WORK <ArrowRight size={24} strokeWidth={3} />
+            VIEW WORK <ArrowRight size={24} strokeWidth={3} />
           </a>
 
           <div className={styles.socialLinks}>
-            <a href="https://www.linkedin.com/in/norbert-fila/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
+            <a
+              href="https://www.linkedin.com/in/norbert-fila/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              aria-label="LinkedIn"
+            >
               <Linkedin size={28} strokeWidth={2.5} />
             </a>
-            <a href="https://github.com/nubet" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
+            <a
+              href="https://github.com/nubet"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              aria-label="GitHub"
+            >
               <Github size={28} strokeWidth={2.5} />
             </a>
-            <a href="mailto:nubet2137@gmail.com" className={styles.socialIcon} aria-label="Email">
+            <Link to="/contact" className={styles.socialIcon} aria-label="Kontakt">
               <Mail size={28} strokeWidth={2.5} />
-            </a>
-            <Link to="/resume.pdf" target="_blank" className={styles.socialIcon} aria-label="Resume / CV">
+            </Link>
+            <Link
+              to="/resume.pdf"
+              target="_blank"
+              className={styles.socialIcon}
+              aria-label="Resume / CV"
+            >
               <FileText size={28} strokeWidth={2.5} />
             </Link>
           </div>
@@ -51,7 +69,7 @@ export default function Hero() {
       <div className={styles.visual}>
         <div className={styles.portraitWrapper}>
           <img
-            src='profile/avatar.webp'
+            src="profile/avatar.webp"
             alt="Norbert Fila - Portrait"
             className={styles.image}
             fetchPriority="high"

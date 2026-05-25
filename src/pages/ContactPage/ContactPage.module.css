@@ -1,0 +1,426 @@
+.page {
+  min-height: 100vh;
+  background-color: var(--bg-white, #f4f4f0);
+  color: var(--text-main, #0f0f0f);
+  padding: 8rem 0 6rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav {
+  margin-bottom: 4rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-main, #0f0f0f);
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.backLink:hover {
+  transform: translateX(-4px);
+}
+
+/* Layout Grid */
+.layoutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* Left Panel */
+.stickyWrap {
+  position: sticky;
+  top: 4rem;
+}
+
+.title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+.lead {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0 0 3rem;
+  max-width: 90%;
+}
+
+.contactCards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.contactCard {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border: 2px solid var(--text-main, #0f0f0f);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0 var(--accent-color, #ffd100);
+  flex-shrink: 0;
+  color: var(--text-main, #0f0f0f);
+}
+
+.contactCard h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem;
+}
+
+.contactCard p {
+  color: #4a4a4a;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.directMail {
+  color: var(--text-main, #0f0f0f);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.directMail:hover {
+  color: var(--accent-color, #ffd100);
+}
+
+.founderSnippet {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--text-main, #0f0f0f);
+}
+
+.founderSnippet strong {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+}
+
+.founderSnippet span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Right Panel - Form */
+.formPanel {
+  background: #fff;
+  border: 2px solid var(--text-main, #0f0f0f);
+  padding: 3.5rem;
+  box-shadow: 12px 12px 0 var(--text-main, #0f0f0f);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.honeypotField {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.groupLabel {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main, #0f0f0f);
+}
+
+/* Pills */
+.pillGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pill {
+  background: #f4f4f0;
+  border: 2px solid #e0e0e0;
+  color: #666;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pill:hover {
+  border-color: var(--text-main, #0f0f0f);
+  color: var(--text-main, #0f0f0f);
+  transform: translateY(-2px);
+}
+
+.pillActive {
+  background: var(--text-main, #0f0f0f);
+  border-color: var(--text-main, #0f0f0f);
+  color: #fff;
+  box-shadow: 4px 4px 0 var(--accent-color, #ffd100);
+  transform: translateY(-2px);
+}
+
+.pillActive:hover {
+  color: #fff;
+}
+
+/* Inputs & Textarea */
+.textarea {
+  width: 100%;
+  background: #f4f4f0;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  color: var(--text-main, #0f0f0f);
+  resize: vertical;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.inputGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.inputGrid .formGroup {
+  justify-content: space-between;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  color: #888;
+}
+
+.input,
+select.input {
+  width: 100%;
+  background: #f4f4f0;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem 1rem 1rem 3rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  color: var(--text-main, #0f0f0f);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+select.input {
+  padding-left: 1rem; /* Select doesn't have an icon inside in this design */
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%230F0F0F%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 1rem top 50%;
+  background-size: 0.65rem auto;
+}
+
+.textarea:focus,
+.input:focus,
+select.input:focus {
+  outline: none;
+  border-color: var(--text-main, #0f0f0f);
+  background: #fff;
+}
+
+.textarea::placeholder,
+.input::placeholder {
+  color: #aaa;
+}
+
+/* Submit Area */
+.submitWrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.submitBtn {
+  background: var(--text-main, #0f0f0f);
+  color: #fff;
+  border: 2px solid var(--text-main, #0f0f0f);
+  padding: 1.25rem 2.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition:
+    transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.submitBtn:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 var(--accent-color, #ffd100);
+}
+
+.submitBtn svg {
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.submitBtn:hover svg {
+  transform: translate(3px, -3px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submitBtn:disabled svg {
+  transform: none;
+}
+
+.feedbackSuccess,
+.feedbackError {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.feedbackSuccess {
+  color: #166534;
+}
+
+.feedbackError {
+  color: #b91c1c;
+}
+
+.privacyNote {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+  max-width: 400px;
+}
+
+.privacyNote a {
+  color: var(--text-main, #0f0f0f);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.privacyNote a:hover {
+  color: var(--color-red, #e31837);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .layoutGrid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .stickyWrap {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 6rem 0 4rem;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .formPanel {
+    padding: 2rem 1.5rem;
+    box-shadow: 6px 6px 0 var(--text-main, #0f0f0f);
+  }
+
+  .inputGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .submitBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contactCards {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

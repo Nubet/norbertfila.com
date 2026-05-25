@@ -11,7 +11,9 @@
   box-shadow: var(--shadow-solid);
   display: flex;
   flex-direction: column;
-  transition: transform var(--duration-fast) var(--ease-sharp), box-shadow var(--duration-fast) var(--ease-sharp);
+  transition:
+    transform var(--duration-fast) var(--ease-sharp),
+    box-shadow var(--duration-fast) var(--ease-sharp);
   position: relative;
 }
 
@@ -96,13 +98,16 @@
   transform: translateX(-50%) translateY(-0.625rem);
   background: var(--color-black);
   color: var(--color-white);
-  font-family: 'Archivo Black', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
   padding: 0.25rem 0.5rem;
   font-size: 0.8rem;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--duration-fast) var(--ease-sharp), transform var(--duration-fast) var(--ease-sharp);
+  transition:
+    opacity var(--duration-fast) var(--ease-sharp),
+    transform var(--duration-fast) var(--ease-sharp);
   border: var(--border-thin);
   border-color: var(--color-white);
   z-index: 10;
