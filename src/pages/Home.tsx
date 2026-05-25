@@ -195,28 +195,46 @@ export default function Home() {
               <Link
                 to="/contact"
                 className={styles.serviceItem}
-                aria-label="Zapytaj o przejrzystą stronę wizytówkę"
+                aria-label="Zapytaj o stronę, która buduje zaufanie do marki"
               >
                 <span className={styles.serviceIcon}>01</span>
-                <span>Przejrzyste strony wizytówki</span>
+                <span>Strona, która buduje zaufanie do marki</span>
                 <ArrowUpRight size={32} />
               </Link>
               <Link
                 to="/contact"
                 className={styles.serviceItem}
-                aria-label="Zapytaj o skuteczny landing page"
+                aria-label="Zapytaj o landing page, który zamienia ruch w zapytania"
               >
                 <span className={styles.serviceIcon}>02</span>
-                <span>Skuteczne Landing Page'e</span>
+                <span>Landing page, który zamienia ruch w zapytania</span>
                 <ArrowUpRight size={32} />
               </Link>
               <Link
                 to="/contact"
                 className={styles.serviceItem}
-                aria-label="Zapytaj o optymalizację i opiekę techniczną"
+                aria-label="Zapytaj o ofertę usług pokazaną jasno i bez chaosu"
               >
                 <span className={styles.serviceIcon}>03</span>
-                <span>Optymalizacja i opieka techniczna</span>
+                <span>Oferta usług pokazana jasno i bez chaosu</span>
+                <ArrowUpRight size={32} />
+              </Link>
+              <Link
+                to="/contact"
+                className={styles.serviceItem}
+                aria-label="Zapytaj o formularze i CTA prowadzące do kontaktu"
+              >
+                <span className={styles.serviceIcon}>04</span>
+                <span>Formularze i CTA, które prowadzą klienta do kontaktu</span>
+                <ArrowUpRight size={32} />
+              </Link>
+              <Link
+                to="/contact"
+                className={styles.serviceItem}
+                aria-label="Zapytaj o integracje i funkcje na zamówienie"
+              >
+                <span className={styles.serviceIcon}>05</span>
+                <span>Integracje i funkcje na zamówienie</span>
                 <ArrowUpRight size={32} />
               </Link>
               <Link
@@ -224,7 +242,7 @@ export default function Home() {
                 className={styles.serviceItem}
                 aria-label="Zapytaj o doradztwo w wyborze hostingu i domeny"
               >
-                <span className={styles.serviceIcon}>04</span>
+                <span className={styles.serviceIcon}>06</span>
                 <span>Doradztwo w wyborze hostingu i domeny</span>
                 <ArrowUpRight size={32} />
               </Link>
