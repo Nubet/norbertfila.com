@@ -58,8 +58,8 @@ export default function Career() {
               </div>
             </div>
             <ul className={styles.list}>
-              {item.details.map((detail, index) => (
-                <li key={index}>
+              {item.details.map((detail) => (
+                <li key={detail}>
                   <div className={styles.bullet}></div>
                   {detail}
                 </li>

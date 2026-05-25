@@ -219,7 +219,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
           const imageSrc = project.images[0]
           const totalImages = project.images.length
           return (
-            <article className={styles.card} key={index}>
+            <article className={styles.card} key={project.title}>
               <div className={styles.visual}>
                 <button
                   type="button"
@@ -330,10 +330,17 @@ export default function Projects({ all = false }: { all?: boolean }) {
           <div
             className={styles.lightbox}
             onClick={closeLightbox}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault()
+                closeLightbox()
+              }
+            }}
             onWheel={(event) => event.preventDefault()}
             onTouchMove={(event) => event.preventDefault()}
             role="dialog"
             aria-modal="true"
+            tabIndex={0}
           >
             <div className={styles.lightboxContent} onClick={(event) => event.stopPropagation()}>
               <button
