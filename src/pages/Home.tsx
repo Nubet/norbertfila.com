@@ -28,7 +28,7 @@ const portfolioProjects = [
     title: 'Doradztwo Podatkowe',
     description:
       'Nowoczesny landing page dla eksperta podatkowego. Zaprojektowany z myślą o budowaniu zaufania i szybkiej konwersji (lead generation).',
-    image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-biuro-podatkowe-projekt.png`,
+    image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-biuro-podatkowe-projekt.webp`,
     url: 'https://nubet.github.io/biuro-podatkowe-wizytowka/',
     urlLabel: 'Zobacz stronę na żywo',
     isGithub: false,
@@ -37,7 +37,7 @@ const portfolioProjects = [
     title: 'Centrum Badań klinicznych',
     description:
       'Czytelna, wzbudzająca autorytet strona placówki medycznej. Przejrzysta struktura sekcji, ułatwiająca pacjentom zapis na badania.',
-    image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-klinika-projekt.png`,
+    image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-klinika-projekt.webp`,
     url: 'https://nubet.github.io/klinika-centrum-badan-landing-page/',
     urlLabel: 'Zobacz stronę na żywo',
     isGithub: false,
