@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "serve:ebook-api": "node server/ebook-subscribe/server.mjs",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
