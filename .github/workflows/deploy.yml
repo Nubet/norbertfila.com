@@ -57,6 +57,14 @@ jobs:
           script: |
             set -e
 
+            if ! command -v node >/dev/null 2>&1; then
+              curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+            fi
+
+            node -v
+            npm -v
+
             if [ -z "$MAILERLITE_API_KEY" ]; then
               echo "MAILERLITE_API_KEY secret is missing"
               exit 1
@@ -88,7 +96,7 @@ jobs:
             User=ubuntu
             WorkingDirectory=/opt/nf-api
             EnvironmentFile=/opt/nf-api/.env
-            ExecStart=/usr/bin/node /opt/nf-api/server.mjs
+            ExecStart=/usr/bin/env node /opt/nf-api/server.mjs
             Restart=always
             RestartSec=3
 
@@ -105,6 +113,21 @@ jobs:
             sudo systemctl is-active --quiet nf-ebook-api
 
             rm -rf /tmp/nf-api-upload
+
+      - name: Verify ebook API endpoint
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          script: |
+            set -e
+            status=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/api/ebook-subscribe)
+            if [ "$status" = "404" ] || [ "$status" = "405" ]; then
+              exit 0
+            fi
+            echo "Unexpected status code: $status"
+            exit 1
 
       - name: Cleanup on failure
         if: failure()
