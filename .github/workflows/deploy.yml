@@ -24,7 +24,7 @@ jobs:
       - name: Build project
         run: bun run build
 
-      - name: Copy files to Oracle Server
+      - name: Copy static site to Oracle
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
@@ -33,6 +33,74 @@ jobs:
           source: 'dist/*'
           target: '/var/www/norbertfila.com'
           strip_components: 1
+
+      - name: Copy ebook API files to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: 'server/ebook-subscribe/*.mjs'
+          target: '/opt/nf-api'
+          strip_components: 2
+
+      - name: Configure and restart ebook API service
+        uses: appleboy/ssh-action@master
+        env:
+          MAILERLITE_API_KEY: ${{ secrets.MAILERLITE_API_KEY }}
+          MAILERLITE_GROUP_ID: ${{ secrets.MAILERLITE_GROUP_ID }}
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          envs: MAILERLITE_API_KEY,MAILERLITE_GROUP_ID
+          script: |
+            set -e
+
+            if [ -z "$MAILERLITE_API_KEY" ]; then
+              echo "MAILERLITE_API_KEY secret is missing"
+              exit 1
+            fi
+
+            if [ -z "$MAILERLITE_GROUP_ID" ]; then
+              echo "MAILERLITE_GROUP_ID secret is missing"
+              exit 1
+            fi
+
+            sudo mkdir -p /opt/nf-api
+            sudo chown -R $USER:$USER /opt/nf-api
+
+            cat > /opt/nf-api/.env <<EOF
+            MAILERLITE_API_KEY=$MAILERLITE_API_KEY
+            MAILERLITE_GROUP_ID=$MAILERLITE_GROUP_ID
+            ALLOWED_ORIGIN=https://norbertfila.com
+            PORT=8787
+            EOF
+
+            cat > /tmp/nf-ebook-api.service <<'EOF'
+            [Unit]
+            Description=NF Ebook Subscribe API
+            After=network.target
+
+            [Service]
+            User=ubuntu
+            WorkingDirectory=/opt/nf-api
+            EnvironmentFile=/opt/nf-api/.env
+            ExecStart=/usr/bin/node /opt/nf-api/server.mjs
+            Restart=always
+            RestartSec=3
+
+            [Install]
+            WantedBy=multi-user.target
+            EOF
+
+            sudo mv /tmp/nf-ebook-api.service /etc/systemd/system/nf-ebook-api.service
+            sudo chmod 644 /etc/systemd/system/nf-ebook-api.service
+
+            sudo systemctl daemon-reload
+            sudo systemctl enable nf-ebook-api
+            sudo systemctl restart nf-ebook-api
+            sudo systemctl is-active --quiet nf-ebook-api
 
       - name: Cleanup on failure
         if: failure()
