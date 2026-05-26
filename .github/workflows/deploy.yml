@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
           source: 'server/ebook-subscribe/*.mjs'
-          target: '/opt/nf-api'
+          target: '/tmp/nf-api-upload'
           strip_components: 2
 
       - name: Configure and restart ebook API service
@@ -69,6 +69,8 @@ jobs:
 
             sudo mkdir -p /opt/nf-api
             sudo chown -R $USER:$USER /opt/nf-api
+
+            cp /tmp/nf-api-upload/*.mjs /opt/nf-api/
 
             cat > /opt/nf-api/.env <<EOF
             MAILERLITE_API_KEY=$MAILERLITE_API_KEY
@@ -101,6 +103,8 @@ jobs:
             sudo systemctl enable nf-ebook-api
             sudo systemctl restart nf-ebook-api
             sudo systemctl is-active --quiet nf-ebook-api
+
+            rm -rf /tmp/nf-api-upload
 
       - name: Cleanup on failure
         if: failure()
