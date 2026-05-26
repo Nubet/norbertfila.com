@@ -611,6 +611,111 @@
   font-size: 0.92rem;
 }
 
+.ebookBox {
+  border: 2px solid var(--text-main);
+  background: #fff;
+  padding: 2rem;
+}
+
+.ebookTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+
+.ebookText {
+  margin: 0 0 1.2rem;
+  color: var(--text-muted);
+  line-height: 1.62;
+  max-width: 65ch;
+}
+
+.ebookForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.ebookLabel {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ebookControls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+}
+
+.ebookInput {
+  border: 2px solid var(--text-main);
+  background: #fff;
+  min-height: 48px;
+  padding: 0.65rem 0.8rem;
+  font-size: 1rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.ebookInput:focus-visible,
+.ebookButton:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.ebookButton {
+  border: 2px solid var(--text-main);
+  background: var(--text-main);
+  color: #fff;
+  min-height: 48px;
+  padding: 0 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform var(--dur-small) var(--ease-out),
+    box-shadow var(--dur-small) var(--ease-out);
+}
+
+.ebookButton:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--text-main);
+}
+
+.ebookButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.ebookSuccess,
+.ebookError {
+  margin: 0.85rem 0 0;
+  font-size: 0.95rem;
+}
+
+.ebookSuccess {
+  color: #166534;
+}
+
+.ebookError {
+  color: #b91c1c;
+}
+
+.ebookHoneypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .projectsGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -875,6 +980,10 @@
   .educationGrid {
     grid-template-columns: 1fr;
   }
+
+  .ebookBox {
+    padding: 1.5rem;
+  }
   .benefitCard {
     grid-column: span 12 !important;
   }
@@ -1029,6 +1138,10 @@
 
   .projectImage {
     height: 210px;
+  }
+
+  .ebookControls {
+    grid-template-columns: 1fr;
   }
 
   .projectContent {

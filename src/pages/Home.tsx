@@ -21,6 +21,7 @@ import { FAQ } from '../components/FAQ/FAQ'
 import { TechMarquee } from '../components/TechMarquee/TechMarquee'
 import { StickyCTA } from '../components/StickyCTA/StickyCTA'
 import { ScrollReveal } from '../components/ScrollReveal/ScrollReveal'
+import { subscribeToEbook, EbookSubscribeError } from '../features/ebook/subscribeToEbook'
 import styles from './Home.module.css'
 
 const portfolioProjects = [
@@ -46,6 +47,12 @@ const portfolioProjects = [
 
 export default function Home() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null)
+  const [ebookEmail, setEbookEmail] = useState('')
+  const [ebookLoading, setEbookLoading] = useState(false)
+  const [ebookFeedback, setEbookFeedback] = useState<{
+    type: 'success' | 'error'
+    message: string
+  } | null>(null)
 
   useEffect(() => {
     if (zoomedImage) {
@@ -66,6 +73,39 @@ export default function Home() {
       canonicalUrl: 'https://norbertfila.com/',
     })
   }, [])
+
+  const handleEbookSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (ebookLoading) return
+
+    const formData = new FormData(event.currentTarget)
+    const honeypot = String(formData.get('company') ?? '')
+
+    setEbookFeedback(null)
+    setEbookLoading(true)
+
+    try {
+      await subscribeToEbook({ email: ebookEmail, honeypot })
+      setEbookFeedback({
+        type: 'success',
+        message: 'Gotowe! Sprawdź skrzynkę e-mail. Wysłałem Ci e-booka.',
+      })
+      setEbookEmail('')
+      event.currentTarget.reset()
+    } catch (error) {
+      if (error instanceof EbookSubscribeError) {
+        setEbookFeedback({ type: 'error', message: error.message })
+      } else {
+        setEbookFeedback({
+          type: 'error',
+          message:
+            'Nie udało się zapisać. Spróbuj ponownie za chwilę albo napisz na kontakt@norbertfila.com.',
+        })
+      }
+    } finally {
+      setEbookLoading(false)
+    }
+  }
 
   return (
     <div className={styles.home}>
@@ -296,6 +336,57 @@ export default function Home() {
                   </p>
                 </article>
               </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <section className={styles.bigTextSection}>
+        <div className={styles.container}>
+          <ScrollReveal>
+            <div className={styles.ebookBox}>
+              <h2 className={styles.sectionLabel}>Darmowy e-book</h2>
+              <h3 className={styles.ebookTitle}>Dlaczego Twoja Strona Traci Klientów?</h3>
+              <p className={styles.ebookText}>
+                Podaj e-mail, a od razu wyślę Ci PDF z 4 najczęstszymi błędami przez, które tracisz
+                klientów.
+              </p>
+
+              <form className={styles.ebookForm} onSubmit={handleEbookSubmit} noValidate>
+                <div className={styles.ebookHoneypot} aria-hidden="true">
+                  <label htmlFor="company">Company</label>
+                  <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
+
+                <label htmlFor="ebook-email" className={styles.ebookLabel}>
+                  Twój e-mail
+                </label>
+                <div className={styles.ebookControls}>
+                  <input
+                    id="ebook-email"
+                    type="email"
+                    className={styles.ebookInput}
+                    placeholder="np. jan@firma.pl"
+                    value={ebookEmail}
+                    onChange={(event) => setEbookEmail(event.target.value)}
+                    required
+                  />
+                  <button type="submit" className={styles.ebookButton} disabled={ebookLoading}>
+                    {ebookLoading ? 'Wysyłanie...' : 'Odbierz e-booka'}
+                  </button>
+                </div>
+              </form>
+
+              {ebookFeedback && (
+                <p
+                  className={
+                    ebookFeedback.type === 'success' ? styles.ebookSuccess : styles.ebookError
+                  }
+                  role={ebookFeedback.type === 'error' ? 'alert' : 'status'}
+                >
+                  {ebookFeedback.message}
+                </p>
+              )}
             </div>
           </ScrollReveal>
         </div>
