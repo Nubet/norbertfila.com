@@ -114,7 +114,7 @@ jobs:
 
             NGINX_SITE=/etc/nginx/sites-available/norbertfila.com
             if ! sudo grep -q "location /api/ebook-subscribe" "$NGINX_SITE"; then
-              sudo python3 -c "from pathlib import Path; p=Path('/etc/nginx/sites-available/norbertfila.com'); c=p.read_text(); b='    location /api/ebook-subscribe {\n        proxy_pass http://127.0.0.1:8787/api/ebook-subscribe;\n        proxy_http_version 1.1;\n        proxy_set_header Host $host;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n\n'; a='    location / {'; p.write_text(c.replace(a, b + a, 1)) if (b not in c and a in c) else None"
+              sudo python3 -c "from pathlib import Path; p=Path('/etc/nginx/sites-available/norbertfila.com'); c=p.read_text(); b='    location /api/ebook-subscribe {\n        proxy_pass http://127.0.0.1:8787/api/ebook-subscribe;\n        proxy_http_version 1.1;\n        proxy_set_header Host \$host;\n        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto \$scheme;\n    }\n\n'; a='    location / {'; p.write_text(c.replace(a, b + a, 1)) if (b not in c and a in c) else None"
 
               sudo nginx -t
               sudo systemctl reload nginx
