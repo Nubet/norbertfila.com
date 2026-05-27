@@ -77,8 +77,9 @@ export default function Home() {
   const handleEbookSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (ebookLoading) return
+    const form = event.currentTarget
 
-    const formData = new FormData(event.currentTarget)
+    const formData = new FormData(form)
     const honeypot = String(formData.get('company') ?? '')
 
     setEbookFeedback(null)
@@ -91,7 +92,7 @@ export default function Home() {
         message: 'Gotowe! Sprawdź skrzynkę e-mail. Wysłałem Ci e-booka.',
       })
       setEbookEmail('')
-      event.currentTarget.reset()
+      form.reset()
     } catch (error) {
       if (error instanceof EbookSubscribeError) {
         setEbookFeedback({ type: 'error', message: error.message })
