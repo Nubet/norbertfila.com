@@ -49,11 +49,12 @@ jobs:
         env:
           MAILERLITE_API_KEY: ${{ secrets.MAILERLITE_API_KEY }}
           MAILERLITE_GROUP_ID: ${{ secrets.MAILERLITE_GROUP_ID }}
+          SECURITY_CSP_MODE: ${{ secrets.SECURITY_CSP_MODE }}
         with:
           host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          envs: MAILERLITE_API_KEY,MAILERLITE_GROUP_ID
+          envs: MAILERLITE_API_KEY,MAILERLITE_GROUP_ID,SECURITY_CSP_MODE
           script: |
             set -e
 
@@ -112,8 +113,71 @@ jobs:
             sudo systemctl restart nf-ebook-api
             sudo systemctl is-active --quiet nf-ebook-api
 
-            NGINX_SITE=/etc/nginx/sites-available/norbertfila.com
-            sudo python3 -c 'from pathlib import Path; import re; p=Path("/etc/nginx/sites-available/norbertfila.com"); c=p.read_text(); c=re.sub(r"\n\s*location /api/ebook-subscribe \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c); c=c.replace("    # BEGIN nf-ebook-api\n", "").replace("    # END nf-ebook-api\n", ""); b="    # BEGIN nf-ebook-api\n    location /api/ebook-subscribe {\n        proxy_pass http://127.0.0.1:8787/api/ebook-subscribe;\n        proxy_http_version 1.1;\n        proxy_set_header Host $host;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n    # END nf-ebook-api\n\n"; a="    location / {"; (_ for _ in ()).throw(SystemExit("Cannot find nginx anchor: location /")) if a not in c else None; p.write_text(c.replace(a, b + a, 1))'
+            CSP_MODE=${SECURITY_CSP_MODE:-enforce}
+            if [ "$CSP_MODE" != "report-only" ] && [ "$CSP_MODE" != "enforce" ]; then
+              echo "Invalid SECURITY_CSP_MODE: $CSP_MODE (allowed: report-only, enforce)"
+              exit 1
+            fi
+
+            export CSP_MODE
+            sudo -E python3 <<'PY'
+            import os
+            import re
+            from pathlib import Path
+
+            p = Path('/etc/nginx/sites-available/norbertfila.com')
+            c = p.read_text()
+
+            c = re.sub(r"\n\s*# BEGIN nf-ebook-api\n(?:\s+.*\n)*?\s*# END nf-ebook-api\n", "\n", c)
+            c = re.sub(r"\n\s*# BEGIN nf-security-headers\n(?:\s+.*\n)*?\s*# END nf-security-headers\n", "\n", c)
+            c = re.sub(r"\n\s*location /api/ebook-subscribe \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c)
+
+            csp_value = (
+                "default-src 'self'; "
+                "base-uri 'self'; "
+                "object-src 'none'; "
+                "frame-ancestors 'none'; "
+                "img-src 'self' data: https://cdn.jsdelivr.net; "
+                "font-src 'self' https://fonts.gstatic.com data:; "
+                "style-src 'self' https://fonts.googleapis.com; "
+                "script-src 'self'; "
+                "connect-src 'self'; "
+                "form-action 'self'; "
+                "upgrade-insecure-requests"
+            )
+
+            csp_header_name = 'Content-Security-Policy' if os.environ.get('CSP_MODE') == 'enforce' else 'Content-Security-Policy-Report-Only'
+
+            security_block = (
+                "    # BEGIN nf-security-headers\n"
+                "    add_header Strict-Transport-Security \"max-age=31536000; includeSubDomains\" always;\n"
+                "    add_header X-Frame-Options \"SAMEORIGIN\" always;\n"
+                "    add_header X-Content-Type-Options \"nosniff\" always;\n"
+                "    add_header Referrer-Policy \"strict-origin-when-cross-origin\" always;\n"
+                "    add_header Permissions-Policy \"accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()\" always;\n"
+                "    add_header Cross-Origin-Resource-Policy \"same-origin\" always;\n"
+                f"    add_header {csp_header_name} \"{csp_value}\" always;\n"
+                "    # END nf-security-headers\n\n"
+            )
+
+            api_block = (
+                "    # BEGIN nf-ebook-api\n"
+                "    location /api/ebook-subscribe {\n"
+                "        proxy_pass http://127.0.0.1:8787/api/ebook-subscribe;\n"
+                "        proxy_http_version 1.1;\n"
+                "        proxy_set_header Host $host;\n"
+                "        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n"
+                "        proxy_set_header X-Forwarded-Proto $scheme;\n"
+                "    }\n"
+                "    # END nf-ebook-api\n\n"
+            )
+
+            anchor = '    location / {'
+            if anchor not in c:
+                raise SystemExit('Cannot find nginx anchor: location /')
+
+            p.write_text(c.replace(anchor, security_block + api_block + anchor, 1))
+            PY
 
             sudo nginx -t
             sudo systemctl reload nginx
@@ -148,6 +212,8 @@ jobs:
                 sudo systemctl --no-pager --full status nf-ebook-api || true
                 echo "---- debug: last service logs ----"
                 sudo journalctl -u nf-ebook-api -n 120 --no-pager || true
+                echo "---- debug: nginx security/header snippet ----"
+                sudo sed -n '/BEGIN nf-security-headers/,/END nf-security-headers/p' /etc/nginx/sites-available/norbertfila.com || true
                 echo "---- debug: nginx location snippet ----"
                 sudo sed -n '/BEGIN nf-ebook-api/,/END nf-ebook-api/p' /etc/nginx/sites-available/norbertfila.com || true
                 echo "---- debug: local POST (invalid payload) ----"
