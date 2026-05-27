@@ -1,8 +1,15 @@
+import type { Metadata } from 'next'
+import Home from '../pages/Home'
+
+export const metadata: Metadata = {
+  title: 'Norbert Fila - Web Developer dla Biznesu',
+  description:
+    'Projektuje i tworze strony internetowe, ktore zdobywaja klientow. Polaczenie pasji programistycznej z biznesowym podejsciem.',
+  alternates: {
+    canonical: '/',
+  },
+}
+
 export default function HomePage() {
-  return (
-    <main>
-      <h1>Next.js migration bootstrap</h1>
-      <p>Phase 1 completed: foundation, architecture boundaries, and CI scaffolding.</p>
-    </main>
-  )
+  return <Home />
 }
