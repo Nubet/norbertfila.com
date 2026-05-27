@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import ContactPage from '../../pages/ContactPage/ContactPage'
+import ContactPage from '../../views/ContactPage/ContactPage'
 
 export const metadata: Metadata = {
   title: 'Kontakt i wycena',

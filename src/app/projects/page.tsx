@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import ProjectsPage from '../../pages/ProjectsPage/ProjectsPage'
+import ProjectsPage from '../../views/ProjectsPage/ProjectsPage'
 
 export const metadata: Metadata = {
   title: 'Projects - Norbert Fila Portfolio',

@@ -1,6 +1,7 @@
 'use client'
 
 import type { MouseEvent } from 'react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Github, Linkedin, Mail } from 'lucide-react'
 import { scrollToTopSmooth } from '../../infrastructure/browser/scroll'
@@ -22,9 +23,9 @@ export function Footer() {
       <div className={styles.container}>
         <div className={styles.topSection}>
           <div className={styles.brand}>
-            <a href="/" className={styles.brandName}>
+            <Link href="/" className={styles.brandName}>
               Norbert Fila
-            </a>
+            </Link>
             <p className={styles.brandRole}>ZAMIEŃ ODWIEDZINY W KLIENTÓW</p>
             <p className={styles.brandMission}>
               Projektuję i koduję dedykowane strony internetowe nastawione na realny zysk.
@@ -36,15 +37,15 @@ export function Footer() {
               <span className={styles.groupLabel}>Na skróty</span>
               <ul className={styles.linkList}>
                 <li>
-                  <a href="/" onClick={handleHomeClick}>
+                  <Link href="/" onClick={handleHomeClick}>
                     Strona Główna
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/cv">Doświadczenie (CV)</a>
+                  <Link href="/cv">Doświadczenie (CV)</Link>
                 </li>
                 <li>
-                  <a href="/contact">Darmowa Wycena</a>
+                  <Link href="/contact">Darmowa Wycena</Link>
                 </li>
               </ul>
             </div>
@@ -53,10 +54,10 @@ export function Footer() {
               <span className={styles.groupLabel}>Legalne</span>
               <ul className={styles.linkList}>
                 <li>
-                  <a href="/privacy-policy">Polityka Prywatności</a>
+                  <Link href="/privacy-policy">Polityka Prywatności</Link>
                 </li>
                 <li>
-                  <a href="/cookie-policy">Polityka Cookies</a>
+                  <Link href="/cookie-policy">Polityka Cookies</Link>
                 </li>
               </ul>
             </div>
@@ -80,9 +81,9 @@ export function Footer() {
                 >
                   <Github size={22} />
                 </a>
-                <a href="/contact" aria-label="Przejdź do formularza kontaktowego">
+                <Link href="/contact" aria-label="Przejdź do formularza kontaktowego">
                   <Mail size={22} />
-                </a>
+                </Link>
               </div>
             </div>
           </nav>
