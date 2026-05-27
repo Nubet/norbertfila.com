@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import styles from './LegalPages.module.css'
@@ -13,9 +14,9 @@ export default function PrivacyPolicyPage() {
     <main className={styles.page}>
       <div className={styles.container}>
         <nav className={styles.nav}>
-          <a href="/" className={styles.backLink}>
+          <Link href="/" className={styles.backLink}>
             <ArrowLeft size={20} /> Powrót
-          </a>
+          </Link>
         </nav>
 
         <article className={styles.content}>
@@ -40,7 +41,7 @@ export default function PrivacyPolicyPage() {
             <p>
               Administratorem danych osobowych gromadzonych za pośrednictwem Strony jest Norbert
               Fila, kontaktujący się z użytkownikami przez{' '}
-              <a href="/contact">formularz kontaktowy</a>.
+              <Link href="/contact">formularz kontaktowy</Link>.
             </p>
           </section>
 
@@ -128,7 +129,7 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p>
               Aby skorzystać ze swoich praw, wystarczy wysłać stosowną prośbę na adres e-mail{' '}
-              <a href="/contact">kontakt@norbertfila.com</a>.
+              <Link href="/contact">kontakt@norbertfila.com</Link>.
             </p>
             <p>
               Należy pamiętać, że jeśli nie wyrazisz zgody na zbieranie lub przetwarzanie wymaganych
@@ -173,7 +174,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <p>
               Pełny opis wykorzystywanych ciasteczek oraz ustawień zgody znajdziesz w{' '}
-              <a href="/cookie-policy">Polityce Cookies</a>.
+              <Link href="/cookie-policy">Polityce Cookies</Link>.
             </p>
           </section>
         </article>

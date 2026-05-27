@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ArrowLeft, Mail, Clock, CheckCircle2, User, Send, Phone } from 'lucide-react'
 import { submitContactForm, ContactFormError } from '../../features/contact/submitContactForm'
@@ -69,9 +70,9 @@ export default function ContactPage() {
     <main className={styles.page}>
       <div className={styles.container}>
         <nav className={styles.nav}>
-          <a href="/" className={styles.backLink}>
+          <Link href="/" className={styles.backLink}>
             <ArrowLeft size={20} /> Powrót
-          </a>
+          </Link>
         </nav>
 
         <div className={styles.layoutGrid}>
@@ -305,7 +306,7 @@ export default function ContactPage() {
                 )}
                 <p className={styles.privacyNote}>
                   Wysyłając formularz, akceptujesz{' '}
-                  <a href="/privacy-policy">politykę prywatności</a>.
+                  <Link href="/privacy-policy">politykę prywatności</Link>.
                 </p>
               </div>
             </form>

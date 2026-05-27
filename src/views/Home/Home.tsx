@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -17,11 +17,11 @@ import {
   ImageDown,
   MousePointerClick,
 } from 'lucide-react'
-import { FAQ } from '../components/FAQ/FAQ'
-import { TechMarquee } from '../components/TechMarquee/TechMarquee'
-import { StickyCTA } from '../components/StickyCTA/StickyCTA'
-import { ScrollReveal } from '../components/ScrollReveal/ScrollReveal'
-import { subscribeToEbook, EbookSubscribeError } from '../features/ebook/subscribeToEbook'
+import { FAQ } from '../../components/FAQ/FAQ'
+import { TechMarquee } from '../../components/TechMarquee/TechMarquee'
+import { StickyCTA } from '../../components/StickyCTA/StickyCTA'
+import { ScrollReveal } from '../../components/ScrollReveal/ScrollReveal'
+import { subscribeToEbook, EbookSubscribeError } from '../../features/ebook/subscribeToEbook'
 import styles from './Home.module.css'
 
 const portfolioProjects = [
@@ -65,7 +65,7 @@ export default function Home() {
     }
   }, [zoomedImage])
 
-  const handleEbookSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleEbookSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (ebookLoading) return
     const form = event.currentTarget

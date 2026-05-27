@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Home from '../pages/Home'
+import Home from '../views/Home/Home'
 
 export const metadata: Metadata = {
   title: 'Norbert Fila - Web Developer dla Biznesu',

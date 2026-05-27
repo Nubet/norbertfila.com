@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import { showCookiePreferences } from '../../features/cookies/cookieConsent'
@@ -15,9 +16,9 @@ export default function CookiePolicyPage() {
     <main className={styles.page}>
       <div className={styles.container}>
         <nav className={styles.nav}>
-          <a href="/" className={styles.backLink}>
+          <Link href="/" className={styles.backLink}>
             <ArrowLeft size={20} /> Powrót
-          </a>
+          </Link>
         </nav>
 
         <article className={styles.content}>
@@ -78,7 +79,7 @@ export default function CookiePolicyPage() {
             <h2>5. Kontakt</h2>
             <p>
               W razie pytań dotyczących polityki cookies zapraszam do kontaktu przez{' '}
-              <a href="/contact">formularz kontaktowy</a>.
+              <Link href="/contact">formularz kontaktowy</Link>.
             </p>
           </section>
         </article>

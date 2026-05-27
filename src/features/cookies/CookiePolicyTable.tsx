@@ -1,5 +1,5 @@
 import { analyticsCookies, strictlyNecessaryCookies } from './cookieCatalog'
-import styles from '../../pages/LegalPages/LegalPages.module.css'
+import styles from '../../views/LegalPages/LegalPages.module.css'
 
 function CookieTable({
   title,

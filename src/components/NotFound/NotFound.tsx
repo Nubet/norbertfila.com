@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Home, MoveLeft } from 'lucide-react'
 import styles from './NotFound.module.css'
 
@@ -20,11 +21,11 @@ export default function NotFound() {
         </div>
 
         <div className={styles.actions}>
-          <a href="/" className={styles.backButton}>
+          <Link href="/" className={styles.backButton}>
             <MoveLeft size={24} strokeWidth={3} />
             RETURN TO HOME
             <Home size={24} strokeWidth={3} />
-          </a>
+          </Link>
         </div>
       </div>
 
