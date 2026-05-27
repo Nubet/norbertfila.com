@@ -4,7 +4,7 @@ import type { MouseEvent } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Github, Linkedin, Mail } from 'lucide-react'
-import { scrollToTopSmooth } from '../../infrastructure/browser/scroll'
+import { scrollToTopSmooth } from '@/infrastructure/browser/scroll'
 import styles from './Footer.module.css'
 
 export function Footer() {

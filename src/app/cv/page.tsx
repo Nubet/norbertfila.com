@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import CVPage from '../../views/CVPage/CVPage'
+import CVPage from '@/views/CVPage/CVPage'
 
 export const metadata: Metadata = {
   title: 'Norbert Fila - CV / O mnie',

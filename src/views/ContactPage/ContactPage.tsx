@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ArrowLeft, Mail, Clock, CheckCircle2, User, Send, Phone } from 'lucide-react'
-import { submitContactForm, ContactFormError } from '../../features/contact/submitContactForm'
+import { submitContactForm, ContactFormError } from '@/features/contact/submitContactForm'
 import styles from './ContactPage.module.css'
 
 export default function ContactPage() {

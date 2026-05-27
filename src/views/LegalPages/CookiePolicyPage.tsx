@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
-import { showCookiePreferences } from '../../features/cookies/cookieConsent'
-import { CookiePolicyTable } from '../../features/cookies/CookiePolicyTable'
+import { showCookiePreferences } from '@/features/cookies/cookieConsent'
+import { CookiePolicyTable } from '@/features/cookies/CookiePolicyTable'
 import styles from './LegalPages.module.css'
 
 export default function CookiePolicyPage() {

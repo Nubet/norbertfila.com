@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import CookiePolicyPage from '../../views/LegalPages/CookiePolicyPage'
+import CookiePolicyPage from '@/views/LegalPages/CookiePolicyPage'
 
 export const metadata: Metadata = {
   title: 'Polityka Cookies',

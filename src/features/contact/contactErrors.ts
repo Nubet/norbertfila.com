@@ -1,4 +1,4 @@
-import { AppError } from '../../shared/errors/AppError'
+import { AppError } from '@/shared/errors/AppError'
 
 export class ContactFormError extends AppError {
   constructor(message: string, code = 'CONTACT_FORM_ERROR', details?: unknown) {

@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios'
-import { AppError } from '../../shared/errors/AppError'
+import { AppError } from '@/shared/errors/AppError'
 
 export class HttpError extends AppError {
   readonly status?: number
