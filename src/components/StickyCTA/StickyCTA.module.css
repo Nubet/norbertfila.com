@@ -1,5 +1,5 @@
 .stickyCta {
-  display: none; /* Ukryte na desktopie */
+  display: none;
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
@@ -30,9 +30,9 @@
 
 @media (max-width: 768px) {
   .stickyCta {
-    display: flex; /* Widoczne tylko na mobile */
+    display: flex;
     animation: popIn 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-    animation-delay: 1s; /* Opóźnienie pojawienia się przycisku */
+    animation-delay: 1s;
     opacity: 0;
     transform: translateY(20px);
   }

@@ -7,7 +7,6 @@
   min-height: 80vh;
 }
 
-/* Decorative Background Shapes */
 .shape1 {
   position: absolute;
   top: -5%;
@@ -207,17 +206,17 @@
   .badge {
     right: 0;
     top: -1.875rem;
-    transform: rotate(0deg); /* Flatten on mobile for readability and spacing */
+    transform: rotate(0deg);
   }
 
   .visual {
-    order: -1; /* Image first on mobile */
+    order: -1;
   }
 
   .shape1,
   .shape2,
   .shape3 {
-    opacity: 0.3; /* Tone down on mobile */
+    opacity: 0.3;
     transform: scale(0.6);
   }
 

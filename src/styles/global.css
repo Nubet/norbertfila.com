@@ -39,7 +39,6 @@ body {
   position: relative;
 }
 
-/* Subtle overlay to soften the grid */
 .neo-brutalist-theme::before {
   content: '';
   position: fixed;
@@ -73,7 +72,7 @@ h6 {
   padding: 0.5rem 1rem;
   border: var(--border-thick);
   box-shadow: var(--shadow-solid);
-  transform: rotate(-2deg); /* Slight tension */
+  transform: rotate(-2deg);
 }
 
 a {
@@ -87,7 +86,6 @@ img {
   display: block;
 }
 
-/* Layout Utilities */
 .page {
   position: relative;
   max-width: 75rem;
@@ -108,7 +106,7 @@ img {
 .section-heading {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Asymmetrical */
+  align-items: flex-start;
   gap: 1rem;
   margin-bottom: 1.5rem;
   position: relative;
@@ -124,10 +122,9 @@ img {
   padding: 0.5rem 1rem;
   border: var(--border-thick);
   box-shadow: var(--shadow-solid);
-  transform: rotate(-2deg); /* Slight tension */
+  transform: rotate(-2deg);
 }
 
-/* Bauhaus decorative elements */
 .shape-circle {
   width: 7.5rem;
   height: 7.5rem;
@@ -152,7 +149,6 @@ img {
   filter: drop-shadow(0.25rem 0.25rem 0px var(--color-black));
 }
 
-/* Staggered reveals */
 .page > .section {
   opacity: 0;
   transform: translateY(2.5rem);

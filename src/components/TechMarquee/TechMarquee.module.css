@@ -27,7 +27,6 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  /* subtle mask to fade out the edges */
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
@@ -38,7 +37,6 @@
   animation: scroll 30s linear infinite;
 }
 
-/* Pause animation on hover for accessibility */
 .track:hover {
   animation-play-state: paused;
 }
@@ -47,7 +45,7 @@
   display: flex;
   align-items: center;
   gap: 4rem;
-  padding-right: 4rem; /* crucial for a seamless loop between sets */
+  padding-right: 4rem;
 }
 
 .techItem {
@@ -94,7 +92,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Moves exactly half the track width */
+    transform: translateX(-50%);
   }
 }
 

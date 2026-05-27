@@ -66,10 +66,6 @@ export function TechMarquee() {
         <p className={styles.label}>Nowoczesne technologie jako fundament stabilności:</p>
         <div className={styles.trackContainer}>
           <div className={styles.track}>
-            {/* 
-              Render the set twice to create a seamless infinite loop.
-              The animation moves the track from 0 to -50%.
-            */}
             {[...Array(2)].map((_, i) => (
               <div key={i} className={styles.techSet} aria-hidden={i === 1}>
                 {technologies.map((tech) => (
