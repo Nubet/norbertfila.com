@@ -1,9 +1,10 @@
 import { httpClient, mapHttpError } from '../../infrastructure/http/httpClient'
+import { getRuntimeEnv } from '../../shared/config/env'
 import { ContactFormError } from './contactErrors'
 import type { ContactFormPayload } from './submitContactForm'
 
 function getContactEndpoint() {
-  const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT
+  const endpoint = getRuntimeEnv().contactFormEndpoint
 
   if (!endpoint || typeof endpoint !== 'string') {
     throw new ContactFormError(

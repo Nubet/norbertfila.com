@@ -1,7 +1,7 @@
+'use client'
+
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import { setSeo } from '../../utils/seo'
 import { showCookiePreferences } from '../../features/cookies/cookieConsent'
 import { CookiePolicyTable } from '../../features/cookies/CookiePolicyTable'
 import styles from './LegalPages.module.css'
@@ -9,21 +9,15 @@ import styles from './LegalPages.module.css'
 export default function CookiePolicyPage() {
   useEffect(() => {
     window.scrollTo(0, 0)
-
-    setSeo({
-      title: 'Polityka Cookies | Norbert Fila',
-      description: 'Informacje o plikach cookies wykorzystywanych na stronie norbertfila.com',
-      canonicalUrl: 'https://norbertfila.com/cookie-policy',
-    })
   }, [])
 
   return (
     <main className={styles.page}>
       <div className={styles.container}>
         <nav className={styles.nav}>
-          <Link to="/" className={styles.backLink}>
+          <a href="/" className={styles.backLink}>
             <ArrowLeft size={20} /> Powrót
-          </Link>
+          </a>
         </nav>
 
         <article className={styles.content}>
@@ -84,7 +78,7 @@ export default function CookiePolicyPage() {
             <h2>5. Kontakt</h2>
             <p>
               W razie pytań dotyczących polityki cookies zapraszam do kontaktu przez{' '}
-              <Link to="/contact">formularz kontaktowy</Link>.
+              <a href="/contact">formularz kontaktowy</a>.
             </p>
           </section>
         </article>

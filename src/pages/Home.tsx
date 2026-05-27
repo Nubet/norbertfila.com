@@ -1,5 +1,6 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { setSeo } from '../utils/seo'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -16,7 +17,6 @@ import {
   ImageDown,
   MousePointerClick,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import { FAQ } from '../components/FAQ/FAQ'
 import { TechMarquee } from '../components/TechMarquee/TechMarquee'
 import { StickyCTA } from '../components/StickyCTA/StickyCTA'
@@ -29,7 +29,7 @@ const portfolioProjects = [
     title: 'Doradztwo Podatkowe',
     description:
       'Nowoczesny landing page dla eksperta podatkowego. Zaprojektowany z myślą o budowaniu zaufania i szybkiej konwersji (lead generation).',
-    image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-biuro-podatkowe-projekt.webp`,
+    image: '/client-projects/norbert-fila-biuro-podatkowe-projekt.webp',
     url: 'https://nubet.github.io/biuro-podatkowe-wizytowka/',
     urlLabel: 'Zobacz stronę na żywo',
     isGithub: false,
@@ -38,7 +38,7 @@ const portfolioProjects = [
     title: 'Centrum Badań klinicznych',
     description:
       'Czytelna, wzbudzająca autorytet strona placówki medycznej. Przejrzysta struktura sekcji, ułatwiająca pacjentom zapis na badania.',
-    image: `${import.meta.env.BASE_URL}client-projects/norbert-fila-klinika-projekt.webp`,
+    image: '/client-projects/norbert-fila-klinika-projekt.webp',
     url: 'https://nubet.github.io/klinika-centrum-badan-landing-page/',
     urlLabel: 'Zobacz stronę na żywo',
     isGithub: false,
@@ -64,15 +64,6 @@ export default function Home() {
       document.body.style.overflow = ''
     }
   }, [zoomedImage])
-
-  useEffect(() => {
-    setSeo({
-      title: 'Norbert Fila - Web Developer dla Biznesu',
-      description:
-        'Projektuję i tworzę strony internetowe, które zdobywają klientów. Połączenie pasji programistycznej z biznesowym podejściem.',
-      canonicalUrl: 'https://norbertfila.com/',
-    })
-  }, [])
 
   const handleEbookSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -127,9 +118,9 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.heroActions}>
-              <Link to="/contact" className={styles.ctaButton}>
+              <a href="/contact" className={styles.ctaButton}>
                 Darmowa wycena <ArrowRight size={24} />
-              </Link>
+              </a>
             </div>
           </div>
         </ScrollReveal>
@@ -152,7 +143,7 @@ export default function Home() {
               </p>
               <div className={styles.portraitFrame}>
                 <img
-                  src={`${import.meta.env.BASE_URL}profile/avatar.webp`}
+                  src="/profile/avatar.webp"
                   alt="Profesjonalne zdjecie autora strony"
                   className={styles.portraitImage}
                   loading="lazy"
@@ -226,60 +217,60 @@ export default function Home() {
           <ScrollReveal>
             <h2 className={styles.sectionLabel}>Co mogę dla Ciebie zrobić?</h2>
             <div className={styles.servicesList}>
-              <Link
-                to="/contact"
+              <a
+                href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o stronę, która buduje zaufanie do marki"
               >
                 <span className={styles.serviceIcon}>01</span>
                 <span>Strona, która buduje zaufanie do marki</span>
                 <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                to="/contact"
+              </a>
+              <a
+                href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o landing page, który zamienia ruch w zapytania"
               >
                 <span className={styles.serviceIcon}>02</span>
                 <span>Landing page, który zamienia ruch w zapytania</span>
                 <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                to="/contact"
+              </a>
+              <a
+                href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o ofertę usług pokazaną jasno i bez chaosu"
               >
                 <span className={styles.serviceIcon}>03</span>
                 <span>Oferta usług pokazana jasno i bez chaosu</span>
                 <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                to="/contact"
+              </a>
+              <a
+                href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o formularze i CTA prowadzące do kontaktu"
               >
                 <span className={styles.serviceIcon}>04</span>
                 <span>Formularze i CTA, które prowadzą klienta do kontaktu</span>
                 <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                to="/contact"
+              </a>
+              <a
+                href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o integracje i funkcje na zamówienie"
               >
                 <span className={styles.serviceIcon}>05</span>
                 <span>Integracje i funkcje na zamówienie</span>
                 <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                to="/contact"
+              </a>
+              <a
+                href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o doradztwo w wyborze hostingu i domeny"
               >
                 <span className={styles.serviceIcon}>06</span>
                 <span>Doradztwo w wyborze hostingu i domeny</span>
                 <ArrowUpRight size={32} />
-              </Link>
+              </a>
             </div>
           </ScrollReveal>
         </div>
@@ -506,17 +497,17 @@ export default function Home() {
               Porozmawiajmy o tym, jak nowoczesna wizytówka lub landing page może pomóc w skalowaniu
               Twojej firmy.
             </p>
-            <Link
-              to="/contact"
+            <a
+              href="/contact"
               className={styles.ctaButton}
               style={{ margin: '0 auto', width: 'fit-content' }}
             >
               Formularz bezpłatnej wyceny <ArrowRight size={24} />
-            </Link>
+            </a>
 
-            <Link to="/cv" className={styles.footerLink}>
+            <a href="/cv" className={styles.footerLink}>
               Sprawdź moje techniczne doświadczenie (CV)
-            </Link>
+            </a>
           </div>
         </ScrollReveal>
       </section>

@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   reactStrictMode: true,
   poweredByHeader: false,
-  typedRoutes: true,
   turbopack: {
     root: __dirname,
   },

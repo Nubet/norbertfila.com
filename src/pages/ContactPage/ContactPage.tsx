@@ -1,7 +1,7 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { ArrowLeft, Mail, Clock, CheckCircle2, User, Send, Phone } from 'lucide-react'
-import { setSeo } from '../../utils/seo'
 import { submitContactForm, ContactFormError } from '../../features/contact/submitContactForm'
 import styles from './ContactPage.module.css'
 
@@ -15,13 +15,6 @@ export default function ContactPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-
-    setSeo({
-      title: 'Kontakt i wycena | Norbert Fila',
-      description:
-        'Zbudujmy coś świetnego. Napisz, jakiego projektu potrzebujesz, a przygotuję darmową propozycję.',
-      canonicalUrl: 'https://norbertfila.com/contact',
-    })
   }, [])
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -76,9 +69,9 @@ export default function ContactPage() {
     <main className={styles.page}>
       <div className={styles.container}>
         <nav className={styles.nav}>
-          <Link to="/" className={styles.backLink}>
+          <a href="/" className={styles.backLink}>
             <ArrowLeft size={20} /> Powrót
-          </Link>
+          </a>
         </nav>
 
         <div className={styles.layoutGrid}>
@@ -118,7 +111,7 @@ export default function ContactPage() {
 
               <div className={styles.founderSnippet}>
                 <img
-                  src={`${import.meta.env.BASE_URL}profile/avatar.webp`}
+                  src="/profile/avatar.webp"
                   alt="Norbert Fila"
                   className={styles.avatar}
                   loading="lazy"
@@ -312,7 +305,7 @@ export default function ContactPage() {
                 )}
                 <p className={styles.privacyNote}>
                   Wysyłając formularz, akceptujesz{' '}
-                  <Link to="/privacy-policy">politykę prywatności</Link>.
+                  <a href="/privacy-policy">politykę prywatności</a>.
                 </p>
               </div>
             </form>

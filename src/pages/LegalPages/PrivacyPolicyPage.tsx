@@ -1,28 +1,21 @@
+'use client'
+
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import { setSeo } from '../../utils/seo'
 import styles from './LegalPages.module.css'
 
 export default function PrivacyPolicyPage() {
   useEffect(() => {
     window.scrollTo(0, 0)
-
-    setSeo({
-      title: 'Polityka Prywatności | Norbert Fila',
-      description:
-        'Zasady gromadzenia, przetwarzania i wykorzystywania danych osobowych użytkowników strony norbertfila.com.',
-      canonicalUrl: 'https://norbertfila.com/privacy-policy',
-    })
   }, [])
 
   return (
     <main className={styles.page}>
       <div className={styles.container}>
         <nav className={styles.nav}>
-          <Link to="/" className={styles.backLink}>
+          <a href="/" className={styles.backLink}>
             <ArrowLeft size={20} /> Powrót
-          </Link>
+          </a>
         </nav>
 
         <article className={styles.content}>
@@ -47,7 +40,7 @@ export default function PrivacyPolicyPage() {
             <p>
               Administratorem danych osobowych gromadzonych za pośrednictwem Strony jest Norbert
               Fila, kontaktujący się z użytkownikami przez{' '}
-              <Link to="/contact">formularz kontaktowy</Link>.
+              <a href="/contact">formularz kontaktowy</a>.
             </p>
           </section>
 
@@ -135,7 +128,7 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p>
               Aby skorzystać ze swoich praw, wystarczy wysłać stosowną prośbę na adres e-mail{' '}
-              <Link to="/contact">kontakt@norbertfila.com</Link>.
+              <a href="/contact">kontakt@norbertfila.com</a>.
             </p>
             <p>
               Należy pamiętać, że jeśli nie wyrazisz zgody na zbieranie lub przetwarzanie wymaganych
@@ -180,7 +173,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <p>
               Pełny opis wykorzystywanych ciasteczek oraz ustawień zgody znajdziesz w{' '}
-              <Link to="/cookie-policy">Polityce Cookies</Link>.
+              <a href="/cookie-policy">Polityce Cookies</a>.
             </p>
           </section>
         </article>
