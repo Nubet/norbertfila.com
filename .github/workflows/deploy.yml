@@ -113,39 +113,7 @@ jobs:
             sudo systemctl is-active --quiet nf-ebook-api
 
             NGINX_SITE=/etc/nginx/sites-available/norbertfila.com
-            sudo python3 - <<'PY'
-            from pathlib import Path
-
-            path = Path('/etc/nginx/sites-available/norbertfila.com')
-            content = path.read_text()
-
-            begin = "    # BEGIN nf-ebook-api\n"
-            end = "    # END nf-ebook-api\n"
-            block = (
-                begin
-                + "    location /api/ebook-subscribe {\n"
-                + "        proxy_pass http://127.0.0.1:8787/api/ebook-subscribe;\n"
-                + "        proxy_http_version 1.1;\n"
-                + "        proxy_set_header Host $host;\n"
-                + "        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n"
-                + "        proxy_set_header X-Forwarded-Proto $scheme;\n"
-                + "    }\n"
-                + end
-                + "\n"
-            )
-
-            if begin in content and end in content:
-                start = content.index(begin)
-                finish = content.index(end, start) + len(end)
-                content = content[:start] + block + content[finish:]
-            else:
-                anchor = "    location / {"
-                if anchor not in content:
-                    raise SystemExit("Cannot find nginx anchor: '    location / {'")
-                content = content.replace(anchor, block + anchor, 1)
-
-            path.write_text(content)
-            PY
+            sudo python3 -c 'from pathlib import Path; import re; p=Path("/etc/nginx/sites-available/norbertfila.com"); c=p.read_text(); c=re.sub(r"\n\s*location /api/ebook-subscribe \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c); c=c.replace("    # BEGIN nf-ebook-api\n", "").replace("    # END nf-ebook-api\n", ""); b="    # BEGIN nf-ebook-api\n    location /api/ebook-subscribe {\n        proxy_pass http://127.0.0.1:8787/api/ebook-subscribe;\n        proxy_http_version 1.1;\n        proxy_set_header Host $host;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n    # END nf-ebook-api\n\n"; a="    location / {"; (_ for _ in ()).throw(SystemExit("Cannot find nginx anchor: location /")) if a not in c else None; p.write_text(c.replace(a, b + a, 1))'
 
             sudo nginx -t
             sudo systemctl reload nginx
