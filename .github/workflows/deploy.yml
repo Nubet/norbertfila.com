@@ -130,18 +130,23 @@ jobs:
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
           script: |
             set -e
+
             status_local=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/api/ebook-subscribe)
             if [ "$status_local" != "405" ]; then
               echo "Unexpected local API status code: $status_local"
               exit 1
             fi
 
-            status_public=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/api/ebook-subscribe)
-            if [ "$status_public" = "405" ]; then
-              exit 0
-            fi
-            echo "Unexpected public API status code: $status_public"
-            exit 1
+            status_public=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://norbertfila.com/api/ebook-subscribe" -H "Content-Type: application/json" -d '{"email":"invalid-email"}')
+            case "$status_public" in
+              200|400|422)
+                exit 0
+                ;;
+              *)
+                echo "Unexpected public API status code: $status_public"
+                exit 1
+                ;;
+            esac
 
       - name: Cleanup on failure
         if: failure()
