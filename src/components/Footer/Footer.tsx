@@ -1,12 +1,14 @@
+'use client'
+
 import type { MouseEvent } from 'react'
+import { usePathname } from 'next/navigation'
 import { Github, Linkedin, Mail } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
 import { scrollToTopSmooth } from '../../infrastructure/browser/scroll'
 import styles from './Footer.module.css'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
-  const { pathname } = useLocation()
+  const pathname = usePathname()
 
   const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (pathname !== '/') return
@@ -20,9 +22,9 @@ export function Footer() {
       <div className={styles.container}>
         <div className={styles.topSection}>
           <div className={styles.brand}>
-            <Link to="/" className={styles.brandName}>
+            <a href="/" className={styles.brandName}>
               Norbert Fila
-            </Link>
+            </a>
             <p className={styles.brandRole}>ZAMIEŃ ODWIEDZINY W KLIENTÓW</p>
             <p className={styles.brandMission}>
               Projektuję i koduję dedykowane strony internetowe nastawione na realny zysk.
@@ -34,15 +36,15 @@ export function Footer() {
               <span className={styles.groupLabel}>Na skróty</span>
               <ul className={styles.linkList}>
                 <li>
-                  <Link to="/" onClick={handleHomeClick}>
+                  <a href="/" onClick={handleHomeClick}>
                     Strona Główna
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link to="/cv">Doświadczenie (CV)</Link>
+                  <a href="/cv">Doświadczenie (CV)</a>
                 </li>
                 <li>
-                  <Link to="/contact">Darmowa Wycena</Link>
+                  <a href="/contact">Darmowa Wycena</a>
                 </li>
               </ul>
             </div>
@@ -51,10 +53,10 @@ export function Footer() {
               <span className={styles.groupLabel}>Legalne</span>
               <ul className={styles.linkList}>
                 <li>
-                  <Link to="/privacy-policy">Polityka Prywatności</Link>
+                  <a href="/privacy-policy">Polityka Prywatności</a>
                 </li>
                 <li>
-                  <Link to="/cookie-policy">Polityka Cookies</Link>
+                  <a href="/cookie-policy">Polityka Cookies</a>
                 </li>
               </ul>
             </div>
@@ -78,9 +80,9 @@ export function Footer() {
                 >
                   <Github size={22} />
                 </a>
-                <Link to="/contact" aria-label="Przejdź do formularza kontaktowego">
+                <a href="/contact" aria-label="Przejdź do formularza kontaktowego">
                   <Mail size={22} />
-                </Link>
+                </a>
               </div>
             </div>
           </nav>

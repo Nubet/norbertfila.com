@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import {
@@ -10,8 +12,9 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import styles from './Projects.module.css'
+
+const ASSET_BASE_URL = '/'
 
 const projects = [
   {
@@ -24,12 +27,12 @@ const projects = [
     downloadLink: null,
     featured: true,
     images: [
-      `${import.meta.env.BASE_URL}study-mood/1.webp`,
-      `${import.meta.env.BASE_URL}study-mood/2.webp`,
-      `${import.meta.env.BASE_URL}study-mood/3.webp`,
-      `${import.meta.env.BASE_URL}study-mood/4.webp`,
-      `${import.meta.env.BASE_URL}study-mood/5.webp`,
-      `${import.meta.env.BASE_URL}study-mood/6.webp`,
+      `${ASSET_BASE_URL}study-mood/1.webp`,
+      `${ASSET_BASE_URL}study-mood/2.webp`,
+      `${ASSET_BASE_URL}study-mood/3.webp`,
+      `${ASSET_BASE_URL}study-mood/4.webp`,
+      `${ASSET_BASE_URL}study-mood/5.webp`,
+      `${ASSET_BASE_URL}study-mood/6.webp`,
     ],
   },
   {
@@ -42,10 +45,10 @@ const projects = [
     downloadLink: 'https://addons.mozilla.org/en-US/firefox/addon/grayscale-everywhere/',
     featured: true,
     images: [
-      `${import.meta.env.BASE_URL}grayscale-filter/1.webp`,
-      `${import.meta.env.BASE_URL}grayscale-filter/2.webp`,
-      `${import.meta.env.BASE_URL}grayscale-filter/3.webp`,
-      `${import.meta.env.BASE_URL}grayscale-filter/4.webp`,
+      `${ASSET_BASE_URL}grayscale-filter/1.webp`,
+      `${ASSET_BASE_URL}grayscale-filter/2.webp`,
+      `${ASSET_BASE_URL}grayscale-filter/3.webp`,
+      `${ASSET_BASE_URL}grayscale-filter/4.webp`,
     ],
   },
   {
@@ -58,12 +61,12 @@ const projects = [
     downloadLink: '',
     featured: true,
     images: [
-      `${import.meta.env.BASE_URL}ISTQB-tester-app/0-main-screen.webp`,
-      `${import.meta.env.BASE_URL}ISTQB-tester-app/1-tryb-nauki.webp`,
-      `${import.meta.env.BASE_URL}ISTQB-tester-app/2-tryb-nauki.webp`,
-      `${import.meta.env.BASE_URL}ISTQB-tester-app/3-fiszki.webp`,
-      `${import.meta.env.BASE_URL}ISTQB-tester-app/4-fiszki.webp`,
-      `${import.meta.env.BASE_URL}ISTQB-tester-app/5-fiszki.webp`,
+      `${ASSET_BASE_URL}ISTQB-tester-app/0-main-screen.webp`,
+      `${ASSET_BASE_URL}ISTQB-tester-app/1-tryb-nauki.webp`,
+      `${ASSET_BASE_URL}ISTQB-tester-app/2-tryb-nauki.webp`,
+      `${ASSET_BASE_URL}ISTQB-tester-app/3-fiszki.webp`,
+      `${ASSET_BASE_URL}ISTQB-tester-app/4-fiszki.webp`,
+      `${ASSET_BASE_URL}ISTQB-tester-app/5-fiszki.webp`,
     ],
   },
   {
@@ -76,11 +79,11 @@ const projects = [
     downloadLink: 'https://github.com/Nubet/MicMute/releases',
     featured: true,
     images: [
-      `${import.meta.env.BASE_URL}MicMute/audio-live.png`,
-      `${import.meta.env.BASE_URL}MicMute/audio-muted.png`,
-      `${import.meta.env.BASE_URL}MicMute/hotkeys.png`,
-      `${import.meta.env.BASE_URL}MicMute/startup.png`,
-      `${import.meta.env.BASE_URL}MicMute/alerts.png`,
+      `${ASSET_BASE_URL}MicMute/audio-live.png`,
+      `${ASSET_BASE_URL}MicMute/audio-muted.png`,
+      `${ASSET_BASE_URL}MicMute/hotkeys.png`,
+      `${ASSET_BASE_URL}MicMute/startup.png`,
+      `${ASSET_BASE_URL}MicMute/alerts.png`,
     ],
   },
 ]
@@ -306,9 +309,9 @@ export default function Projects({ all = false }: { all?: boolean }) {
 
       {!all ? (
         <div className={styles.viewAll}>
-          <Link to="/projects" className={styles.viewAllLink}>
+          <a href="/projects" className={styles.viewAllLink}>
             VIEW ALL PROJECTS <ArrowRight size={20} strokeWidth={3} />
-          </Link>
+          </a>
         </div>
       ) : (
         <div className={styles.viewAll}>
