@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { Footer } from '../components/Footer/Footer'
+import { CookieConsentManager } from '../features/cookies/CookieConsentManager'
 import '../styles/variables.css'
 import '../styles/global.css'
 
@@ -24,7 +26,13 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="pl">
-      <body>{children}</body>
+      <body>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <main style={{ flex: 1 }}>{children}</main>
+          <Footer />
+          <CookieConsentManager />
+        </div>
+      </body>
     </html>
   )
 }
