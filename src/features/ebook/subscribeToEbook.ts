@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { httpClient, mapHttpError } from '../../infrastructure/http/httpClient'
+import { httpClient, mapHttpError } from '@/infrastructure/http/httpClient'
 
 type EbookSubscribePayload = {
   email: string

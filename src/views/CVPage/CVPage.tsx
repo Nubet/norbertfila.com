@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import Projects from '../../components/Projects/Projects'
-import Hero from '../../components/Hero/Hero'
-import Career from '../../components/Career/Career'
-import Education from '../../components/Education/Education'
-import Skills from '../../components/Skills/Skills'
+import Projects from '@/components/Projects/Projects'
+import Hero from '@/components/Hero/Hero'
+import Career from '@/components/Career/Career'
+import Education from '@/components/Education/Education'
+import Skills from '@/components/Skills/Skills'
 import { ArrowLeft } from 'lucide-react'
 import styles from './CVPage.module.css'
 

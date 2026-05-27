@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { Footer } from '../components/Footer/Footer'
-import { CookieConsentManager } from '../features/cookies/CookieConsentManager'
+import { Footer } from '@/components/Footer/Footer'
+import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import '../styles/variables.css'
 import '../styles/global.css'
 

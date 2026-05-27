@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Projects from '../../components/Projects/Projects'
+import Projects from '@/components/Projects/Projects'
 import { MoveLeft } from 'lucide-react'
 import styles from './ProjectsPage.module.css'
 

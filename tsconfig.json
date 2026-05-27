@@ -27,17 +27,26 @@
       "@/app/*": [
         "src/app/*"
       ],
+      "@/components/*": [
+        "src/components/*"
+      ],
       "@/entities/*": [
         "src/entities/*"
       ],
       "@/features/*": [
         "src/features/*"
       ],
+      "@/infrastructure/*": [
+        "src/infrastructure/*"
+      ],
       "@/shared/*": [
         "src/shared/*"
       ],
       "@/server/*": [
         "src/server/*"
+      ],
+      "@/views/*": [
+        "src/views/*"
       ]
     }
   },

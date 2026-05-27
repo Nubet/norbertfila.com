@@ -1,5 +1,5 @@
-import { httpClient, mapHttpError } from '../../infrastructure/http/httpClient'
-import { getRuntimeEnv } from '../../shared/config/env'
+import { httpClient, mapHttpError } from '@/infrastructure/http/httpClient'
+import { getRuntimeEnv } from '@/shared/config/env'
 import { ContactFormError } from './contactErrors'
 import type { ContactFormPayload } from './submitContactForm'
 

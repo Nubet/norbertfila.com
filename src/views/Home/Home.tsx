@@ -17,11 +17,11 @@ import {
   ImageDown,
   MousePointerClick,
 } from 'lucide-react'
-import { FAQ } from '../../components/FAQ/FAQ'
-import { TechMarquee } from '../../components/TechMarquee/TechMarquee'
-import { StickyCTA } from '../../components/StickyCTA/StickyCTA'
-import { ScrollReveal } from '../../components/ScrollReveal/ScrollReveal'
-import { subscribeToEbook, EbookSubscribeError } from '../../features/ebook/subscribeToEbook'
+import { FAQ } from '@/components/FAQ/FAQ'
+import { TechMarquee } from '@/components/TechMarquee/TechMarquee'
+import { StickyCTA } from '@/components/StickyCTA/StickyCTA'
+import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
+import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
 import styles from './Home.module.css'
 
 const portfolioProjects = [
