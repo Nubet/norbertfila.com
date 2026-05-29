@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState, type FormEvent } from 'react'
 import {
   ArrowRight,
@@ -118,9 +120,9 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.heroActions}>
-              <a href="/contact" className={styles.ctaButton}>
+              <Link href="/contact" className={styles.ctaButton}>
                 Darmowa wycena <ArrowRight size={24} />
-              </a>
+              </Link>
             </div>
           </div>
         </ScrollReveal>
@@ -142,11 +144,12 @@ export default function Home() {
                 konkretne rezultaty.
               </p>
               <div className={styles.portraitFrame}>
-                <img
+                <Image
                   src="/profile/avatar.webp"
                   alt="Profesjonalne zdjecie autora strony"
                   className={styles.portraitImage}
-                  loading="lazy"
+                  width={720}
+                  height={720}
                 />
               </div>
             </div>
@@ -217,7 +220,7 @@ export default function Home() {
           <ScrollReveal>
             <h2 className={styles.sectionLabel}>Co mogę dla Ciebie zrobić?</h2>
             <div className={styles.servicesList}>
-              <a
+              <Link
                 href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o stronę, która buduje zaufanie do marki"
@@ -225,8 +228,8 @@ export default function Home() {
                 <span className={styles.serviceIcon}>01</span>
                 <span>Strona, która buduje zaufanie do marki</span>
                 <ArrowUpRight size={32} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o landing page, który zamienia ruch w zapytania"
@@ -234,8 +237,8 @@ export default function Home() {
                 <span className={styles.serviceIcon}>02</span>
                 <span>Landing page, który zamienia ruch w zapytania</span>
                 <ArrowUpRight size={32} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o ofertę usług pokazaną jasno i bez chaosu"
@@ -243,8 +246,8 @@ export default function Home() {
                 <span className={styles.serviceIcon}>03</span>
                 <span>Oferta usług pokazana jasno i bez chaosu</span>
                 <ArrowUpRight size={32} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o formularze i CTA prowadzące do kontaktu"
@@ -252,8 +255,8 @@ export default function Home() {
                 <span className={styles.serviceIcon}>04</span>
                 <span>Formularze i CTA, które prowadzą klienta do kontaktu</span>
                 <ArrowUpRight size={32} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o integracje i funkcje na zamówienie"
@@ -261,8 +264,8 @@ export default function Home() {
                 <span className={styles.serviceIcon}>05</span>
                 <span>Integracje i funkcje na zamówienie</span>
                 <ArrowUpRight size={32} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className={styles.serviceItem}
                 aria-label="Zapytaj o doradztwo w wyborze hostingu i domeny"
@@ -270,7 +273,7 @@ export default function Home() {
                 <span className={styles.serviceIcon}>06</span>
                 <span>Doradztwo w wyborze hostingu i domeny</span>
                 <ArrowUpRight size={32} />
-              </a>
+              </Link>
             </div>
           </ScrollReveal>
         </div>
@@ -397,11 +400,12 @@ export default function Home() {
                     onClick={() => setZoomedImage(project.image)}
                     aria-label={`Powiększ projekt ${project.title}`}
                   >
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
                       className={styles.projectImage}
-                      loading="lazy"
+                      width={960}
+                      height={600}
                     />
                     <div className={styles.projectZoomOverlay}>
                       <Search size={48} className={styles.zoomIcon} />
@@ -497,17 +501,17 @@ export default function Home() {
               Porozmawiajmy o tym, jak nowoczesna wizytówka lub landing page może pomóc w skalowaniu
               Twojej firmy.
             </p>
-            <a
+            <Link
               href="/contact"
               className={styles.ctaButton}
               style={{ margin: '0 auto', width: 'fit-content' }}
             >
               Formularz bezpłatnej wyceny <ArrowRight size={24} />
-            </a>
+            </Link>
 
-            <a href="/cv" className={styles.footerLink}>
+            <Link href="/cv" className={styles.footerLink}>
               Sprawdź moje techniczne doświadczenie (CV)
-            </a>
+            </Link>
           </div>
         </ScrollReveal>
       </section>
@@ -529,7 +533,14 @@ export default function Home() {
           <button type="button" className={styles.lightboxClose} aria-label="Zamknij podgląd">
             <X size={36} />
           </button>
-          <img src={zoomedImage} alt="Powiększona wizualizacja" className={styles.lightboxImage} />
+          <Image
+            src={zoomedImage}
+            alt="Powiekszona wizualizacja"
+            className={styles.lightboxImage}
+            width={1440}
+            height={900}
+            unoptimized
+          />
         </div>
       )}
     </div>

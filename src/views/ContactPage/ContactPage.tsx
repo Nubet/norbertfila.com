@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ArrowLeft, Mail, Clock, CheckCircle2, User, Send, Phone } from 'lucide-react'
@@ -111,11 +112,12 @@ export default function ContactPage() {
               </div>
 
               <div className={styles.founderSnippet}>
-                <img
+                <Image
                   src="/profile/avatar.webp"
                   alt="Norbert Fila"
                   className={styles.avatar}
-                  loading="lazy"
+                  width={200}
+                  height={200}
                 />
                 <div>
                   <strong>Norbert Fila</strong>

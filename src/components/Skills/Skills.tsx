@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import styles from './Skills.module.css'
 
 const skillGroups = [
@@ -81,7 +82,7 @@ export default function Skills() {
             <div className={styles.grid}>
               {group.items.map((item) => (
                 <div className={styles.item} key={item.name} title={item.name}>
-                  <img src={item.src} alt={item.name} loading="lazy" />
+                  <Image src={item.src} alt={item.name} width={64} height={64} loading="lazy" />
                   <span className={styles.tooltip}>{item.name}</span>
                 </div>
               ))}

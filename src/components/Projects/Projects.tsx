@@ -1,5 +1,7 @@
 'use client'
 
+import NextImage from 'next/image'
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import {
@@ -192,7 +194,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
     const nextIndex = (lightbox.imageIndex + 1) % total
     const prevIndex = (lightbox.imageIndex - 1 + total) % total
     const preload = (index: number) => {
-      const image = new Image()
+      const image = new window.Image()
       image.src = activeProject.images[index]
     }
     preload(nextIndex)
@@ -230,7 +232,13 @@ export default function Projects({ all = false }: { all?: boolean }) {
                   onClick={() => openLightbox(index)}
                   aria-label={`Open ${project.title} image`}
                 >
-                  <img src={imageSrc} alt={project.title} loading="lazy" />
+                  <NextImage
+                    src={imageSrc}
+                    alt={project.title}
+                    width={960}
+                    height={640}
+                    loading="lazy"
+                  />
                   <div className={styles.imageOverlay}>
                     <span className={styles.imageBadge}>GALLERY</span>
                     <span className={styles.imageCount}>{totalImages} IMAGES</span>
@@ -309,9 +317,9 @@ export default function Projects({ all = false }: { all?: boolean }) {
 
       {!all ? (
         <div className={styles.viewAll}>
-          <a href="/projects" className={styles.viewAllLink}>
+          <Link href="/projects" className={styles.viewAllLink}>
             VIEW ALL PROJECTS <ArrowRight size={20} strokeWidth={3} />
-          </a>
+          </Link>
         </div>
       ) : (
         <div className={styles.viewAll}>
@@ -356,13 +364,14 @@ export default function Projects({ all = false }: { all?: boolean }) {
                 <X size={32} strokeWidth={3} />
               </button>
               <div className={styles.lightboxImageContainer}>
-                <img
+                <NextImage
                   className={styles.lightboxImage}
                   src={activeProject.images[lightbox.imageIndex]}
                   alt={`${activeProject.title} screenshot`}
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
+                  width={1440}
+                  height={900}
+                  priority
+                  unoptimized
                 />
               </div>
               {activeProject.images.length > 1 && (
