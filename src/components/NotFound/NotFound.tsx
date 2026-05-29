@@ -12,18 +12,18 @@ export default function NotFound() {
       <div className={styles.content}>
         <div className={styles.errorCodeContainer}>
           <h1 className={styles.errorCode}>404</h1>
-          <span className={styles.badge}>NOT FOUND</span>
+          <span className={styles.badge}>NIE ZNALEZIONO</span>
         </div>
 
         <div className={styles.messageBox}>
-          <h2 className={styles.messageTitle}>LOST IN THE GRID?</h2>
-          <p className={styles.messageText}>Sorry, that page doesn't exist.</p>
+          <h2 className={styles.messageTitle}>ZAGUBIŁEŚ SIĘ W SIECI?</h2>
+          <p className={styles.messageText}>Niestety, taka strona nie istnieje.</p>
         </div>
 
         <div className={styles.actions}>
           <Link href="/" className={styles.backButton}>
             <MoveLeft size={24} strokeWidth={3} />
-            RETURN TO HOME
+            WRÓĆ NA STRONĘ GŁÓWNĄ
             <Home size={24} strokeWidth={3} />
           </Link>
         </div>

@@ -58,7 +58,7 @@ export default function Hero() {
               href="/resume.pdf"
               target="_blank"
               className={styles.socialIcon}
-              aria-label="CV"
+              aria-label="Życiorys / CV"
             >
               <FileText size={28} strokeWidth={2.5} />
             </a>

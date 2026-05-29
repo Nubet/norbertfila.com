@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import ProjectsPage from '@/views/ProjectsPage/ProjectsPage'
 
 export const metadata: Metadata = {
-  title: 'Projects - Norbert Fila Portfolio',
-  description:
-    'Browse software projects by Norbert Fila, including frontend and full-stack case studies.',
+  title: 'Projekty - Portfolio Norberta Fili',
+  description: 'Przegladaj projekty Norberta Fili, w tym realizacje frontendowe i full-stack.',
   alternates: {
     canonical: '/projects',
   },

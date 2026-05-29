@@ -8,9 +8,9 @@ export default function ProjectsPage() {
     <div className="page">
       <header className={styles.header}>
         <Link href="/" className={styles.backLink}>
-          <MoveLeft size={20} strokeWidth={3} /> BACK TO HOME
+          <MoveLeft size={20} strokeWidth={3} /> POWRÓT NA STRONĘ GŁÓWNĄ
         </Link>
-        <h1 className={styles.title}>ALL PROJECTS.</h1>
+        <h1 className={styles.title}>WSZYSTKIE PROJEKTY.</h1>
       </header>
 
       <Projects all={true} />

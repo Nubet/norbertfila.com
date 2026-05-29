@@ -3,7 +3,7 @@ import CVPage from '@/views/CVPage/CVPage'
 
 export const metadata: Metadata = {
   title: 'Norbert Fila - CV / O mnie',
-  description: 'Szczegolowe informacje o moim wyksztalceniu, doswiadczeniu i umiejetnosciach.',
+  description: 'Szczegółowe informacje o moim wykształceniu, doświadczeniu i umiejętnościach.',
   alternates: {
     canonical: '/cv',
   },
