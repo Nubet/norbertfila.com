@@ -63,7 +63,7 @@
   border: none;
   cursor: pointer;
   text-align: left;
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
   color: #0f0f0f;

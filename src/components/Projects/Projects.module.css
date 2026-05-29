@@ -72,7 +72,7 @@
 .imageBadge {
   background: var(--color-yellow);
   color: var(--color-black);
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
   padding: 0.25rem 0.5rem;
   border: var(--border-thin);
@@ -82,7 +82,7 @@
 .imageCount {
   background: var(--color-black);
   color: var(--color-white);
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
   padding: 0.25rem 0.5rem;
   border: var(--border-thin);
@@ -144,7 +144,7 @@
 .tag {
   background: var(--color-white);
   color: var(--color-black);
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
   padding: 0.375rem 0.75rem;
   border: var(--border-thin);
@@ -174,12 +174,12 @@
 }
 
 .sourceLink {
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
 }
 
 .getItLink {
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
 }
 

@@ -115,7 +115,7 @@
   background: var(--text-main);
   color: var(--accent-color);
   padding: 0.5rem 1rem;
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
   font-size: 0.76rem;
   letter-spacing: 0.06em;
@@ -200,7 +200,7 @@
 }
 
 .sectionLabel {
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 800;
   font-size: clamp(1.05rem, 1.35vw, 1.3rem);
   line-height: 1.25;
@@ -212,7 +212,7 @@
 
 .manifesto {
   font-size: clamp(1.55rem, 3.4vw, 2.35rem);
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
   line-height: 1.26;
   max-width: 900px;
@@ -344,7 +344,7 @@
 
 .serviceItem {
   font-size: clamp(1.15rem, 2.55vw, 1.75rem);
-  font-family: var(--font-archivo), sans-serif;
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
   padding: 2.5rem 1rem;
   border-bottom: 2px solid var(--text-main);
