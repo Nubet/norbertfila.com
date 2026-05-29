@@ -50,10 +50,9 @@ const webProjects = [
 const mobileProjects = [
   {
     title: 'ISTQB Tester',
-    tagline: 'Kompleksowa aplikacja ułatwiająca zdanie certyfikatu.',
+    tagline: 'Efektywna nauka w estetycznej formie.',
     description:
-      'Posiada tryb nauki, symulację egzaminu i system fiszek. Aplikacja śledzi postępy użytkownika, a dane są przechowywane w lokalnej bazie. Działa całkowicie offline, bez konieczności zakładania konta.',
-    tech: ['React Native', 'Expo', 'SQLite'],
+      'Aplikacja, która zamienia przygotowanie do egzaminu w przyjemną rutynę. Przejrzysty interfejs, czytelna nawigacja i dopracowane detale – tryb nauki, symulacja egzaminu i system fiszek w jednym, spójnym doświadczeniu.',
     images: [
       '/portfolio-apki/istqb-screenshots/0-main-screen.PNG',
       '/portfolio-apki/istqb-screenshots/2-tryb-nauki.PNG',
@@ -62,23 +61,21 @@ const mobileProjects = [
   },
   {
     title: 'Qraft QR',
-    tagline: 'Szybki i niezawodny skaner oraz generator kodów QR.',
+    tagline: 'Narzędzie, które robi dokładnie to, czego potrzebujesz.',
     description:
-      'Błyskawiczna aplikacja narzędziowa stworzona z myślą o produktywności. Posiada detekcję linków na żywo, umożliwia szybkie udostępnianie wyników oraz gromadzi lokalną historię z podziałem na skanowanie i generowanie.',
-    tech: ['React Native', 'Expo Router', 'TypeScript'],
+      'Skaner i generator kodów QR w minimalistycznym, nowoczesnym wydaniu. Błyskawiczna detekcja linków na żywo, czytelna historia i udostępnianie jednym kliknięciem – zero zbędnych komplikacji.',
     images: [
       '/portfolio-apki/qraft-screenshots/00-scan-link-detected.png',
       '/portfolio-apki/qraft-screenshots/02-create-url-result.png',
       '/portfolio-apki/qraft-screenshots/07-history-list.png',
     ],
-    isReversed: true, // For layout variation
+    isReversed: true,
   },
   {
     title: 'Studymood',
-    tagline: 'Innowacyjna harmonia między produktywnością a zdrowiem psychicznym.',
+    tagline: 'Nauka w rytmie dopasowanym do Ciebie.',
     description:
-      'Cross-platformowa aplikacja wspierająca codzienne sesje nauki. Pozwala na szybkie "check-iny" nastroju na interaktywnej mapie 2D, oferuje krótkie sesje relaksacyjne i szczegółowo analizuje statystyki, pomagając uniknąć wypalenia.',
-    tech: ['Kotlin Multiplatform', 'Compose', 'SQLDelight'],
+      'Aplikacja łącząca produktywność z dbałością o zdrowie psychiczne. Intuicyjna mapa nastroju, sesje relaksacyjne i przejrzyste statystyki – wszystko zamknięte w czystym, nowoczesnym interfejsie.',
     images: [
       '/portfolio-apki/studymood/checkin/Screenshot_20260123_223932.png',
       '/portfolio-apki/studymood/study/Screenshot_20260123_224100.png',
@@ -495,11 +492,6 @@ export default function Home() {
                       <h4 className={styles.mobileProjectTitle}>{app.title}</h4>
                       <p className={styles.mobileProjectTagline}>{app.tagline}</p>
                       <p className={styles.mobileProjectDesc}>{app.description}</p>
-                      <ul className={styles.mobileProjectTech}>
-                        {app.tech.map((t) => (
-                          <li key={t}>{t}</li>
-                        ))}
-                      </ul>
                     </div>
                     <div className={styles.mobileMockupContainer}>
                       {app.images.map((imgSrc, idx) => (
