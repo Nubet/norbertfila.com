@@ -1340,10 +1340,23 @@
 }
 
 /* Hover effects for interaction */
-.mockupPhone:hover {
-  transform: scale(1.05) translateY(-20px) !important;
-  z-index: 10 !important;
-  opacity: 1 !important;
+.mockupPhone1:hover {
+  transform: translateX(-40%) scale(0.92) rotate(-5deg) translateY(-12px);
+  z-index: 10;
+  opacity: 1;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.mockupPhone2:hover {
+  transform: translateX(0) scale(1.05) translateY(-20px);
+  z-index: 10;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.3);
+}
+
+.mockupPhone3:hover {
+  transform: translateX(40%) scale(0.92) rotate(5deg) translateY(-12px);
+  z-index: 10;
+  opacity: 1;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
 }
 
