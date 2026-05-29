@@ -24,6 +24,12 @@ jobs:
       - name: Build project
         run: bun run build
 
+      - name: Verify Next standalone artifacts
+        run: |
+          test -f .next/standalone/server.js
+          test -d .next/static
+          test -d public
+
       - name: Copy Next standalone server to Oracle
         uses: appleboy/scp-action@master
         with:
@@ -332,6 +338,20 @@ jobs:
               echo "---- debug: public headers ----"
               curl -sS -D - -o /dev/null https://norbertfila.com/ || true
               exit 1
+            fi
+
+            status_robots=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/robots.txt)
+            if [ "$status_robots" != "200" ]; then
+              echo "Unexpected robots.txt status code: $status_robots"
+              curl -sS -D - -o /dev/null https://norbertfila.com/robots.txt || true
+              exit 1
+            fi
+
+            status_sitemap=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/sitemap.xml)
+            if [ "$status_sitemap" != "200" ]; then
+              echo "Unexpected sitemap.xml status code: $status_sitemap"
+              curl -sS -D - -o /dev/null https://norbertfila.com/sitemap.xml || true
+              exit 1ci: add standalone artifact checks and deploy SEO smoke tests
             fi
 
       - name: Cleanup on failure
