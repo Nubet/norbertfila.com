@@ -150,6 +150,7 @@ export default function Home() {
                   className={styles.portraitImage}
                   width={720}
                   height={720}
+                  sizes="(max-width: 768px) 88vw, (max-width: 1200px) 36vw, 420px"
                 />
               </div>
             </div>
@@ -406,6 +407,7 @@ export default function Home() {
                       className={styles.projectImage}
                       width={960}
                       height={600}
+                      sizes="(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 560px"
                     />
                     <div className={styles.projectZoomOverlay}>
                       <Search size={48} className={styles.zoomIcon} />
@@ -481,7 +483,7 @@ export default function Home() {
             <h2
               style={{
                 fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-                fontFamily: '"Space Grotesk", sans-serif',
+                fontFamily: 'var(--font-space-grotesk), sans-serif',
                 fontWeight: 700,
                 marginBottom: '1rem',
                 lineHeight: 1.1,
@@ -539,6 +541,7 @@ export default function Home() {
             className={styles.lightboxImage}
             width={1440}
             height={900}
+            sizes="100vw"
             unoptimized
           />
         </div>

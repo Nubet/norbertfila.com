@@ -7,7 +7,7 @@
   color: var(--color-white, #ffffff);
   padding: 0.875rem 1.25rem;
   border-radius: 50px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-weight: 600;
   font-size: 0.9375rem;
   text-decoration: none;

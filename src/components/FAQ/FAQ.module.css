@@ -14,7 +14,7 @@
 }
 
 .header h2 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   margin-bottom: 1rem;
@@ -63,7 +63,7 @@
   border: none;
   cursor: pointer;
   text-align: left;
-  font-family: 'Archivo', sans-serif;
+  font-family: var(--font-archivo), sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
   color: #0f0f0f;

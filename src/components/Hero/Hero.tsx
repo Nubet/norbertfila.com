@@ -76,6 +76,7 @@ export default function Hero() {
             width={560}
             height={700}
             priority
+            sizes="(max-width: 900px) 92vw, 560px"
           />
           <div className={styles.portraitFrame}></div>
         </div>

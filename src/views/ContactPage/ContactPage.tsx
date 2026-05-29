@@ -118,6 +118,7 @@ export default function ContactPage() {
                   className={styles.avatar}
                   width={200}
                   height={200}
+                  sizes="56px"
                 />
                 <div>
                   <strong>Norbert Fila</strong>

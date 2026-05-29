@@ -3,7 +3,7 @@
   background-color: var(--bg-white, #f4f4f0);
   color: var(--text-main, #0f0f0f);
   padding: 8rem 0 6rem;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
 }
 
 .container {
@@ -20,7 +20,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--text-main, #0f0f0f);
@@ -45,7 +45,7 @@
 }
 
 .title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1;
@@ -89,7 +89,7 @@
 }
 
 .contactCard h4 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: 1.1rem;
   margin: 0 0 0.25rem;
 }
@@ -103,7 +103,7 @@
 
 .directMail {
   color: var(--text-main, #0f0f0f);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
   text-decoration: underline;
@@ -132,7 +132,7 @@
 
 .founderSnippet strong {
   display: block;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: 1.1rem;
 }
 
@@ -169,7 +169,7 @@
 }
 
 .groupLabel {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-main, #0f0f0f);
@@ -185,7 +185,7 @@
   background: #f4f4f0;
   border: 2px solid #e0e0e0;
   color: #666;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-size: 1rem;
   font-weight: 500;
   padding: 0.75rem 1.25rem;
@@ -221,7 +221,7 @@
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   padding: 1.25rem;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-size: 1rem;
   color: var(--text-main, #0f0f0f);
   resize: vertical;
@@ -259,7 +259,7 @@ select.input {
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   padding: 1rem 1rem 1rem 3rem;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-size: 1rem;
   color: var(--text-main, #0f0f0f);
   transition:
@@ -303,7 +303,7 @@ select.input:focus {
   color: #fff;
   border: 2px solid var(--text-main, #0f0f0f);
   padding: 1.25rem 2.5rem;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
   cursor: pointer;

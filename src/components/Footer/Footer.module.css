@@ -3,7 +3,7 @@
   color: var(--color-white, #ffffff);
   padding: 6rem 0 2rem;
   border-top: 2px solid var(--text-main, #0f0f0f);
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   position: relative;
   z-index: 10;
 }
@@ -27,7 +27,7 @@
 }
 
 .brandName {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
   color: #fff;
@@ -43,7 +43,7 @@
 }
 
 .brandRole {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   color: var(--accent-color, #ffd100);
   font-weight: 700;
   font-size: 1.1rem;
@@ -71,7 +71,7 @@
 }
 
 .groupLabel {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   color: #666;

@@ -10,7 +10,7 @@
   border: 2px solid var(--color-black, #0f0f0f);
   background: var(--bg-primary, #f4f4f0);
   color: var(--color-black, #0f0f0f);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;

@@ -1,10 +1,32 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { Archivo, Outfit, Space_Grotesk } from 'next/font/google'
 import { Footer } from '@/components/Footer/Footer'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { siteConfig } from '@/shared/seo/site'
 import '../styles/variables.css'
 import '../styles/global.css'
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin-ext'],
+  weight: ['500', '600', '700'],
+  display: 'swap',
+  variable: '--font-space-grotesk',
+})
+
+const archivo = Archivo({
+  subsets: ['latin-ext'],
+  weight: ['500', '600', '800'],
+  display: 'swap',
+  variable: '--font-archivo',
+})
+
+const outfit = Outfit({
+  subsets: ['latin-ext'],
+  weight: ['300', '400', '600', '800'],
+  display: 'swap',
+  variable: '--font-outfit',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -57,7 +79,7 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="pl">
+    <html lang="pl" className={`${spaceGrotesk.variable} ${archivo.variable} ${outfit.variable}`}>
       <body>
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <main style={{ flex: 1 }}>{children}</main>

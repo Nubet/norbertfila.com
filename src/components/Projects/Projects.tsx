@@ -238,6 +238,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                     width={960}
                     height={640}
                     loading="lazy"
+                    sizes="(max-width: 768px) 92vw, (max-width: 1200px) 46vw, 540px"
                   />
                   <div className={styles.imageOverlay}>
                     <span className={styles.imageBadge}>GALLERY</span>
@@ -370,6 +371,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                   alt={`${activeProject.title} screenshot`}
                   width={1440}
                   height={900}
+                  sizes="100vw"
                   priority
                   unoptimized
                 />
