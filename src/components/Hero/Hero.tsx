@@ -75,6 +75,7 @@ export default function Hero() {
             width={560}
             height={700}
             quality={100}
+            unoptimized
             priority
             sizes="(max-width: 900px) 92vw, 560px"
           />

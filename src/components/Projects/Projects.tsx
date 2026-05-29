@@ -238,6 +238,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                     width={960}
                     height={640}
                     quality={100}
+                    unoptimized
                     loading="lazy"
                     sizes="(max-width: 768px) 92vw, (max-width: 1200px) 46vw, 540px"
                   />
@@ -373,6 +374,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                   width={1440}
                   height={900}
                   quality={100}
+                  unoptimized
                   sizes="100vw"
                   priority
                 />

@@ -119,6 +119,7 @@ export default function ContactPage() {
                   width={200}
                   height={200}
                   quality={100}
+                  unoptimized
                   sizes="56px"
                 />
                 <div>

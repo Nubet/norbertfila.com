@@ -151,6 +151,7 @@ export default function Home() {
                   width={720}
                   height={720}
                   quality={100}
+                  unoptimized
                   sizes="(max-width: 768px) 88vw, (max-width: 1200px) 36vw, 420px"
                 />
               </div>
@@ -409,6 +410,7 @@ export default function Home() {
                       width={960}
                       height={600}
                       quality={100}
+                      unoptimized
                       sizes="(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 560px"
                     />
                     <div className={styles.projectZoomOverlay}>
@@ -544,6 +546,7 @@ export default function Home() {
             width={1440}
             height={900}
             quality={100}
+            unoptimized
             sizes="100vw"
           />
         </div>
