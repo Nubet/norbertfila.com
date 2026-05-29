@@ -1,17 +1,10 @@
-'use client'
-
 import Link from 'next/link'
-import { useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
-import { showCookiePreferences } from '@/features/cookies/cookieConsent'
+import { CookiePreferencesButton } from '@/features/cookies/CookiePreferencesButton'
 import { CookiePolicyTable } from '@/features/cookies/CookiePolicyTable'
 import styles from './LegalPages.module.css'
 
 export default function CookiePolicyPage() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   return (
     <main className={styles.page}>
       <div className={styles.container}>
@@ -61,9 +54,7 @@ export default function CookiePolicyPage() {
               o możliwości i sposobach obsługi plików cookies dostępne są w ustawieniach
               oprogramowania (przeglądarki internetowej).
             </p>
-            <button type="button" className={styles.manageButton} onClick={showCookiePreferences}>
-              Zmień ustawienia cookies
-            </button>
+            <CookiePreferencesButton />
           </section>
 
           <section>
