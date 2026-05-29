@@ -14,7 +14,7 @@ Designed to be simple, expressive, and memorable.
 
 ## 🛠️ Tech Stack
 
-- **Framework:** React + Vite
+- **Framework:** Next.js (App Router)
 - **Language:** TypeScript
 - **Styling:** Pure CSS
 
