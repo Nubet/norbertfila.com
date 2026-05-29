@@ -24,14 +24,34 @@ jobs:
       - name: Build project
         run: bun run build
 
-      - name: Copy static site to Oracle
+      - name: Copy Next standalone server to Oracle
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: 'dist/*'
-          target: '/var/www/norbertfila.com'
+          source: '.next/standalone/*'
+          target: '/tmp/nf-next-upload/standalone'
+          strip_components: 2
+
+      - name: Copy Next static assets to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: '.next/static/*'
+          target: '/tmp/nf-next-upload/static'
+          strip_components: 2
+
+      - name: Copy public assets to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: 'public/*'
+          target: '/tmp/nf-next-upload/public'
           strip_components: 1
 
       - name: Copy ebook API files to Oracle
@@ -44,7 +64,7 @@ jobs:
           target: '/tmp/nf-api-upload'
           strip_components: 2
 
-      - name: Configure and restart ebook API service
+      - name: Configure and restart Next and ebook services
         uses: appleboy/ssh-action@master
         env:
           MAILERLITE_API_KEY: ${{ secrets.MAILERLITE_API_KEY }}
@@ -75,6 +95,40 @@ jobs:
               echo "MAILERLITE_GROUP_ID secret is missing"
               exit 1
             fi
+
+            sudo mkdir -p /opt/nf-portfolio
+            sudo chown -R $USER:$USER /opt/nf-portfolio
+
+            rm -rf /opt/nf-portfolio/*
+            cp -R /tmp/nf-next-upload/standalone/* /opt/nf-portfolio/
+            mkdir -p /opt/nf-portfolio/.next
+            cp -R /tmp/nf-next-upload/static /opt/nf-portfolio/.next/
+            cp -R /tmp/nf-next-upload/public /opt/nf-portfolio/
+
+            cat > /tmp/nf-portfolio.service <<'EOF'
+            [Unit]
+            Description=NF Portfolio Next.js App
+            After=network.target
+
+            [Service]
+            User=ubuntu
+            WorkingDirectory=/opt/nf-portfolio
+            Environment=NODE_ENV=production
+            Environment=PORT=3000
+            ExecStart=/usr/bin/env node /opt/nf-portfolio/server.js
+            Restart=always
+            RestartSec=3
+
+            [Install]
+            WantedBy=multi-user.target
+            EOF
+
+            sudo mv /tmp/nf-portfolio.service /etc/systemd/system/nf-portfolio.service
+            sudo chmod 644 /etc/systemd/system/nf-portfolio.service
+            sudo systemctl daemon-reload
+            sudo systemctl enable nf-portfolio
+            sudo systemctl restart nf-portfolio
+            sudo systemctl is-active --quiet nf-portfolio
 
             sudo mkdir -p /opt/nf-api
             sudo chown -R $USER:$USER /opt/nf-api
@@ -128,9 +182,11 @@ jobs:
             p = Path('/etc/nginx/sites-available/norbertfila.com')
             c = p.read_text()
 
+            c = re.sub(r"\n\s*# BEGIN nf-next-app\n(?:\s+.*\n)*?\s*# END nf-next-app\n", "\n", c)
             c = re.sub(r"\n\s*# BEGIN nf-ebook-api\n(?:\s+.*\n)*?\s*# END nf-ebook-api\n", "\n", c)
             c = re.sub(r"\n\s*# BEGIN nf-security-headers\n(?:\s+.*\n)*?\s*# END nf-security-headers\n", "\n", c)
             c = re.sub(r"\n\s*location /api/ebook-subscribe \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c)
+            c = re.sub(r"\n\s*location / \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c, count=1)
 
             csp_value = (
                 "default-src 'self'; "
@@ -172,17 +228,38 @@ jobs:
                 "    # END nf-ebook-api\n\n"
             )
 
-            anchor = '    location / {'
-            if anchor not in c:
-                raise SystemExit('Cannot find nginx anchor: location /')
+            next_block = (
+                "    # BEGIN nf-next-app\n"
+                "    location / {\n"
+                "        proxy_pass http://127.0.0.1:3000;\n"
+                "        proxy_http_version 1.1;\n"
+                "        proxy_set_header Host $host;\n"
+                "        proxy_set_header X-Real-IP $remote_addr;\n"
+                "        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n"
+                "        proxy_set_header X-Forwarded-Proto $scheme;\n"
+                "        proxy_set_header Upgrade $http_upgrade;\n"
+                "        proxy_set_header Connection \"upgrade\";\n"
+                "    }\n"
+                "    # END nf-next-app\n\n"
+            )
 
-            p.write_text(c.replace(anchor, security_block + api_block + anchor, 1))
+            server_open = c.find('server {')
+            if server_open == -1:
+                raise SystemExit('Cannot find nginx server block')
+
+            insert_at = c.find('\n}', server_open)
+            if insert_at == -1:
+                raise SystemExit('Cannot find nginx server block end')
+
+            blocks = security_block + api_block + next_block
+            p.write_text(c[:insert_at] + '\n' + blocks + c[insert_at:])
             PY
 
             sudo nginx -t
             sudo systemctl reload nginx
 
             rm -rf /tmp/nf-api-upload
+            rm -rf /tmp/nf-next-upload
 
       - name: Verify ebook API endpoint
         uses: appleboy/ssh-action@master
