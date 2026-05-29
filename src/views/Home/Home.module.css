@@ -1208,3 +1208,193 @@
     transition: none;
   }
 }
+
+.projectsCategory {
+  margin-top: 2rem;
+}
+
+.categoryTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobileProjectsList {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.mobileProjectCard {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+  background: #fcfcfc;
+  border-radius: 24px;
+  padding: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mobileProjectCardReversed {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.mobileProjectCardReversed .mobileProjectInfo {
+  order: 2;
+}
+
+.mobileProjectCardReversed .mobileMockupContainer {
+  order: 1;
+}
+
+.mobileProjectInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.mobileProjectTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-main);
+}
+
+.mobileProjectTagline {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  background: var(--text-main);
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  width: fit-content;
+  border-radius: 4px;
+}
+
+.mobileProjectDesc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.mobileProjectTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.mobileProjectTech li {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-main);
+  padding: 0.4rem 0.8rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.mobileMockupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 500px;
+}
+
+.mockupPhone {
+  position: absolute;
+  width: 230px;
+  height: 480px;
+  border-radius: 36px;
+  background: #000;
+  border: 8px solid #1a1a1a;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), z-index 0s, box-shadow 0.4s;
+  cursor: zoom-in;
+}
+
+/* Cascading layout for the 3 screens */
+.mockupPhone1 {
+  transform: translateX(-40%) scale(0.85) rotate(-5deg);
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.mockupPhone2 {
+  transform: translateX(0) scale(1) translateY(-10px);
+  z-index: 3;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.mockupPhone3 {
+  transform: translateX(40%) scale(0.85) rotate(5deg);
+  z-index: 2;
+  opacity: 0.8;
+}
+
+/* Hover effects for interaction */
+.mockupPhone:hover {
+  transform: scale(1.05) translateY(-20px) !important;
+  z-index: 10 !important;
+  opacity: 1 !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.mockupImage {
+  object-fit: cover;
+  object-position: top;
+}
+
+@media (max-width: 1024px) {
+  .mobileProjectCard,
+  .mobileProjectCardReversed {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 2rem;
+  }
+  
+  .mobileProjectCardReversed .mobileProjectInfo {
+    order: 1;
+  }
+
+  .mobileProjectCardReversed .mobileMockupContainer {
+    order: 2;
+  }
+
+  .mobileMockupContainer {
+    height: 400px;
+  }
+
+  .mockupPhone {
+    width: 180px;
+    height: 380px;
+    border: 6px solid #1a1a1a;
+  }
+}
+
+@media (max-width: 600px) {
+  .mobileProjectCard {
+    padding: 1.5rem;
+  }
+
+  .mobileMockupContainer {
+    height: 300px;
+  }
+
+  .mockupPhone {
+    width: 130px;
+    height: 280px;
+    border-radius: 24px;
+    border: 4px solid #1a1a1a;
+  }
+
+  .mobileProjectsList {
+    gap: 3rem;
+  }

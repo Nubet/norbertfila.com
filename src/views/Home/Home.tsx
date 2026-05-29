@@ -26,7 +26,7 @@ import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
 import styles from './Home.module.css'
 
-const portfolioProjects = [
+const webProjects = [
   {
     title: 'Doradztwo Podatkowe',
     description:
@@ -44,6 +44,46 @@ const portfolioProjects = [
     url: 'https://nubet.github.io/klinika-centrum-badan-landing-page/',
     urlLabel: 'Zobacz stronę na żywo',
     isGithub: false,
+  },
+]
+
+const mobileProjects = [
+  {
+    title: 'ISTQB Tester',
+    tagline: 'Kompleksowa aplikacja ułatwiająca zdanie certyfikatu.',
+    description:
+      'Posiada tryb nauki, symulację egzaminu i system fiszek. Aplikacja śledzi postępy użytkownika, a dane są przechowywane w lokalnej bazie. Działa całkowicie offline, bez konieczności zakładania konta.',
+    tech: ['React Native', 'Expo', 'SQLite'],
+    images: [
+      '/portfolio-apki/istqb-screenshots/0-main-screen.PNG',
+      '/portfolio-apki/istqb-screenshots/2-tryb-nauki.PNG',
+      '/portfolio-apki/istqb-screenshots/4-fiszki.PNG',
+    ],
+  },
+  {
+    title: 'Qraft QR',
+    tagline: 'Szybki i niezawodny skaner oraz generator kodów QR.',
+    description:
+      'Błyskawiczna aplikacja narzędziowa stworzona z myślą o produktywności. Posiada detekcję linków na żywo, umożliwia szybkie udostępnianie wyników oraz gromadzi lokalną historię z podziałem na skanowanie i generowanie.',
+    tech: ['React Native', 'Expo Router', 'TypeScript'],
+    images: [
+      '/portfolio-apki/qraft-screenshots/00-scan-link-detected.png',
+      '/portfolio-apki/qraft-screenshots/02-create-url-result.png',
+      '/portfolio-apki/qraft-screenshots/07-history-list.png',
+    ],
+    isReversed: true, // For layout variation
+  },
+  {
+    title: 'Studymood',
+    tagline: 'Innowacyjna harmonia między produktywnością a zdrowiem psychicznym.',
+    description:
+      'Cross-platformowa aplikacja wspierająca codzienne sesje nauki. Pozwala na szybkie "check-iny" nastroju na interaktywnej mapie 2D, oferuje krótkie sesje relaksacyjne i szczegółowo analizuje statystyki, pomagając uniknąć wypalenia.',
+    tech: ['Kotlin Multiplatform', 'Compose', 'SQLDelight'],
+    images: [
+      '/portfolio-apki/studymood/checkin/Screenshot_20260123_223932.png',
+      '/portfolio-apki/studymood/study/Screenshot_20260123_224100.png',
+      '/portfolio-apki/studymood/analyze/Screenshot_20260123_224643.png',
+    ],
   },
 ]
 
@@ -394,47 +434,94 @@ export default function Home() {
         <div className={styles.container}>
           <ScrollReveal>
             <h2 className={styles.sectionLabel}>Wybrane realizacje</h2>
-            <div className={styles.projectsGrid}>
-              {portfolioProjects.map((project) => (
-                <article className={styles.projectCard} key={project.title}>
-                  <button
-                    type="button"
-                    className={styles.projectImageWrapper}
-                    onClick={() => setZoomedImage(project.image)}
-                    aria-label={`Powiększ projekt ${project.title}`}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      className={styles.projectImage}
-                      width={960}
-                      height={600}
-                      quality={100}
-                      unoptimized
-                      sizes="(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 560px"
-                    />
-                    <div className={styles.projectZoomOverlay}>
-                      <Search size={48} className={styles.zoomIcon} />
-                      <span>Kliknij, aby analizować</span>
+
+            {/* WEB PROJECTS SECTION */}
+            <div className={styles.projectsCategory}>
+              <h3 className={styles.categoryTitle}>Strony WWW i Landing Pages</h3>
+              <div className={styles.projectsGrid}>
+                {webProjects.map((project) => (
+                  <article className={styles.projectCard} key={project.title}>
+                    <button
+                      type="button"
+                      className={styles.projectImageWrapper}
+                      onClick={() => setZoomedImage(project.image)}
+                      aria-label={`Powiększ projekt ${project.title}`}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        className={styles.projectImage}
+                        width={960}
+                        height={600}
+                        quality={100}
+                        unoptimized
+                        sizes="(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 560px"
+                      />
+                      <div className={styles.projectZoomOverlay}>
+                        <Search size={48} className={styles.zoomIcon} />
+                        <span>Kliknij, aby analizować</span>
+                      </div>
+                    </button>
+                    <div className={styles.projectContent}>
+                      <h3>{project.title}</h3>
+                      <p>{project.description}</p>
+                      {project.url && (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.projectLink}
+                        >
+                          {project.urlLabel}
+                          {project.isGithub ? <Github size={18} /> : <ExternalLink size={18} />}
+                        </a>
+                      )}
                     </div>
-                  </button>
-                  <div className={styles.projectContent}>
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    {project.url && (
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.projectLink}
-                      >
-                        {project.urlLabel}
-                        {project.isGithub ? <Github size={18} /> : <ExternalLink size={18} />}
-                      </a>
-                    )}
-                  </div>
-                </article>
-              ))}
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            {/* MOBILE PROJECTS SECTION */}
+            <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
+              <h3 className={styles.categoryTitle}>Aplikacje Mobilne</h3>
+              <div className={styles.mobileProjectsList}>
+                {mobileProjects.map((app) => (
+                  <article
+                    className={`${styles.mobileProjectCard} ${app.isReversed ? styles.mobileProjectCardReversed : ''}`}
+                    key={app.title}
+                  >
+                    <div className={styles.mobileProjectInfo}>
+                      <h4 className={styles.mobileProjectTitle}>{app.title}</h4>
+                      <p className={styles.mobileProjectTagline}>{app.tagline}</p>
+                      <p className={styles.mobileProjectDesc}>{app.description}</p>
+                      <ul className={styles.mobileProjectTech}>
+                        {app.tech.map((t) => (
+                          <li key={t}>{t}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className={styles.mobileMockupContainer}>
+                      {app.images.map((imgSrc, idx) => (
+                        <div
+                          key={imgSrc}
+                          className={`${styles.mockupPhone} ${styles[`mockupPhone${idx + 1}`]}`}
+                          onClick={() => setZoomedImage(imgSrc)}
+                        >
+                          <Image
+                            src={imgSrc}
+                            alt={`${app.title} screen ${idx + 1}`}
+                            fill
+                            className={styles.mockupImage}
+                            unoptimized
+                            sizes="(max-width: 768px) 30vw, 200px"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
         </div>
