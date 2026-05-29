@@ -351,7 +351,7 @@ jobs:
             if [ "$status_sitemap" != "200" ]; then
               echo "Unexpected sitemap.xml status code: $status_sitemap"
               curl -sS -D - -o /dev/null https://norbertfila.com/sitemap.xml || true
-              exit 1ci: add standalone artifact checks and deploy SEO smoke tests
+              exit 1
             fi
 
       - name: Cleanup on failure
