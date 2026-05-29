@@ -10,9 +10,9 @@ import styles from './CVPage.module.css'
 export default function CVPage() {
   return (
     <div className="neo-brutalist-theme">
-      <Link href="/" className={styles.backToHome} aria-label="Back to Home">
+      <Link href="/" className={styles.backToHome} aria-label="Powrót na stronę główną">
         <ArrowLeft size={16} />
-        <span>Back to Home</span>
+        <span>Powrót na stronę główną</span>
       </Link>
       <div className="page">
         <Hero />

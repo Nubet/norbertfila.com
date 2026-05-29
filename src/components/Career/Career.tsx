@@ -5,24 +5,24 @@ const career = [
     company: 'Freelance',
     subtitle: 'useme.com',
     role: 'React Web Developer',
-    dates: 'March 2026 - Present',
+    dates: 'Marzec 2026 - Obecnie',
     details: [
-      'Delivering custom-built web solutions including landing pages, one-pagers, and digital business cards.',
-      'Handling the full process from initial UI design to production-ready code.',
-      'Optimizing web performance and ensuring responsive, scalable design.',
+      'Realizuję dedykowane rozwiązania webowe, w tym landing page, one-pagery i cyfrowe wizytówki.',
+      'Prowadzę cały proces od wstępnego projektu UI po kod gotowy do wdrożenia.',
+      'Optymalizuję wydajność stron i dbam o responsywny, skalowalny design.',
     ],
   },
   {
     company: 'SKN Telin',
-    subtitle: '(Lodz University of Technology)',
+    subtitle: '(Politechnika Łódzka)',
     role: 'Java Backend Developer',
-    dates: 'Oct 2025 - Present',
+    dates: 'Październik 2025 - Obecnie',
     details: [
-      'Developing "IdeaDeck", a centralized platform for academic announcements and student initiatives.',
-      'Implementing backend services using Java and Spring Boot, including RESTful APIs for user management and applications.',
-      'Integrating Keycloak for secure authentication and identity management.',
-      'Collaborating on frontend integration by providing API documentation and example components.',
-      'Designed the platform logo and contributed to UI/UX reviews to ensure consistency with backend logic.',
+      'Współtworząc "IdeaDeck" - scentralizowaną platformę do ogłoszeń akademickich i inicjatyw studenckich.',
+      'Implementowałem backend w Java i Spring Boot, w tym REST API do zarządzania użytkownikami i zgłoszeniami.',
+      'Integruję Keycloak w celu zapewnienia bezpiecznego uwierzytelniania i zarządzania tożsamością.',
+      'Wspierałem integrację frontendu, dostarczając dokumentację API i przykładowe komponenty.',
+      'Zaprojektowałem logo platformy i wspierałem przeglądy UI/UX, aby zachować spójność z logiką backendu.',
     ],
   },
 ]
@@ -31,7 +31,7 @@ export default function Career() {
   return (
     <section className="section" id="career">
       <div className="section-heading">
-        <h2>EXPERIENCE.</h2>
+        <h2>DOŚWIADCZENIE.</h2>
         <div
           className="shape-circle"
           style={{

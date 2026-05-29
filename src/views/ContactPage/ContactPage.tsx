@@ -118,6 +118,7 @@ export default function ContactPage() {
                   className={styles.avatar}
                   width={200}
                   height={200}
+                  quality={100}
                   sizes="56px"
                 />
                 <div>

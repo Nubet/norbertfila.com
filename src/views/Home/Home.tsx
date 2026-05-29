@@ -150,6 +150,7 @@ export default function Home() {
                   className={styles.portraitImage}
                   width={720}
                   height={720}
+                  quality={100}
                   sizes="(max-width: 768px) 88vw, (max-width: 1200px) 36vw, 420px"
                 />
               </div>
@@ -407,6 +408,7 @@ export default function Home() {
                       className={styles.projectImage}
                       width={960}
                       height={600}
+                      quality={100}
                       sizes="(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 560px"
                     />
                     <div className={styles.projectZoomOverlay}>
@@ -541,8 +543,8 @@ export default function Home() {
             className={styles.lightboxImage}
             width={1440}
             height={900}
+            quality={100}
             sizes="100vw"
-            unoptimized
           />
         </div>
       )}

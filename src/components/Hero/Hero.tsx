@@ -19,18 +19,17 @@ export default function Hero() {
               FILA.
             </span>
           </h1>
-          <span className={styles.badge}>SOFTWARE DEV</span>
+          <span className={styles.badge}>PROGRAMISTA</span>
         </div>
 
         <p className={styles.subhead}>
-          TRANSFORMING RAW IDEAS
-          <br />
-          INTO WORKING SOLUTIONS.
+          PRZEKSZTAŁCAM SUROWE POMYSŁY
+          <br />W DZIAŁAJĄCE ROZWIĄZANIA.
         </p>
 
         <div className={styles.actions}>
           <a href="#projects" className={styles.primaryButton}>
-            VIEW WORK <ArrowRight size={24} strokeWidth={3} />
+            ZOBACZ PROJEKTY <ArrowRight size={24} strokeWidth={3} />
           </a>
 
           <div className={styles.socialLinks}>
@@ -59,7 +58,7 @@ export default function Hero() {
               href="/resume.pdf"
               target="_blank"
               className={styles.socialIcon}
-              aria-label="Resume / CV"
+              aria-label="CV"
             >
               <FileText size={28} strokeWidth={2.5} />
             </a>
@@ -71,10 +70,11 @@ export default function Hero() {
         <div className={styles.portraitWrapper}>
           <Image
             src="/profile/avatar.webp"
-            alt="Norbert Fila - Portrait"
+            alt="Norbert Fila - Portret"
             className={styles.image}
             width={560}
             height={700}
+            quality={100}
             priority
             sizes="(max-width: 900px) 92vw, 560px"
           />

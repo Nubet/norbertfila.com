@@ -22,7 +22,7 @@ const projects = [
   {
     title: 'StudyMood',
     description:
-      'A cross-platform app bridging productivity with mental wellbeing. Features mood tracking on a 2D energy-pleasantness map, study timers, and quick self-regulation tools like breathing exercises. Built with Kotlin Multiplatform.',
+      'Aplikacja multiplatformowa łącząca produktywność z dbaniem o dobrostan psychiczny. Oferuje monitorowanie nastroju na dwuwymiarowej mapie energii i przyjemności, timery nauki oraz szybkie narzędzia samoregulacji, takie jak ćwiczenia oddechowe. Zbudowana w Kotlin Multiplatform.',
     tags: ['Kotlin Multiplatform', 'Compose', 'SQLDelight', 'Koin'],
     repoLink: 'https://github.com/Nubet/studymood-app-public',
     demoLink: null,
@@ -40,7 +40,7 @@ const projects = [
   {
     title: 'Grayscale Everywhere',
     description:
-      'A privacy-first Firefox extension that reduces digital distractions by applying customizable grayscale filters to websites. Features a domain whitelist and zero data collection policy.',
+      'Rozszerzenie do Firefox stawiające prywatność na pierwszym miejscu, które ogranicza cyfrowe rozpraszacze dzięki konfigurowalnym filtrom skali szarości na stronach internetowych. Zawiera białą listę domen i politykę zerowego zbierania danych.',
     tags: ['JavaScript', 'Bun', 'Firefox Add-on'],
     repoLink: 'https://github.com/Nubet/Grayscale-Filter-Extension',
     demoLink: null,
@@ -56,7 +56,7 @@ const projects = [
   {
     title: 'ISTQB Tester App',
     description:
-      'A mobile study app for ISTQB CTFL prep with chapter-based learning, exam simulation, glossary search, bookmarks, and local progress tracking that marks questions as mastered after correct answers.',
+      'Mobilna aplikacja do nauki do ISTQB CTFL z nauką podzieloną na rozdziały, symulacją egzaminu, wyszukiwaniem w słowniczku, zakładkami i lokalnym śledzeniem postępu, które oznacza pytania jako opanowane po poprawnych odpowiedziach.',
     tags: ['Expo', 'React Native', 'TypeScript', 'sqlite'],
     repoLink: 'https://github.com/Nubet/istqb-tester-app',
     demoLink: null,
@@ -74,7 +74,7 @@ const projects = [
   {
     title: 'MicMute',
     description:
-      'A simple desktop app for Windows and Linux that helps you control your microphone during meetings, streams, or work. It lets you mute and unmute quickly with one click or a global keyboard shortcut.',
+      'Prosta aplikacja desktopowa na Windows i Linux, która pomaga kontrolować mikrofon podczas spotkań, streamów i pracy. Pozwala szybko wyciszać i odciszać jednym kliknięciem albo globalnym skrótem klawiaturowym.',
     tags: ['Electron', 'React', 'Vite', 'TypeScript'],
     repoLink: 'https://github.com/Nubet/MicMute',
     demoLink: null,
@@ -205,7 +205,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
     <section className="section" id="projects">
       {!all && (
         <div className="section-heading">
-          <h2>WORK.</h2>
+          <h2>PROJEKTY.</h2>
           <div
             className="shape-square"
             style={{
@@ -230,19 +230,20 @@ export default function Projects({ all = false }: { all?: boolean }) {
                   type="button"
                   className={styles.imageButton}
                   onClick={() => openLightbox(index)}
-                  aria-label={`Open ${project.title} image`}
+                  aria-label={`Otwórz obraz projektu ${project.title}`}
                 >
                   <NextImage
                     src={imageSrc}
                     alt={project.title}
                     width={960}
                     height={640}
+                    quality={100}
                     loading="lazy"
                     sizes="(max-width: 768px) 92vw, (max-width: 1200px) 46vw, 540px"
                   />
                   <div className={styles.imageOverlay}>
-                    <span className={styles.imageBadge}>GALLERY</span>
-                    <span className={styles.imageCount}>{totalImages} IMAGES</span>
+                    <span className={styles.imageBadge}>GALERIA</span>
+                    <span className={styles.imageCount}>{totalImages} ZDJĘCIA</span>
                   </div>
                 </button>
               </div>
@@ -250,7 +251,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
               <div className={styles.content}>
                 <div className={styles.header}>
                   <h3 className={styles.title}>{project.title}</h3>
-                  {project.featured && <div className={styles.featuredBadge}>FEATURED</div>}
+                  {project.featured && <div className={styles.featuredBadge}>WYRÓŻNIONE</div>}
                 </div>
 
                 <p className={styles.description}>{project.description}</p>
@@ -271,7 +272,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                       rel="noopener noreferrer"
                       className={`${styles.link} ${styles.sourceLink}`}
                     >
-                      <Github size={20} strokeWidth={2.5} /> SOURCE
+                      <Github size={20} strokeWidth={2.5} /> KOD
                     </a>
                   )}
 
@@ -283,14 +284,14 @@ export default function Projects({ all = false }: { all?: boolean }) {
                         rel="noopener noreferrer"
                         className={`${styles.link} ${styles.getItLink}`}
                       >
-                        <Download size={20} strokeWidth={2.5} /> GET IT
+                        <Download size={20} strokeWidth={2.5} /> POBIERZ
                       </a>
                     ) : (
                       <span
                         className={`${styles.link} ${styles.getItLink}`}
                         style={{ opacity: 0.5, cursor: 'default' }}
                       >
-                        <Download size={20} strokeWidth={2.5} /> GET IT
+                        <Download size={20} strokeWidth={2.5} /> POBIERZ
                       </span>
                     )
                   ) : project.demoLink ? (
@@ -300,13 +301,13 @@ export default function Projects({ all = false }: { all?: boolean }) {
                       rel="noopener noreferrer"
                       className={styles.link}
                     >
-                      <ExternalLink size={20} strokeWidth={2.5} /> LIVE APP
+                      <ExternalLink size={20} strokeWidth={2.5} /> WERSJA LIVE
                     </a>
                   ) : null}
 
                   {!project.repoLink && !project.demoLink && !project.downloadLink && (
                     <span className={styles.link} style={{ opacity: 0.5, cursor: 'default' }}>
-                      <Code size={20} strokeWidth={2.5} /> WIP
+                      <Code size={20} strokeWidth={2.5} /> W TRAKCIE
                     </span>
                   )}
                 </div>
@@ -319,7 +320,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
       {!all ? (
         <div className={styles.viewAll}>
           <Link href="/projects" className={styles.viewAllLink}>
-            VIEW ALL PROJECTS <ArrowRight size={20} strokeWidth={3} />
+            ZOBACZ WSZYSTKIE PROJEKTY <ArrowRight size={20} strokeWidth={3} />
           </Link>
         </div>
       ) : (
@@ -330,7 +331,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
             rel="noopener noreferrer"
             className={styles.viewAllLink}
           >
-            EXPLORE GITHUB <ArrowRight size={20} strokeWidth={3} />
+            PRZEGLĄDAJ GITHUB <ArrowRight size={20} strokeWidth={3} />
           </a>
         </div>
       )}
@@ -359,7 +360,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                 type="button"
                 className={styles.lightboxClose}
                 onClick={closeLightbox}
-                aria-label="Close image"
+                aria-label="Zamknij obraz"
                 ref={closeButtonRef}
               >
                 <X size={32} strokeWidth={3} />
@@ -368,12 +369,12 @@ export default function Projects({ all = false }: { all?: boolean }) {
                 <NextImage
                   className={styles.lightboxImage}
                   src={activeProject.images[lightbox.imageIndex]}
-                  alt={`${activeProject.title} screenshot`}
+                  alt={`${activeProject.title} zrzut ekranu`}
                   width={1440}
                   height={900}
+                  quality={100}
                   sizes="100vw"
                   priority
-                  unoptimized
                 />
               </div>
               {activeProject.images.length > 1 && (
@@ -382,7 +383,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                     type="button"
                     className={styles.lightboxControl}
                     onClick={goToPrevious}
-                    aria-label="Previous image"
+                    aria-label="Poprzednie zdjęcie"
                   >
                     <ChevronLeft size={32} strokeWidth={3} />
                   </button>
@@ -393,7 +394,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                     type="button"
                     className={styles.lightboxControl}
                     onClick={goToNext}
-                    aria-label="Next image"
+                    aria-label="Następne zdjęcie"
                   >
                     <ChevronRight size={32} strokeWidth={3} />
                   </button>

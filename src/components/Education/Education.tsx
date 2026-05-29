@@ -2,13 +2,12 @@ import styles from './Education.module.css'
 
 const education = [
   {
-    institution: 'Lodz University of Technology',
-    degree: "Engineer's Degree in Computer Science",
-    dates: 'Oct 2024 - Present',
+    institution: 'Politechnika Łódzka',
+    degree: 'Studia inżynierskie na kierunku Computer Science',
+    dates: 'Październik 2024 - Obecnie',
     details: [
-      'Currently in 2nd Year (Expected Graduation: 2027).',
-      'Coursework includes Algorithms & Data Structures, OOP (C++), Java Fundamentals, Databases, and Computer Networks.',
-      'Engaged in Interdisciplinary Problem-Based Learning Projects.',
+      'Obecnie na 2. roku (planowane ukończenie: 2027).',
+      'Program obejmował m.in. Algorithms & Data Structures, OOP (C++), Java Fundamentals, Databases, and Computer Networks',
     ],
   },
 ]
@@ -16,7 +15,7 @@ const education = [
 const certifications = [
   {
     name: 'InfoSukces Laureate',
-    issuer: 'Lodz University of Technology',
+    issuer: 'Politechnika Łódzka',
     year: '2024',
   },
   {
@@ -30,7 +29,7 @@ export default function Education() {
   return (
     <section className="section" id="education">
       <div className="section-heading">
-        <h2>EDUCATION.</h2>
+        <h2>EDUKACJA.</h2>
       </div>
       <div className={styles.container}>
         <div className={styles.mainTimeline}>
@@ -56,7 +55,7 @@ export default function Education() {
         </div>
 
         <div className={styles.certificationsSidebar}>
-          <h3 className={styles.sidebarTitle}>CERTIFICATIONS</h3>
+          <h3 className={styles.sidebarTitle}>CERTYFIKATY</h3>
           <div className={styles.certList}>
             {certifications.map((cert) => (
               <div className={styles.certCard} key={cert.name}>

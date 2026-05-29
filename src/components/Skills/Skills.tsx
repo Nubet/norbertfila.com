@@ -3,8 +3,8 @@ import styles from './Skills.module.css'
 
 const skillGroups = [
   {
-    title: 'CORE BACKEND',
-    description: 'RESTful API Development | Database Design | OOP',
+    title: 'BACKEND',
+    description: 'Tworzenie REST API | Projektowanie baz danych | OOP',
     color: 'var(--color-blue)',
     items: [
       {
@@ -30,8 +30,8 @@ const skillGroups = [
     ],
   },
   {
-    title: 'INFRASTRUCTURE',
-    description: 'Containerization | Version Control | Workflow',
+    title: 'INFRASTRUKTURA',
+    description: 'Konteneryzacja | Kontrola wersji | Workflow',
     color: 'var(--color-red)',
     items: [
       {
@@ -58,7 +58,7 @@ export default function Skills() {
   return (
     <section className="section" id="skills">
       <div className="section-heading">
-        <h2>SKILLS.</h2>
+        <h2>UMIEJĘTNOŚCI.</h2>
         <div
           className="shape-triangle"
           style={{
