@@ -3,7 +3,7 @@
   background-color: var(--bg-white, #f4f4f0);
   color: var(--text-main, #0f0f0f);
   padding: 8rem 0 6rem;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
 }
 
 .container {

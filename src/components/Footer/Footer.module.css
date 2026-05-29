@@ -3,7 +3,7 @@
   color: var(--color-white, #ffffff);
   padding: 6rem 0 2rem;
   border-top: 2px solid var(--text-main, #0f0f0f);
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
   position: relative;
   z-index: 10;
 }

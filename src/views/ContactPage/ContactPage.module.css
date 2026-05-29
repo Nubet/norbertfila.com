@@ -3,7 +3,7 @@
   background-color: var(--bg-white, #f4f4f0);
   color: var(--text-main, #0f0f0f);
   padding: 8rem 0 6rem;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
 }
 
 .container {
@@ -185,7 +185,7 @@
   background: #f4f4f0;
   border: 2px solid #e0e0e0;
   color: #666;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 500;
   padding: 0.75rem 1.25rem;
@@ -221,7 +221,7 @@
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   padding: 1.25rem;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
   color: var(--text-main, #0f0f0f);
   resize: vertical;
@@ -259,7 +259,7 @@ select.input {
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   padding: 1rem 1rem 1rem 3rem;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
   color: var(--text-main, #0f0f0f);
   transition:

@@ -63,7 +63,7 @@
 .subtitle {
   font-size: 1rem;
   color: var(--text-secondary);
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
   font-weight: 600;
   margin-top: 0.5rem;
 }

@@ -15,7 +15,7 @@
   color: var(--text-main);
   background-color: var(--bg-white);
   line-height: 1.5;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
   animation: fadeIn 0.8s ease-out;
   position: relative;
 }
@@ -655,7 +655,7 @@
   min-height: 48px;
   padding: 0.65rem 0.8rem;
   font-size: 1rem;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-sans);
 }
 
 .ebookInput:focus-visible,

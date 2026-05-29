@@ -1,29 +1,11 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { Archivo, Outfit, Space_Grotesk } from 'next/font/google'
 import { Footer } from '@/components/Footer/Footer'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { siteConfig } from '@/shared/seo/site'
+import { spaceGrotesk, archivo, outfit } from '@/shared/fonts'
 import '../styles/variables.css'
 import '../styles/global.css'
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin', 'latin-ext'],
-  display: 'swap',
-  variable: '--font-space-grotesk',
-})
-
-const archivo = Archivo({
-  subsets: ['latin', 'latin-ext'],
-  display: 'swap',
-  variable: '--font-archivo',
-})
-
-const outfit = Outfit({
-  subsets: ['latin', 'latin-ext'],
-  display: 'swap',
-  variable: '--font-outfit',
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

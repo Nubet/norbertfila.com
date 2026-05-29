@@ -1,5 +1,5 @@
 :root {
-  --cc-font-family: var(--font-outfit), sans-serif;
+  --cc-font-family: var(--font-sans);
   --cc-bg: var(--color-white);
   --cc-primary-color: var(--color-black);
   --cc-secondary-color: var(--text-secondary);
