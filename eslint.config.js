@@ -24,7 +24,7 @@ const architectureZones = [
 
 export default [
   {
-    ignores: ['dist', 'node_modules', '.next', 'client-projects'],
+    ignores: ['dist', 'node_modules', '.next', 'client-projects', 'next-env.d.ts'],
   },
   {
     files: ['**/*.{js,ts,jsx,tsx}'],
