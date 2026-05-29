@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -318,7 +318,14 @@ jobs:
           script: |
             set -e
 
-            sudo systemctl is-active --quiet nf-portfolio
+            if ! sudo systemctl is-active --quiet nf-portfolio; then
+              echo "nf-portfolio service is not active"
+              echo "---- debug: nf-portfolio status ----"
+              sudo systemctl --no-pager --full status nf-portfolio || true
+              echo "---- debug: nf-portfolio logs ----"
+              sudo journalctl -u nf-portfolio -n 120 --no-pager || true
+              exit 1
+            fi
 
             status_local=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/)
             if [ "$status_local" != "200" ]; then
