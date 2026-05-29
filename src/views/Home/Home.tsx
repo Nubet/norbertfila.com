@@ -54,9 +54,9 @@ const mobileProjects = [
     description:
       'Aplikacja, która zamienia przygotowanie do egzaminu w przyjemną rutynę. Przejrzysty interfejs, czytelna nawigacja i dopracowane detale – tryb nauki, symulacja egzaminu i system fiszek w jednym, spójnym doświadczeniu.',
     images: [
-      '/portfolio-apki/istqb-screenshots/0-main-screen.PNG',
-      '/portfolio-apki/istqb-screenshots/2-tryb-nauki.PNG',
-      '/portfolio-apki/istqb-screenshots/4-fiszki.PNG',
+      '/app-portfolio/istqb-tester/home.png',
+      '/app-portfolio/istqb-tester/learning-mode.png',
+      '/app-portfolio/istqb-tester/flashcards.png',
     ],
   },
   {
@@ -65,21 +65,21 @@ const mobileProjects = [
     description:
       'Skaner i generator kodów QR w minimalistycznym, nowoczesnym wydaniu. Błyskawiczna detekcja linków na żywo, czytelna historia i udostępnianie jednym kliknięciem – zero zbędnych komplikacji.',
     images: [
-      '/portfolio-apki/qraft-screenshots/00-scan-link-detected.png',
-      '/portfolio-apki/qraft-screenshots/02-create-url-result.png',
-      '/portfolio-apki/qraft-screenshots/07-history-list.png',
+      '/app-portfolio/qraft/scan-detected.png',
+      '/app-portfolio/qraft/url-creation.png',
+      '/app-portfolio/qraft/history.png',
     ],
     isReversed: true,
   },
   {
     title: 'Studymood',
-    tagline: 'Nauka w rytmie dopasowanym do Ciebie.',
+    tagline: 'Śledź swój nastrój, lepiej rozumiej emocje.',
     description:
-      'Aplikacja łącząca produktywność z dbałością o zdrowie psychiczne. Intuicyjna mapa nastroju, sesje relaksacyjne i przejrzyste statystyki – wszystko zamknięte w czystym, nowoczesnym interfejsie.',
+      'Aplikacja skupiona wokół codziennych zapisów nastroju, analizy emocji i narzędzi do zmiany perspektywy myślenia. Krótkie sesje relaksacyjne i przejrzyste statystyki pomagają wyrobić zdrową rutynę – moduł śledzenia sesji nauki to dodatkowy bonus dla zachowania produktywności',
     images: [
-      '/portfolio-apki/studymood/checkin/Screenshot_20260123_223932.png',
-      '/portfolio-apki/studymood/study/Screenshot_20260123_224100.png',
-      '/portfolio-apki/studymood/analyze/Screenshot_20260123_224643.png',
+      '/app-portfolio/studymood/check-in-homepage.png',
+      '/app-portfolio/studymood/check-in-form.png',
+      '/app-portfolio/studymood/monthly-analysis.png',
     ],
   },
 ]
