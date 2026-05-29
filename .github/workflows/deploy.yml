@@ -40,6 +40,16 @@ jobs:
           target: '/tmp/nf-next-upload/standalone'
           strip_components: 2
 
+      - name: Copy Next standalone hidden .next files to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: '.next/standalone/.next/*'
+          target: '/tmp/nf-next-upload/standalone/.next'
+          strip_components: 3
+
       - name: Copy Next static assets to Oracle
         uses: appleboy/scp-action@master
         with:
@@ -106,10 +116,17 @@ jobs:
             sudo chown -R $USER:$USER /opt/nf-portfolio
 
             rm -rf /opt/nf-portfolio/*
-            cp -R /tmp/nf-next-upload/standalone/* /opt/nf-portfolio/
+            cp -R /tmp/nf-next-upload/standalone/. /opt/nf-portfolio/
             mkdir -p /opt/nf-portfolio/.next
             cp -R /tmp/nf-next-upload/static /opt/nf-portfolio/.next/
             cp -R /tmp/nf-next-upload/public /opt/nf-portfolio/
+
+            if [ ! -f /opt/nf-portfolio/.next/BUILD_ID ]; then
+              echo "Missing /opt/nf-portfolio/.next/BUILD_ID after copy"
+              ls -la /opt/nf-portfolio || true
+              ls -la /opt/nf-portfolio/.next || true
+              exit 1
+            fi
 
             cat > /tmp/nf-portfolio.service <<'EOF'
             [Unit]
