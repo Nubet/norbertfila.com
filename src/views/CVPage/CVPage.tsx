@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import Projects from '@/components/Projects/Projects'
 import Hero from '@/components/Hero/Hero'

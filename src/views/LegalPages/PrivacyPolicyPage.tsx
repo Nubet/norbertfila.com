@@ -1,15 +1,8 @@
-'use client'
-
 import Link from 'next/link'
-import { useEffect } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import styles from './LegalPages.module.css'
 
 export default function PrivacyPolicyPage() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   return (
     <main className={styles.page}>
       <div className={styles.container}>
