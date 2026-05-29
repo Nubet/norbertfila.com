@@ -20,7 +20,7 @@ const career = [
     details: [
       'Współtworząc "IdeaDeck" - scentralizowaną platformę do ogłoszeń akademickich i inicjatyw studenckich.',
       'Implementowałem backend w Java i Spring Boot, w tym REST API do zarządzania użytkownikami i zgłoszeniami.',
-      'Integruję Keycloak w celu zapewnienia bezpiecznego uwierzytelniania i zarządzania tożsamością.',
+      'Korzystałem z Keycloak w celu zapewnienia bezpiecznego uwierzytelniania i zarządzania tożsamością.',
       'Wspierałem integrację frontendu, dostarczając dokumentację API i przykładowe komponenty.',
       'Zaprojektowałem logo platformy i wspierałem przeglądy UI/UX, aby zachować spójność z logiką backendu.',
     ],
