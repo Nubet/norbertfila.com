@@ -208,8 +208,12 @@ jobs:
             c = re.sub(r"\n\s*# BEGIN nf-next-app\n(?:\s+.*\n)*?\s*# END nf-next-app\n", "\n", c)
             c = re.sub(r"\n\s*# BEGIN nf-ebook-api\n(?:\s+.*\n)*?\s*# END nf-ebook-api\n", "\n", c)
             c = re.sub(r"\n\s*# BEGIN nf-security-headers\n(?:\s+.*\n)*?\s*# END nf-security-headers\n", "\n", c)
+            c = re.sub(r"\n\s*# BEGIN nf-next-static\n(?:\s+.*\n)*?\s*# END nf-next-static\n", "\n", c)
             c = re.sub(r"\n\s*location /api/ebook-subscribe \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c)
             c = re.sub(r"\n\s*location / \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c, count=1)
+            
+            # Remove rogue regex location blocks that might be intercepting fonts or images
+            c = re.sub(r"\n\s*location\s+~\*?\s+[^\{]+\{\s*[^}]*\}\n", "\n", c)
 
             csp_value = (
                 "default-src 'self'; "
@@ -265,6 +269,17 @@ jobs:
                 "    }\n"
                 "    # END nf-next-app\n\n"
             )
+            
+            next_static_block = (
+                "    # BEGIN nf-next-static\n"
+                "    location ^~ /_next/static/ {\n"
+                "        alias /opt/nf-portfolio/.next/static/;\n"
+                "        access_log off;\n"
+                "        expires 365d;\n"
+                "        add_header Cache-Control \"public, max-age=31536000, immutable\";\n"
+                "    }\n"
+                "    # END nf-next-static\n\n"
+            )
 
             server_open = c.find('server {')
             if server_open == -1:
@@ -274,7 +289,7 @@ jobs:
             if insert_at == -1:
                 raise SystemExit('Cannot find nginx server block end')
 
-            blocks = security_block + api_block + next_block
+            blocks = security_block + api_block + next_static_block + next_block
             p.write_text(c[:insert_at] + '\n' + blocks + c[insert_at:])
             PY
 
