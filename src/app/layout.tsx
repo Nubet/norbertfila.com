@@ -28,8 +28,6 @@ const outfit = Outfit({
   variable: '--font-outfit',
 })
 
-
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
