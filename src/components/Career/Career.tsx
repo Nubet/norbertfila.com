@@ -2,6 +2,17 @@ import styles from './Career.module.css'
 
 const career = [
   {
+    company: 'SKN Main',
+    subtitle: '(Politechnika Łódzka)',
+    role: 'Członek Koła Naukowego',
+    dates: 'Kwiecień 2026 - Obecnie',
+    details: [
+      'Współtworzę badawczy projekt systemu BCI (Brain-Computer Interface) służący do przetwarzania cyfrowych sygnałów EEG i analizy fal mózgowych w celu detekcji stanu skupienia użytkownika.',
+      'Implementuję algorytmy pre-processingu dla surowych szeregów czasowych, realizując ekstrakcję danych z bazy i ich precyzyjną segmentację na kilkusekundowe okna pomiarowe (tzw. epoki).',
+      'Opracowuję logikę automatycznego tagowania wyodrębnionych fragmentów sygnału (klasyfikacja stanów: skoncentrowany / nieskoncentrowany), przygotowując znormalizowany zbiór danych pod dalszą filtrację i analizę.',
+    ],
+  },
+  {
     company: 'Freelance',
     subtitle: 'useme.com',
     role: 'React Web Developer',
@@ -18,11 +29,11 @@ const career = [
     role: 'Java Backend Developer',
     dates: 'Październik 2025 - Obecnie',
     details: [
-      'Współtworząc "IdeaDeck" - scentralizowaną platformę do ogłoszeń akademickich i inicjatyw studenckich.',
-      'Implementowałem backend w Java i Spring Boot, w tym REST API do zarządzania użytkownikami i zgłoszeniami.',
-      'Korzystałem z Keycloak w celu zapewnienia bezpiecznego uwierzytelniania i zarządzania tożsamością.',
-      'Wspierałem integrację frontendu, dostarczając dokumentację API i przykładowe komponenty.',
-      'Zaprojektowałem logo platformy i wspierałem przeglądy UI/UX, aby zachować spójność z logiką backendu.',
+      'Współtworzyłem „IdeaDeck" – scentralizowaną platformę webową do zarządzania ogłoszeniami akademickimi i inicjatywami studenckimi.',
+      'Projektowałem i rozwijałem backend w ekosystemie Java i Spring Boot, implementując architekturę REST API do obsługi użytkowników i zgłoszeń.',
+      'Odpowiadałem za bezpieczeństwo aplikacji – zintegrowałem system Keycloak, wdrażając nowoczesne mechanizmy uwierzytelniania i zarządzania tożsamością (IAM).',
+      'Wspierałem pracę zespołu frontendowego poprzez tworzenie przejrzystej dokumentacji API oraz dostarczanie przykładowych komponentów integracyjnych.',
+      'Zaprojektowałem logo platformy oraz konsultowałem makiety UI/UX, dbając o spójność interfejsu z ograniczeniami i logiką biznesową backendu.',
     ],
   },
 ]
