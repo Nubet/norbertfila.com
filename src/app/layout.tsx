@@ -8,25 +8,27 @@ import '../styles/variables.css'
 import '../styles/global.css'
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin-ext'],
+  subsets: ['latin', 'latin-ext'],
   weight: ['500', '600', '700'],
   display: 'swap',
   variable: '--font-space-grotesk',
 })
 
 const archivo = Archivo({
-  subsets: ['latin-ext'],
+  subsets: ['latin', 'latin-ext'],
   weight: ['500', '600', '800'],
   display: 'swap',
   variable: '--font-archivo',
 })
 
 const outfit = Outfit({
-  subsets: ['latin-ext'],
+  subsets: ['latin', 'latin-ext'],
   weight: ['300', '400', '600', '800'],
   display: 'swap',
   variable: '--font-outfit',
 })
+
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
