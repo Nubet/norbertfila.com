@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
+import { professionalServiceStructuredData } from '@/shared/seo/structuredData'
 import Home from '@/views/Home/Home'
 
 export const metadata: Metadata = {
@@ -11,5 +13,14 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  return <Home />
+  return (
+    <>
+      <Script
+        id="professional-service-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceStructuredData) }}
+      />
+      <Home />
+    </>
+  )
 }
