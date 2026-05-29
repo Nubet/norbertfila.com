@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import { Github, Linkedin, Mail, FileText, ArrowRight } from 'lucide-react'
 import styles from './Hero.module.css'
 
@@ -50,9 +52,9 @@ export default function Hero() {
             >
               <Github size={28} strokeWidth={2.5} />
             </a>
-            <a href="/contact" className={styles.socialIcon} aria-label="Kontakt">
+            <Link href="/contact" className={styles.socialIcon} aria-label="Kontakt">
               <Mail size={28} strokeWidth={2.5} />
-            </a>
+            </Link>
             <a
               href="/resume.pdf"
               target="_blank"
@@ -67,12 +69,13 @@ export default function Hero() {
 
       <div className={styles.visual}>
         <div className={styles.portraitWrapper}>
-          <img
-            src="profile/avatar.webp"
+          <Image
+            src="/profile/avatar.webp"
             alt="Norbert Fila - Portrait"
             className={styles.image}
-            fetchPriority="high"
-            decoding="async"
+            width={560}
+            height={700}
+            priority
           />
           <div className={styles.portraitFrame}></div>
         </div>

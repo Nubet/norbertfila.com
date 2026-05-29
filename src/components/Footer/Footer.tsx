@@ -24,9 +24,7 @@ export function Footer() {
               <span className={styles.groupLabel}>Na skróty</span>
               <ul className={styles.linkList}>
                 <li>
-                  <Link href="/">
-                    Strona Główna
-                  </Link>
+                  <Link href="/">Strona Główna</Link>
                 </li>
                 <li>
                   <Link href="/cv">Doświadczenie (CV)</Link>
