@@ -303,6 +303,37 @@ jobs:
                 ;;
             esac
 
+      - name: Verify Next.js app endpoint
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          script: |
+            set -e
+
+            sudo systemctl is-active --quiet nf-portfolio
+
+            status_local=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/)
+            if [ "$status_local" != "200" ]; then
+              echo "Unexpected local Next app status code: $status_local"
+              echo "---- debug: nf-portfolio status ----"
+              sudo systemctl --no-pager --full status nf-portfolio || true
+              echo "---- debug: nf-portfolio logs ----"
+              sudo journalctl -u nf-portfolio -n 120 --no-pager || true
+              echo "---- debug: local headers ----"
+              curl -sS -D - -o /dev/null http://127.0.0.1:3000/ || true
+              exit 1
+            fi
+
+            status_public=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/)
+            if [ "$status_public" != "200" ]; then
+              echo "Unexpected public Next app status code: $status_public"
+              echo "---- debug: public headers ----"
+              curl -sS -D - -o /dev/null https://norbertfila.com/ || true
+              exit 1
+            fi
+
       - name: Cleanup on failure
         if: failure()
         run: echo "Deployment failed - Check the logs above."
