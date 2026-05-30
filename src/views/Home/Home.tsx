@@ -434,7 +434,7 @@ export default function Home() {
 
             {/* WEB PROJECTS SECTION */}
             <div className={styles.projectsCategory}>
-              <h3 className={styles.categoryTitle}>Strony WWW i Landing Pages</h3>
+              <h3 className={styles.categoryTitle}>Strony WWW i Landing Page'e</h3>
               <div className={styles.projectsGrid}>
                 {webProjects.map((project) => (
                   <article className={styles.projectCard} key={project.title}>
