@@ -12,8 +12,7 @@ function getNodeEnv(): RuntimeEnv['nodeEnv'] {
   return 'development'
 }
 
-function getClientString(name: string): string {
-  const value = process.env[name]
+function getRequiredClientString(value: string | undefined, name: string): string {
   if (!value || value.trim().length === 0) {
     throw new Error(`Missing required environment variable: ${name}`)
   }
@@ -23,7 +22,10 @@ function getClientString(name: string): string {
 
 export function getRuntimeEnv(): RuntimeEnv {
   return {
-    contactFormEndpoint: getClientString('NEXT_PUBLIC_CONTACT_FORM_ENDPOINT'),
+    contactFormEndpoint: getRequiredClientString(
+      process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT,
+      'NEXT_PUBLIC_CONTACT_FORM_ENDPOINT'
+    ),
     nodeEnv: getNodeEnv(),
   }
 }

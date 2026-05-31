@@ -17,8 +17,10 @@ function getContactEndpoint() {
 }
 
 export async function sendContactForm(payload: ContactFormPayload) {
+  const endpoint = getContactEndpoint()
+
   try {
-    await httpClient.post(getContactEndpoint(), {
+    await httpClient.post(endpoint, {
       'rodzaj-projektu': payload.projectType,
       budzet: payload.budget,
       materialy: payload.materials,
