@@ -54,9 +54,9 @@ const mobileProjects = [
     description:
       'Aplikacja, która zamienia przygotowanie do egzaminu w przyjemną rutynę. Przejrzysty interfejs, czytelna nawigacja i dopracowane detale – tryb nauki, symulacja egzaminu i system fiszek w jednym, spójnym doświadczeniu.',
     images: [
-      '/app-portfolio/istqb-tester/home.png',
-      '/app-portfolio/istqb-tester/learning-mode.png',
-      '/app-portfolio/istqb-tester/flashcards.png',
+      '/app-portfolio/istqb-tester/home.webp',
+      '/app-portfolio/istqb-tester/learning-mode.webp',
+      '/app-portfolio/istqb-tester/flashcards.webp',
     ],
   },
   {
@@ -65,9 +65,9 @@ const mobileProjects = [
     description:
       'Skaner i generator kodów QR w minimalistycznym, nowoczesnym wydaniu. Błyskawiczna detekcja linków na żywo, czytelna historia i udostępnianie jednym kliknięciem – zero zbędnych komplikacji.',
     images: [
-      '/app-portfolio/qraft/scan-detected.png',
-      '/app-portfolio/qraft/url-creation.png',
-      '/app-portfolio/qraft/history.png',
+      '/app-portfolio/qraft/scan-detected.webp',
+      '/app-portfolio/qraft/url-creation.webp',
+      '/app-portfolio/qraft/history.webp',
     ],
     isReversed: true,
   },
@@ -77,9 +77,9 @@ const mobileProjects = [
     description:
       'Aplikacja skupiona wokół codziennych zapisów nastroju, analizy emocji i narzędzi do zmiany perspektywy myślenia. Krótkie sesje relaksacyjne i przejrzyste statystyki pomagają wyrobić zdrową rutynę – moduł śledzenia sesji nauki to dodatkowy bonus dla zachowania produktywności',
     images: [
-      '/app-portfolio/studymood/check-in-homepage.png',
-      '/app-portfolio/studymood/check-in-form.png',
-      '/app-portfolio/studymood/monthly-analysis.png',
+      '/app-portfolio/studymood/check-in-homepage.webp',
+      '/app-portfolio/studymood/check-in-form.webp',
+      '/app-portfolio/studymood/monthly-analysis.webp',
     ],
   },
 ]
