@@ -21,7 +21,18 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Validate required public envs
+        env:
+          NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
+        run: |
+          if [ -z "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" ]; then
+            echo "NEXT_PUBLIC_CONTACT_FORM_ENDPOINT secret is missing"
+            exit 1
+          fi
+
       - name: Build project
+        env:
+          NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
         run: bun run build
 
       - name: Verify Next standalone artifacts
