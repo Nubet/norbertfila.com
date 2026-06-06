@@ -876,6 +876,139 @@
   transform: translate(3px, -3px);
 }
 
+.visualProjectCard {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+  background: #fcfcfc;
+  border-radius: 24px;
+  padding: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.visualProjectInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.visualProjectTitle {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.visualProjectClient {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  background: var(--text-main);
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  width: fit-content;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.visualProjectDesc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.visualGalleryControls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.visualGalleryControls button {
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--text-main);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.visualGalleryControls button:hover {
+  background: var(--text-main);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.visualGalleryControls span {
+  font-family: var(--font-space-grotesk), sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.visualProjectGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.visualGalleryFrame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 450px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  background: #fff;
+  overflow: hidden;
+  cursor: zoom-in;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.visualGalleryFrame:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.visualProjectImage {
+  object-fit: cover;
+  object-position: top;
+}
+
+.visualGalleryStrip {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.visualGalleryDot {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+  padding: 0;
+}
+
+.visualGalleryDot:hover,
+.visualGalleryDotActive {
+  background: var(--text-main);
+}
+
 .processSteps {
   display: flex;
   gap: 2rem;
@@ -973,6 +1106,17 @@
   .projectsGrid {
     grid-template-columns: 1fr;
   }
+
+  .visualProjectCard {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 2rem;
+  }
+
+  .visualGalleryFrame {
+    height: 400px;
+  }
+
   .educationGrid {
     grid-template-columns: 1fr;
   }
@@ -1144,6 +1288,28 @@
     padding: 1.15rem;
   }
 
+  .visualProjectCard {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  .visualProjectDesc {
+    font-size: 0.98rem;
+  }
+
+  .visualGalleryControls button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .visualGalleryFrame {
+    height: 280px;
+  }
+
+  .visualGalleryStrip {
+    gap: 0.4rem;
+  }
+
   .processSteps {
     margin-top: 2.25rem;
     gap: 1.4rem;
@@ -1183,6 +1349,10 @@
   .projectImage {
     height: 190px;
   }
+
+  .visualGalleryFrame {
+    height: 200px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1205,6 +1375,12 @@
   .educationCard,
   .footerLink,
   .portraitFrame {
+    transition: none;
+  }
+
+  .visualGalleryControls button,
+  .visualGalleryFrame,
+  .visualGalleryDot {
     transition: none;
   }
 }

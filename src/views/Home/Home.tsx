@@ -18,6 +18,8 @@ import {
   EyeOff,
   ImageDown,
   MousePointerClick,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react'
 import { FAQ } from '@/components/FAQ/FAQ'
 import { TechMarquee } from '@/components/TechMarquee/TechMarquee'
@@ -84,17 +86,28 @@ const mobileProjects = [
   },
 ]
 
-export default function Home() {
-  const [zoomedImage, setZoomedImage] = useState<string | null>(null)
-  const [ebookEmail, setEbookEmail] = useState('')
-  const [ebookLoading, setEbookLoading] = useState(false)
-  const [ebookFeedback, setEbookFeedback] = useState<{
-    type: 'success' | 'error'
-    message: string
-  } | null>(null)
+const visualProjects = [
+  {
+    title: "Filip's School",
+    headline: 'Koncepcja strony dla szkoły językowej',
+    description:
+      'Opracowałem logo, stylistykę i układ strony dla szkoły językowej. Projekt skupia się na konkretach, które wyróżniają szkołę: osiągnięciach uczniów, wyjazdach edukacyjnych do Londynu i wiarygodnej prezentacji oferty.',
+    sections: [
+      '/visual-projects/Filips-School/1.webp',
+      '/visual-projects/Filips-School/2.webp',
+      '/visual-projects/Filips-School/3.webp',
+      '/visual-projects/Filips-School/4.webp',
+      '/visual-projects/Filips-School/5.webp',
+      '/visual-projects/Filips-School/6.webp',
+      '/visual-projects/Filips-School/7.webp',
+      '/visual-projects/Filips-School/8.webp',
+    ],
+  },
+]
 
+function useBodyScrollLock(isLocked: boolean) {
   useEffect(() => {
-    if (zoomedImage) {
+    if (isLocked) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
@@ -102,7 +115,35 @@ export default function Home() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [zoomedImage])
+  }, [isLocked])
+}
+
+export default function Home() {
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null)
+  const [visualProjectImageIndex, setVisualProjectImageIndex] = useState(0)
+  const [ebookEmail, setEbookEmail] = useState('')
+  const [ebookLoading, setEbookLoading] = useState(false)
+  const [ebookFeedback, setEbookFeedback] = useState<{
+    type: 'success' | 'error'
+    message: string
+  } | null>(null)
+
+  useBodyScrollLock(Boolean(zoomedImage))
+
+  const visualProject = visualProjects[0]
+  const currentVisualProjectImage = visualProject.sections[visualProjectImageIndex]
+
+  const goToPreviousVisualProjectImage = () => {
+    setVisualProjectImageIndex((currentIndex) =>
+      currentIndex === 0 ? visualProject.sections.length - 1 : currentIndex - 1
+    )
+  }
+
+  const goToNextVisualProjectImage = () => {
+    setVisualProjectImageIndex((currentIndex) =>
+      currentIndex === visualProject.sections.length - 1 ? 0 : currentIndex + 1
+    )
+  }
 
   const handleEbookSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -514,6 +555,72 @@ export default function Home() {
                   </article>
                 ))}
               </div>
+            </div>
+
+            <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
+              <h3 className={styles.categoryTitle}>Projekty wizualne</h3>
+              <article className={styles.visualProjectCard}>
+                <div className={styles.visualProjectInfo}>
+                  <h4 className={styles.visualProjectTitle}>{visualProject.headline}</h4>
+                  <p className={styles.visualProjectClient}>{visualProject.title}</p>
+                  <p className={styles.visualProjectDesc}>{visualProject.description}</p>
+
+                  <div className={styles.visualGalleryControls}>
+                    <button
+                      type="button"
+                      onClick={goToPreviousVisualProjectImage}
+                      aria-label="Poprzedni kadr"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+                    <span>
+                      {String(visualProjectImageIndex + 1).padStart(2, '0')} /{' '}
+                      {String(visualProject.sections.length).padStart(2, '0')}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={goToNextVisualProjectImage}
+                      aria-label="Następny kadr"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+                  </div>
+                </div>
+
+                <div className={styles.visualProjectGallery}>
+                  <button
+                    type="button"
+                    className={styles.visualGalleryFrame}
+                    onClick={() => setZoomedImage(currentVisualProjectImage)}
+                    aria-label="Powiększ projekt"
+                  >
+                    <Image
+                      src={currentVisualProjectImage}
+                      alt={`Projekt wizualny - kadr ${visualProjectImageIndex + 1}`}
+                      fill
+                      className={styles.visualProjectImage}
+                      quality={100}
+                      unoptimized
+                      sizes="(max-width: 768px) 92vw, (max-width: 1200px) 58vw, 680px"
+                    />
+                  </button>
+
+                  <div className={styles.visualGalleryStrip} aria-label="Wybierz kadr">
+                    {visualProject.sections.map((image, index) => (
+                      <button
+                        type="button"
+                        className={`${styles.visualGalleryDot} ${
+                          index === visualProjectImageIndex ? styles.visualGalleryDotActive : ''
+                        }`}
+                        key={image}
+                        onClick={() => setVisualProjectImageIndex(index)}
+                        aria-label={`Pokaż kadr ${index + 1}`}
+                        aria-current={index === visualProjectImageIndex ? 'true' : undefined}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </article>
             </div>
           </ScrollReveal>
         </div>
