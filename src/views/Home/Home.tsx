@@ -103,6 +103,21 @@ const visualProjects = [
       '/visual-projects/Filips-School/8.webp',
     ],
   },
+  {
+    title: 'Santoro',
+    headline: 'Redesign strony dla kameralnej szkoły językowej',
+    description:
+      'Odświeżyłem stronę Santoro tak, aby oferta szkoły była prostsza do zrozumienia i bardziej przekonująca wizualnie. Projekt porządkuje kluczowe informacje: języki, typy zajęć, cennik, lokalizację oraz wyraźne wezwania do działania',
+    sections: [
+      '/visual-projects/Santoro-szkola-jezykowa/1.webp',
+      '/visual-projects/Santoro-szkola-jezykowa/2.webp',
+      '/visual-projects/Santoro-szkola-jezykowa/3.webp',
+      '/visual-projects/Santoro-szkola-jezykowa/4.webp',
+      '/visual-projects/Santoro-szkola-jezykowa/5.webp',
+      '/visual-projects/Santoro-szkola-jezykowa/6.webp',
+      '/visual-projects/Santoro-szkola-jezykowa/whole.webp',
+    ],
+  },
 ]
 
 function useBodyScrollLock(isLocked: boolean) {
@@ -120,7 +135,9 @@ function useBodyScrollLock(isLocked: boolean) {
 
 export default function Home() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null)
-  const [visualProjectImageIndex, setVisualProjectImageIndex] = useState(0)
+  const [visualProjectImageIndexes, setVisualProjectImageIndexes] = useState(() =>
+    visualProjects.map(() => 0)
+  )
   const [ebookEmail, setEbookEmail] = useState('')
   const [ebookLoading, setEbookLoading] = useState(false)
   const [ebookFeedback, setEbookFeedback] = useState<{
@@ -130,18 +147,35 @@ export default function Home() {
 
   useBodyScrollLock(Boolean(zoomedImage))
 
-  const visualProject = visualProjects[0]
-  const currentVisualProjectImage = visualProject.sections[visualProjectImageIndex]
-
-  const goToPreviousVisualProjectImage = () => {
-    setVisualProjectImageIndex((currentIndex) =>
-      currentIndex === 0 ? visualProject.sections.length - 1 : currentIndex - 1
+  const setVisualProjectImageIndex = (projectIndex: number, imageIndex: number) => {
+    setVisualProjectImageIndexes((currentIndexes) =>
+      currentIndexes.map((currentIndex, index) =>
+        index === projectIndex ? imageIndex : currentIndex
+      )
     )
   }
 
-  const goToNextVisualProjectImage = () => {
-    setVisualProjectImageIndex((currentIndex) =>
-      currentIndex === visualProject.sections.length - 1 ? 0 : currentIndex + 1
+  const goToPreviousVisualProjectImage = (projectIndex: number) => {
+    setVisualProjectImageIndexes((currentIndexes) =>
+      currentIndexes.map((currentIndex, index) =>
+        index === projectIndex
+          ? currentIndex === 0
+            ? visualProjects[projectIndex].sections.length - 1
+            : currentIndex - 1
+          : currentIndex
+      )
+    )
+  }
+
+  const goToNextVisualProjectImage = (projectIndex: number) => {
+    setVisualProjectImageIndexes((currentIndexes) =>
+      currentIndexes.map((currentIndex, index) =>
+        index === projectIndex
+          ? currentIndex === visualProjects[projectIndex].sections.length - 1
+            ? 0
+            : currentIndex + 1
+          : currentIndex
+      )
     )
   }
 
@@ -559,68 +593,84 @@ export default function Home() {
 
             <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
               <h3 className={styles.categoryTitle}>Projekty wizualne</h3>
-              <article className={styles.visualProjectCard}>
-                <div className={styles.visualProjectInfo}>
-                  <h4 className={styles.visualProjectTitle}>{visualProject.headline}</h4>
-                  <p className={styles.visualProjectClient}>{visualProject.title}</p>
-                  <p className={styles.visualProjectDesc}>{visualProject.description}</p>
+              {visualProjects.map((visualProject, projectIndex) => {
+                const currentVisualProjectImageIndex = visualProjectImageIndexes[projectIndex] ?? 0
+                const currentVisualProjectImage =
+                  visualProject.sections[currentVisualProjectImageIndex]
 
-                  <div className={styles.visualGalleryControls}>
-                    <button
-                      type="button"
-                      onClick={goToPreviousVisualProjectImage}
-                      aria-label="Poprzedni kadr"
-                    >
-                      <ChevronLeft size={24} />
-                    </button>
-                    <span>
-                      {String(visualProjectImageIndex + 1).padStart(2, '0')} /{' '}
-                      {String(visualProject.sections.length).padStart(2, '0')}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={goToNextVisualProjectImage}
-                      aria-label="Następny kadr"
-                    >
-                      <ChevronRight size={24} />
-                    </button>
-                  </div>
-                </div>
-
-                <div className={styles.visualProjectGallery}>
-                  <button
-                    type="button"
-                    className={styles.visualGalleryFrame}
-                    onClick={() => setZoomedImage(currentVisualProjectImage)}
-                    aria-label="Powiększ projekt"
+                return (
+                  <article
+                    className={styles.visualProjectCard}
+                    key={visualProject.title}
+                    style={projectIndex > 0 ? { marginTop: '2rem' } : undefined}
                   >
-                    <Image
-                      src={currentVisualProjectImage}
-                      alt={`Projekt wizualny - kadr ${visualProjectImageIndex + 1}`}
-                      fill
-                      className={styles.visualProjectImage}
-                      quality={100}
-                      unoptimized
-                      sizes="(max-width: 768px) 92vw, (max-width: 1200px) 58vw, 680px"
-                    />
-                  </button>
+                    <div className={styles.visualProjectInfo}>
+                      <h4 className={styles.visualProjectTitle}>{visualProject.headline}</h4>
+                      <p className={styles.visualProjectClient}>{visualProject.title}</p>
+                      <p className={styles.visualProjectDesc}>{visualProject.description}</p>
 
-                  <div className={styles.visualGalleryStrip} aria-label="Wybierz kadr">
-                    {visualProject.sections.map((image, index) => (
+                      <div className={styles.visualGalleryControls}>
+                        <button
+                          type="button"
+                          onClick={() => goToPreviousVisualProjectImage(projectIndex)}
+                          aria-label="Poprzedni kadr"
+                        >
+                          <ChevronLeft size={24} />
+                        </button>
+                        <span>
+                          {String(currentVisualProjectImageIndex + 1).padStart(2, '0')} /{' '}
+                          {String(visualProject.sections.length).padStart(2, '0')}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => goToNextVisualProjectImage(projectIndex)}
+                          aria-label="Następny kadr"
+                        >
+                          <ChevronRight size={24} />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className={styles.visualProjectGallery}>
                       <button
                         type="button"
-                        className={`${styles.visualGalleryDot} ${
-                          index === visualProjectImageIndex ? styles.visualGalleryDotActive : ''
-                        }`}
-                        key={image}
-                        onClick={() => setVisualProjectImageIndex(index)}
-                        aria-label={`Pokaż kadr ${index + 1}`}
-                        aria-current={index === visualProjectImageIndex ? 'true' : undefined}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </article>
+                        className={styles.visualGalleryFrame}
+                        onClick={() => setZoomedImage(currentVisualProjectImage)}
+                        aria-label={`Powiększ projekt ${visualProject.title}`}
+                      >
+                        <Image
+                          src={currentVisualProjectImage}
+                          alt={`${visualProject.title} - kadr ${currentVisualProjectImageIndex + 1}`}
+                          fill
+                          className={styles.visualProjectImage}
+                          quality={100}
+                          unoptimized
+                          sizes="(max-width: 768px) 92vw, (max-width: 1200px) 58vw, 680px"
+                        />
+                      </button>
+
+                      <div className={styles.visualGalleryStrip} aria-label="Wybierz kadr">
+                        {visualProject.sections.map((image, imageIndex) => (
+                          <button
+                            type="button"
+                            className={`${styles.visualGalleryDot} ${
+                              imageIndex === currentVisualProjectImageIndex
+                                ? styles.visualGalleryDotActive
+                                : ''
+                            }`}
+                            key={image}
+                            onClick={() => setVisualProjectImageIndex(projectIndex, imageIndex)}
+                            aria-label={`Pokaż kadr ${imageIndex + 1}`}
+                            aria-current={
+                              imageIndex === currentVisualProjectImageIndex ? 'true' : undefined
+                            }
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                )
+              })}
             </div>
           </ScrollReveal>
         </div>
