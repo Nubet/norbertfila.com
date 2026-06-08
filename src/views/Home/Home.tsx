@@ -115,7 +115,25 @@ const visualProjects = [
       '/visual-projects/Santoro-szkola-jezykowa/4.webp',
       '/visual-projects/Santoro-szkola-jezykowa/5.webp',
       '/visual-projects/Santoro-szkola-jezykowa/6.webp',
-      '/visual-projects/Santoro-szkola-jezykowa/whole.webp',
+    ],
+  },
+  {
+    title: 'ABC Centrum Logopedii',
+    headline: 'Koncepcja strony dla centrum terapii i rozwoju dzieci',
+    description:
+      'Stworzyłem projekt strony, który porządkuje szeroką ofertę placówki i ułatwia rodzicom szybkie znalezienie odpowiedniego wsparcia dla dziecka. Czytelny układ, spokojna kolorystyka i jasne ścieżki kontaktu budują zaufanie oraz pomagają lepiej zrozumieć zakres terapii i zajęć.',
+    sections: [
+      '/visual-projects/abc-centrum-logopedii/1.webp',
+      '/visual-projects/abc-centrum-logopedii/2.webp',
+      '/visual-projects/abc-centrum-logopedii/3.webp',
+      '/visual-projects/abc-centrum-logopedii/4.webp',
+      '/visual-projects/abc-centrum-logopedii/5.webp',
+      '/visual-projects/abc-centrum-logopedii/6.webp',
+      '/visual-projects/abc-centrum-logopedii/7.webp',
+      '/visual-projects/abc-centrum-logopedii/8.webp',
+      '/visual-projects/abc-centrum-logopedii/9.webp',
+      '/visual-projects/abc-centrum-logopedii/10.webp',
+      '/visual-projects/abc-centrum-logopedii/11.webp',
     ],
   },
 ]
