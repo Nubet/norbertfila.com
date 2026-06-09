@@ -20,4 +20,4 @@ Designed to be simple, expressive, and memorable.
 
 ## 📸 Screenshots
 
-<img src="public/gh/portfolio-norbert-fila.png" alt="Portfolio Norbert Fila full-page screenshot" width="860" />
+<img src="public/gh/norbert-fila-preview.png" alt="norbertfila.com full-page screenshot" width="100%" />
