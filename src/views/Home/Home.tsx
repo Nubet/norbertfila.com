@@ -87,7 +87,7 @@ const mobileProjects = [
 ]
 
 const visualProjects = [
-  {
+  /*  {
     title: "Filip's School",
     headline: 'Koncepcja strony dla szkoły językowej',
     description:
@@ -102,7 +102,7 @@ const visualProjects = [
       '/visual-projects/Filips-School/7.webp',
       '/visual-projects/Filips-School/8.webp',
     ],
-  },
+  },*/
   {
     title: 'Santoro',
     headline: 'Redesign strony dla kameralnej szkoły językowej',
@@ -262,6 +262,178 @@ export default function Home() {
         <TechMarquee />
       </ScrollReveal>
 
+      <section className={styles.bigTextSection} style={{ background: '#fff' }}>
+        <div className={styles.container}>
+          <ScrollReveal>
+            <h2 className={styles.sectionLabel}>Wybrane realizacje</h2>
+
+            <div className={styles.projectsCategory}>
+              <h3 className={styles.categoryTitle}>Strony WWW i Landing Page'e</h3>
+              <div className={styles.projectsGrid}>
+                {webProjects.map((project) => (
+                  <article className={styles.projectCard} key={project.title}>
+                    <button
+                      type="button"
+                      className={styles.projectImageWrapper}
+                      onClick={() => setZoomedImage(project.image)}
+                      aria-label={`Powiększ projekt ${project.title}`}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        className={styles.projectImage}
+                        width={960}
+                        height={600}
+                        quality={100}
+                        unoptimized
+                        sizes="(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 560px"
+                      />
+                      <div className={styles.projectZoomOverlay}>
+                        <Search size={48} className={styles.zoomIcon} />
+                        <span>Kliknij, aby analizować</span>
+                      </div>
+                    </button>
+                    <div className={styles.projectContent}>
+                      <h3>{project.title}</h3>
+                      <p>{project.description}</p>
+                      {project.url && (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.projectLink}
+                        >
+                          {project.urlLabel}
+                          {project.isGithub ? <Github size={18} /> : <ExternalLink size={18} />}
+                        </a>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
+              <h3 className={styles.categoryTitle}>Aplikacje Mobilne</h3>
+              <div className={styles.mobileProjectsList}>
+                {mobileProjects.map((app) => (
+                  <article
+                    className={`${styles.mobileProjectCard} ${app.isReversed ? styles.mobileProjectCardReversed : ''}`}
+                    key={app.title}
+                  >
+                    <div className={styles.mobileProjectInfo}>
+                      <h4 className={styles.mobileProjectTitle}>{app.title}</h4>
+                      <p className={styles.mobileProjectTagline}>{app.tagline}</p>
+                      <p className={styles.mobileProjectDesc}>{app.description}</p>
+                    </div>
+                    <div className={styles.mobileMockupContainer}>
+                      {app.images.map((imgSrc, idx) => (
+                        <div
+                          key={imgSrc}
+                          className={`${styles.mockupPhone} ${styles[`mockupPhone${idx + 1}`]}`}
+                          onClick={() => setZoomedImage(imgSrc)}
+                        >
+                          <Image
+                            src={imgSrc}
+                            alt={`${app.title} screen ${idx + 1}`}
+                            fill
+                            className={styles.mockupImage}
+                            unoptimized
+                            sizes="(max-width: 768px) 30vw, 200px"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
+              <h3 className={styles.categoryTitle}>Projekty wizualne</h3>
+              {visualProjects.map((visualProject, projectIndex) => {
+                const currentVisualProjectImageIndex = visualProjectImageIndexes[projectIndex] ?? 0
+                const currentVisualProjectImage =
+                  visualProject.sections[currentVisualProjectImageIndex]
+
+                return (
+                  <article
+                    className={styles.visualProjectCard}
+                    key={visualProject.title}
+                    style={projectIndex > 0 ? { marginTop: '2rem' } : undefined}
+                  >
+                    <div className={styles.visualProjectInfo}>
+                      <h4 className={styles.visualProjectTitle}>{visualProject.headline}</h4>
+                      <p className={styles.visualProjectClient}>{visualProject.title}</p>
+                      <p className={styles.visualProjectDesc}>{visualProject.description}</p>
+
+                      <div className={styles.visualGalleryControls}>
+                        <button
+                          type="button"
+                          onClick={() => goToPreviousVisualProjectImage(projectIndex)}
+                          aria-label="Poprzedni kadr"
+                        >
+                          <ChevronLeft size={24} />
+                        </button>
+                        <span>
+                          {String(currentVisualProjectImageIndex + 1).padStart(2, '0')} /{' '}
+                          {String(visualProject.sections.length).padStart(2, '0')}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => goToNextVisualProjectImage(projectIndex)}
+                          aria-label="Następny kadr"
+                        >
+                          <ChevronRight size={24} />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className={styles.visualProjectGallery}>
+                      <button
+                        type="button"
+                        className={styles.visualGalleryFrame}
+                        onClick={() => setZoomedImage(currentVisualProjectImage)}
+                        aria-label={`Powiększ projekt ${visualProject.title}`}
+                      >
+                        <Image
+                          src={currentVisualProjectImage}
+                          alt={`${visualProject.title} - kadr ${currentVisualProjectImageIndex + 1}`}
+                          fill
+                          className={styles.visualProjectImage}
+                          quality={100}
+                          unoptimized
+                          sizes="(max-width: 768px) 92vw, (max-width: 1200px) 58vw, 680px"
+                        />
+                      </button>
+
+                      <div className={styles.visualGalleryStrip} aria-label="Wybierz kadr">
+                        {visualProject.sections.map((image, imageIndex) => (
+                          <button
+                            type="button"
+                            className={`${styles.visualGalleryDot} ${
+                              imageIndex === currentVisualProjectImageIndex
+                                ? styles.visualGalleryDotActive
+                                : ''
+                            }`}
+                            key={image}
+                            onClick={() => setVisualProjectImageIndex(projectIndex, imageIndex)}
+                            aria-label={`Pokaż kadr ${imageIndex + 1}`}
+                            aria-current={
+                              imageIndex === currentVisualProjectImageIndex ? 'true' : undefined
+                            }
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                )
+              })}
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       <section className={styles.bigTextSection}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -412,6 +584,43 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={styles.bigTextSection} style={{ background: '#0F0F0F', color: '#fff' }}>
+        <div className={styles.container}>
+          <ScrollReveal>
+            <h2 className={styles.sectionLabel} style={{ color: 'var(--accent-color)' }}>
+              Proces
+            </h2>
+            <div className={styles.processSteps}>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>01</div>
+                <h3>Analiza Biznesowa</h3>
+                <p>
+                  Zaczynamy od zrozumienia Twojej oferty i grupy docelowej. Ustalamy, jak strona ma
+                  generować zyski.
+                </p>
+              </div>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>02</div>
+                <h3>Projekt & Kod</h3>
+                <p>
+                  Tworzę dedykowane rozwiązanie – od architektury informacji, przez UX/UI, aż po
+                  błyskawiczny kod.
+                </p>
+              </div>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>03</div>
+                <h3>Bezpieczne Wdrożenie</h3>
+                <p>
+                  Podpinam domenę, konfiguruję hosting i uruchamiam stronę w sieci. Zabezpieczam ją
+                  certyfikatem SSL, dzięki czemu od pierwszej sekundy działa szybko, stabilnie i
+                  bezpiecznie.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
       <section className={styles.bigTextSection} style={{ background: '#fff' }}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -515,217 +724,6 @@ export default function Home() {
                   {ebookFeedback.message}
                 </p>
               )}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <section className={styles.bigTextSection} style={{ background: '#fff' }}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <h2 className={styles.sectionLabel}>Wybrane realizacje</h2>
-
-            {/* WEB PROJECTS SECTION */}
-            <div className={styles.projectsCategory}>
-              <h3 className={styles.categoryTitle}>Strony WWW i Landing Page'e</h3>
-              <div className={styles.projectsGrid}>
-                {webProjects.map((project) => (
-                  <article className={styles.projectCard} key={project.title}>
-                    <button
-                      type="button"
-                      className={styles.projectImageWrapper}
-                      onClick={() => setZoomedImage(project.image)}
-                      aria-label={`Powiększ projekt ${project.title}`}
-                    >
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        className={styles.projectImage}
-                        width={960}
-                        height={600}
-                        quality={100}
-                        unoptimized
-                        sizes="(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 560px"
-                      />
-                      <div className={styles.projectZoomOverlay}>
-                        <Search size={48} className={styles.zoomIcon} />
-                        <span>Kliknij, aby analizować</span>
-                      </div>
-                    </button>
-                    <div className={styles.projectContent}>
-                      <h3>{project.title}</h3>
-                      <p>{project.description}</p>
-                      {project.url && (
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.projectLink}
-                        >
-                          {project.urlLabel}
-                          {project.isGithub ? <Github size={18} /> : <ExternalLink size={18} />}
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            {/* MOBILE PROJECTS SECTION */}
-            <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
-              <h3 className={styles.categoryTitle}>Aplikacje Mobilne</h3>
-              <div className={styles.mobileProjectsList}>
-                {mobileProjects.map((app) => (
-                  <article
-                    className={`${styles.mobileProjectCard} ${app.isReversed ? styles.mobileProjectCardReversed : ''}`}
-                    key={app.title}
-                  >
-                    <div className={styles.mobileProjectInfo}>
-                      <h4 className={styles.mobileProjectTitle}>{app.title}</h4>
-                      <p className={styles.mobileProjectTagline}>{app.tagline}</p>
-                      <p className={styles.mobileProjectDesc}>{app.description}</p>
-                    </div>
-                    <div className={styles.mobileMockupContainer}>
-                      {app.images.map((imgSrc, idx) => (
-                        <div
-                          key={imgSrc}
-                          className={`${styles.mockupPhone} ${styles[`mockupPhone${idx + 1}`]}`}
-                          onClick={() => setZoomedImage(imgSrc)}
-                        >
-                          <Image
-                            src={imgSrc}
-                            alt={`${app.title} screen ${idx + 1}`}
-                            fill
-                            className={styles.mockupImage}
-                            unoptimized
-                            sizes="(max-width: 768px) 30vw, 200px"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
-              <h3 className={styles.categoryTitle}>Projekty wizualne</h3>
-              {visualProjects.map((visualProject, projectIndex) => {
-                const currentVisualProjectImageIndex = visualProjectImageIndexes[projectIndex] ?? 0
-                const currentVisualProjectImage =
-                  visualProject.sections[currentVisualProjectImageIndex]
-
-                return (
-                  <article
-                    className={styles.visualProjectCard}
-                    key={visualProject.title}
-                    style={projectIndex > 0 ? { marginTop: '2rem' } : undefined}
-                  >
-                    <div className={styles.visualProjectInfo}>
-                      <h4 className={styles.visualProjectTitle}>{visualProject.headline}</h4>
-                      <p className={styles.visualProjectClient}>{visualProject.title}</p>
-                      <p className={styles.visualProjectDesc}>{visualProject.description}</p>
-
-                      <div className={styles.visualGalleryControls}>
-                        <button
-                          type="button"
-                          onClick={() => goToPreviousVisualProjectImage(projectIndex)}
-                          aria-label="Poprzedni kadr"
-                        >
-                          <ChevronLeft size={24} />
-                        </button>
-                        <span>
-                          {String(currentVisualProjectImageIndex + 1).padStart(2, '0')} /{' '}
-                          {String(visualProject.sections.length).padStart(2, '0')}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => goToNextVisualProjectImage(projectIndex)}
-                          aria-label="Następny kadr"
-                        >
-                          <ChevronRight size={24} />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className={styles.visualProjectGallery}>
-                      <button
-                        type="button"
-                        className={styles.visualGalleryFrame}
-                        onClick={() => setZoomedImage(currentVisualProjectImage)}
-                        aria-label={`Powiększ projekt ${visualProject.title}`}
-                      >
-                        <Image
-                          src={currentVisualProjectImage}
-                          alt={`${visualProject.title} - kadr ${currentVisualProjectImageIndex + 1}`}
-                          fill
-                          className={styles.visualProjectImage}
-                          quality={100}
-                          unoptimized
-                          sizes="(max-width: 768px) 92vw, (max-width: 1200px) 58vw, 680px"
-                        />
-                      </button>
-
-                      <div className={styles.visualGalleryStrip} aria-label="Wybierz kadr">
-                        {visualProject.sections.map((image, imageIndex) => (
-                          <button
-                            type="button"
-                            className={`${styles.visualGalleryDot} ${
-                              imageIndex === currentVisualProjectImageIndex
-                                ? styles.visualGalleryDotActive
-                                : ''
-                            }`}
-                            key={image}
-                            onClick={() => setVisualProjectImageIndex(projectIndex, imageIndex)}
-                            aria-label={`Pokaż kadr ${imageIndex + 1}`}
-                            aria-current={
-                              imageIndex === currentVisualProjectImageIndex ? 'true' : undefined
-                            }
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </article>
-                )
-              })}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <section className={styles.bigTextSection} style={{ background: '#0F0F0F', color: '#fff' }}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <h2 className={styles.sectionLabel} style={{ color: 'var(--accent-color)' }}>
-              Proces
-            </h2>
-            <div className={styles.processSteps}>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>01</div>
-                <h3>Analiza Biznesowa</h3>
-                <p>
-                  Zaczynamy od zrozumienia Twojej oferty i grupy docelowej. Ustalamy, jak strona ma
-                  generować zyski.
-                </p>
-              </div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>02</div>
-                <h3>Projekt & Kod</h3>
-                <p>
-                  Tworzę dedykowane rozwiązanie – od architektury informacji, przez UX/UI, aż po
-                  błyskawiczny kod.
-                </p>
-              </div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>03</div>
-                <h3>Bezpieczne Wdrożenie</h3>
-                <p>
-                  Podpinam domenę, konfiguruję hosting i uruchamiam stronę w sieci. Zabezpieczam ją
-                  certyfikatem SSL, dzięki czemu od pierwszej sekundy działa szybko, stabilnie i
-                  bezpiecznie.
-                </p>
-              </div>
             </div>
           </ScrollReveal>
         </div>
