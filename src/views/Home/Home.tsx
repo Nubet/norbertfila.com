@@ -39,11 +39,11 @@ const webProjects = [
     isGithub: false,
   },
   {
-    title: 'Centrum Badań klinicznych',
+    title: 'Butikowe Studio Ruchu',
     description:
-      'Czytelna, wzbudzająca autorytet strona placówki medycznej. Przejrzysta struktura sekcji, ułatwiająca pacjentom zapis na badania.',
-    image: '/client-projects/norbert-fila-klinika-projekt.webp',
-    url: 'https://nubet.github.io/klinika-centrum-badan-landing-page/',
+      'Przejrzysta, wzbudzająca zaufanie strona butikowego studia pilates, reformer i barre. Klarowny układ sekcji przedstawia ofertę zajęć dla kobiet poszukujących kameralnych treningów w formule premium oraz ułatwia poznanie miejsca i zapis.',
+    image: '/client-projects/norbert-fila-db-club-projekt.ng.webp',
+    url: 'https://db-club.vercel.app/',
     urlLabel: 'Zobacz stronę na żywo',
     isGithub: false,
   },
