@@ -185,39 +185,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.container}>
-        <ScrollReveal>
-          <span className={styles.sectionLabel}>Wartość</span>
-          <h2 className={styles.sectionTitle}>Dlaczego to działa?</h2>
-        </ScrollReveal>
-        <div className={styles.grid}>
-          <ScrollReveal delay={0}>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIconStar}>✧</div>
-              <h3>Przejrzystość</h3>
-              <p>Klienci natychmiast znajdują to, czego szukają: ofertę, wolne terminy i dane kontaktowe.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIconStar}>✧</div>
-              <h3>Wiarygodność</h3>
-              <p>Spójna i dopracowana estetyka sugeruje klientom, że usługi w salonie są na równie wysokim poziomie.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIconStar}>✧</div>
-              <h3>Szybkość</h3>
-              <p>Strona ładuje się bez opóźnień, niezależnie od tego, czy klient korzysta ze starszego telefonu, czy komputera.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={300}>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIconStar}>✧</div>
-              <h3>Brak szablonów</h3>
-              <p>Tworzę kod od zera. Dzięki temu strona jest w stu procentach dostosowana do Twoich potrzeb, a nie odwrotnie.</p>
-            </div>
+      {/* STATEMENT / PHILOSOPHY */}
+      <section className={styles.statementSection}>
+        <div className={styles.container}>
+          <ScrollReveal>
+            <h2 className={styles.statementText}>
+              Dobry projekt nie domaga się uwagi. Działa w tle, pozwalając, by to <i>Twoje usługi</i> grały pierwsze skrzypce.
+            </h2>
           </ScrollReveal>
         </div>
       </section>
