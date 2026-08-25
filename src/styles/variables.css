@@ -1,23 +1,20 @@
 :root {
-  --bg-primary: #f8f6f0; /* Soft cream/beige for elegance */
-  --bg-secondary: #f0eee5; /* Slightly darker cream */
+  --bg-primary: #f8f6f0;
+  --bg-secondary: #f0eee5;
   --color-black: #1a1a1a;
   --color-white: #ffffff;
 
-  /* Accent colors from luxury inspiration */
-  --color-accent: #2f4f40; /* Forest Green (La Scala) */
-  --color-accent-secondary: #752f23; /* Terracotta/Burgundy (Dirty Business / Club Azur) */
-  --color-gold: #c5a880; /* Elegant gold/sand */
+  --color-accent: #2f4f40;
+  --color-accent-secondary: #752f23;
+  --color-gold: #c5a880;
 
   --text-primary: #1c2321;
   --text-secondary: #5a5a5a;
   --text-inverse: var(--bg-primary);
 
-  /* Thinner, elegant borders */
   --border-thick: 1px solid var(--text-primary);
   --border-thin: 1px solid rgba(28, 35, 33, 0.2);
 
-  /* Subtle shadows for premium feel */
   --shadow-solid: 0px 4px 20px rgba(0, 0, 0, 0.05);
   --shadow-solid-hover: 0px 8px 30px rgba(0, 0, 0, 0.08);
 

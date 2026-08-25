@@ -9,68 +9,45 @@ import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
 import styles from './Home.module.css'
 
-const webProjects = [
+const caseStudies = [
   {
-    title: 'Doradztwo Podatkowe',
-    description: 'Nowoczesny landing page dla eksperta podatkowego. Zaprojektowany z myślą o budowaniu zaufania i szybkiej konwersji.',
-    image: '/client-projects/norbert-fila-biuro-podatkowe-projekt.webp',
-    url: 'https://nubet.github.io/biuro-podatkowe-wizytowka/',
-    urlLabel: 'Zobacz stronę',
-  },
-  {
-    title: 'Butikowe Studio Ruchu',
-    description: 'Przejrzysta, wzbudzająca zaufanie strona butikowego studia pilates. Minimalizm ułatwiający poznanie miejsca i zapis.',
-    image: '/client-projects/norbert-fila-db-club-projekt.ng.webp',
-    url: 'https://db-club.vercel.app/',
-    urlLabel: 'Zobacz stronę',
-  },
-]
-
-const mobileProjects = [
-  {
-    title: 'Studymood',
-    tagline: 'Elegancja w śledzeniu nawyków.',
-    description: 'Aplikacja skupiona wokół codziennych zapisów nastroju i analizy emocji. Przejrzyste statystyki pomagają wyrobić zdrową rutynę.',
+    client: 'Santoro',
+    industry: 'Szkoła Językowa',
+    title: 'Redesign przestarzałej witryny w celu zwiększenia konwersji.',
     images: [
-      '/app-portfolio/studymood/check-in-homepage.webp',
-      '/app-portfolio/studymood/check-in-form.webp',
-      '/app-portfolio/studymood/monthly-analysis.webp',
-    ],
-  },
-  {
-    title: 'Qraft QR',
-    tagline: 'Minimalistyczne narzędzie codziennego użytku.',
-    description: 'Skaner i generator kodów QR w nowoczesnym wydaniu. Błyskawiczna detekcja i udostępnianie bez zbędnych komplikacji.',
-    images: [
-      '/app-portfolio/qraft/scan-detected.webp',
-      '/app-portfolio/qraft/url-creation.webp',
-      '/app-portfolio/qraft/history.webp',
-    ],
-    isReversed: true,
-  },
-]
-
-const visualProjects = [
-  {
-    title: 'Santoro',
-    headline: 'Redesign strony dla kameralnej szkoły językowej',
-    description: 'Odświeżyłem stronę Santoro tak, aby oferta była prostsza do zrozumienia i bardziej przekonująca wizualnie. Projekt porządkuje kluczowe informacje, zachowując przestrzeń.',
-    sections: [
       '/visual-projects/Santoro-szkola-jezykowa/1.webp',
       '/visual-projects/Santoro-szkola-jezykowa/2.webp',
       '/visual-projects/Santoro-szkola-jezykowa/3.webp',
     ],
+    problem: 'Oferta szkoły była nieczytelna, a proces zapisu skomplikowany, co powodowało ucieczkę potencjalnych kursantów i frustrację.',
+    solution: 'Całkowity redesign strony z naciskiem na prostą architekturę informacji oraz przejrzysty system zapisu na zajęcia.',
+    design: 'Zastosowałem dużą ilość "whitespace\'u" oraz spokojną paletę barw, by zbudować zaufanie. Zamiast krzykliwych banerów, postawiłem na dużą, czytelną typografię, prowadzącą prosto do formularza.',
+    result: 'Strona stała się elegancką wizytówką, która odciąża administrację szkoły i bezbłędnie konwertuje odwiedzających z urządzeń mobilnych.',
   },
   {
-    title: 'ABC Centrum Logopedii',
-    headline: 'Koncepcja strony dla centrum rozwoju',
-    description: 'Projekt porządkujący szeroką ofertę placówki. Czytelny układ i spokojna kolorystyka budują zaufanie u klientów.',
-    sections: [
-      '/visual-projects/abc-centrum-logopedii/1.webp',
-      '/visual-projects/abc-centrum-logopedii/2.webp',
-      '/visual-projects/abc-centrum-logopedii/3.webp',
+    client: 'DB Club',
+    industry: 'Butikowe Studio Ruchu',
+    title: 'Wizytówka internetowa dla miejsca w segmencie premium.',
+    images: [
+      '/client-projects/norbert-fila-db-club-projekt.ng.webp',
     ],
+    problem: 'Studio potrzebowało cyfrowej obecności, która oddawałaby ich luksusowy charakter, wyróżniając się na tle generycznych siłowni.',
+    solution: 'Minimalistyczna strona oparta na autorskim kodzie, gwarantującym błyskawiczne ładowanie i płynne animacje.',
+    design: 'Ciemna, zgaszona zieleń w połączeniu ze szlachetnymi fontami szeryfowymi. Duży nacisk na wyeksponowanie zdjęć wnętrz, by użytkownik poczuł klimat miejsca jeszcze przed wizytą.',
+    result: 'Strona idealnie wpisała się w estetykę grupy docelowej, a zintegrowany, zewnętrzny system rezerwacji drastycznie ułatwił umawianie wizyt.',
   },
+  {
+    client: 'Biuro Podatkowe',
+    industry: 'Doradztwo Finansowe',
+    title: 'Landing page dla eksperta budujący natychmiastowe zaufanie.',
+    images: [
+      '/client-projects/norbert-fila-biuro-podatkowe-projekt.webp',
+    ],
+    problem: 'Trudna, mocno techniczna branża podatkowa często odstrasza skomplikowanym językiem i przestarzałym designem.',
+    solution: 'Stworzenie wysoce konwertującego landing page\'a, skupionego wyłącznie na korzyściach dla klienta i łatwości kontaktu.',
+    design: 'Zdecydowałem się na jasny, bardzo "czysty" układ z minimalnymi akcentami symbolizującymi profesjonalizm. Zredukowałem zbędne treści, zamykając ścieżkę w jednym, logicznym ciągu.',
+    result: 'Klienci od razu widzą konkretną wartość i wiedzą, z kim będą współpracować, co dramatycznie ułatwia podjęcie decyzji o kontakcie.',
+  }
 ]
 
 export default function Home() {
@@ -78,7 +55,7 @@ export default function Home() {
   const [ebookLoading, setEbookLoading] = useState(false)
   const [ebookFeedback, setEbookFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
   
-  const [visualProjectIndexes, setVisualProjectIndexes] = useState(visualProjects.map(() => 0))
+  const [visualProjectIndexes, setVisualProjectIndexes] = useState(caseStudies.map(() => 0))
 
   const setVisualProjectImageIndex = (projectIndex: number, imageIndex: number) => {
     setVisualProjectIndexes((prev) => prev.map((curr, idx) => (idx === projectIndex ? imageIndex : curr)))
@@ -118,7 +95,7 @@ export default function Home() {
             Profesjonalne strony internetowe.
           </h1>
           <p className={styles.heroSub}>
-            Projektuję i wdrażam strony dla miejsc, w których liczy się estetyka – salonów, klinik i marek z sektora beauty. Przekładam jakość Twoich usług na czytelny i nowoczesny język cyfrowy.
+            Projektuję i wdrażam dedykowane strony internetowe. Tworzę wizytówki, w których estetyka spotyka się z funkcjonalnością, pomagając markom budować autorytet i zdobywać zaufanie.
           </p>
           <Link href="/contact" className={styles.ctaButton}>
             Nawiążmy współpracę
@@ -196,99 +173,67 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PORTFOLIO: WEB */}
+      {/* CASE STUDIES */}
       <section className={styles.portfolioSection} id="portfolio">
         <div className={styles.container}>
           <ScrollReveal>
-            <span className={styles.sectionLabel}>Portfolio</span>
-            <h2 className={styles.sectionTitle}>Zrealizowane Projekty</h2>
+            <span className={styles.sectionLabel}>Realizacje</span>
+            <h2 className={styles.sectionTitle}>Case Studies</h2>
           </ScrollReveal>
           
-          <div className={styles.portfolioGrid}>
-            {webProjects.map((project, idx) => (
-              <ScrollReveal delay={idx * 100} key={project.title}>
-                <div className={styles.projectCard}>
-                  <div className={styles.projectImageWrapper}>
-                    <Image src={project.image} alt={project.title} fill className={styles.projectImage} sizes="(max-width: 768px) 100vw, 50vw" />
-                  </div>
-                  <div className={styles.projectInfo}>
-                    <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
-                      {project.urlLabel} <ArrowRight size={16} />
-                    </a>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PORTFOLIO: VISUAL */}
-      <section className={styles.container}>
-        <ScrollReveal>
-          <h2 className={styles.sectionTitle}>Koncepcje i szkice</h2>
-        </ScrollReveal>
-        <div className={styles.visualGrid}>
-          {visualProjects.map((project, projectIndex) => {
-            const currentImgIndex = visualProjectIndexes[projectIndex] ?? 0
-            const currentImg = project.sections[currentImgIndex]
-
-            return (
-              <ScrollReveal delay={projectIndex * 100} key={project.title}>
-                <article className={styles.visualCard}>
-                  <div className={styles.visualImageWrapper}>
-                    <Image src={currentImg} alt={project.title} fill className={styles.projectImage} />
-                    <div className={styles.visualDots}>
-                      {project.sections.map((_, idx) => (
-                        <button
-                          key={idx}
-                          type="button"
-                          className={`${styles.dot} ${idx === currentImgIndex ? styles.dotActive : ''}`}
-                          onClick={() => setVisualProjectImageIndex(projectIndex, idx)}
-                          aria-label={`Pokaż zdjęcie ${idx + 1}`}
-                        />
-                      ))}
+          <div className={styles.caseStudiesList}>
+            {caseStudies.map((study, idx) => {
+              const currentImgIndex = visualProjectIndexes[idx] ?? 0
+              return (
+              <ScrollReveal delay={100} key={study.client}>
+                <article className={styles.caseStudyCard}>
+                  <div className={styles.caseStudyVisuals}>
+                    <div className={styles.visualImageWrapper}>
+                      <Image src={study.images[currentImgIndex]} alt={study.client} fill className={styles.projectImage} />
+                      {study.images.length > 1 && (
+                        <div className={styles.visualDots}>
+                          {study.images.map((_, dotIdx) => (
+                            <button
+                              key={dotIdx}
+                              type="button"
+                              className={`${styles.dot} ${dotIdx === currentImgIndex ? styles.dotActive : ''}`}
+                              onClick={() => setVisualProjectImageIndex(idx, dotIdx)}
+                              aria-label={`Pokaż zdjęcie ${dotIdx + 1}`}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className={styles.visualInfo}>
-                    <h3>{project.headline}</h3>
-                    <p className={styles.visualClient}>{project.title}</p>
-                    <p>{project.description}</p>
-                  </div>
-                </article>
-              </ScrollReveal>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* PORTFOLIO: MOBILE */}
-      <section className={styles.portfolioSection}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <h2 className={styles.sectionTitle}>Aplikacje Mobilne</h2>
-          </ScrollReveal>
-          <div className={styles.mobileList}>
-            {mobileProjects.map((app, idx) => (
-              <ScrollReveal delay={100} key={app.title}>
-                <article className={`${styles.mobileProjectCard} ${app.isReversed ? styles.mobileProjectCardReversed : ''}`}>
-                  <div className={styles.mobileProjectInfo}>
-                    <h3>{app.title}</h3>
-                    <h4>{app.tagline}</h4>
-                    <p>{app.description}</p>
-                  </div>
-                  <div className={styles.mobileMockupContainer}>
-                    {app.images.map((imgSrc, imgIdx) => (
-                      <div key={imgSrc} className={`${styles.mockupPhone} ${styles[`mockupPhone${imgIdx + 1}`]}`}>
-                        <Image src={imgSrc} alt={`${app.title} screen ${imgIdx + 1}`} fill className={styles.mockupImage} unoptimized />
+                  <div className={styles.caseStudyInfo}>
+                    <div className={styles.caseStudyHeader}>
+                      <span className={styles.caseStudyIndustry}>{study.industry}</span>
+                      <h3>{study.client}</h3>
+                    </div>
+                    <h4 className={styles.caseStudyTitle}>{study.title}</h4>
+                    
+                    <div className={styles.caseStudyDetails}>
+                      <div className={styles.detailBlock}>
+                        <h5>Wyzwanie</h5>
+                        <p>{study.problem}</p>
                       </div>
-                    ))}
+                      <div className={styles.detailBlock}>
+                        <h5>Rozwiązanie</h5>
+                        <p>{study.solution}</p>
+                      </div>
+                      <div className={styles.detailBlock}>
+                        <h5>Decyzje projektowe</h5>
+                        <p>{study.design}</p>
+                      </div>
+                      <div className={styles.detailBlock}>
+                        <h5>Efekt</h5>
+                        <p>{study.result}</p>
+                      </div>
+                    </div>
                   </div>
                 </article>
               </ScrollReveal>
-            ))}
+            )})}
           </div>
         </div>
       </section>
