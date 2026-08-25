@@ -112,7 +112,6 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      {/* HERO SECTION */}
       <section className={styles.hero}>
         <ScrollReveal>
           <h1 className={styles.heroTitle}>
@@ -127,7 +126,6 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      {/* MANIFESTO & PORTRAIT */}
       <section className={styles.container}>
         <ScrollReveal>
           <div className={styles.manifestoLayout}>
@@ -155,7 +153,6 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      {/* SERVICES LIST */}
       <section className={styles.servicesListSection} id="oferta">
         <div className={styles.container}>
           <ScrollReveal>
@@ -188,7 +185,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* APPROACH / BENEFITS */}
       <section className={styles.container}>
         <ScrollReveal>
           <span className={styles.sectionLabel}>Wartość</span>
@@ -298,7 +294,7 @@ export default function Home() {
       <section className={styles.portfolioSection}>
         <div className={styles.container}>
           <ScrollReveal>
-            <h2 className={styles.sectionTitle}>Aplikacje Użytkowe</h2>
+            <h2 className={styles.sectionTitle}>Aplikacje Mobilne</h2>
           </ScrollReveal>
           <div className={styles.mobileList}>
             {mobileProjects.map((app, idx) => (
@@ -323,7 +319,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROCESS */}
       <section className={styles.container} id="proces">
         <ScrollReveal>
           <span className={styles.sectionLabel}>Organizacja pracy</span>
@@ -354,15 +349,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EBOOK / LEAD MAGNET */}
       <section className={styles.ebookSection}>
         <div className={styles.container}>
           <ScrollReveal>
             <div className={styles.ebookBox}>
               <span className={styles.sectionLabel} style={{ color: 'var(--color-gold)' }}>Darmowy poradnik</span>
-              <h3 className={styles.ebookTitle}>Jakich błędów unikać na stronie salonu?</h3>
+              <h3 className={styles.ebookTitle}>Jakich błędów unikać na stronie?</h3>
               <p className={styles.ebookText}>
-                Zostaw swój adres e-mail, aby otrzymać krótki plik PDF z analizą najczęstszych problemów, przez które salony tracą potencjalnych klientów w internecie.
+                Zostaw swój adres e-mail, aby otrzymać krótki plik PDF z analizą najczęstszych problemów, przez które prestiżowe marki tracą potencjalnych klientów w internecie.
               </p>
 
               <form className={styles.ebookForm} onSubmit={handleEbookSubmit} noValidate>
@@ -393,19 +387,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
       <ScrollReveal>
         <FAQ />
       </ScrollReveal>
 
-      {/* FINAL CTA */}
       <section className={styles.container} style={{ textAlign: 'center', paddingBottom: '8rem' }}>
         <ScrollReveal>
           <h2 className={styles.sectionTitle} style={{ marginBottom: '2rem' }}>
             Czas na nową stronę.
           </h2>
           <p className={styles.heroSub} style={{ margin: '0 auto 3rem' }}>
-            Napisz do mnie i opowiedz o swoim salonie. Wspólnie sprawdzimy, jak mogę Ci pomóc.
+            Napisz do mnie i opowiedz o swoim biznesie. Wspólnie sprawdzimy, jak mogę Ci pomóc.
           </p>
           <Link href="/contact" className={styles.ctaButton}>
             Przejdź do formularza

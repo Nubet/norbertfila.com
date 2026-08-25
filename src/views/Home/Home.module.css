@@ -536,6 +536,7 @@
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 300;
   margin-bottom: 1.5rem;
+  color: var(--color-white);
 }
 
 .ebookText {
