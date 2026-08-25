@@ -2,28 +2,9 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState, type FormEvent } from 'react'
-import {
-  ArrowRight,
-  ArrowUpRight,
-  ShieldCheck,
-  Zap,
-  MessageSquare,
-  Code2,
-  Search,
-  X,
-  ExternalLink,
-  Github,
-  Smartphone,
-  EyeOff,
-  ImageDown,
-  MousePointerClick,
-  ChevronLeft,
-  ChevronRight,
-} from 'lucide-react'
+import { useState, type FormEvent } from 'react'
+import { ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { FAQ } from '@/components/FAQ/FAQ'
-import { TechMarquee } from '@/components/TechMarquee/TechMarquee'
-import { StickyCTA } from '@/components/StickyCTA/StickyCTA'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
 import styles from './Home.module.css'
@@ -31,41 +12,35 @@ import styles from './Home.module.css'
 const webProjects = [
   {
     title: 'Doradztwo Podatkowe',
-    description:
-      'Nowoczesny landing page dla eksperta podatkowego. Zaprojektowany z myślą o budowaniu zaufania i szybkiej konwersji (lead generation).',
+    description: 'Nowoczesny landing page dla eksperta podatkowego. Zaprojektowany z myślą o budowaniu zaufania i szybkiej konwersji.',
     image: '/client-projects/norbert-fila-biuro-podatkowe-projekt.webp',
     url: 'https://nubet.github.io/biuro-podatkowe-wizytowka/',
-    urlLabel: 'Zobacz stronę na żywo',
-    isGithub: false,
+    urlLabel: 'Zobacz stronę',
   },
   {
     title: 'Butikowe Studio Ruchu',
-    description:
-      'Przejrzysta, wzbudzająca zaufanie strona butikowego studia pilates, reformer i barre. Klarowny układ sekcji przedstawia ofertę zajęć dla kobiet poszukujących kameralnych treningów w formule premium oraz ułatwia poznanie miejsca i zapis.',
+    description: 'Przejrzysta, wzbudzająca zaufanie strona butikowego studia pilates. Minimalizm ułatwiający poznanie miejsca i zapis.',
     image: '/client-projects/norbert-fila-db-club-projekt.ng.webp',
     url: 'https://db-club.vercel.app/',
-    urlLabel: 'Zobacz stronę na żywo',
-    isGithub: false,
+    urlLabel: 'Zobacz stronę',
   },
 ]
 
 const mobileProjects = [
   {
-    title: 'ISTQB Tester',
-    tagline: 'Efektywna nauka w estetycznej formie.',
-    description:
-      'Aplikacja, która zamienia przygotowanie do egzaminu w przyjemną rutynę. Przejrzysty interfejs, czytelna nawigacja i dopracowane detale – tryb nauki, symulacja egzaminu i system fiszek w jednym, spójnym doświadczeniu.',
+    title: 'Studymood',
+    tagline: 'Elegancja w śledzeniu nawyków.',
+    description: 'Aplikacja skupiona wokół codziennych zapisów nastroju i analizy emocji. Przejrzyste statystyki pomagają wyrobić zdrową rutynę.',
     images: [
-      '/app-portfolio/istqb-tester/home.webp',
-      '/app-portfolio/istqb-tester/learning-mode.webp',
-      '/app-portfolio/istqb-tester/flashcards.webp',
+      '/app-portfolio/studymood/check-in-homepage.webp',
+      '/app-portfolio/studymood/check-in-form.webp',
+      '/app-portfolio/studymood/monthly-analysis.webp',
     ],
   },
   {
     title: 'Qraft QR',
-    tagline: 'Narzędzie, które robi dokładnie to, czego potrzebujesz.',
-    description:
-      'Skaner i generator kodów QR w minimalistycznym, nowoczesnym wydaniu. Błyskawiczna detekcja linków na żywo, czytelna historia i udostępnianie jednym kliknięciem – zero zbędnych komplikacji.',
+    tagline: 'Minimalistyczne narzędzie codziennego użytku.',
+    description: 'Skaner i generator kodów QR w nowoczesnym wydaniu. Błyskawiczna detekcja i udostępnianie bez zbędnych komplikacji.',
     images: [
       '/app-portfolio/qraft/scan-detected.webp',
       '/app-portfolio/qraft/url-creation.webp',
@@ -73,158 +48,62 @@ const mobileProjects = [
     ],
     isReversed: true,
   },
-  {
-    title: 'Studymood',
-    tagline: 'Śledź swój nastrój, lepiej rozumiej emocje.',
-    description:
-      'Aplikacja skupiona wokół codziennych zapisów nastroju, analizy emocji i narzędzi do zmiany perspektywy myślenia. Krótkie sesje relaksacyjne i przejrzyste statystyki pomagają wyrobić zdrową rutynę – moduł śledzenia sesji nauki to dodatkowy bonus dla zachowania produktywności',
-    images: [
-      '/app-portfolio/studymood/check-in-homepage.webp',
-      '/app-portfolio/studymood/check-in-form.webp',
-      '/app-portfolio/studymood/monthly-analysis.webp',
-    ],
-  },
 ]
 
 const visualProjects = [
-  /*  {
-    title: "Filip's School",
-    headline: 'Koncepcja strony dla szkoły językowej',
-    description:
-      'Opracowałem logo, stylistykę i układ strony dla szkoły językowej. Projekt skupia się na konkretach, które wyróżniają szkołę: osiągnięciach uczniów, wyjazdach edukacyjnych do Londynu i wiarygodnej prezentacji oferty.',
-    sections: [
-      '/visual-projects/Filips-School/1.webp',
-      '/visual-projects/Filips-School/2.webp',
-      '/visual-projects/Filips-School/3.webp',
-      '/visual-projects/Filips-School/4.webp',
-      '/visual-projects/Filips-School/5.webp',
-      '/visual-projects/Filips-School/6.webp',
-      '/visual-projects/Filips-School/7.webp',
-      '/visual-projects/Filips-School/8.webp',
-    ],
-  },*/
   {
     title: 'Santoro',
     headline: 'Redesign strony dla kameralnej szkoły językowej',
-    description:
-      'Odświeżyłem stronę Santoro tak, aby oferta szkoły była prostsza do zrozumienia i bardziej przekonująca wizualnie. Projekt porządkuje kluczowe informacje: języki, typy zajęć, cennik, lokalizację oraz wyraźne wezwania do działania',
+    description: 'Odświeżyłem stronę Santoro tak, aby oferta była prostsza do zrozumienia i bardziej przekonująca wizualnie. Projekt porządkuje kluczowe informacje, zachowując przestrzeń.',
     sections: [
       '/visual-projects/Santoro-szkola-jezykowa/1.webp',
       '/visual-projects/Santoro-szkola-jezykowa/2.webp',
       '/visual-projects/Santoro-szkola-jezykowa/3.webp',
-      '/visual-projects/Santoro-szkola-jezykowa/4.webp',
-      '/visual-projects/Santoro-szkola-jezykowa/5.webp',
-      '/visual-projects/Santoro-szkola-jezykowa/6.webp',
     ],
   },
   {
     title: 'ABC Centrum Logopedii',
-    headline: 'Koncepcja strony dla centrum terapii i rozwoju dzieci',
-    description:
-      'Stworzyłem projekt strony, który porządkuje szeroką ofertę placówki i ułatwia rodzicom szybkie znalezienie odpowiedniego wsparcia dla dziecka. Czytelny układ, spokojna kolorystyka i jasne ścieżki kontaktu budują zaufanie oraz pomagają lepiej zrozumieć zakres terapii i zajęć.',
+    headline: 'Koncepcja strony dla centrum rozwoju',
+    description: 'Projekt porządkujący szeroką ofertę placówki. Czytelny układ i spokojna kolorystyka budują zaufanie u klientów.',
     sections: [
       '/visual-projects/abc-centrum-logopedii/1.webp',
       '/visual-projects/abc-centrum-logopedii/2.webp',
       '/visual-projects/abc-centrum-logopedii/3.webp',
-      '/visual-projects/abc-centrum-logopedii/4.webp',
-      '/visual-projects/abc-centrum-logopedii/5.webp',
-      '/visual-projects/abc-centrum-logopedii/6.webp',
-      '/visual-projects/abc-centrum-logopedii/7.webp',
-      '/visual-projects/abc-centrum-logopedii/8.webp',
-      '/visual-projects/abc-centrum-logopedii/9.webp',
-      '/visual-projects/abc-centrum-logopedii/10.webp',
-      '/visual-projects/abc-centrum-logopedii/11.webp',
     ],
   },
 ]
 
-function useBodyScrollLock(isLocked: boolean) {
-  useEffect(() => {
-    if (isLocked) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isLocked])
-}
-
 export default function Home() {
-  const [zoomedImage, setZoomedImage] = useState<string | null>(null)
-  const [visualProjectImageIndexes, setVisualProjectImageIndexes] = useState(() =>
-    visualProjects.map(() => 0)
-  )
   const [ebookEmail, setEbookEmail] = useState('')
   const [ebookLoading, setEbookLoading] = useState(false)
-  const [ebookFeedback, setEbookFeedback] = useState<{
-    type: 'success' | 'error'
-    message: string
-  } | null>(null)
-
-  useBodyScrollLock(Boolean(zoomedImage))
+  const [ebookFeedback, setEbookFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+  
+  const [visualProjectIndexes, setVisualProjectIndexes] = useState(visualProjects.map(() => 0))
 
   const setVisualProjectImageIndex = (projectIndex: number, imageIndex: number) => {
-    setVisualProjectImageIndexes((currentIndexes) =>
-      currentIndexes.map((currentIndex, index) =>
-        index === projectIndex ? imageIndex : currentIndex
-      )
-    )
-  }
-
-  const goToPreviousVisualProjectImage = (projectIndex: number) => {
-    setVisualProjectImageIndexes((currentIndexes) =>
-      currentIndexes.map((currentIndex, index) =>
-        index === projectIndex
-          ? currentIndex === 0
-            ? visualProjects[projectIndex].sections.length - 1
-            : currentIndex - 1
-          : currentIndex
-      )
-    )
-  }
-
-  const goToNextVisualProjectImage = (projectIndex: number) => {
-    setVisualProjectImageIndexes((currentIndexes) =>
-      currentIndexes.map((currentIndex, index) =>
-        index === projectIndex
-          ? currentIndex === visualProjects[projectIndex].sections.length - 1
-            ? 0
-            : currentIndex + 1
-          : currentIndex
-      )
-    )
+    setVisualProjectIndexes((prev) => prev.map((curr, idx) => (idx === projectIndex ? imageIndex : curr)))
   }
 
   const handleEbookSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (ebookLoading) return
     const form = event.currentTarget
-
     const formData = new FormData(form)
     const honeypot = String(formData.get('company') ?? '')
-
+    
     setEbookFeedback(null)
     setEbookLoading(true)
 
     try {
       await subscribeToEbook({ email: ebookEmail, honeypot })
-      setEbookFeedback({
-        type: 'success',
-        message: 'Gotowe! Sprawdź skrzynkę e-mail. Wysłałem Ci e-booka.',
-      })
+      setEbookFeedback({ type: 'success', message: 'Wysłano. Sprawdź swoją skrzynkę e-mail.' })
       setEbookEmail('')
       form.reset()
     } catch (error) {
       if (error instanceof EbookSubscribeError) {
         setEbookFeedback({ type: 'error', message: error.message })
       } else {
-        setEbookFeedback({
-          type: 'error',
-          message:
-            'Nie udało się zapisać. Spróbuj ponownie za chwilę albo napisz na kontakt@norbertfila.com.',
-        })
+        setEbookFeedback({ type: 'error', message: 'Wystąpił błąd. Spróbuj ponownie później.' })
       }
     } finally {
       setEbookLoading(false)
@@ -233,494 +112,280 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      <StickyCTA />
+      {/* HERO SECTION */}
+      <section className={styles.hero}>
+        <ScrollReveal>
+          <div className={styles.logoSignature}>Norbert Fila</div>
+          <h1 className={styles.heroTitle}>
+            Profesjonalne strony internetowe.
+          </h1>
+          <p className={styles.heroSub}>
+            Projektuję i wdrażam strony dla miejsc, w których liczy się estetyka – salonów, klinik i marek z sektora beauty. Przekładam jakość Twoich usług na czytelny i nowoczesny język cyfrowy.
+          </p>
+          <Link href="/contact" className={styles.ctaButton}>
+            Nawiążmy współpracę
+          </Link>
+        </ScrollReveal>
+      </section>
 
+      {/* MANIFESTO & PORTRAIT */}
       <section className={styles.container}>
         <ScrollReveal>
-          <div className={styles.hero}>
-            <div className={styles.heroContent}>
-              <div className={styles.statusBadge}>DEDYKOWANE STRONY WWW</div>
-              <h1>
-                Tworzę strony, które <span className={styles.highlight}>sprzedają</span> Twoje
-                usługi.
-              </h1>
-              <p className={styles.heroSub}>
-                Pomagam firmom budować zaufanie w sieci poprzez szybkie i nowoczesne rozwiązania
-                webowe.
+          <div className={styles.manifestoLayout}>
+            <div className={styles.manifestoContent}>
+              <span className={styles.sectionLabel}>Podejście</span>
+              <h2 className={styles.sectionTitleLeft}>Prostota i funkcjonalność.</h2>
+              <p className={styles.manifestoText}>
+                Strona internetowa nie powinna przytłaczać. Jej głównym zadaniem jest ułatwienie klientowi podjęcia decyzji o wizycie. Zamiast nadmiaru informacji, stawiam na czytelny cennik, łatwy dostęp do rezerwacji i estetykę, która naturalnie buduje zaufanie do Twojej marki.
               </p>
+              <div className={styles.signatureSmall}>Norbert Fila</div>
             </div>
-            <div className={styles.heroActions}>
-              <Link href="/contact" className={styles.ctaButton}>
-                Darmowa wycena <ArrowRight size={24} />
-              </Link>
+            <div className={styles.portraitFrame}>
+              <Image
+                src="/profile/avatar.webp"
+                alt="Norbert Fila"
+                className={styles.portraitImage}
+                width={720}
+                height={720}
+                quality={100}
+                unoptimized
+                sizes="(max-width: 768px) 88vw, (max-width: 1200px) 36vw, 420px"
+              />
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      <ScrollReveal delay={200}>
-        <TechMarquee />
-      </ScrollReveal>
-
-      <section className={styles.bigTextSection} style={{ background: '#fff' }}>
+      {/* SERVICES LIST */}
+      <section className={styles.servicesListSection}>
         <div className={styles.container}>
           <ScrollReveal>
-            <h2 className={styles.sectionLabel}>Wybrane realizacje</h2>
-
-            <div className={styles.projectsCategory}>
-              <h3 className={styles.categoryTitle}>Strony WWW i Landing Page'e</h3>
-              <div className={styles.projectsGrid}>
-                {webProjects.map((project) => (
-                  <article className={styles.projectCard} key={project.title}>
-                    <button
-                      type="button"
-                      className={styles.projectImageWrapper}
-                      onClick={() => setZoomedImage(project.image)}
-                      aria-label={`Powiększ projekt ${project.title}`}
-                    >
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        className={styles.projectImage}
-                        width={960}
-                        height={600}
-                        quality={100}
-                        unoptimized
-                        sizes="(max-width: 768px) 92vw, (max-width: 1200px) 44vw, 560px"
-                      />
-                      <div className={styles.projectZoomOverlay}>
-                        <Search size={48} className={styles.zoomIcon} />
-                        <span>Kliknij, aby analizować</span>
-                      </div>
-                    </button>
-                    <div className={styles.projectContent}>
-                      <h3>{project.title}</h3>
-                      <p>{project.description}</p>
-                      {project.url && (
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles.projectLink}
-                        >
-                          {project.urlLabel}
-                          {project.isGithub ? <Github size={18} /> : <ExternalLink size={18} />}
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
-              <h3 className={styles.categoryTitle}>Aplikacje Mobilne</h3>
-              <div className={styles.mobileProjectsList}>
-                {mobileProjects.map((app) => (
-                  <article
-                    className={`${styles.mobileProjectCard} ${app.isReversed ? styles.mobileProjectCardReversed : ''}`}
-                    key={app.title}
-                  >
-                    <div className={styles.mobileProjectInfo}>
-                      <h4 className={styles.mobileProjectTitle}>{app.title}</h4>
-                      <p className={styles.mobileProjectTagline}>{app.tagline}</p>
-                      <p className={styles.mobileProjectDesc}>{app.description}</p>
-                    </div>
-                    <div className={styles.mobileMockupContainer}>
-                      {app.images.map((imgSrc, idx) => (
-                        <div
-                          key={imgSrc}
-                          className={`${styles.mockupPhone} ${styles[`mockupPhone${idx + 1}`]}`}
-                          onClick={() => setZoomedImage(imgSrc)}
-                        >
-                          <Image
-                            src={imgSrc}
-                            alt={`${app.title} screen ${idx + 1}`}
-                            fill
-                            className={styles.mockupImage}
-                            unoptimized
-                            sizes="(max-width: 768px) 30vw, 200px"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.projectsCategory} style={{ marginTop: '5rem' }}>
-              <h3 className={styles.categoryTitle}>Projekty wizualne</h3>
-              {visualProjects.map((visualProject, projectIndex) => {
-                const currentVisualProjectImageIndex = visualProjectImageIndexes[projectIndex] ?? 0
-                const currentVisualProjectImage =
-                  visualProject.sections[currentVisualProjectImageIndex]
-
-                return (
-                  <article
-                    className={styles.visualProjectCard}
-                    key={visualProject.title}
-                    style={projectIndex > 0 ? { marginTop: '2rem' } : undefined}
-                  >
-                    <div className={styles.visualProjectInfo}>
-                      <h4 className={styles.visualProjectTitle}>{visualProject.headline}</h4>
-                      <p className={styles.visualProjectClient}>{visualProject.title}</p>
-                      <p className={styles.visualProjectDesc}>{visualProject.description}</p>
-
-                      <div className={styles.visualGalleryControls}>
-                        <button
-                          type="button"
-                          onClick={() => goToPreviousVisualProjectImage(projectIndex)}
-                          aria-label="Poprzedni kadr"
-                        >
-                          <ChevronLeft size={24} />
-                        </button>
-                        <span>
-                          {String(currentVisualProjectImageIndex + 1).padStart(2, '0')} /{' '}
-                          {String(visualProject.sections.length).padStart(2, '0')}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => goToNextVisualProjectImage(projectIndex)}
-                          aria-label="Następny kadr"
-                        >
-                          <ChevronRight size={24} />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className={styles.visualProjectGallery}>
-                      <button
-                        type="button"
-                        className={styles.visualGalleryFrame}
-                        onClick={() => setZoomedImage(currentVisualProjectImage)}
-                        aria-label={`Powiększ projekt ${visualProject.title}`}
-                      >
-                        <Image
-                          src={currentVisualProjectImage}
-                          alt={`${visualProject.title} - kadr ${currentVisualProjectImageIndex + 1}`}
-                          fill
-                          className={styles.visualProjectImage}
-                          quality={100}
-                          unoptimized
-                          sizes="(max-width: 768px) 92vw, (max-width: 1200px) 58vw, 680px"
-                        />
-                      </button>
-
-                      <div className={styles.visualGalleryStrip} aria-label="Wybierz kadr">
-                        {visualProject.sections.map((image, imageIndex) => (
-                          <button
-                            type="button"
-                            className={`${styles.visualGalleryDot} ${
-                              imageIndex === currentVisualProjectImageIndex
-                                ? styles.visualGalleryDotActive
-                                : ''
-                            }`}
-                            key={image}
-                            onClick={() => setVisualProjectImageIndex(projectIndex, imageIndex)}
-                            aria-label={`Pokaż kadr ${imageIndex + 1}`}
-                            aria-current={
-                              imageIndex === currentVisualProjectImageIndex ? 'true' : undefined
-                            }
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </article>
-                )
-              })}
+            <span className={styles.sectionLabel}>Oferta</span>
+            <h2 className={styles.sectionTitle}>W czym mogę Ci pomóc?</h2>
+            
+            <div className={styles.servicesList}>
+              <Link href="/contact" className={styles.serviceItem}>
+                <span className={styles.serviceIconNumber}>01</span>
+                <span>Projekt i stworzenie strony wizytówki</span>
+                <ArrowUpRight size={28} className={styles.serviceArrow} />
+              </Link>
+              <Link href="/contact" className={styles.serviceItem}>
+                <span className={styles.serviceIconNumber}>02</span>
+                <span>Podłączenie zewnętrznych systemów rezerwacji</span>
+                <ArrowUpRight size={28} className={styles.serviceArrow} />
+              </Link>
+              <Link href="/contact" className={styles.serviceItem}>
+                <span className={styles.serviceIconNumber}>03</span>
+                <span>Dostosowanie działania do telefonów komórkowych</span>
+                <ArrowUpRight size={28} className={styles.serviceArrow} />
+              </Link>
+              <Link href="/contact" className={styles.serviceItem}>
+                <span className={styles.serviceIconNumber}>04</span>
+                <span>Opieka techniczna i utrzymanie serwera</span>
+                <ArrowUpRight size={28} className={styles.serviceArrow} />
+              </Link>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <section className={styles.bigTextSection}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <h2 className={styles.sectionLabel}>Mój cel</h2>
-            <div className={styles.manifestoLayout}>
-              <p className={styles.manifesto}>
-                Wiem, że Twoja strona ma jedno zadanie:{' '}
-                <span className={styles.highlight}>zarabiać</span>. Łączę rzetelną wiedzę
-                technologiczną z bezpośrednim, biznesowym podejściem. Bez zbędnego lania wody, tylko
-                konkretne rezultaty.
-              </p>
-              <div className={styles.portraitFrame}>
-                <Image
-                  src="/profile/avatar.webp"
-                  alt="Profesjonalne zdjecie autora strony"
-                  className={styles.portraitImage}
-                  width={720}
-                  height={720}
-                  quality={100}
-                  unoptimized
-                  sizes="(max-width: 768px) 88vw, (max-width: 1200px) 36vw, 420px"
-                />
-              </div>
+      {/* APPROACH / BENEFITS */}
+      <section className={styles.container}>
+        <ScrollReveal>
+          <span className={styles.sectionLabel}>Wartość</span>
+          <h2 className={styles.sectionTitle}>Dlaczego to działa?</h2>
+        </ScrollReveal>
+        <div className={styles.grid}>
+          <ScrollReveal delay={0}>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconStar}>✧</div>
+              <h3>Przejrzystość</h3>
+              <p>Klienci natychmiast znajdują to, czego szukają: ofertę, wolne terminy i dane kontaktowe.</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconStar}>✧</div>
+              <h3>Wiarygodność</h3>
+              <p>Spójna i dopracowana estetyka sugeruje klientom, że usługi w salonie są na równie wysokim poziomie.</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconStar}>✧</div>
+              <h3>Szybkość</h3>
+              <p>Strona ładuje się bez opóźnień, niezależnie od tego, czy klient korzysta ze starszego telefonu, czy komputera.</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={300}>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconStar}>✧</div>
+              <h3>Brak szablonów</h3>
+              <p>Tworzę kod od zera. Dzięki temu strona jest w stu procentach dostosowana do Twoich potrzeb, a nie odwrotnie.</p>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <section className={styles.bigTextSection} style={{ background: '#fff' }}>
+      {/* PORTFOLIO: WEB */}
+      <section className={styles.portfolioSection}>
         <div className={styles.container}>
           <ScrollReveal>
-            <h2 className={styles.sectionLabel}>Dlaczego ja?</h2>
+            <span className={styles.sectionLabel}>Portfolio</span>
+            <h2 className={styles.sectionTitle}>Zrealizowane Projekty</h2>
           </ScrollReveal>
-          <div className={styles.grid}>
-            <ScrollReveal delay={0} className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <ShieldCheck size={32} />
-              </div>
-              <div>
-                <h3>Design budujący autorytet</h3>
-                <p>
-                  Twoja strona to Twój najlepszy handlowiec. Projektuję interfejsy, które od
-                  pierwszego kliknięcia budują zaufanie i pokazują profesjonalizm.
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100} className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <Zap size={32} />
-              </div>
-              <div>
-                <h3>Szybkość to pieniądz</h3>
-                <p>
-                  Każda sekunda ładowania to utraceni klienci. Moje strony ładują się błyskawicznie,
-                  maksymalizując wskaźnik konwersji i obniżając koszty kampanii reklamowych.
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={200} className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <MessageSquare size={32} />
-              </div>
-              <div>
-                <h3>Jasne zasady</h3>
-                <p>
-                  Bez technologicznego bełkotu. Tłumaczę kod na język biznesu, więc zawsze dokładnie
-                  wiesz, za co płacisz i na jakim etapie jest projekt.
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={300} className={styles.benefitCard}>
-              <div className={styles.benefitIcon}>
-                <Code2 size={32} />
-              </div>
-              <div>
-                <h3>Kod gotowy na rozwój</h3>
-                <p>
-                  Nie korzystam z ociężałych, gotowych szablonów. Piszę czysty, autorski kod, który
-                  bez problemu zniesie rosnący ruch i rozwój Twojej firmy przez kolejne lata.
-                </p>
-              </div>
-            </ScrollReveal>
+          
+          <div className={styles.portfolioGrid}>
+            {webProjects.map((project, idx) => (
+              <ScrollReveal delay={idx * 100} key={project.title}>
+                <div className={styles.projectCard}>
+                  <div className={styles.projectImageWrapper}>
+                    <Image src={project.image} alt={project.title} fill className={styles.projectImage} sizes="(max-width: 768px) 100vw, 50vw" />
+                  </div>
+                  <div className={styles.projectInfo}>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    <a href={project.url} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
+                      {project.urlLabel} <ArrowRight size={16} />
+                    </a>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className={styles.bigTextSection}>
+      {/* PORTFOLIO: VISUAL */}
+      <section className={styles.container}>
+        <ScrollReveal>
+          <h2 className={styles.sectionTitle}>Koncepcje i szkice</h2>
+        </ScrollReveal>
+        <div className={styles.visualGrid}>
+          {visualProjects.map((project, projectIndex) => {
+            const currentImgIndex = visualProjectIndexes[projectIndex] ?? 0
+            const currentImg = project.sections[currentImgIndex]
+
+            return (
+              <ScrollReveal delay={projectIndex * 100} key={project.title}>
+                <article className={styles.visualCard}>
+                  <div className={styles.visualImageWrapper}>
+                    <Image src={currentImg} alt={project.title} fill className={styles.projectImage} />
+                    <div className={styles.visualDots}>
+                      {project.sections.map((_, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          className={`${styles.dot} ${idx === currentImgIndex ? styles.dotActive : ''}`}
+                          onClick={() => setVisualProjectImageIndex(projectIndex, idx)}
+                          aria-label={`Pokaż zdjęcie ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div className={styles.visualInfo}>
+                    <h3>{project.headline}</h3>
+                    <p className={styles.visualClient}>{project.title}</p>
+                    <p>{project.description}</p>
+                  </div>
+                </article>
+              </ScrollReveal>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* PORTFOLIO: MOBILE */}
+      <section className={styles.portfolioSection}>
         <div className={styles.container}>
           <ScrollReveal>
-            <h2 className={styles.sectionLabel}>Co mogę dla Ciebie zrobić?</h2>
-            <div className={styles.servicesList}>
-              <Link
-                href="/contact"
-                className={styles.serviceItem}
-                aria-label="Zapytaj o stronę, która buduje zaufanie do marki"
-              >
-                <span className={styles.serviceIcon}>01</span>
-                <span>Strona, która buduje zaufanie do marki</span>
-                <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                href="/contact"
-                className={styles.serviceItem}
-                aria-label="Zapytaj o landing page, który zamienia ruch w zapytania"
-              >
-                <span className={styles.serviceIcon}>02</span>
-                <span>Landing page, który zamienia ruch w zapytania</span>
-                <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                href="/contact"
-                className={styles.serviceItem}
-                aria-label="Zapytaj o ofertę usług pokazaną jasno i bez chaosu"
-              >
-                <span className={styles.serviceIcon}>03</span>
-                <span>Oferta usług pokazana jasno i bez chaosu</span>
-                <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                href="/contact"
-                className={styles.serviceItem}
-                aria-label="Zapytaj o formularze i CTA prowadzące do kontaktu"
-              >
-                <span className={styles.serviceIcon}>04</span>
-                <span>Formularze i CTA, które prowadzą klienta do kontaktu</span>
-                <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                href="/contact"
-                className={styles.serviceItem}
-                aria-label="Zapytaj o integracje i funkcje na zamówienie"
-              >
-                <span className={styles.serviceIcon}>05</span>
-                <span>Integracje i funkcje na zamówienie</span>
-                <ArrowUpRight size={32} />
-              </Link>
-              <Link
-                href="/contact"
-                className={styles.serviceItem}
-                aria-label="Zapytaj o doradztwo w wyborze hostingu i domeny"
-              >
-                <span className={styles.serviceIcon}>06</span>
-                <span>Doradztwo w wyborze hostingu i domeny</span>
-                <ArrowUpRight size={32} />
-              </Link>
+            <h2 className={styles.sectionTitle}>Aplikacje Użytkowe</h2>
+          </ScrollReveal>
+          <div className={styles.mobileList}>
+            {mobileProjects.map((app, idx) => (
+              <ScrollReveal delay={100} key={app.title}>
+                <article className={`${styles.mobileProjectCard} ${app.isReversed ? styles.mobileProjectCardReversed : ''}`}>
+                  <div className={styles.mobileProjectInfo}>
+                    <h3>{app.title}</h3>
+                    <h4>{app.tagline}</h4>
+                    <p>{app.description}</p>
+                  </div>
+                  <div className={styles.mobileMockupContainer}>
+                    {app.images.map((imgSrc, imgIdx) => (
+                      <div key={imgSrc} className={`${styles.mockupPhone} ${styles[`mockupPhone${imgIdx + 1}`]}`}>
+                        <Image src={imgSrc} alt={`${app.title} screen ${imgIdx + 1}`} fill className={styles.mockupImage} unoptimized />
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section className={styles.container}>
+        <ScrollReveal>
+          <span className={styles.sectionLabel}>Organizacja pracy</span>
+          <h2 className={styles.sectionTitle}>Jak wygląda współpraca?</h2>
+        </ScrollReveal>
+        <div className={styles.processSteps}>
+          <ScrollReveal delay={0}>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>I.</div>
+              <h3>Rozmowa</h3>
+              <p>Poznaję Twój biznes, docelowych klientów i cele. Ustalamy wspólnie, jakie podstrony i funkcje są faktycznie niezbędne.</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>II.</div>
+              <h3>Projektowanie</h3>
+              <p>Przedstawiam pierwsze makiety wizualne. Dopracowujemy je do momentu, w którym idealnie odpowiadają Twoim potrzebom.</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={200}>
+            <div className={styles.step}>
+              <div className={styles.stepNumber}>III.</div>
+              <h3>Wdrożenie</h3>
+              <p>Programuję stronę, przeprowadzam testy na telefonach i komputerach, a na koniec uruchamiam ją pod Twoją domeną.</p>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      <section className={styles.bigTextSection} style={{ background: '#0F0F0F', color: '#fff' }}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <h2 className={styles.sectionLabel} style={{ color: 'var(--accent-color)' }}>
-              Proces
-            </h2>
-            <div className={styles.processSteps}>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>01</div>
-                <h3>Analiza Biznesowa</h3>
-                <p>
-                  Zaczynamy od zrozumienia Twojej oferty i grupy docelowej. Ustalamy, jak strona ma
-                  generować zyski.
-                </p>
-              </div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>02</div>
-                <h3>Projekt & Kod</h3>
-                <p>
-                  Tworzę dedykowane rozwiązanie – od architektury informacji, przez UX/UI, aż po
-                  błyskawiczny kod.
-                </p>
-              </div>
-              <div className={styles.step}>
-                <div className={styles.stepNumber}>03</div>
-                <h3>Bezpieczne Wdrożenie</h3>
-                <p>
-                  Podpinam domenę, konfiguruję hosting i uruchamiam stronę w sieci. Zabezpieczam ją
-                  certyfikatem SSL, dzięki czemu od pierwszej sekundy działa szybko, stabilnie i
-                  bezpiecznie.
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <section className={styles.bigTextSection} style={{ background: '#fff' }}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <h2 className={styles.sectionLabel}>Szybki audyt</h2>
-            <div className={styles.educationWrap}>
-              <h2>
-                Dlaczego Twoja strona <br />
-                <span className={styles.highlight}>traci klientów?</span>
-              </h2>
-              <div className={styles.educationGrid}>
-                <article className={styles.educationCard}>
-                  <div className={styles.educationCardIcon}>
-                    <Smartphone size={28} />
-                  </div>
-                  <h3>Brak mobile-first</h3>
-                  <p>
-                    Ponad 60% ruchu w internecie pochodzi z urządzeń mobilnych. Jeśli strona jest
-                    wolna, nieczytelna albo rozjeżdża się na telefonie, tracisz zapytania zanim
-                    klient pozna ofertę.
-                  </p>
-                </article>
-                <article className={styles.educationCard}>
-                  <div className={styles.educationCardIcon}>
-                    <EyeOff size={28} />
-                  </div>
-                  <h3>Słaba dostępność (WCAG)</h3>
-                  <p>
-                    Niski kontrast i brak czytelnej struktury utrudniają korzystanie i obniżają
-                    zaufanie do marki.
-                  </p>
-                </article>
-                <article className={styles.educationCard}>
-                  <div className={styles.educationCardIcon}>
-                    <ImageDown size={28} />
-                  </div>
-                  <h3>Za ciężkie obrazy</h3>
-                  <p>
-                    Duże pliki wydłużają ładowanie, a każda sekunda opóźnienia zmniejsza szansę na
-                    kontakt.
-                  </p>
-                </article>
-                <article className={styles.educationCard}>
-                  <div className={styles.educationCardIcon}>
-                    <MousePointerClick size={28} />
-                  </div>
-                  <h3>Chaos w CTA</h3>
-                  <p>
-                    Gdy nie wiadomo, co kliknąć dalej, potencjalny klient nie podejmuje żadnej
-                    akcji.
-                  </p>
-                </article>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <section className={styles.bigTextSection}>
+      {/* EBOOK / LEAD MAGNET */}
+      <section className={styles.ebookSection}>
         <div className={styles.container}>
           <ScrollReveal>
             <div className={styles.ebookBox}>
-              <h2 className={styles.sectionLabel}>Darmowy e-book</h2>
-              <h3 className={styles.ebookTitle}>Dlaczego Twoja Strona Traci Klientów?</h3>
+              <span className={styles.sectionLabel} style={{ color: 'var(--color-gold)' }}>Darmowy poradnik</span>
+              <h3 className={styles.ebookTitle}>Jakich błędów unikać na stronie salonu?</h3>
               <p className={styles.ebookText}>
-                Podaj e-mail, a od razu wyślę Ci PDF z 4 najczęstszymi błędami przez, które tracisz
-                klientów.
+                Zostaw swój adres e-mail, aby otrzymać krótki plik PDF z analizą najczęstszych problemów, przez które salony tracą potencjalnych klientów w internecie.
               </p>
 
               <form className={styles.ebookForm} onSubmit={handleEbookSubmit} noValidate>
                 <div className={styles.ebookHoneypot} aria-hidden="true">
-                  <label htmlFor="company">Company</label>
                   <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
                 </div>
-
-                <label htmlFor="ebook-email" className={styles.ebookLabel}>
-                  Twój e-mail
-                </label>
                 <div className={styles.ebookControls}>
                   <input
-                    id="ebook-email"
                     type="email"
                     className={styles.ebookInput}
-                    placeholder="np. jan@firma.pl"
+                    placeholder="Wpisz adres e-mail"
                     value={ebookEmail}
-                    onChange={(event) => setEbookEmail(event.target.value)}
+                    onChange={(e) => setEbookEmail(e.target.value)}
                     required
                   />
-                  <button type="submit" className={styles.ebookButton} disabled={ebookLoading}>
-                    {ebookLoading ? 'Wysyłanie...' : 'Odbierz e-booka'}
+                  <button type="submit" className={styles.ctaButton} disabled={ebookLoading}>
+                    {ebookLoading ? 'Wysyłanie...' : 'Pobierz poradnik'}
                   </button>
                 </div>
               </form>
-
               {ebookFeedback && (
-                <p
-                  className={
-                    ebookFeedback.type === 'success' ? styles.ebookSuccess : styles.ebookError
-                  }
-                  role={ebookFeedback.type === 'error' ? 'alert' : 'status'}
-                >
+                <p className={ebookFeedback.type === 'success' ? styles.ebookSuccess : styles.ebookError}>
                   {ebookFeedback.message}
                 </p>
               )}
@@ -729,80 +394,27 @@ export default function Home() {
         </div>
       </section>
 
-      <ScrollReveal>
-        <FAQ />
-      </ScrollReveal>
-
-      <section className={styles.bigTextSection} style={{ textAlign: 'center' }}>
+      {/* FAQ */}
+      <section className={styles.container}>
         <ScrollReveal>
-          <div className={styles.container}>
-            <h2
-              style={{
-                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-                fontFamily: 'var(--font-space-grotesk), sans-serif',
-                fontWeight: 700,
-                marginBottom: '1rem',
-                lineHeight: 1.1,
-              }}
-            >
-              Zbudujmy stronę, która <span className={styles.highlight}>sprzedaje</span>.
-            </h2>
-            <p
-              style={{
-                fontSize: '1.2rem',
-                marginBottom: '3rem',
-                color: 'var(--text-muted)',
-                maxWidth: '600px',
-                margin: '0 auto 3rem',
-              }}
-            >
-              Porozmawiajmy o tym, jak nowoczesna wizytówka lub landing page może pomóc w skalowaniu
-              Twojej firmy.
-            </p>
-            <Link
-              href="/contact"
-              className={styles.ctaButton}
-              style={{ margin: '0 auto', width: 'fit-content' }}
-            >
-              Formularz bezpłatnej wyceny <ArrowRight size={24} />
-            </Link>
-
-            <Link href="/cv" className={styles.footerLink}>
-              Sprawdź moje techniczne doświadczenie (CV)
-            </Link>
-          </div>
+          <FAQ />
         </ScrollReveal>
       </section>
 
-      {zoomedImage && (
-        <div
-          className={styles.lightbox}
-          onClick={() => setZoomedImage(null)}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault()
-              setZoomedImage(null)
-            }
-          }}
-          role="button"
-          tabIndex={0}
-          aria-label="Zamknij podgląd"
-        >
-          <button type="button" className={styles.lightboxClose} aria-label="Zamknij podgląd">
-            <X size={36} />
-          </button>
-          <Image
-            src={zoomedImage}
-            alt="Powiekszona wizualizacja"
-            className={styles.lightboxImage}
-            width={1440}
-            height={900}
-            quality={100}
-            unoptimized
-            sizes="100vw"
-          />
-        </div>
-      )}
+      {/* FINAL CTA */}
+      <section className={styles.container} style={{ textAlign: 'center', paddingBottom: '8rem' }}>
+        <ScrollReveal>
+          <h2 className={styles.sectionTitle} style={{ marginBottom: '2rem' }}>
+            Czas na nową stronę.
+          </h2>
+          <p className={styles.heroSub} style={{ margin: '0 auto 3rem' }}>
+            Napisz do mnie i opowiedz o swoim salonie. Wspólnie sprawdzimy, jak mogę Ci pomóc.
+          </p>
+          <Link href="/contact" className={styles.ctaButton}>
+            Przejdź do formularza
+          </Link>
+        </ScrollReveal>
+      </section>
     </div>
   )
 }

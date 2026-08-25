@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Linkedin, Mail } from 'lucide-react'
 import styles from './Footer.module.css'
 
 export function Footer() {
@@ -13,30 +13,26 @@ export function Footer() {
             <Link href="/" className={styles.brandName}>
               Norbert Fila
             </Link>
-            <p className={styles.brandRole}>ZAMIEŃ ODWIEDZINY W KLIENTÓW</p>
             <p className={styles.brandMission}>
-              Projektuję i koduję dedykowane strony internetowe nastawione na realny zysk.
+              Cyfrowa harmonia i spokój. Przestrzeń, w której każdy detal ma swoje miejsce.
             </p>
           </div>
 
           <nav className={styles.linksGrid} aria-label="Nawigacja stopki">
             <div className={styles.linkGroup}>
-              <span className={styles.groupLabel}>Na skróty</span>
+              <span className={styles.groupLabel}>Eksploruj</span>
               <ul className={styles.linkList}>
                 <li>
                   <Link href="/">Strona Główna</Link>
                 </li>
                 <li>
-                  <Link href="/cv">Doświadczenie (CV)</Link>
-                </li>
-                <li>
-                  <Link href="/contact">Darmowa Wycena</Link>
+                  <Link href="/contact">Umów Konsultację</Link>
                 </li>
               </ul>
             </div>
 
             <div className={styles.linkGroup}>
-              <span className={styles.groupLabel}>Legalne</span>
+              <span className={styles.groupLabel}>Informacje Legalne</span>
               <ul className={styles.linkList}>
                 <li>
                   <Link href="/privacy-policy">Polityka Prywatności</Link>
@@ -56,18 +52,10 @@ export function Footer() {
                   rel="noopener noreferrer"
                   aria-label="Profil LinkedIn"
                 >
-                  <Linkedin size={22} />
-                </a>
-                <a
-                  href="https://github.com/nubet"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Profil GitHub"
-                >
-                  <Github size={22} />
+                  <Linkedin size={20} strokeWidth={1.5} />
                 </a>
                 <Link href="/contact" aria-label="Przejdź do formularza kontaktowego">
-                  <Mail size={22} />
+                  <Mail size={20} strokeWidth={1.5} />
                 </Link>
               </div>
             </div>

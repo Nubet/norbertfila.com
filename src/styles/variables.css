@@ -1,24 +1,31 @@
 :root {
-  --bg-primary: #f4f4f0;
-  --bg-secondary: #ebebe6;
-  --color-black: #0f0f0f;
+  --bg-primary: #f8f6f0; /* Soft cream/beige for elegance */
+  --bg-secondary: #f0eee5; /* Slightly darker cream */
+  --color-black: #1a1a1a;
   --color-white: #ffffff;
 
-  --color-red: #e31837;
-  --color-blue: #005a9c;
-  --color-yellow: #ffd100;
+  /* Accent colors from luxury inspiration */
+  --color-accent: #2f4f40; /* Forest Green (La Scala) */
+  --color-accent-secondary: #752f23; /* Terracotta/Burgundy (Dirty Business / Club Azur) */
+  --color-gold: #c5a880; /* Elegant gold/sand */
 
-  --text-primary: var(--color-black);
-  --text-secondary: #404040;
+  --text-primary: #1c2321;
+  --text-secondary: #5a5a5a;
   --text-inverse: var(--bg-primary);
 
-  --border-thick: 0.25rem solid var(--color-black);
-  --border-thin: 0.125rem solid var(--color-black);
+  /* Thinner, elegant borders */
+  --border-thick: 1px solid var(--text-primary);
+  --border-thin: 1px solid rgba(28, 35, 33, 0.2);
 
-  --shadow-solid: 0.5rem 0.5rem 0px 0px var(--color-black);
-  --shadow-solid-hover: 0.75rem 0.75rem 0px 0px var(--color-black);
+  /* Subtle shadows for premium feel */
+  --shadow-solid: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-solid-hover: 0px 8px 30px rgba(0, 0, 0, 0.08);
 
-  --ease-sharp: cubic-bezier(0.19, 1, 0.22, 1);
-  --duration-fast: 150ms;
-  --duration-med: 300ms;
+  --ease-sharp: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 300ms;
+  --duration-med: 500ms;
+  
+  --font-heading: var(--font-cormorant), serif;
+  --font-body: var(--font-montserrat), sans-serif;
+  --font-signature: var(--font-great-vibes), cursive;
 }

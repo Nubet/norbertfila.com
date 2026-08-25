@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { Footer } from '@/components/Footer/Footer'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { siteConfig } from '@/shared/seo/site'
-import { spaceGrotesk, outfit } from '@/shared/fonts'
+import { cormorant, montserrat, greatVibes } from '@/shared/fonts'
 import '../styles/variables.css'
 import '../styles/global.css'
 
@@ -58,7 +58,7 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="pl" className={`${spaceGrotesk.variable} ${outfit.variable}`}>
+    <html lang="pl" className={`${cormorant.variable} ${montserrat.variable} ${greatVibes.variable}`}>
       <body>
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <main style={{ flex: 1 }}>{children}</main>

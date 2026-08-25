@@ -1,17 +1,24 @@
-import { Outfit, Space_Grotesk } from 'next/font/google'
+import { Cormorant_Garamond, Montserrat, Great_Vibes } from 'next/font/google'
 
-const spaceGrotesk = Space_Grotesk({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin', 'latin-ext'],
-  weight: 'variable',
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-space-grotesk',
+  variable: '--font-cormorant',
 })
 
-const outfit = Outfit({
+const montserrat = Montserrat({
   subsets: ['latin', 'latin-ext'],
-  weight: 'variable',
+  weight: ['300', '400', '500', '600'],
   display: 'swap',
-  variable: '--font-outfit',
+  variable: '--font-montserrat',
 })
 
-export { spaceGrotesk, outfit }
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+  variable: '--font-great-vibes',
+})
+
+export { cormorant, montserrat, greatVibes }
