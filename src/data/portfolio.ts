@@ -11,7 +11,7 @@ export type PortfolioProject = {
 export const portfolioProjects: PortfolioProject[] = [
   {
     id: 'db-club',
-    category: 'Beauty',
+    category: 'Premium',
     title: 'Butikowe Studio Ruchu',
     shortDescription: 'Luksusowa strona z dedykowanym systemem rezerwacji.',
     description: 'Butikowe studia ruchu oraz marki premium wymagają specyficznego podejścia do estetyki cyfrowej. Projektując stronę dla tego prestiżowego miejsca, skupiliśmy się na oddaniu jego luksusowego klimatu za pomocą stonowanej palety barw i wyrafinowanej typografii. Priorytetem była nienaganna optymalizacja na urządzeniach mobilnych oraz pełna integracja z zewnętrznym systemem rezerwacji, co pozwala klientom błyskawicznie zapisywać się na zajęcia bez zbędnych przeszkód.',

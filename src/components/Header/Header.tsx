@@ -9,6 +9,9 @@ export function Header() {
           Norbert Fila
         </Link>
         <nav className={styles.nav}>
+          <Link href="/about" className={styles.navLink}>
+            O mnie
+          </Link>
           <Link href="/#oferta" className={styles.navLink}>
             Oferta
           </Link>
