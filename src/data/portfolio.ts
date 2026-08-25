@@ -11,7 +11,7 @@ export type PortfolioProject = {
 export const portfolioProjects: PortfolioProject[] = [
   {
     id: 'db-club',
-    category: 'Beauty & Premium',
+    category: 'Beauty',
     title: 'Butikowe Studio Ruchu',
     shortDescription: 'Luksusowa strona z dedykowanym systemem rezerwacji.',
     description: 'Butikowe studia ruchu oraz marki premium wymagają specyficznego podejścia do estetyki cyfrowej. Projektując stronę dla tego prestiżowego miejsca, skupiliśmy się na oddaniu jego luksusowego klimatu za pomocą stonowanej palety barw i wyrafinowanej typografii. Priorytetem była nienaganna optymalizacja na urządzeniach mobilnych oraz pełna integracja z zewnętrznym systemem rezerwacji, co pozwala klientom błyskawicznie zapisywać się na zajęcia bez zbędnych przeszkód.',
@@ -40,6 +40,22 @@ export const portfolioProjects: PortfolioProject[] = [
     shortDescription: 'Przejrzysty redesign nastawiony na łatwość zapisu.',
     description: 'Kameralne szkoły językowe często borykają się z problemem przeładowanych informacjami, niefunkcjonalnych stron internetowych. Przeprowadzony redesign miał na celu uporządkowanie szerokiej oferty edukacyjnej w sposób czytelny i nowoczesny. Dzięki zastosowaniu dużej ilości otwartej przestrzeni wizualnej oraz zoptymalizowaniu ścieżki użytkownika, nowa witryna naturalnie prowadzi odwiedzającego od pierwszego zainteresowania kursem aż do szybkiego wypełnienia formularza rekrutacyjnego na najbliższy semestr.',
     image: '/visual-projects/Santoro-szkola-jezykowa/1.webp',
+  },
+  {
+    id: 'abc-centrum',
+    category: 'Zdrowie & Terapia',
+    title: 'ABC Centrum Logopedii',
+    shortDescription: 'Projekt UI porządkujący szeroką ofertę terapeutyczną.',
+    description: 'Stworzyłem projekt strony, który porządkuje szeroką ofertę placówki i ułatwia rodzicom szybkie znalezienie odpowiedniego wsparcia dla dziecka. Czytelny układ, spokojna kolorystyka i jasne ścieżki kontaktu budują zaufanie oraz pomagają lepiej zrozumieć zakres terapii i zajęć.',
+    image: '/visual-projects/abc-centrum-logopedii/1.webp',
+  },
+  {
+    id: 'vellum-blanc',
+    category: 'Premium',
+    title: 'Vellum Blanc',
+    shortDescription: 'Luksusowy projekt UI dla pracowni papeterii ślubnej.',
+    description: 'Stworzyłem koncepcyjny projekt wizualny dla marki oferującej ekskluzywną papeterię ślubną. Minimalistyczny design, otwarte przestrzenie (whitespace) i elegancka typografia odzwierciedlają luksusowy charakter produktów. Celem interfejsu było czytelne poprowadzenie klienta od inspiracji aż do intuicyjnego formularza zapytania.',
+    image: '/client-projects/norbert-fila-vellum-blanc.webp',
   },
   {
     id: 'istqb-tester',
