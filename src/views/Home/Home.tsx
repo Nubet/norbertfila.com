@@ -2,63 +2,35 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, type FormEvent } from 'react'
+import { useState, useRef, type FormEvent } from 'react'
 import { ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { FAQ } from '@/components/FAQ/FAQ'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
+import { portfolioProjects } from '@/data/portfolio'
 import styles from './Home.module.css'
-
-const caseStudies = [
-  {
-    client: 'Santoro',
-    industry: 'Szkoła Językowa',
-    title: 'Redesign przestarzałej witryny w celu zwiększenia konwersji.',
-    images: [
-      '/visual-projects/Santoro-szkola-jezykowa/1.webp',
-      '/visual-projects/Santoro-szkola-jezykowa/2.webp',
-      '/visual-projects/Santoro-szkola-jezykowa/3.webp',
-    ],
-    problem: 'Oferta szkoły była nieczytelna, a proces zapisu skomplikowany, co powodowało ucieczkę potencjalnych kursantów i frustrację.',
-    solution: 'Całkowity redesign strony z naciskiem na prostą architekturę informacji oraz przejrzysty system zapisu na zajęcia.',
-    design: 'Zastosowałem dużą ilość "whitespace\'u" oraz spokojną paletę barw, by zbudować zaufanie. Zamiast krzykliwych banerów, postawiłem na dużą, czytelną typografię, prowadzącą prosto do formularza.',
-    result: 'Strona stała się elegancką wizytówką, która odciąża administrację szkoły i bezbłędnie konwertuje odwiedzających z urządzeń mobilnych.',
-  },
-  {
-    client: 'DB Club',
-    industry: 'Butikowe Studio Ruchu',
-    title: 'Wizytówka internetowa dla miejsca w segmencie premium.',
-    images: [
-      '/client-projects/norbert-fila-db-club-projekt.ng.webp',
-    ],
-    problem: 'Studio potrzebowało cyfrowej obecności, która oddawałaby ich luksusowy charakter, wyróżniając się na tle generycznych siłowni.',
-    solution: 'Minimalistyczna strona oparta na autorskim kodzie, gwarantującym błyskawiczne ładowanie i płynne animacje.',
-    design: 'Ciemna, zgaszona zieleń w połączeniu ze szlachetnymi fontami szeryfowymi. Duży nacisk na wyeksponowanie zdjęć wnętrz, by użytkownik poczuł klimat miejsca jeszcze przed wizytą.',
-    result: 'Strona idealnie wpisała się w estetykę grupy docelowej, a zintegrowany, zewnętrzny system rezerwacji drastycznie ułatwił umawianie wizyt.',
-  },
-  {
-    client: 'Biuro Podatkowe',
-    industry: 'Doradztwo Finansowe',
-    title: 'Landing page dla eksperta budujący natychmiastowe zaufanie.',
-    images: [
-      '/client-projects/norbert-fila-biuro-podatkowe-projekt.webp',
-    ],
-    problem: 'Trudna, mocno techniczna branża podatkowa często odstrasza skomplikowanym językiem i przestarzałym designem.',
-    solution: 'Stworzenie wysoce konwertującego landing page\'a, skupionego wyłącznie na korzyściach dla klienta i łatwości kontaktu.',
-    design: 'Zdecydowałem się na jasny, bardzo "czysty" układ z minimalnymi akcentami symbolizującymi profesjonalizm. Zredukowałem zbędne treści, zamykając ścieżkę w jednym, logicznym ciągu.',
-    result: 'Klienci od razu widzą konkretną wartość i wiedzą, z kim będą współpracować, co dramatycznie ułatwia podjęcie decyzji o kontakcie.',
-  }
-]
 
 export default function Home() {
   const [ebookEmail, setEbookEmail] = useState('')
   const [ebookLoading, setEbookLoading] = useState(false)
   const [ebookFeedback, setEbookFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
   
-  const [visualProjectIndexes, setVisualProjectIndexes] = useState(caseStudies.map(() => 0))
+  const carouselRef = useRef<HTMLDivElement>(null)
 
-  const setVisualProjectImageIndex = (projectIndex: number, imageIndex: number) => {
-    setVisualProjectIndexes((prev) => prev.map((curr, idx) => (idx === projectIndex ? imageIndex : curr)))
+  const scrollCarousel = (direction: 'left' | 'right') => {
+    if (carouselRef.current) {
+      const track = carouselRef.current.firstElementChild as HTMLElement
+      if (track && track.firstElementChild) {
+        const card = track.firstElementChild as HTMLElement
+        const gap = window.innerWidth > 900 ? 64 : 32 // 4rem on desktop, 2rem on mobile
+        const scrollAmount = card.offsetWidth + gap
+        
+        carouselRef.current.scrollBy({
+          left: direction === 'left' ? -scrollAmount : scrollAmount,
+          behavior: 'smooth'
+        })
+      }
+    }
   }
 
   const handleEbookSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -173,67 +145,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CASE STUDIES */}
+      {/* PORTFOLIO GALLERY */}
       <section className={styles.portfolioSection} id="portfolio">
         <div className={styles.container}>
           <ScrollReveal>
-            <span className={styles.sectionLabel}>Realizacje</span>
-            <h2 className={styles.sectionTitle}>Case Studies</h2>
+            <div className={styles.portfolioHeader}>
+              <div className={styles.portfolioHeaderTitles}>
+                <span className={styles.sectionLabelLeft}>Realizacje</span>
+                <h2 className={styles.sectionTitleLeft}>Moje projekty</h2>
+              </div>
+              <div className={styles.carouselControls}>
+                <button onClick={() => scrollCarousel('left')} className={styles.controlBtn} aria-label="Poprzedni projekt">
+                  <ChevronLeft size={24} />
+                </button>
+                <button onClick={() => scrollCarousel('right')} className={styles.controlBtn} aria-label="Następny projekt">
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+            </div>
           </ScrollReveal>
           
-          <div className={styles.caseStudiesList}>
-            {caseStudies.map((study, idx) => {
-              const currentImgIndex = visualProjectIndexes[idx] ?? 0
-              return (
-              <ScrollReveal delay={100} key={study.client}>
-                <article className={styles.caseStudyCard}>
-                  <div className={styles.caseStudyVisuals}>
-                    <div className={styles.visualImageWrapper}>
-                      <Image src={study.images[currentImgIndex]} alt={study.client} fill className={styles.projectImage} />
-                      {study.images.length > 1 && (
-                        <div className={styles.visualDots}>
-                          {study.images.map((_, dotIdx) => (
-                            <button
-                              key={dotIdx}
-                              type="button"
-                              className={`${styles.dot} ${dotIdx === currentImgIndex ? styles.dotActive : ''}`}
-                              onClick={() => setVisualProjectImageIndex(idx, dotIdx)}
-                              aria-label={`Pokaż zdjęcie ${dotIdx + 1}`}
-                            />
-                          ))}
-                        </div>
-                      )}
+          <div className={styles.carouselWrapper} ref={carouselRef}>
+            <div className={styles.carouselTrack}>
+              {portfolioProjects.slice(0, 4).map((project, idx) => (
+                <ScrollReveal delay={idx * 100} key={project.title}>
+                  <article className={styles.portfolioCard}>
+                    <div className={styles.portfolioImageWrapper}>
+                      <Image src={project.image} alt={project.title} fill className={styles.projectImage} sizes="(max-width: 768px) 90vw, 75vw" />
+                      <div className={styles.categoryPill}>{project.category}</div>
                     </div>
-                  </div>
-                  <div className={styles.caseStudyInfo}>
-                    <div className={styles.caseStudyHeader}>
-                      <span className={styles.caseStudyIndustry}>{study.industry}</span>
-                      <h3>{study.client}</h3>
+                    <div className={styles.portfolioInfo}>
+                      <h3 className={styles.portfolioTitle}>{project.title}</h3>
+                      <p className={styles.portfolioDesc}>{project.shortDescription}</p>
+                      <Link href={`/portfolio#${project.id}`} className={styles.readMoreBtn}>
+                        Czytaj dalej <ArrowRight size={18} />
+                      </Link>
                     </div>
-                    <h4 className={styles.caseStudyTitle}>{study.title}</h4>
-                    
-                    <div className={styles.caseStudyDetails}>
-                      <div className={styles.detailBlock}>
-                        <h5>Wyzwanie</h5>
-                        <p>{study.problem}</p>
-                      </div>
-                      <div className={styles.detailBlock}>
-                        <h5>Rozwiązanie</h5>
-                        <p>{study.solution}</p>
-                      </div>
-                      <div className={styles.detailBlock}>
-                        <h5>Decyzje projektowe</h5>
-                        <p>{study.design}</p>
-                      </div>
-                      <div className={styles.detailBlock}>
-                        <h5>Efekt</h5>
-                        <p>{study.result}</p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </ScrollReveal>
-            )})}
+                  </article>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '5rem' }}>
+            <ScrollReveal>
+              <Link href="/portfolio" className={styles.ctaButton}>
+                Zobacz wszystkie projekty
+              </Link>
+            </ScrollReveal>
           </div>
         </div>
       </section>
