@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: '/profile/avatar.webp',
+        url: '/profile/avatar-light.webp',
         width: 1200,
         height: 630,
         alt: 'Norbert Fila',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ['/profile/avatar.webp'],
+    images: ['/profile/avatar-light.webp'],
   },
   robots: {
     index: true,

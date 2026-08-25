@@ -63,11 +63,10 @@ export default function Home() {
     <div className={styles.home}>
       <section className={styles.hero}>
         <ScrollReveal>
-          <h1 className={styles.heroTitle}>
-            Profesjonalne strony internetowe.
-          </h1>
+          <h1 className={styles.heroTitle}>Profesjonalne strony internetowe.</h1>
           <p className={styles.heroSub}>
-            Projektuję i wdrażam dedykowane strony internetowe. Tworzę wizytówki, w których estetyka spotyka się z funkcjonalnością, pomagając markom budować autorytet i zdobywać zaufanie.
+            Projektuję i wdrażam dedykowane strony internetowe. Tworzę wizytówki, w których estetyka
+            spotyka się z funkcjonalnością, pomagając markom budować autorytet i zdobywać zaufanie.
           </p>
           <Link href="/contact" className={styles.ctaButton}>
             Nawiążmy współpracę
@@ -82,13 +81,15 @@ export default function Home() {
               <span className={styles.sectionLabel}>Podejście</span>
               <h2 className={styles.sectionTitleLeft}>Prostota i funkcjonalność.</h2>
               <p className={styles.manifestoText}>
-                Strona internetowa nie powinna przytłaczać. Jej głównym zadaniem jest ułatwienie klientowi podjęcia decyzji o wizycie. Zamiast nadmiaru informacji, stawiam na czytelny cennik, łatwy dostęp do rezerwacji i estetykę, która naturalnie buduje zaufanie do Twojej marki.
+                Strona internetowa ma jedno zadanie: ułatwić klientowi decyzję. Zamiast ściany
+                tekstu – przejrzysty przekaz. Zamiast skomplikowanej nawigacji – prosta droga do
+                akcji. Tworzę estetykę, która naturalnie konwertuje i buduje autorytet.
               </p>
               <div className={styles.signatureSmall}>Norbert Fila</div>
             </div>
             <div className={styles.portraitFrame}>
               <Image
-                src="/profile/avatar.webp"
+                src="/profile/avatar-light.webp"
                 alt="Norbert Fila"
                 className={styles.portraitImage}
                 width={720}
@@ -107,7 +108,7 @@ export default function Home() {
           <ScrollReveal>
             <span className={styles.sectionLabel}>Oferta</span>
             <h2 className={styles.sectionTitle}>Co mogę dla Ciebie zrobić?</h2>
-            
+
             <div className={styles.servicesList}>
               <Link href="/contact" className={styles.serviceItem}>
                 <span className={styles.serviceIconNumber}>01</span>
@@ -149,7 +150,8 @@ export default function Home() {
         <div className={styles.container}>
           <ScrollReveal>
             <h2 className={styles.statementText}>
-              Dobry projekt nie domaga się uwagi. Działa w tle, pozwalając, by to <i>Twoje usługi</i> grały pierwsze skrzypce.
+              Dobry projekt nie domaga się uwagi. Działa w tle, pozwalając, by to{' '}
+              <i>Twoje usługi</i> grały pierwsze skrzypce.
             </h2>
           </ScrollReveal>
         </div>
@@ -165,23 +167,37 @@ export default function Home() {
                 <h2 className={styles.sectionTitleLeft}>Moje projekty</h2>
               </div>
               <div className={styles.carouselControls}>
-                <button onClick={() => scrollCarousel('left')} className={styles.controlBtn} aria-label="Poprzedni projekt">
+                <button
+                  onClick={() => scrollCarousel('left')}
+                  className={styles.controlBtn}
+                  aria-label="Poprzedni projekt"
+                >
                   <ChevronLeft size={24} />
                 </button>
-                <button onClick={() => scrollCarousel('right')} className={styles.controlBtn} aria-label="Następny projekt">
+                <button
+                  onClick={() => scrollCarousel('right')}
+                  className={styles.controlBtn}
+                  aria-label="Następny projekt"
+                >
                   <ChevronRight size={24} />
                 </button>
               </div>
             </div>
           </ScrollReveal>
-          
+
           <div className={styles.carouselWrapper} ref={carouselRef}>
             <div className={styles.carouselTrack}>
               {portfolioProjects.slice(0, 4).map((project, idx) => (
                 <ScrollReveal delay={idx * 100} key={project.title}>
                   <article className={styles.portfolioCard}>
                     <div className={styles.portfolioImageWrapper}>
-                      <Image src={project.image} alt={project.title} fill className={styles.projectImage} sizes="(max-width: 768px) 90vw, 75vw" />
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className={styles.projectImage}
+                        sizes="(max-width: 768px) 90vw, 75vw"
+                      />
                       <div className={styles.categoryPill}>{project.category}</div>
                     </div>
                     <div className={styles.portfolioInfo}>
@@ -217,21 +233,30 @@ export default function Home() {
             <div className={styles.step}>
               <div className={styles.stepNumber}>I.</div>
               <h3>Rozmowa</h3>
-              <p>Poznaję Twój biznes, docelowych klientów i cele. Ustalamy wspólnie, jakie podstrony i funkcje są faktycznie niezbędne.</p>
+              <p>
+                Poznaję Twój biznes, docelowych klientów i cele. Ustalamy wspólnie, jakie podstrony
+                i funkcje są faktycznie niezbędne.
+              </p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <div className={styles.step}>
               <div className={styles.stepNumber}>II.</div>
               <h3>Projektowanie</h3>
-              <p>Przedstawiam pierwsze makiety wizualne. Dopracowujemy je do momentu, w którym idealnie odpowiadają Twoim potrzebom.</p>
+              <p>
+                Przedstawiam pierwsze makiety wizualne. Dopracowujemy je do momentu, w którym
+                idealnie odpowiadają Twoim potrzebom.
+              </p>
             </div>
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <div className={styles.step}>
               <div className={styles.stepNumber}>III.</div>
               <h3>Wdrożenie</h3>
-              <p>Programuję stronę, przeprowadzam testy na telefonach i komputerach, a na koniec uruchamiam ją pod Twoją domeną.</p>
+              <p>
+                Programuję stronę, przeprowadzam testy na telefonach i komputerach, a na koniec
+                uruchamiam ją pod Twoją domeną.
+              </p>
             </div>
           </ScrollReveal>
         </div>
@@ -241,10 +266,13 @@ export default function Home() {
         <div className={styles.container}>
           <ScrollReveal>
             <div className={styles.ebookBox}>
-              <span className={styles.sectionLabel} style={{ color: 'var(--color-gold)' }}>Darmowy poradnik</span>
+              <span className={styles.sectionLabel} style={{ color: 'var(--color-gold)' }}>
+                Darmowy E-book
+              </span>
               <h3 className={styles.ebookTitle}>Jakich błędów unikać na stronie?</h3>
               <p className={styles.ebookText}>
-                Zostaw swój adres e-mail, aby otrzymać krótki plik PDF z analizą najczęstszych problemów, przez które prestiżowe marki tracą potencjalnych klientów w internecie.
+                Zostaw swój e-mail i odbierz krótki plik PDF z analizą najczęstszych błędów, przez
+                które strony internetowe tracą klientów.
               </p>
 
               <form className={styles.ebookForm} onSubmit={handleEbookSubmit} noValidate>
@@ -261,12 +289,16 @@ export default function Home() {
                     required
                   />
                   <button type="submit" className={styles.ctaButton} disabled={ebookLoading}>
-                    {ebookLoading ? 'Wysyłanie...' : 'Pobierz poradnik'}
+                    {ebookLoading ? 'Wysyłanie...' : 'Pobierz e-book'}
                   </button>
                 </div>
               </form>
               {ebookFeedback && (
-                <p className={ebookFeedback.type === 'success' ? styles.ebookSuccess : styles.ebookError}>
+                <p
+                  className={
+                    ebookFeedback.type === 'success' ? styles.ebookSuccess : styles.ebookError
+                  }
+                >
                   {ebookFeedback.message}
                 </p>
               )}
