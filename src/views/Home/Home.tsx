@@ -166,7 +166,7 @@ export default function Home() {
             <div className={styles.servicesList}>
               <Link href="/contact" className={styles.serviceItem}>
                 <span className={styles.serviceIconNumber}>01</span>
-                <span>Projekt i stworzenie strony wizytówki</span>
+                <span>Projekt i stworzenie strony internetowej</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link href="/contact" className={styles.serviceItem}>
@@ -395,11 +395,9 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className={styles.container}>
-        <ScrollReveal>
-          <FAQ />
-        </ScrollReveal>
-      </section>
+      <ScrollReveal>
+        <FAQ />
+      </ScrollReveal>
 
       {/* FINAL CTA */}
       <section className={styles.container} style={{ textAlign: 'center', paddingBottom: '8rem' }}>

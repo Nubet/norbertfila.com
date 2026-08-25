@@ -1,10 +1,10 @@
 .faqSection {
-  padding: 4rem 0;
+  padding: 8rem 2rem;
   background: transparent;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -15,7 +15,7 @@
 
 .header h2 {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 300;
   margin-bottom: 1rem;
   color: var(--text-primary);
@@ -24,10 +24,10 @@
 
 .subtitle {
   font-family: var(--font-body);
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 300;
   color: var(--text-secondary);
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
   line-height: 1.6;
 }
@@ -35,21 +35,26 @@
 .faqList {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .faqItem {
-  border-bottom: 1px solid rgba(47, 79, 64, 0.2);
+  border: 1px solid rgba(47, 79, 64, 0.15);
+  border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
-  background: transparent;
+  background: var(--color-white);
 }
 
-.faqItem:first-child {
-  border-top: 1px solid rgba(47, 79, 64, 0.2);
+.faqItem:hover {
+  border-color: rgba(47, 79, 64, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .faqItem.open {
-  background: transparent;
+  border-color: var(--color-accent);
+  background: var(--color-white);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .question {
@@ -57,14 +62,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1.5rem 2rem;
   background: transparent;
   border: none;
   cursor: pointer;
   text-align: left;
-  font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
@@ -74,12 +79,12 @@
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: var(--color-gold);
   transition: transform 0.3s ease, color 0.3s ease;
   flex-shrink: 0;
-  margin-left: 1rem;
+  margin-left: 1.5rem;
 }
 
 .open .icon {
@@ -94,21 +99,21 @@
 
 .answer {
   overflow: hidden;
-  padding: 0;
+  padding: 0 2rem;
   color: var(--text-secondary);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.8;
   font-weight: 300;
 }
 
 .open .answer {
-  padding: 0 0 2rem;
+  padding: 0 2rem 1.5rem;
 }
 
 @media (max-width: 768px) {
   .faqSection {
-    padding: 2rem 0;
+    padding: 4rem 1rem;
   }
 
   .header {
@@ -116,11 +121,15 @@
   }
 
   .question {
-    font-size: 1.2rem;
-    padding: 1.5rem 0;
+    font-size: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .answer {
+    padding: 0 1.5rem;
   }
 
   .open .answer {
-    padding: 0 0 1.5rem;
+    padding: 0 1.5rem 1.25rem;
   }
 }
