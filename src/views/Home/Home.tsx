@@ -311,18 +311,20 @@ export default function Home() {
         <FAQ />
       </ScrollReveal>
 
-      <section className={styles.container} style={{ textAlign: 'center', paddingBottom: '8rem' }}>
-        <ScrollReveal>
-          <h2 className={styles.sectionTitle} style={{ marginBottom: '2rem' }}>
-            Czas na nową stronę.
-          </h2>
-          <p className={styles.heroSub} style={{ margin: '0 auto 3rem' }}>
-            Napisz do mnie i opowiedz o swoim biznesie. Wspólnie sprawdzimy, jak mogę Ci pomóc.
-          </p>
-          <Link href="/contact" className={styles.ctaButton}>
-            Przejdź do formularza
-          </Link>
-        </ScrollReveal>
+      <section className={styles.finalCtaSection}>
+        <div className={styles.container}>
+          <ScrollReveal>
+            <h2 className={styles.finalCtaTitle}>
+              Czas na nową stronę.
+            </h2>
+            <p className={styles.finalCtaText}>
+              Napisz do mnie i opowiedz o swoim biznesie. Wspólnie sprawdzimy, jak mogę Ci pomóc.
+            </p>
+            <Link href="/contact" className={styles.finalCtaButton}>
+              Przejdź do formularza
+            </Link>
+          </ScrollReveal>
+        </div>
       </section>
     </div>
   )

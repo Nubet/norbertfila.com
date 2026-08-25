@@ -532,3 +532,45 @@
   margin-top: 1.5rem;
   color: #f28b82;
 }
+
+.finalCtaSection {
+  background-color: var(--color-accent);
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.finalCtaTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  margin-bottom: 2rem;
+  color: var(--color-white);
+}
+
+.finalCtaText {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.finalCtaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 3rem;
+  background-color: var(--color-white);
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.finalCtaButton:hover {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+}
