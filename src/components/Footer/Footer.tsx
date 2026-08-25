@@ -14,7 +14,7 @@ export function Footer() {
               Norbert Fila
             </Link>
             <p className={styles.brandMission}>
-              Strony szyte na miarę. Zaprojektowane, by wyróżniać Cię estetyką i generować zyski.
+              Strony szyte na miarę. Zaprojektowane, by wyróżniać Cię estetyką i generować zysk.
             </p>
           </div>
 

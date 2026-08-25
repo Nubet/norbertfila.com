@@ -106,27 +106,37 @@ export default function Home() {
         <div className={styles.container}>
           <ScrollReveal>
             <span className={styles.sectionLabel}>Oferta</span>
-            <h2 className={styles.sectionTitle}>W czym mogę Ci pomóc?</h2>
+            <h2 className={styles.sectionTitle}>Co mogę dla Ciebie zrobić?</h2>
             
             <div className={styles.servicesList}>
               <Link href="/contact" className={styles.serviceItem}>
                 <span className={styles.serviceIconNumber}>01</span>
-                <span>Projekt i stworzenie strony wizytówki</span>
+                <span>Strona, która buduje zaufanie do marki</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link href="/contact" className={styles.serviceItem}>
                 <span className={styles.serviceIconNumber}>02</span>
-                <span>Podłączenie zewnętrznych systemów rezerwacji</span>
+                <span>Landing page, który zamienia ruch w zapytania</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link href="/contact" className={styles.serviceItem}>
                 <span className={styles.serviceIconNumber}>03</span>
-                <span>Dostosowanie działania do telefonów komórkowych</span>
+                <span>Oferta usług pokazana jasno i bez chaosu</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link href="/contact" className={styles.serviceItem}>
                 <span className={styles.serviceIconNumber}>04</span>
-                <span>Opieka techniczna i utrzymanie serwera</span>
+                <span>Formularze i CTA, które prowadzą klienta do kontaktu</span>
+                <ArrowUpRight size={28} className={styles.serviceArrow} />
+              </Link>
+              <Link href="/contact" className={styles.serviceItem}>
+                <span className={styles.serviceIconNumber}>05</span>
+                <span>Integracje i funkcje na zamówienie</span>
+                <ArrowUpRight size={28} className={styles.serviceArrow} />
+              </Link>
+              <Link href="/contact" className={styles.serviceItem}>
+                <span className={styles.serviceIconNumber}>06</span>
+                <span>Doradztwo w wyborze hostingu i domeny</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
             </div>
