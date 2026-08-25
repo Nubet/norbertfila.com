@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { siteConfig } from '@/shared/seo/site'
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="pl" className={`${cormorant.variable} ${montserrat.variable} ${greatVibes.variable}`}>
       <body>
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Header />
           <main style={{ flex: 1 }}>{children}</main>
           <Footer />
           <CookieConsentManager />

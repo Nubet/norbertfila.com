@@ -11,18 +11,9 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0 2rem;
+  padding: 4rem 2rem 0;
   background-color: var(--bg-primary);
   position: relative;
-}
-
-.logoSignature {
-  font-family: var(--font-signature);
-  font-size: clamp(4rem, 10vw, 8rem);
-  color: var(--color-accent-secondary);
-  line-height: 1;
-  margin-bottom: 2rem;
-  font-weight: 400;
 }
 
 .heroTitle {

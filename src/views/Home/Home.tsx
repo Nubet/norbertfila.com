@@ -115,7 +115,6 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className={styles.hero}>
         <ScrollReveal>
-          <div className={styles.logoSignature}>Norbert Fila</div>
           <h1 className={styles.heroTitle}>
             Profesjonalne strony internetowe.
           </h1>
@@ -157,7 +156,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES LIST */}
-      <section className={styles.servicesListSection}>
+      <section className={styles.servicesListSection} id="oferta">
         <div className={styles.container}>
           <ScrollReveal>
             <span className={styles.sectionLabel}>Oferta</span>
@@ -166,7 +165,7 @@ export default function Home() {
             <div className={styles.servicesList}>
               <Link href="/contact" className={styles.serviceItem}>
                 <span className={styles.serviceIconNumber}>01</span>
-                <span>Projekt i stworzenie strony internetowej</span>
+                <span>Projekt i stworzenie strony wizytówki</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link href="/contact" className={styles.serviceItem}>
@@ -228,7 +227,7 @@ export default function Home() {
       </section>
 
       {/* PORTFOLIO: WEB */}
-      <section className={styles.portfolioSection}>
+      <section className={styles.portfolioSection} id="portfolio">
         <div className={styles.container}>
           <ScrollReveal>
             <span className={styles.sectionLabel}>Portfolio</span>
@@ -325,7 +324,7 @@ export default function Home() {
       </section>
 
       {/* PROCESS */}
-      <section className={styles.container}>
+      <section className={styles.container} id="proces">
         <ScrollReveal>
           <span className={styles.sectionLabel}>Organizacja pracy</span>
           <h2 className={styles.sectionTitle}>Jak wygląda współpraca?</h2>
