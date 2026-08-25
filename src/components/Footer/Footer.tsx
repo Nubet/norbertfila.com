@@ -14,7 +14,7 @@ export function Footer() {
               Norbert Fila
             </Link>
             <p className={styles.brandMission}>
-              Cyfrowa harmonia i spokój. Przestrzeń, w której każdy detal ma swoje miejsce.
+              Strony szyte na miarę. Zaprojektowane, by wyróżniać Cię estetyką i generować zyski.
             </p>
           </div>
 
