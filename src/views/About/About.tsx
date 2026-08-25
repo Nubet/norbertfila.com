@@ -17,9 +17,8 @@ export function About() {
             </h1>
             <p className={styles.heroSubtitle}>
               Jestem studentem Computer Science na międzynarodowym wydziale IFE Politechniki
-              Łódzkiej. Zamiast iść na kompromisy między logiką a designem, łączę inżynieryjną
-              precyzję ze zmysłem estetycznym, tworząc cyfrowe produkty premium dla nowoczesnych
-              biznesów.
+              Łódzkiej. Tworzę strony, które nie tylko świetnie wyglądają, ale też bezbłędnie
+              działają. Łączę programistyczne zaplecze z okiem do detali.
             </p>
           </ScrollReveal>
         </section>
