@@ -16,6 +16,11 @@ export default function Home() {
   const [ebookFeedback, setEbookFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
   
   const carouselRef = useRef<HTMLDivElement>(null)
+  
+  // Drag states
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(0)
 
   const scrollCarousel = (direction: 'left' | 'right') => {
     if (carouselRef.current) {
@@ -30,6 +35,39 @@ export default function Home() {
           behavior: 'smooth'
         })
       }
+    }
+  }
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!carouselRef.current) return
+    setIsDragging(true)
+    setStartX(e.pageX - carouselRef.current.offsetLeft)
+    setScrollLeft(carouselRef.current.scrollLeft)
+  }
+
+  const handleMouseLeave = () => {
+    setIsDragging(false)
+  }
+
+  const handleMouseUp = () => {
+    setIsDragging(false)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !carouselRef.current) return
+    e.preventDefault()
+    const x = e.pageX - carouselRef.current.offsetLeft
+    const walk = (x - startX) * 1.5 // Drag speed multiplier
+    carouselRef.current.scrollLeft = scrollLeft - walk
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      scrollCarousel('left')
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      scrollCarousel('right')
     }
   }
 
@@ -149,10 +187,12 @@ export default function Home() {
       <section className={styles.statementSection}>
         <div className={styles.container}>
           <ScrollReveal>
-            <h2 className={styles.statementText}>
-              Dobry projekt nie domaga się uwagi. Działa w tle, pozwalając, by to{' '}
-              <i>Twoje usługi</i> grały pierwsze skrzypce.
-            </h2>
+            <div style={{ textAlign: 'center' }}>
+              <span className={styles.sectionLabel} style={{ marginBottom: '1.5rem', display: 'block' }}>Filozofia Projektowa</span>
+              <h2 className={styles.statementText}>
+                Skuteczna strona nie rozprasza. Skupia całą uwagę klienta wyłącznie na <i>wartości</i>, którą mu dostarczasz.
+              </h2>
+            </div>
           </ScrollReveal>
         </div>
       </section>
@@ -185,7 +225,16 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
-          <div className={styles.carouselWrapper} ref={carouselRef}>
+          <div 
+            className={`${styles.carouselWrapper} ${isDragging ? styles.dragging : ''}`} 
+            ref={carouselRef}
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+          >
             <div className={styles.carouselTrack}>
               {portfolioProjects.slice(0, 4).map((project, idx) => (
                 <ScrollReveal delay={idx * 100} key={project.title}>
@@ -197,6 +246,7 @@ export default function Home() {
                         fill
                         className={styles.projectImage}
                         sizes="(max-width: 768px) 90vw, 75vw"
+                        draggable={false}
                       />
                       <div className={styles.categoryPill}>{project.category}</div>
                     </div>

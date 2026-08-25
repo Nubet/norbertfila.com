@@ -169,6 +169,7 @@
   line-height: 1.3;
   max-width: 900px;
   margin: 0 auto;
+  text-wrap: balance;
 }
 
 .statementText i {
@@ -289,6 +290,21 @@
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
   scrollbar-width: none; /* Firefox */
+  cursor: grab;
+  outline: none; /* Hide focus outline when using keyboard */
+}
+
+.carouselWrapper.dragging {
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.carouselWrapper:focus-visible {
+  outline: 2px solid var(--color-gold);
+  border-radius: 4px;
 }
 
 .carouselWrapper::-webkit-scrollbar {
