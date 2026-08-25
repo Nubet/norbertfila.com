@@ -90,9 +90,14 @@ export default function ContactPage() {
       <div className={styles.container}>
         {step < 3 && (
           <header className={styles.header}>
-            <Link href="/" className={styles.backLink}>
-              <ArrowLeft size={16} /> Powrót
-            </Link>
+            <div className={styles.headerTop}>
+              <Link href="/" className={styles.backLink}>
+                <ArrowLeft size={16} /> Powrót
+              </Link>
+              <a href="mailto:kontakt@norbertfila.com" className={styles.directEmail}>
+                kontakt@norbertfila.com
+              </a>
+            </div>
             <div className={styles.stepIndicator}>
               <span className={step >= 0 ? styles.activeStep : ''}>01. Zarys</span>
               <div className={styles.stepLine} />
