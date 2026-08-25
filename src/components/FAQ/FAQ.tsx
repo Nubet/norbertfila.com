@@ -6,7 +6,7 @@ const faqs = [
   {
     question: 'Ile kosztuje stworzenie strony internetowej?',
     answer:
-      'Cena zależy od specyfikacji projektu, a najprostsze, dedykowane strony startują od około 700 zł - napisz do mnie, a darmową wycenę otrzymasz zazwyczaj w ciągu 12 godzin.',
+      'Cena zależy od specyfikacji projektu, a najprostsze, dedykowane strony startują od około 800 zł - napisz do mnie, a darmową wycenę otrzymasz zazwyczaj w ciągu 12 godzin.',
   },
   {
     question: 'Jak długo trwa realizacja strony internetowej?',
