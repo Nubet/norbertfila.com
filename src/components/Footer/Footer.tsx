@@ -12,73 +12,73 @@ export function Footer() {
       <div className={styles.container}>
         <ScrollReveal>
           <div className={styles.topSection}>
-          <div className={styles.brand}>
-            <Link href="/" className={styles.brandName}>
-              <div className={styles.logoWrapper}>
-                <Image
-                  src="/fila-signature/signature-fila-red.svg"
-                  alt="Norbert Fila"
-                  width={260}
-                  height={117}
-                  className={styles.logoDefault}
-                />
-                <Image
-                  src="/fila-signature/signature-fila-gold.svg"
-                  alt=""
-                  width={260}
-                  height={117}
-                  className={styles.logoHover}
-                />
+            <div className={styles.brand}>
+              <Link href="/" className={styles.brandName}>
+                <div className={styles.logoWrapper}>
+                  <Image
+                    src="/fila-signature/signature-fila-red.svg"
+                    alt="Norbert Fila"
+                    width={260}
+                    height={117}
+                    className={styles.logoDefault}
+                  />
+                  <Image
+                    src="/fila-signature/signature-fila-gold.svg"
+                    alt=""
+                    width={260}
+                    height={117}
+                    className={styles.logoHover}
+                  />
+                </div>
+              </Link>
+              <p className={styles.brandMission}>
+                Strony szyte na miarę. Zaprojektowane, by wyróżniać Cię estetyką i generować zysk.
+              </p>
+            </div>
+
+            <nav className={styles.linksGrid} aria-label="Nawigacja stopki">
+              <div className={styles.linkGroup}>
+                <span className={styles.groupLabel}>Eksploruj</span>
+                <ul className={styles.linkList}>
+                  <li>
+                    <Link href="/">Strona Główna</Link>
+                  </li>
+                  <li>
+                    <Link href="/contact">Umów Konsultację</Link>
+                  </li>
+                </ul>
               </div>
-            </Link>
-            <p className={styles.brandMission}>
-              Strony szyte na miarę. Zaprojektowane, by wyróżniać Cię estetyką i generować zysk.
-            </p>
+
+              <div className={styles.linkGroup}>
+                <span className={styles.groupLabel}>Informacje Legalne</span>
+                <ul className={styles.linkList}>
+                  <li>
+                    <Link href="/privacy-policy">Polityka Prywatności</Link>
+                  </li>
+                  <li>
+                    <Link href="/cookie-policy">Polityka Cookies</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className={styles.linkGroup}>
+                <span className={styles.groupLabel}>Kontakt</span>
+                <div className={styles.socialIcons}>
+                  <a
+                    href="https://www.linkedin.com/in/norbert-fila/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Profil LinkedIn"
+                  >
+                    <Linkedin size={20} strokeWidth={1.5} />
+                  </a>
+                  <a href="mailto:kontakt@norbertfila.com" aria-label="Napisz maila">
+                    <Mail size={20} strokeWidth={1.5} />
+                  </a>
+                </div>
+              </div>
+            </nav>
           </div>
-
-          <nav className={styles.linksGrid} aria-label="Nawigacja stopki">
-            <div className={styles.linkGroup}>
-              <span className={styles.groupLabel}>Eksploruj</span>
-              <ul className={styles.linkList}>
-                <li>
-                  <Link href="/">Strona Główna</Link>
-                </li>
-                <li>
-                  <Link href="/contact">Umów Konsultację</Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className={styles.linkGroup}>
-              <span className={styles.groupLabel}>Informacje Legalne</span>
-              <ul className={styles.linkList}>
-                <li>
-                  <Link href="/privacy-policy">Polityka Prywatności</Link>
-                </li>
-                <li>
-                  <Link href="/cookie-policy">Polityka Cookies</Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className={styles.linkGroup}>
-              <span className={styles.groupLabel}>Kontakt</span>
-              <div className={styles.socialIcons}>
-                <a
-                  href="https://www.linkedin.com/in/norbert-fila/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Profil LinkedIn"
-                >
-                  <Linkedin size={20} strokeWidth={1.5} />
-                </a>
-                <a href="mailto:kontakt@norbertfila.com" aria-label="Napisz maila">
-                  <Mail size={20} strokeWidth={1.5} />
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
         </ScrollReveal>
 
         <ScrollReveal delay={100}>

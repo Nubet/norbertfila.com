@@ -152,200 +152,204 @@ export default function ContactPage() {
           <ScrollReveal delay={100}>
             <>
               {step === 0 && (
-            <div className={styles.stepContent}>
-              <h1 className={styles.stepTitle}>Jakiego projektu potrzebujesz?</h1>
+                <div className={styles.stepContent}>
+                  <h1 className={styles.stepTitle}>Jakiego projektu potrzebujesz?</h1>
 
-              <div className={styles.optionsGrid}>
-                {[
-                  'Strona firmowa',
-                  'Landing page',
-                  'Sklep / E-commerce',
-                  'Redesign strony',
-                  'Coś innego',
-                ].map((type) => (
-                  <button
-                    key={type}
-                    type="button"
-                    onClick={() => setProjectType(type)}
-                    className={`${styles.luxuryPill} ${projectType === type ? styles.activePill : ''}`}
-                  >
-                    {type}
-                  </button>
-                ))}
-              </div>
+                  <div className={styles.optionsGrid}>
+                    {[
+                      'Strona firmowa',
+                      'Landing page',
+                      'Sklep / E-commerce',
+                      'Redesign strony',
+                      'Coś innego',
+                    ].map((type) => (
+                      <button
+                        key={type}
+                        type="button"
+                        onClick={() => setProjectType(type)}
+                        className={`${styles.luxuryPill} ${projectType === type ? styles.activePill : ''}`}
+                      >
+                        {type}
+                      </button>
+                    ))}
+                  </div>
 
-              <h2 className={styles.stepSubtitle}>Planowany budżet netto</h2>
-              <div className={styles.optionsGrid}>
-                {['Nie wiem', 'Do 1500 zł', '1500 - 3000 zł', 'Powyżej 3000 zł'].map((amount) => (
-                  <button
-                    key={amount}
-                    type="button"
-                    onClick={() => setBudget(amount)}
-                    className={`${styles.luxuryPill} ${budget === amount ? styles.activePill : ''}`}
-                  >
-                    {amount}
-                  </button>
-                ))}
-              </div>
+                  <h2 className={styles.stepSubtitle}>Planowany budżet netto</h2>
+                  <div className={styles.optionsGrid}>
+                    {['Nie wiem', 'Do 1500 zł', '1500 - 3000 zł', 'Powyżej 3000 zł'].map(
+                      (amount) => (
+                        <button
+                          key={amount}
+                          type="button"
+                          onClick={() => setBudget(amount)}
+                          className={`${styles.luxuryPill} ${budget === amount ? styles.activePill : ''}`}
+                        >
+                          {amount}
+                        </button>
+                      )
+                    )}
+                  </div>
 
-              <div className={styles.actionRow}>
-                {stepError && <div className={styles.errorMsgInline}>{stepError}</div>}
-                <button type="button" onClick={handleNextStep1} className={styles.nextBtn}>
-                  Dalej <ArrowRight size={18} />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {step === 1 && (
-            <div className={styles.stepContent}>
-              <h1 className={styles.stepTitle}>Opowiedz mi o wizji.</h1>
-
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>
-                  Cel projektu, inspiracje lub główne założenia *
-                </label>
-                <textarea
-                  name="opis"
-                  value={formValues.opis}
-                  onChange={handleInputChange}
-                  className={styles.textarea}
-                  placeholder="Napisz, co chcesz osiągnąć..."
-                  autoFocus
-                />
-              </div>
-
-              <div className={styles.twoCol}>
-                <div className={styles.inputGroup}>
-                  <label className={styles.label}>Czy posiadasz materiały (teksty, zdjęcia)?</label>
-                  <select
-                    name="materials"
-                    value={materials}
-                    onChange={(e) => setMaterials(e.target.value)}
-                    className={styles.select}
-                  >
-                    <option value="" disabled>
-                      Wybierz opcję
-                    </option>
-                    <option value="komplet">Mam komplet</option>
-                    <option value="czesc">Mam część</option>
-                    <option value="brak">Potrzebuję pomocy</option>
-                  </select>
+                  <div className={styles.actionRow}>
+                    {stepError && <div className={styles.errorMsgInline}>{stepError}</div>}
+                    <button type="button" onClick={handleNextStep1} className={styles.nextBtn}>
+                      Dalej <ArrowRight size={18} />
+                    </button>
+                  </div>
                 </div>
-                <div className={styles.inputGroup}>
-                  <label className={styles.label}>Szacowana wielkość strony</label>
-                  <select
-                    name="pagesCount"
-                    value={pagesCount}
-                    onChange={(e) => setPagesCount(e.target.value)}
-                    className={styles.select}
-                  >
-                    <option value="" disabled>
-                      Wybierz opcję
-                    </option>
-                    <option value="onepager">One-pager</option>
-                    <option value="male">2-4 podstrony</option>
-                    <option value="srednie">5-10 podstron</option>
-                    <option value="duze">Więcej</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className={styles.actionRowSpace}>
-                <button type="button" onClick={prevStep} className={styles.prevBtn}>
-                  Wstecz
-                </button>
-                <div className={styles.actionRowRight}>
-                  {stepError && <div className={styles.errorMsgInline}>{stepError}</div>}
-                  <button type="button" onClick={handleNextStep2} className={styles.nextBtn}>
-                    Dalej <ArrowRight size={18} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {step === 2 && (
-            <form className={styles.stepContent} onSubmit={handleSubmit} noValidate>
-              <h1 className={styles.stepTitle}>Ostatni krok.</h1>
-
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>Imię i nazwisko *</label>
-                <input
-                  type="text"
-                  name="imie"
-                  value={formValues.imie}
-                  onChange={handleInputChange}
-                  className={styles.input}
-                  placeholder="Jan Kowalski"
-                  autoFocus
-                  required
-                />
-              </div>
-
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>Adres E-mail *</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formValues.email}
-                  onChange={handleInputChange}
-                  className={styles.input}
-                  placeholder="jan@domena.pl"
-                  required
-                />
-              </div>
-
-              <div className={styles.inputGroup}>
-                <label className={styles.label}>Numer telefonu (opcjonalnie)</label>
-                <input
-                  type="tel"
-                  name="telefon"
-                  value={formValues.telefon}
-                  onChange={handleInputChange}
-                  className={styles.input}
-                  placeholder="+48 000 000 000"
-                />
-              </div>
-
-              {feedback?.type === 'error' && (
-                <div className={styles.errorMsg}>{feedback.message}</div>
               )}
 
-              <div className={styles.actionRowSpace}>
-                <button
-                  type="button"
-                  onClick={prevStep}
-                  className={styles.prevBtn}
-                  disabled={isSubmitting}
-                >
-                  Wstecz
-                </button>
-                <div className={styles.actionRowRight}>
-                  {stepError && <div className={styles.errorMsgInline}>{stepError}</div>}
-                  <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
-                    {isSubmitting ? 'Wysyłanie...' : 'Wyślij projekt'} <Check size={18} />
-                  </button>
-                </div>
-              </div>
-            </form>
-          )}
+              {step === 1 && (
+                <div className={styles.stepContent}>
+                  <h1 className={styles.stepTitle}>Opowiedz mi o wizji.</h1>
 
-          {step === 3 && (
-            <div className={styles.stepContentSuccess}>
-              <div className={styles.successIcon}>
-                <Check size={48} />
-              </div>
-              <h1 className={styles.stepTitle}>Dziękuję za zaufanie.</h1>
-              <p className={styles.successText}>
-                Twoje zapytanie zostało pomyślnie wysłane. Przeanalizuję je i odpowiem najszybciej
-                jak to możliwe (zazwyczaj w ciągu 24 godzin).
-              </p>
-              <Link href="/" className={styles.backHomeBtn}>
-                Wróć na stronę główną
-              </Link>
-            </div>
-          )}
+                  <div className={styles.inputGroup}>
+                    <label className={styles.label}>
+                      Cel projektu, inspiracje lub główne założenia *
+                    </label>
+                    <textarea
+                      name="opis"
+                      value={formValues.opis}
+                      onChange={handleInputChange}
+                      className={styles.textarea}
+                      placeholder="Napisz, co chcesz osiągnąć..."
+                      autoFocus
+                    />
+                  </div>
+
+                  <div className={styles.twoCol}>
+                    <div className={styles.inputGroup}>
+                      <label className={styles.label}>
+                        Czy posiadasz materiały (teksty, zdjęcia)?
+                      </label>
+                      <select
+                        name="materials"
+                        value={materials}
+                        onChange={(e) => setMaterials(e.target.value)}
+                        className={styles.select}
+                      >
+                        <option value="" disabled>
+                          Wybierz opcję
+                        </option>
+                        <option value="komplet">Mam komplet</option>
+                        <option value="czesc">Mam część</option>
+                        <option value="brak">Potrzebuję pomocy</option>
+                      </select>
+                    </div>
+                    <div className={styles.inputGroup}>
+                      <label className={styles.label}>Szacowana wielkość strony</label>
+                      <select
+                        name="pagesCount"
+                        value={pagesCount}
+                        onChange={(e) => setPagesCount(e.target.value)}
+                        className={styles.select}
+                      >
+                        <option value="" disabled>
+                          Wybierz opcję
+                        </option>
+                        <option value="onepager">One-pager</option>
+                        <option value="male">2-4 podstrony</option>
+                        <option value="srednie">5-10 podstron</option>
+                        <option value="duze">Więcej</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className={styles.actionRowSpace}>
+                    <button type="button" onClick={prevStep} className={styles.prevBtn}>
+                      Wstecz
+                    </button>
+                    <div className={styles.actionRowRight}>
+                      {stepError && <div className={styles.errorMsgInline}>{stepError}</div>}
+                      <button type="button" onClick={handleNextStep2} className={styles.nextBtn}>
+                        Dalej <ArrowRight size={18} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {step === 2 && (
+                <form className={styles.stepContent} onSubmit={handleSubmit} noValidate>
+                  <h1 className={styles.stepTitle}>Ostatni krok.</h1>
+
+                  <div className={styles.inputGroup}>
+                    <label className={styles.label}>Imię i nazwisko *</label>
+                    <input
+                      type="text"
+                      name="imie"
+                      value={formValues.imie}
+                      onChange={handleInputChange}
+                      className={styles.input}
+                      placeholder="Jan Kowalski"
+                      autoFocus
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.inputGroup}>
+                    <label className={styles.label}>Adres E-mail *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formValues.email}
+                      onChange={handleInputChange}
+                      className={styles.input}
+                      placeholder="jan@domena.pl"
+                      required
+                    />
+                  </div>
+
+                  <div className={styles.inputGroup}>
+                    <label className={styles.label}>Numer telefonu (opcjonalnie)</label>
+                    <input
+                      type="tel"
+                      name="telefon"
+                      value={formValues.telefon}
+                      onChange={handleInputChange}
+                      className={styles.input}
+                      placeholder="+48 000 000 000"
+                    />
+                  </div>
+
+                  {feedback?.type === 'error' && (
+                    <div className={styles.errorMsg}>{feedback.message}</div>
+                  )}
+
+                  <div className={styles.actionRowSpace}>
+                    <button
+                      type="button"
+                      onClick={prevStep}
+                      className={styles.prevBtn}
+                      disabled={isSubmitting}
+                    >
+                      Wstecz
+                    </button>
+                    <div className={styles.actionRowRight}>
+                      {stepError && <div className={styles.errorMsgInline}>{stepError}</div>}
+                      <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
+                        {isSubmitting ? 'Wysyłanie...' : 'Wyślij projekt'} <Check size={18} />
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              )}
+
+              {step === 3 && (
+                <div className={styles.stepContentSuccess}>
+                  <div className={styles.successIcon}>
+                    <Check size={48} />
+                  </div>
+                  <h1 className={styles.stepTitle}>Dziękuję za zaufanie.</h1>
+                  <p className={styles.successText}>
+                    Twoje zapytanie zostało pomyślnie wysłane. Przeanalizuję je i odpowiem
+                    najszybciej jak to możliwe (zazwyczaj w ciągu 24 godzin).
+                  </p>
+                  <Link href="/" className={styles.backHomeBtn}>
+                    Wróć na stronę główną
+                  </Link>
+                </div>
+              )}
             </>
           </ScrollReveal>
         </div>

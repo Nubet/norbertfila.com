@@ -16,66 +16,66 @@ export default function CookiePolicyPage() {
         </nav>
 
         <ScrollReveal>
-        <article className={styles.content}>
-          <h1 className={styles.title}>Polityka Cookies</h1>
-          <p className={styles.lastUpdated}>Ostatnia aktualizacja: Maj 2026</p>
+          <article className={styles.content}>
+            <h1 className={styles.title}>Polityka Cookies</h1>
+            <p className={styles.lastUpdated}>Ostatnia aktualizacja: Maj 2026</p>
 
-          <section>
-            <h2>1. Czym są pliki cookies?</h2>
-            <p>
-              Pliki cookies (tzw. „ciasteczka”) to dane informatyczne, w szczególności pliki
-              tekstowe, które przechowywane są w urządzeniu końcowym użytkownika serwisu i
-              przeznaczone są do korzystania ze stron internetowych serwisu.
-            </p>
-          </section>
+            <section>
+              <h2>1. Czym są pliki cookies?</h2>
+              <p>
+                Pliki cookies (tzw. „ciasteczka”) to dane informatyczne, w szczególności pliki
+                tekstowe, które przechowywane są w urządzeniu końcowym użytkownika serwisu i
+                przeznaczone są do korzystania ze stron internetowych serwisu.
+              </p>
+            </section>
 
-          <section>
-            <h2>2. Do czego wykorzystujemy cookies?</h2>
-            <p>
-              Na tej stronie internetowej pliki cookies wykorzystywane są w następujących celach:
-            </p>
-            <ul>
-              <li>
-                <strong>Niezbędne (Techniczne):</strong> Zapewnienie prawidłowego działania strony
-                (np. zapamiętanie Twojego wyboru w pasku zgody na cookies).
-              </li>
-              <li>
-                <strong>Analityczne:</strong> Zbieranie anonimowych statystyk, które pomagają
-                zrozumieć, w jaki sposób użytkownicy korzystają ze strony, co umożliwia ulepszanie
-                jej struktury i zawartości.
-              </li>
-            </ul>
-          </section>
+            <section>
+              <h2>2. Do czego wykorzystujemy cookies?</h2>
+              <p>
+                Na tej stronie internetowej pliki cookies wykorzystywane są w następujących celach:
+              </p>
+              <ul>
+                <li>
+                  <strong>Niezbędne (Techniczne):</strong> Zapewnienie prawidłowego działania strony
+                  (np. zapamiętanie Twojego wyboru w pasku zgody na cookies).
+                </li>
+                <li>
+                  <strong>Analityczne:</strong> Zbieranie anonimowych statystyk, które pomagają
+                  zrozumieć, w jaki sposób użytkownicy korzystają ze strony, co umożliwia ulepszanie
+                  jej struktury i zawartości.
+                </li>
+              </ul>
+            </section>
 
-          <section>
-            <h2>3. Zarządzanie plikami cookies</h2>
-            <p>
-              Większość przeglądarek internetowych domyślnie akceptuje pliki cookies. Możesz w
-              każdej chwili zmienić ustawienia swojej przeglądarki, aby blokować obsługę cookies lub
-              informować o ich każdorazowym zamieszczeniu w Twoim urządzeniu. Szczegółowe informacje
-              o możliwości i sposobach obsługi plików cookies dostępne są w ustawieniach
-              oprogramowania (przeglądarki internetowej).
-            </p>
-            <CookiePreferencesButton />
-          </section>
+            <section>
+              <h2>3. Zarządzanie plikami cookies</h2>
+              <p>
+                Większość przeglądarek internetowych domyślnie akceptuje pliki cookies. Możesz w
+                każdej chwili zmienić ustawienia swojej przeglądarki, aby blokować obsługę cookies
+                lub informować o ich każdorazowym zamieszczeniu w Twoim urządzeniu. Szczegółowe
+                informacje o możliwości i sposobach obsługi plików cookies dostępne są w
+                ustawieniach oprogramowania (przeglądarki internetowej).
+              </p>
+              <CookiePreferencesButton />
+            </section>
 
-          <section>
-            <h2>4. Lista wykorzystywanych ciasteczek</h2>
-            <p>
-              Poniżej znajdziesz aktualną tabelę ciasteczek. To ten sam katalog cookies, który
-              wyświetla się w oknie ustawień banera zgody.
-            </p>
-            <CookiePolicyTable />
-          </section>
+            <section>
+              <h2>4. Lista wykorzystywanych ciasteczek</h2>
+              <p>
+                Poniżej znajdziesz aktualną tabelę ciasteczek. To ten sam katalog cookies, który
+                wyświetla się w oknie ustawień banera zgody.
+              </p>
+              <CookiePolicyTable />
+            </section>
 
-          <section>
-            <h2>5. Kontakt</h2>
-            <p>
-              W razie pytań dotyczących polityki cookies zapraszam do kontaktu przez{' '}
-              <Link href="/contact">formularz kontaktowy</Link>.
-            </p>
-          </section>
-        </article>
+            <section>
+              <h2>5. Kontakt</h2>
+              <p>
+                W razie pytań dotyczących polityki cookies zapraszam do kontaktu przez{' '}
+                <Link href="/contact">formularz kontaktowy</Link>.
+              </p>
+            </section>
+          </article>
         </ScrollReveal>
       </div>
     </main>
