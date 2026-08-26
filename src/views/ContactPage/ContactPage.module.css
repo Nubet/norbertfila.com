@@ -1,9 +1,15 @@
 .page {
-  padding-top: 100px;
+  padding-top: 120px;
   min-height: 100vh;
   background-color: var(--bg-primary);
   display: flex;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding-top: 160px;
+  }
 }
 
 .container {
