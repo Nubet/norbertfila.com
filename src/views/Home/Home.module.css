@@ -18,7 +18,11 @@
 
 .heroMedia {
   position: absolute;
-  inset: 0;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  transition: transform 2.2s cubic-bezier(0.1, 0.8, 0.15, 1);
+  will-change: transform;
 }
 
 .heroPoster,

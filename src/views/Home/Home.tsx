@@ -100,10 +100,33 @@ export default function Home() {
     }
   }
 
+  const heroMediaRef = useRef<HTMLDivElement>(null)
+
+  const handleHeroMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!heroMediaRef.current) return
+    const { clientX, clientY } = e
+    const { innerWidth, innerHeight } = window
+    
+    // Bardzo subtelny efekt paralaksy z dużą bezwładnością
+    const moveX = ((clientX / innerWidth) - 0.5) * 1.5
+    const moveY = ((clientY / innerHeight) - 0.5) * 1.5
+
+    heroMediaRef.current.style.transform = `translate(${moveX}%, ${moveY}%)`
+  }
+
+  const handleHeroMouseLeave = () => {
+    if (!heroMediaRef.current) return
+    heroMediaRef.current.style.transform = `translate(0%, 0%)`
+  }
+
   return (
     <div className={styles.home}>
-      <section className={styles.hero}>
-        <div className={styles.heroMedia} aria-hidden="true">
+      <section 
+        className={styles.hero}
+        onMouseMove={handleHeroMouseMove}
+        onMouseLeave={handleHeroMouseLeave}
+      >
+        <div className={styles.heroMedia} aria-hidden="true" ref={heroMediaRef}>
           <Image
             src="/home/hero/poster.jpg"
             alt=""
