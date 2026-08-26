@@ -155,7 +155,7 @@ export default function Home() {
                   width={260}
                   height={117}
                   style={{
-                    width: '180px',
+                    width: '220px',
                     height: 'auto',
                     display: 'block',
                     margin: '0 0 -1rem 0',
