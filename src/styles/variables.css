@@ -21,7 +21,7 @@
   --ease-sharp: cubic-bezier(0.25, 1, 0.5, 1);
   --duration-fast: 300ms;
   --duration-med: 500ms;
-  
+
   --font-heading: var(--font-cormorant), serif;
   --font-body: var(--font-montserrat), sans-serif;
   --font-signature: var(--font-great-vibes), cursive;

@@ -14,16 +14,20 @@ export default function ContactPage() {
   const [pagesCount, setPagesCount] = useState('')
   const [formValues, setFormValues] = useState({ opis: '', imie: '', email: '', telefon: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+  const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(
+    null
+  )
   const [stepError, setStepError] = useState<string | null>(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [step])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target
-    setFormValues(prev => ({ ...prev, [name]: value }))
+    setFormValues((prev) => ({ ...prev, [name]: value }))
     if (stepError) setStepError(null) // clear error on typing
   }
 
@@ -35,7 +39,8 @@ export default function ContactPage() {
   }
 
   const handleNextStep2 = () => {
-    if (formValues.opis.trim().length < 25) return setStepError('Proszę opisać swój projekt (minimum 25 znaków).')
+    if (formValues.opis.trim().length < 25)
+      return setStepError('Proszę opisać swój projekt (minimum 25 znaków).')
     if (!materials) return setStepError('Proszę wybrać, czy posiadasz materiały.')
     if (!pagesCount) return setStepError('Proszę określić szacowaną wielkość strony.')
     setStepError(null)
@@ -44,7 +49,7 @@ export default function ContactPage() {
 
   const prevStep = () => {
     setStepError(null)
-    setStep(s => Math.max(0, s - 1))
+    setStep((s) => Math.max(0, s - 1))
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -52,7 +57,8 @@ export default function ContactPage() {
     if (isSubmitting) return
 
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formValues.email)
-    if (formValues.imie.trim().length < 3) return setStepError('Proszę podać poprawne imię i nazwisko.')
+    if (formValues.imie.trim().length < 3)
+      return setStepError('Proszę podać poprawne imię i nazwisko.')
     if (!isEmailValid) return setStepError('Proszę podać poprawny adres e-mail.')
 
     setIsSubmitting(true)
@@ -78,7 +84,10 @@ export default function ContactPage() {
       if (error instanceof ContactFormError) {
         setFeedback({ type: 'error', message: error.message })
       } else {
-        setFeedback({ type: 'error', message: 'Wystąpił problem. Napisz bezpośrednio na kontakt@norbertfila.com' })
+        setFeedback({
+          type: 'error',
+          message: 'Wystąpił problem. Napisz bezpośrednio na kontakt@norbertfila.com',
+        })
       }
     } finally {
       setIsSubmitting(false)
@@ -112,10 +121,21 @@ export default function ContactPage() {
           {step === 0 && (
             <div className={styles.stepContent}>
               <h1 className={styles.stepTitle}>Jakiego projektu potrzebujesz?</h1>
-              
+
               <div className={styles.optionsGrid}>
-                {['Strona firmowa', 'Landing page', 'Sklep / E-commerce', 'Redesign strony', 'Coś innego'].map(type => (
-                  <button key={type} type="button" onClick={() => setProjectType(type)} className={`${styles.luxuryPill} ${projectType === type ? styles.activePill : ''}`}>
+                {[
+                  'Strona firmowa',
+                  'Landing page',
+                  'Sklep / E-commerce',
+                  'Redesign strony',
+                  'Coś innego',
+                ].map((type) => (
+                  <button
+                    key={type}
+                    type="button"
+                    onClick={() => setProjectType(type)}
+                    className={`${styles.luxuryPill} ${projectType === type ? styles.activePill : ''}`}
+                  >
                     {type}
                   </button>
                 ))}
@@ -123,8 +143,13 @@ export default function ContactPage() {
 
               <h2 className={styles.stepSubtitle}>Planowany budżet netto</h2>
               <div className={styles.optionsGrid}>
-                {['Nie wiem', 'Do 1500 zł', '1500 - 3000 zł', 'Powyżej 3000 zł'].map(amount => (
-                  <button key={amount} type="button" onClick={() => setBudget(amount)} className={`${styles.luxuryPill} ${budget === amount ? styles.activePill : ''}`}>
+                {['Nie wiem', 'Do 1500 zł', '1500 - 3000 zł', 'Powyżej 3000 zł'].map((amount) => (
+                  <button
+                    key={amount}
+                    type="button"
+                    onClick={() => setBudget(amount)}
+                    className={`${styles.luxuryPill} ${budget === amount ? styles.activePill : ''}`}
+                  >
                     {amount}
                   </button>
                 ))}
@@ -142,15 +167,17 @@ export default function ContactPage() {
           {step === 1 && (
             <div className={styles.stepContent}>
               <h1 className={styles.stepTitle}>Opowiedz mi o wizji.</h1>
-              
+
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Cel projektu, inspiracje lub główne założenia *</label>
-                <textarea 
-                  name="opis" 
-                  value={formValues.opis} 
-                  onChange={handleInputChange} 
-                  className={styles.textarea} 
-                  placeholder="Napisz, co chcesz osiągnąć..." 
+                <label className={styles.label}>
+                  Cel projektu, inspiracje lub główne założenia *
+                </label>
+                <textarea
+                  name="opis"
+                  value={formValues.opis}
+                  onChange={handleInputChange}
+                  className={styles.textarea}
+                  placeholder="Napisz, co chcesz osiągnąć..."
                   autoFocus
                 />
               </div>
@@ -158,8 +185,15 @@ export default function ContactPage() {
               <div className={styles.twoCol}>
                 <div className={styles.inputGroup}>
                   <label className={styles.label}>Czy posiadasz materiały (teksty, zdjęcia)?</label>
-                  <select name="materials" value={materials} onChange={e => setMaterials(e.target.value)} className={styles.select}>
-                    <option value="" disabled>Wybierz opcję</option>
+                  <select
+                    name="materials"
+                    value={materials}
+                    onChange={(e) => setMaterials(e.target.value)}
+                    className={styles.select}
+                  >
+                    <option value="" disabled>
+                      Wybierz opcję
+                    </option>
                     <option value="komplet">Mam komplet</option>
                     <option value="czesc">Mam część</option>
                     <option value="brak">Potrzebuję pomocy</option>
@@ -167,8 +201,15 @@ export default function ContactPage() {
                 </div>
                 <div className={styles.inputGroup}>
                   <label className={styles.label}>Szacowana wielkość strony</label>
-                  <select name="pagesCount" value={pagesCount} onChange={e => setPagesCount(e.target.value)} className={styles.select}>
-                    <option value="" disabled>Wybierz opcję</option>
+                  <select
+                    name="pagesCount"
+                    value={pagesCount}
+                    onChange={(e) => setPagesCount(e.target.value)}
+                    className={styles.select}
+                  >
+                    <option value="" disabled>
+                      Wybierz opcję
+                    </option>
                     <option value="onepager">One-pager</option>
                     <option value="male">2-4 podstrony</option>
                     <option value="srednie">5-10 podstron</option>
@@ -194,20 +235,44 @@ export default function ContactPage() {
           {step === 2 && (
             <form className={styles.stepContent} onSubmit={handleSubmit} noValidate>
               <h1 className={styles.stepTitle}>Ostatni krok.</h1>
-              
+
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Imię i nazwisko *</label>
-                <input type="text" name="imie" value={formValues.imie} onChange={handleInputChange} className={styles.input} placeholder="Jan Kowalski" autoFocus required />
+                <input
+                  type="text"
+                  name="imie"
+                  value={formValues.imie}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  placeholder="Jan Kowalski"
+                  autoFocus
+                  required
+                />
               </div>
 
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Adres E-mail *</label>
-                <input type="email" name="email" value={formValues.email} onChange={handleInputChange} className={styles.input} placeholder="jan@domena.pl" required />
+                <input
+                  type="email"
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  placeholder="jan@domena.pl"
+                  required
+                />
               </div>
 
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Numer telefonu (opcjonalnie)</label>
-                <input type="tel" name="telefon" value={formValues.telefon} onChange={handleInputChange} className={styles.input} placeholder="+48 000 000 000" />
+                <input
+                  type="tel"
+                  name="telefon"
+                  value={formValues.telefon}
+                  onChange={handleInputChange}
+                  className={styles.input}
+                  placeholder="+48 000 000 000"
+                />
               </div>
 
               {feedback?.type === 'error' && (
@@ -215,7 +280,12 @@ export default function ContactPage() {
               )}
 
               <div className={styles.actionRowSpace}>
-                <button type="button" onClick={prevStep} className={styles.prevBtn} disabled={isSubmitting}>
+                <button
+                  type="button"
+                  onClick={prevStep}
+                  className={styles.prevBtn}
+                  disabled={isSubmitting}
+                >
                   Wstecz
                 </button>
                 <div className={styles.actionRowRight}>
@@ -230,10 +300,13 @@ export default function ContactPage() {
 
           {step === 3 && (
             <div className={styles.stepContentSuccess}>
-              <div className={styles.successIcon}><Check size={48} /></div>
+              <div className={styles.successIcon}>
+                <Check size={48} />
+              </div>
               <h1 className={styles.stepTitle}>Dziękuję za zaufanie.</h1>
               <p className={styles.successText}>
-                Twoje zapytanie zostało pomyślnie wysłane. Przeanalizuję je i odpowiem najszybciej jak to możliwe (zazwyczaj w ciągu 24 godzin).
+                Twoje zapytanie zostało pomyślnie wysłane. Przeanalizuję je i odpowiem najszybciej
+                jak to możliwe (zazwyczaj w ciągu 24 godzin).
               </p>
               <Link href="/" className={styles.backHomeBtn}>
                 Wróć na stronę główną

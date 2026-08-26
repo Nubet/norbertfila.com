@@ -8,19 +8,20 @@ import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { portfolioProjects } from '@/data/portfolio'
 import styles from './Portfolio.module.css'
 
-const categories = ['Wszystko', ...Array.from(new Set(portfolioProjects.map(p => p.category)))]
+const categories = ['Wszystko', ...Array.from(new Set(portfolioProjects.map((p) => p.category)))]
 
 export function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Wszystko')
 
-  const filteredProjects = activeCategory === 'Wszystko' 
-    ? portfolioProjects 
-    : portfolioProjects.filter(p => p.category === activeCategory)
+  const filteredProjects =
+    activeCategory === 'Wszystko'
+      ? portfolioProjects
+      : portfolioProjects.filter((p) => p.category === activeCategory)
 
   return (
     <div className={styles.portfolioPage}>
       <div className={styles.headerSpacer} />
-      
+
       <section className={styles.heroSection}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -32,8 +33,8 @@ export function Portfolio() {
 
           <ScrollReveal delay={100}>
             <div className={styles.filterBar}>
-              {categories.map(cat => (
-                <button 
+              {categories.map((cat) => (
+                <button
                   key={cat}
                   className={`${styles.filterBtn} ${activeCategory === cat ? styles.filterBtnActive : ''}`}
                   onClick={() => setActiveCategory(cat)}
@@ -56,14 +57,26 @@ export function Portfolio() {
                     <div className={styles.mobileScreenshotsWrapper}>
                       {project.images.map((img, i) => (
                         <div key={i} className={styles.mobileScreenshot}>
-                          <Image src={img} alt={`${project.title} screen ${i + 1}`} fill className={styles.projectImage} sizes="(max-width: 768px) 33vw, 20vw" />
+                          <Image
+                            src={img}
+                            alt={`${project.title} screen ${i + 1}`}
+                            fill
+                            className={styles.projectImage}
+                            sizes="(max-width: 768px) 33vw, 20vw"
+                          />
                         </div>
                       ))}
                       <div className={styles.categoryPill}>{project.category}</div>
                     </div>
                   ) : (
                     <div className={styles.portfolioImageWrapper}>
-                      <Image src={project.image} alt={project.title} fill className={styles.projectImage} sizes="(max-width: 768px) 100vw, 50vw" />
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className={styles.projectImage}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
                       <div className={styles.categoryPill}>{project.category}</div>
                     </div>
                   )}
@@ -77,7 +90,7 @@ export function Portfolio() {
                 </article>
               </ScrollReveal>
             ))}
-            
+
             {filteredProjects.length === 0 && (
               <p className={styles.noResults}>Brak projektów w tej kategorii.</p>
             )}

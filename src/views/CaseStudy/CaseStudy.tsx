@@ -21,26 +21,26 @@ export function CaseStudy({ data }: CaseStudyProps) {
         <section className={styles.hero}>
           <ScrollReveal>
             <div className={styles.openingImageWrapper}>
-              <img 
+              <img
                 src={data.openingImage}
-                alt={data.title} 
-                className={styles.openingImage} 
-                loading="lazy" 
+                alt={data.title}
+                className={styles.openingImage}
+                loading="lazy"
               />
             </div>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={100}>
             <div className={styles.heroGrid}>
               <div className={styles.titleColumn}>
                 <h1 className={styles.projectTitle}>{data.title}</h1>
               </div>
-              
+
               <div className={styles.contentColumn}>
                 <div className={styles.projectGoal}>
                   <p>{data.clientDescription}</p>
                 </div>
-                
+
                 <aside className={styles.projectDataHorizontal}>
                   <div className={styles.dataGroup}>
                     <span className={styles.dataLabel}>Rola</span>
@@ -67,30 +67,28 @@ export function CaseStudy({ data }: CaseStudyProps) {
         <section className={styles.overviewSection}>
           <ScrollReveal>
             <h2 className={styles.overviewTitle}>O projekcie</h2>
-            <p className={styles.overviewText}>
-              {data.overviewText}
-            </p>
+            <p className={styles.overviewText}>{data.overviewText}</p>
           </ScrollReveal>
         </section>
 
         <section className={styles.asymmetricGallery}>
           <ScrollReveal>
             <div className={styles.mockupFull}>
-              <img 
-                src={data.galleryImage1} 
-                alt={`${data.title} - 1`} 
-                className={styles.galleryImageFull} 
-                loading="lazy" 
+              <img
+                src={data.galleryImage1}
+                alt={`${data.title} - 1`}
+                className={styles.galleryImageFull}
+                loading="lazy"
               />
             </div>
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <div className={styles.mockupCropped}>
-              <img 
-                src={data.galleryImage2} 
-                alt={`${data.title} - 2`} 
-                className={styles.galleryImageCropped} 
-                loading="lazy" 
+              <img
+                src={data.galleryImage2}
+                alt={`${data.title} - 2`}
+                className={styles.galleryImageCropped}
+                loading="lazy"
               />
             </div>
           </ScrollReveal>
@@ -108,8 +106,8 @@ export function CaseStudy({ data }: CaseStudyProps) {
           <div className={styles.monitorWrapper}>
             <div className={styles.monitorFrame}>
               <div className={styles.mockupWindow}>
-                <img 
-                  src={data.fullPageMockup} 
+                <img
+                  src={data.fullPageMockup}
                   alt={`Pełny podgląd ${data.title}`}
                   className={styles.mockupImage}
                   loading="lazy"
@@ -127,16 +125,23 @@ export function CaseStudy({ data }: CaseStudyProps) {
           {data.prevProjectSlug && data.prevProjectName ? (
             <Link href={`/portfolio/${data.prevProjectSlug}`} className={styles.navLink}>
               <span className={styles.navDirection}>Poprzedni</span>
-              <span className={styles.navProjectName}><ArrowLeft size={20} /> {data.prevProjectName}</span>
+              <span className={styles.navProjectName}>
+                <ArrowLeft size={20} /> {data.prevProjectName}
+              </span>
             </Link>
           ) : (
             <div style={{ flex: 1 }}></div>
           )}
-          
+
           {data.nextProjectSlug && data.nextProjectName ? (
-            <Link href={`/portfolio/${data.nextProjectSlug}`} className={`${styles.navLink} ${styles.next}`}>
+            <Link
+              href={`/portfolio/${data.nextProjectSlug}`}
+              className={`${styles.navLink} ${styles.next}`}
+            >
               <span className={styles.navDirection}>Następny</span>
-              <span className={styles.navProjectName}>{data.nextProjectName} <ArrowRight size={20} /></span>
+              <span className={styles.navProjectName}>
+                {data.nextProjectName} <ArrowRight size={20} />
+              </span>
             </Link>
           ) : (
             <div style={{ flex: 1 }}></div>
@@ -147,9 +152,7 @@ export function CaseStudy({ data }: CaseStudyProps) {
       <section className={styles.finalCtaSection}>
         <div className={styles.container}>
           <ScrollReveal>
-            <h2 className={styles.finalCtaTitle}>
-              Czas na Twój projekt.
-            </h2>
+            <h2 className={styles.finalCtaTitle}>Czas na Twój projekt.</h2>
             <Link href="/contact" className={styles.finalCtaButton}>
               Porozmawiajmy o współpracy
             </Link>

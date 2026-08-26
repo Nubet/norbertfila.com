@@ -95,7 +95,6 @@
   opacity: 0.5;
 }
 
-
 :global(.characters) {
   filter: grayscale(1) opacity(0.08) sepia(0.5);
 }

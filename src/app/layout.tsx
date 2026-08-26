@@ -7,6 +7,7 @@ import { siteConfig } from '@/shared/seo/site'
 import { cormorant, montserrat, greatVibes } from '@/shared/fonts'
 import '../styles/variables.css'
 import '../styles/global.css'
+import { CustomCursor } from '@/components/CustomCursor/CustomCursor'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -59,8 +60,12 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="pl" className={`${cormorant.variable} ${montserrat.variable} ${greatVibes.variable}`}>
+    <html
+      lang="pl"
+      className={`${cormorant.variable} ${montserrat.variable} ${greatVibes.variable}`}
+    >
       <body>
+        <CustomCursor />
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Header />
           <main style={{ flex: 1 }}>{children}</main>

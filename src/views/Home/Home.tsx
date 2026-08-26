@@ -13,10 +13,13 @@ import styles from './Home.module.css'
 export default function Home() {
   const [ebookEmail, setEbookEmail] = useState('')
   const [ebookLoading, setEbookLoading] = useState(false)
-  const [ebookFeedback, setEbookFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
-  
+  const [ebookFeedback, setEbookFeedback] = useState<{
+    type: 'success' | 'error'
+    message: string
+  } | null>(null)
+
   const carouselRef = useRef<HTMLDivElement>(null)
-  
+
   // Drag states
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
@@ -29,10 +32,10 @@ export default function Home() {
         const card = track.firstElementChild as HTMLElement
         const gap = window.innerWidth > 900 ? 64 : 32 // 4rem on desktop, 2rem on mobile
         const scrollAmount = card.offsetWidth + gap
-        
+
         carouselRef.current.scrollBy({
           left: direction === 'left' ? -scrollAmount : scrollAmount,
-          behavior: 'smooth'
+          behavior: 'smooth',
         })
       }
     }
@@ -77,7 +80,7 @@ export default function Home() {
     const form = event.currentTarget
     const formData = new FormData(form)
     const honeypot = String(formData.get('company') ?? '')
-    
+
     setEbookFeedback(null)
     setEbookLoading(true)
 
@@ -188,9 +191,15 @@ export default function Home() {
         <div className={styles.container}>
           <ScrollReveal>
             <div style={{ textAlign: 'center' }}>
-              <span className={styles.sectionLabel} style={{ marginBottom: '1.5rem', display: 'block' }}>Filozofia Projektowa</span>
+              <span
+                className={styles.sectionLabel}
+                style={{ marginBottom: '1.5rem', display: 'block' }}
+              >
+                Filozofia Projektowa
+              </span>
               <h2 className={styles.statementText}>
-                Skuteczna strona nie rozprasza. Skupia całą uwagę klienta wyłącznie na <i>wartości</i>, którą mu dostarczasz.
+                Skuteczna strona nie rozprasza. Skupia całą uwagę klienta wyłącznie na{' '}
+                <i>wartości</i>, którą mu dostarczasz.
               </h2>
             </div>
           </ScrollReveal>
@@ -225,8 +234,8 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
-          <div 
-            className={`${styles.carouselWrapper} ${isDragging ? styles.dragging : ''}`} 
+          <div
+            className={`${styles.carouselWrapper} ${isDragging ? styles.dragging : ''}`}
             ref={carouselRef}
             tabIndex={0}
             onKeyDown={handleKeyDown}
@@ -364,9 +373,7 @@ export default function Home() {
       <section className={styles.finalCtaSection}>
         <div className={styles.container}>
           <ScrollReveal>
-            <h2 className={styles.finalCtaTitle}>
-              Czas na nową stronę.
-            </h2>
+            <h2 className={styles.finalCtaTitle}>Czas na nową stronę.</h2>
             <p className={styles.finalCtaText}>
               Napisz do mnie i opowiedz o swoim biznesie. Wspólnie sprawdzimy, jak mogę Ci pomóc.
             </p>

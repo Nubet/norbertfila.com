@@ -101,7 +101,9 @@
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .socialIcons a:hover {
