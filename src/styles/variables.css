@@ -22,7 +22,7 @@
   --duration-fast: 300ms;
   --duration-med: 500ms;
 
-  --font-heading: var(--font-cormorant), serif;
+  --font-heading: var(--font-the-seasons), serif;
   --font-body: var(--font-montserrat), sans-serif;
   --font-signature: var(--font-great-vibes), cursive;
 }

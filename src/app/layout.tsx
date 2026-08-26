@@ -4,7 +4,7 @@ import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { siteConfig } from '@/shared/seo/site'
-import { cormorant, montserrat, greatVibes } from '@/shared/fonts'
+import { theSeasons, montserrat, greatVibes } from '@/shared/fonts'
 import '../styles/variables.css'
 import '../styles/global.css'
 import { CustomCursor } from '@/components/CustomCursor/CustomCursor'
@@ -62,7 +62,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="pl"
-      className={`${cormorant.variable} ${montserrat.variable} ${greatVibes.variable}`}
+      className={`${theSeasons.variable} ${montserrat.variable} ${greatVibes.variable}`}
     >
       <body>
         <CustomCursor />
