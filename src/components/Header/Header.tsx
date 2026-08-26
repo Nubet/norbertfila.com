@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import styles from './Header.module.css'
 
@@ -15,7 +16,14 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
-          Norbert Fila
+          <Image 
+            src="/fila-signature/signature-fila-transparent.svg" 
+            alt="Norbert Fila" 
+            width={200} 
+            height={90} 
+            style={{ width: '140px', height: 'auto', margin: '-0.5rem 0' }}
+            priority
+          />
         </Link>
         <nav className={styles.nav}>
           <Link href="/about" className={styles.navLink}>

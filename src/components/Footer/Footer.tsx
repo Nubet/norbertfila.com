@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Linkedin, Mail } from 'lucide-react'
 import styles from './Footer.module.css'
 
@@ -11,7 +12,13 @@ export function Footer() {
         <div className={styles.topSection}>
           <div className={styles.brand}>
             <Link href="/" className={styles.brandName}>
-              Norbert Fila
+              <Image 
+                src="/fila-signature/signature-fila-transparent.svg" 
+                alt="Norbert Fila" 
+                width={260} 
+                height={117} 
+                style={{ width: '180px', height: 'auto', margin: '-0.5rem 0 -0.5rem -0.5rem' }}
+              />
             </Link>
             <p className={styles.brandMission}>
               Strony szyte na miarę. Zaprojektowane, by wyróżniać Cię estetyką i generować zysk.

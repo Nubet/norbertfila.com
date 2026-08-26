@@ -106,6 +106,7 @@ export default function Home() {
       <section className={styles.hero}>
         <ParallaxBackground
           videoSrc="/home/hero/background.mp4"
+          webmSrc="/home/hero/background.webm"
           posterSrc="/home/hero/poster.jpg"
           overlayVariant="minimal"
         />
@@ -137,7 +138,15 @@ export default function Home() {
                 tekstu – przejrzysty przekaz. Zamiast skomplikowanej nawigacji – prosta droga do
                 akcji. Tworzę estetykę, która naturalnie konwertuje i buduje autorytet.
               </p>
-              <div className={styles.signatureSmall}>Norbert Fila</div>
+              <div className={styles.signatureSmall}>
+                <Image 
+                  src="/fila-signature/signature-fila-transparent.svg" 
+                  alt="Norbert Fila" 
+                  width={260} 
+                  height={117} 
+                  style={{ width: '180px', height: 'auto', display: 'block', margin: '0 0 -1rem 0' }}
+                />
+              </div>
             </div>
             <div className={styles.portraitFrame}>
               <Image
