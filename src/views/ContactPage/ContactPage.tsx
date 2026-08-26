@@ -99,9 +99,9 @@ export default function ContactPage() {
   return (
     <main className={styles.page}>
       <ParallaxBackground
-        videoSrc="/home/contact-background.mp4"
-        webmSrc="/home/contact-background.webm"
-        posterSrc="/home/contact-poster.jpg"
+        videoSrc="/home/contact/contact-background.mp4"
+        webmSrc="/home/contact/contact-background.webm"
+        posterSrc="/home/contact/contact-poster.jpg"
         overlayVariant="studio"
       />
       <div className={styles.container}>
