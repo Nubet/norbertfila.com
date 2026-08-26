@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Clock } from 'lucide-react'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { portfolioProjects } from '@/data/portfolio'
 import styles from './Portfolio.module.css'
@@ -12,6 +12,15 @@ const categories = ['Wszystko', ...Array.from(new Set(portfolioProjects.map((p) 
 
 export function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Wszystko')
+  const [comingSoonId, setComingSoonId] = useState<string | null>(null)
+
+  const handleReadMoreClick = (e: React.MouseEvent, project: typeof portfolioProjects[0]) => {
+    if (!project.isReady) {
+      e.preventDefault()
+      setComingSoonId(project.id)
+      setTimeout(() => setComingSoonId(null), 3000)
+    }
+  }
 
   const filteredProjects =
     activeCategory === 'Wszystko'
@@ -26,9 +35,7 @@ export function Portfolio() {
         <div className={styles.container}>
           <ScrollReveal>
             <h1 className={styles.pageTitle}>Zrealizowane Projekty</h1>
-            <p className={styles.pageSub}>
-              Przejrzyj wybrane realizacje i studia przypadków podzielone na branże.
-            </p>
+            <p className={styles.pageSub}>Zobacz wybrane realizacje z podziałem na branże.</p>
           </ScrollReveal>
 
           <ScrollReveal delay={100}>
@@ -83,8 +90,18 @@ export function Portfolio() {
                   <div className={styles.portfolioInfo}>
                     <h3 className={styles.portfolioTitle}>{project.title}</h3>
                     <p className={styles.portfolioDesc}>{project.description}</p>
-                    <Link href={`#${project.id}`} className={styles.readMoreBtn}>
-                      Czytaj dalej <ArrowRight size={18} />
+                    <Link 
+                      href={`#${project.id}`} 
+                      className={styles.readMoreBtn}
+                      onClick={(e) => handleReadMoreClick(e, project)}
+                    >
+                      {comingSoonId === project.id ? (
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--color-gold)' }}>
+                          Wkrótce dostępne <Clock size={18} />
+                        </span>
+                      ) : (
+                        <>Czytaj dalej <ArrowRight size={18} /></>
+                      )}
                     </Link>
                   </div>
                 </article>

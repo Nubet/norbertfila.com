@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef, type FormEvent } from 'react'
-import { ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight, Clock } from 'lucide-react'
 import { FAQ } from '@/components/FAQ/FAQ'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
@@ -18,6 +18,16 @@ export default function Home() {
     type: 'success' | 'error'
     message: string
   } | null>(null)
+
+  const [comingSoonId, setComingSoonId] = useState<string | null>(null)
+
+  const handleReadMoreClick = (e: React.MouseEvent, project: typeof portfolioProjects[0]) => {
+    if (!project.isReady) {
+      e.preventDefault()
+      setComingSoonId(project.id)
+      setTimeout(() => setComingSoonId(null), 3000)
+    }
+  }
 
   const carouselRef = useRef<HTMLDivElement>(null)
 
@@ -282,8 +292,18 @@ export default function Home() {
                     <div className={styles.portfolioInfo}>
                       <h3 className={styles.portfolioTitle}>{project.title}</h3>
                       <p className={styles.portfolioDesc}>{project.shortDescription}</p>
-                      <Link href={`/portfolio#${project.id}`} className={styles.readMoreBtn}>
-                        Czytaj dalej <ArrowRight size={18} />
+                      <Link 
+                        href={`/portfolio#${project.id}`} 
+                        className={styles.readMoreBtn}
+                        onClick={(e) => handleReadMoreClick(e, project)}
+                      >
+                        {comingSoonId === project.id ? (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--color-gold)' }}>
+                            Wkrótce dostępne <Clock size={18} />
+                          </span>
+                        ) : (
+                          <>Czytaj dalej <ArrowRight size={18} /></>
+                        )}
                       </Link>
                     </div>
                   </article>
