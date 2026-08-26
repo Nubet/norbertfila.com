@@ -35,8 +35,33 @@
   transition: opacity 0.3s ease;
 }
 
-.brandName:hover {
-  opacity: 0.8;
+.logoWrapper {
+  position: relative;
+  width: 180px;
+  height: auto;
+  margin: -0.5rem 0 -0.5rem -0.5rem;
+}
+
+.logoDefault, .logoHover {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
+.logoHover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.brandName:hover .logoDefault {
+  opacity: 0;
+}
+
+.brandName:hover .logoHover {
+  opacity: 1;
 }
 
 .brandMission {

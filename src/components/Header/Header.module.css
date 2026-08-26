@@ -49,7 +49,36 @@
 }
 
 .logo:hover {
-  opacity: 0.8;
+  /* removed opacity: 0.8, handled by logoWrapper now */
+}
+
+.logoWrapper {
+  position: relative;
+  width: 140px;
+  height: auto;
+  margin: -0.5rem 0;
+}
+
+.logoDefault, .logoHover {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity var(--duration-med) var(--ease-sharp);
+}
+
+.logoHover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.logo:hover .logoDefault {
+  opacity: 0;
+}
+
+.logo:hover .logoHover {
+  opacity: 1;
 }
 
 .nav {

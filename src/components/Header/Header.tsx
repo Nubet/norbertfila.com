@@ -16,14 +16,24 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
-          <Image 
-            src="/fila-signature/signature-fila-green.svg" 
-            alt="Norbert Fila" 
-            width={200} 
-            height={90} 
-            style={{ width: '140px', height: 'auto', margin: '-0.5rem 0' }}
-            priority
-          />
+          <div className={styles.logoWrapper}>
+            <Image 
+              src="/fila-signature/signature-fila-green.svg" 
+              alt="Norbert Fila" 
+              width={200} 
+              height={90} 
+              className={styles.logoDefault}
+              priority
+            />
+            <Image 
+              src="/fila-signature/signature-fila-gold.svg" 
+              alt="" 
+              width={200} 
+              height={90} 
+              className={styles.logoHover}
+              priority
+            />
+          </div>
         </Link>
         <nav className={styles.nav}>
           <Link href="/about" className={styles.navLink}>

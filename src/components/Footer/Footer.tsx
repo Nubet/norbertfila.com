@@ -12,13 +12,22 @@ export function Footer() {
         <div className={styles.topSection}>
           <div className={styles.brand}>
             <Link href="/" className={styles.brandName}>
-              <Image 
-                src="/fila-signature/signature-fila-red.svg" 
-                alt="Norbert Fila" 
-                width={260} 
-                height={117} 
-                style={{ width: '180px', height: 'auto', margin: '-0.5rem 0 -0.5rem -0.5rem' }}
-              />
+              <div className={styles.logoWrapper}>
+                <Image 
+                  src="/fila-signature/signature-fila-red.svg" 
+                  alt="Norbert Fila" 
+                  width={260} 
+                  height={117} 
+                  className={styles.logoDefault}
+                />
+                <Image 
+                  src="/fila-signature/signature-fila-gold.svg" 
+                  alt="" 
+                  width={260} 
+                  height={117} 
+                  className={styles.logoHover}
+                />
+              </div>
             </Link>
             <p className={styles.brandMission}>
               Strony szyte na miarę. Zaprojektowane, by wyróżniać Cię estetyką i generować zysk.
