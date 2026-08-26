@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { submitContactForm, ContactFormError } from '@/features/contact/submitContactForm'
 import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
+import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import styles from './ContactPage.module.css'
 
 export default function ContactPage() {
@@ -105,46 +106,52 @@ export default function ContactPage() {
       />
       <div className={styles.container}>
         {step === -1 && (
-          <div className={styles.premiumIntro}>
-            <h1 className={styles.premiumTitle}>Porozmawiajmy.</h1>
-            <div className={styles.premiumActions}>
-              <a
-                href="https://calendly.com/kontakt-norbertfila/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.premiumBtn}
-              >
-                Zarezerwuj rozmowę
-              </a>
-              <button onClick={() => setStep(0)} className={styles.premiumBtn}>
-                Napisz wiadomość
-              </button>
+          <ScrollReveal>
+            <div className={styles.premiumIntro}>
+              <h1 className={styles.premiumTitle}>Porozmawiajmy.</h1>
+              <div className={styles.premiumActions}>
+                <a
+                  href="https://calendly.com/kontakt-norbertfila/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.premiumBtn}
+                >
+                  Zarezerwuj rozmowę
+                </a>
+                <button onClick={() => setStep(0)} className={styles.premiumBtn}>
+                  Napisz wiadomość
+                </button>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         )}
 
         {step >= 0 && step < 3 && (
-          <header className={styles.header}>
-            <div className={styles.headerTop}>
-              <button onClick={prevStep} className={styles.backLink}>
-                <ArrowLeft size={16} /> Powrót
-              </button>
-              <a href="mailto:kontakt@norbertfila.com" className={styles.directEmail}>
-                kontakt@norbertfila.com
-              </a>
-            </div>
-            <div className={styles.stepIndicator}>
-              <span className={step >= 0 ? styles.activeStep : ''}>01. Zarys</span>
-              <div className={styles.stepLine} />
-              <span className={step >= 1 ? styles.activeStep : ''}>02. Szczegóły</span>
-              <div className={styles.stepLine} />
-              <span className={step >= 2 ? styles.activeStep : ''}>03. Kontakt</span>
-            </div>
-          </header>
+          <ScrollReveal>
+            <header className={styles.header}>
+              <div className={styles.headerTop}>
+                <button onClick={prevStep} className={styles.backLink}>
+                  <ArrowLeft size={16} /> Powrót
+                </button>
+                <a href="mailto:kontakt@norbertfila.com" className={styles.directEmail}>
+                  kontakt@norbertfila.com
+                </a>
+              </div>
+              <div className={styles.stepIndicator}>
+                <span className={step >= 0 ? styles.activeStep : ''}>01. Zarys</span>
+                <div className={styles.stepLine} />
+                <span className={step >= 1 ? styles.activeStep : ''}>02. Szczegóły</span>
+                <div className={styles.stepLine} />
+                <span className={step >= 2 ? styles.activeStep : ''}>03. Kontakt</span>
+              </div>
+            </header>
+          </ScrollReveal>
         )}
 
         <div className={styles.formWindow}>
-          {step === 0 && (
+          <ScrollReveal delay={100}>
+            <>
+              {step === 0 && (
             <div className={styles.stepContent}>
               <h1 className={styles.stepTitle}>Jakiego projektu potrzebujesz?</h1>
 
@@ -339,6 +346,8 @@ export default function ContactPage() {
               </Link>
             </div>
           )}
+            </>
+          </ScrollReveal>
         </div>
       </div>
     </main>

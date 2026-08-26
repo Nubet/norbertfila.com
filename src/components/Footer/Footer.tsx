@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Linkedin, Mail } from 'lucide-react'
+import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import styles from './Footer.module.css'
 
 export function Footer() {
@@ -9,7 +10,8 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.topSection}>
+        <ScrollReveal>
+          <div className={styles.topSection}>
           <div className={styles.brand}>
             <Link href="/" className={styles.brandName}>
               <div className={styles.logoWrapper}>
@@ -77,13 +79,16 @@ export function Footer() {
             </div>
           </nav>
         </div>
+        </ScrollReveal>
 
-        <div className={styles.bottomSection}>
-          <p className={styles.copyright}>
-            &copy; {currentYear} Norbert Fila. Wszelkie prawa zastrzeżone.
-          </p>
-          <p className={styles.location}>Czas na lepsze efekty.</p>
-        </div>
+        <ScrollReveal delay={100}>
+          <div className={styles.bottomSection}>
+            <p className={styles.copyright}>
+              &copy; {currentYear} Norbert Fila. Wszelkie prawa zastrzeżone.
+            </p>
+            <p className={styles.location}>Czas na lepsze efekty.</p>
+          </div>
+        </ScrollReveal>
       </div>
     </footer>
   )

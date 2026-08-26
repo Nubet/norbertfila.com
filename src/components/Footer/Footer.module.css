@@ -107,14 +107,31 @@
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 300;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  position: relative;
+}
+
+.linkList a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-gold);
+  transition: width 0.3s ease;
 }
 
 .linkList a:hover {
-  color: var(--color-accent);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.linkList a:hover::after {
+  width: 100%;
 }
 
 .socialIcons {
@@ -133,7 +150,7 @@
 }
 
 .socialIcons a:hover {
-  color: var(--color-accent);
+  color: var(--color-gold);
   transform: translateY(-2px);
 }
 
