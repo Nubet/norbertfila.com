@@ -1,6 +1,6 @@
 # Norbert Fila - Portfolio
 
-A personal portfolio presenting my projects, design skills, and approach to creating digital experience.
+A personal portfolio presenting my projects, design skills, and approach to creating digital experiences.
 
 ## 🔗 Live Demo
 
@@ -8,9 +8,9 @@ https://norbertfila.com/
 
 ## 🎨 Aesthetic Direction
 
-A Bauhaus-inspired portfolio with a neobrutalist character - Based on strong contrast, geometric forms and a bold typography.
+A boutique portfolio with a premium, minimalist character - Based on warm negative space, elegant typography, and a refined color palette.
 
-Designed to be simple, expressive, and memorable.
+Designed to be sophisticated, clean, and professional.
 
 ## 🛠️ Tech Stack
 
