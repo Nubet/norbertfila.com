@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { submitContactForm, ContactFormError } from '@/features/contact/submitContactForm'
+import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
 import styles from './ContactPage.module.css'
 
 export default function ContactPage() {
@@ -96,6 +97,11 @@ export default function ContactPage() {
 
   return (
     <main className={styles.page}>
+      <ParallaxBackground
+        videoSrc="/home/contact-background.mp4"
+        posterSrc="/home/contact-poster.jpg"
+        overlayVariant="studio"
+      />
       <div className={styles.container}>
         {step === -1 && (
           <div className={styles.premiumIntro}>

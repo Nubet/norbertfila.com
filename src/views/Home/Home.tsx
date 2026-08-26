@@ -6,6 +6,7 @@ import { useState, useRef, type FormEvent } from 'react'
 import { ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { FAQ } from '@/components/FAQ/FAQ'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
+import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
 import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
 import { portfolioProjects } from '@/data/portfolio'
 import styles from './Home.module.css'
@@ -100,55 +101,14 @@ export default function Home() {
     }
   }
 
-  const heroMediaRef = useRef<HTMLDivElement>(null)
-
-  const handleHeroMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!heroMediaRef.current) return
-    const { clientX, clientY } = e
-    const { innerWidth, innerHeight } = window
-    
-    // Bardzo subtelny efekt paralaksy z dużą bezwładnością
-    const moveX = ((clientX / innerWidth) - 0.5) * 1.5
-    const moveY = ((clientY / innerHeight) - 0.5) * 1.5
-
-    heroMediaRef.current.style.transform = `translate(${moveX}%, ${moveY}%)`
-  }
-
-  const handleHeroMouseLeave = () => {
-    if (!heroMediaRef.current) return
-    heroMediaRef.current.style.transform = `translate(0%, 0%)`
-  }
-
   return (
     <div className={styles.home}>
-      <section 
-        className={styles.hero}
-        onMouseMove={handleHeroMouseMove}
-        onMouseLeave={handleHeroMouseLeave}
-      >
-        <div className={styles.heroMedia} aria-hidden="true" ref={heroMediaRef}>
-          <Image
-            src="/home/hero/poster.jpg"
-            alt=""
-            fill
-            priority
-            className={styles.heroPoster}
-            sizes="100vw"
-          />
-          <video
-            className={styles.heroVideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/home/hero/poster.jpg"
-          >
-            <source src="/home/hero/background.webm" type="video/webm" />
-            <source src="/home/hero/background.mp4" type="video/mp4" />
-          </video>
-          <div className={`${styles.heroOverlay} ${styles.heroOverlayMinimal}`} />
-        </div>
+      <section className={styles.hero}>
+        <ParallaxBackground
+          videoSrc="/home/hero/background.mp4"
+          posterSrc="/home/hero/poster.jpg"
+          overlayVariant="minimal"
+        />
 
         <ScrollReveal>
           <div className={`${styles.heroContent} ${styles.heroContentMinimal}`}>

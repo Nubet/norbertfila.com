@@ -1,7 +1,9 @@
 .page {
+  position: relative;
+  overflow: clip;
   padding-top: 120px;
   min-height: 100vh;
-  background-color: var(--bg-primary);
+  background-color: transparent;
   display: flex;
   justify-content: center;
 }
@@ -13,6 +15,8 @@
 }
 
 .container {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 800px;
   padding: 0 2rem;
@@ -43,7 +47,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -56,7 +60,7 @@
   font-family: inherit;
 }
 .backLink:hover {
-  color: var(--color-accent);
+  color: white;
 }
 
 .headerTop {
@@ -68,15 +72,14 @@
 .directEmail {
   font-family: var(--font-mono);
   font-size: 0.9rem;
-  color: var(--text-primary);
+  color: white;
   text-decoration: none;
-  border-bottom: 1px solid rgba(47, 79, 64, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   padding-bottom: 2px;
   transition: all 0.3s ease;
 }
 .directEmail:hover {
-  color: var(--color-accent);
-  border-bottom-color: var(--color-accent);
+  border-bottom-color: white;
 }
 
 .stepIndicator {
@@ -85,7 +88,7 @@
   gap: 1rem;
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: rgba(47, 79, 64, 0.3);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .stepIndicator span {
@@ -93,14 +96,14 @@
 }
 
 .activeStep {
-  color: var(--color-accent) !important;
+  color: white !important;
   font-weight: 500;
 }
 
 .stepLine {
   flex-grow: 1;
   height: 1px;
-  background: rgba(47, 79, 64, 0.1);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .formWindow {
@@ -130,7 +133,7 @@
   font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 300;
-  color: var(--text-primary);
+  color: white;
   margin-bottom: 3rem;
   line-height: 1.1;
 }
@@ -139,7 +142,7 @@
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 300;
-  color: var(--text-primary);
+  color: white;
   margin: 3rem 0 1.5rem 0;
 }
 
@@ -151,22 +154,22 @@
 
 .luxuryPill {
   padding: 1.25rem 2rem;
-  border: 1px solid rgba(47, 79, 64, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0;
   background: transparent;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .luxuryPill:hover {
-  border-color: var(--color-accent);
-  color: var(--text-primary);
+  border-color: white;
+  color: white;
 }
 .activePill {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: var(--color-white) !important;
+  background: white;
+  border-color: white;
+  color: #111111 !important;
 }
 
 .inputGroup {
@@ -178,7 +181,7 @@
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 1rem;
 }
 
@@ -188,10 +191,10 @@
   width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(47, 79, 64, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0.5rem 0;
   font-size: 1.25rem;
-  color: var(--text-primary);
+  color: white;
   font-family: inherit;
   transition: border-color 0.3s ease;
   border-radius: 0;
@@ -200,7 +203,7 @@
 .textarea:focus,
 .select:focus {
   outline: none;
-  border-bottom-color: var(--color-accent);
+  border-bottom-color: white;
 }
 .textarea {
   resize: none;
@@ -210,7 +213,7 @@
 .select {
   cursor: pointer;
   appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232f4f40%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
   background-position: right 0.5rem top 50%;
   background-size: 0.65rem auto;
@@ -260,24 +263,24 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1.25rem 2.5rem;
-  background: var(--color-accent);
-  color: white;
+  background: white;
+  color: #111111;
   border: none;
   border-radius: 0;
   font-size: 1.05rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(47, 79, 64, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 .nextBtn svg {
   transition: transform 0.3s ease;
 }
 .nextBtn:hover:not(:disabled),
 .submitBtn:hover:not(:disabled) {
-  background: var(--text-primary);
+  background: #f0f0f0;
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 .nextBtn:hover:not(:disabled) svg {
   transform: translateX(4px);
@@ -292,17 +295,17 @@
 .prevBtn {
   background: transparent;
   border: none;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 1rem;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 .prevBtn:hover {
-  color: var(--color-accent);
+  color: white;
 }
 
 .errorMsg {
-  color: #991b1b;
+  color: #ef4444;
   margin-top: 1rem;
   font-size: 0.9rem;
 }
@@ -318,7 +321,7 @@
 }
 
 .successIcon {
-  color: var(--color-accent);
+  color: white;
   margin-bottom: 2rem;
   animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -333,7 +336,7 @@
 }
 
 .successText {
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 1.1rem;
   max-width: 500px;
   line-height: 1.6;
@@ -343,15 +346,15 @@
 .backHomeBtn {
   display: inline-block;
   padding: 1rem 2rem;
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
   text-decoration: none;
   border-radius: 4px;
   transition: all 0.3s ease;
 }
 .backHomeBtn:hover {
-  background: var(--color-accent);
-  color: white;
+  background: white;
+  color: #111111;
 }
 
 /* Premium Intro Styles */
@@ -370,7 +373,7 @@
   font-family: var(--font-heading);
   font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 300;
-  color: var(--text-primary);
+  color: white;
   margin-bottom: 4rem;
   letter-spacing: -0.02em;
 }
