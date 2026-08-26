@@ -2,6 +2,7 @@ import * as CookieConsent from 'vanilla-cookieconsent'
 import type { CookieConsentConfig } from 'vanilla-cookieconsent'
 import 'vanilla-cookieconsent/dist/cookieconsent.css'
 import './cookieConsentTheme.css'
+import { updateAnalyticsConsent } from '@/features/analytics/googleAnalytics'
 import { analyticsCookies } from './cookieCatalog'
 
 const COOKIE_POLICY_PATH = '/cookie-policy'
@@ -82,6 +83,15 @@ function createConfig(): CookieConsentConfig {
           },
         },
       },
+    },
+    onFirstConsent: () => {
+      updateAnalyticsConsent(CookieConsent.acceptedCategory('analytics'))
+    },
+    onConsent: () => {
+      updateAnalyticsConsent(CookieConsent.acceptedCategory('analytics'))
+    },
+    onChange: () => {
+      updateAnalyticsConsent(CookieConsent.acceptedCategory('analytics'))
     },
   }
 }
