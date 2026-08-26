@@ -103,19 +103,46 @@ export default function Home() {
   return (
     <div className={styles.home}>
       <section className={styles.hero}>
+        <div className={styles.heroMedia} aria-hidden="true">
+          <Image
+            src="/home/hero/poster.jpg"
+            alt=""
+            fill
+            priority
+            className={styles.heroPoster}
+            sizes="100vw"
+          />
+          <video
+            className={styles.heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/home/hero/poster.jpg"
+          >
+            <source src="/home/hero/background.mp4" type="video/mp4" />
+          </video>
+          <div className={`${styles.heroOverlay} ${styles.heroOverlayMinimal}`} />
+        </div>
+
         <ScrollReveal>
-          <h1 className={styles.heroTitle}>Profesjonalne strony internetowe.</h1>
-          <p className={styles.heroSub}>
-            Projektuję i wdrażam dedykowane strony internetowe. Tworzę wizytówki, w których estetyka
-            spotyka się z funkcjonalnością, pomagając markom budować autorytet i zdobywać zaufanie.
-          </p>
-          <Link href="/contact" className={styles.ctaButton}>
-            Nawiążmy współpracę
-          </Link>
+          <div className={`${styles.heroContent} ${styles.heroContentMinimal}`}>
+            <h1 className={styles.heroTitle}>Profesjonalne strony internetowe.</h1>
+            <p className={styles.heroSub}>
+              Projektuję strony internetowe, które budują wizerunek, zaufanie i autorytet marki.
+            </p>
+            <Link
+              href="/#portfolio"
+              className={`${styles.ctaButton} ${styles.heroCtaButtonMinimal}`}
+            >
+              Zobacz moje prace
+            </Link>
+          </div>
         </ScrollReveal>
       </section>
 
-      <section className={styles.container}>
+      <section className={`${styles.container} ${styles.introSection}`}>
         <ScrollReveal>
           <div className={styles.manifestoLayout}>
             <div className={styles.manifestoContent}>
@@ -274,7 +301,7 @@ export default function Home() {
 
           <div style={{ textAlign: 'center', marginTop: '5rem' }}>
             <ScrollReveal>
-              <Link href="/portfolio" className={styles.ctaButton}>
+              <Link href="/portfolio" className={`${styles.ctaButton} ${styles.ctaButtonSolid}`}>
                 Zobacz wszystkie projekty
               </Link>
             </ScrollReveal>
