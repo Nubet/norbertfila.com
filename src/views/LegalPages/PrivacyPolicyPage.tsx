@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import styles from './LegalPages.module.css'
 
 export default function PrivacyPolicyPage() {
@@ -12,6 +13,7 @@ export default function PrivacyPolicyPage() {
           </Link>
         </nav>
 
+        <ScrollReveal>
         <article className={styles.content}>
           <h1 className={styles.title}>Polityka Prywatności</h1>
           <p className={styles.lastUpdated}>Ostatnia aktualizacja: 24 maja 2026 r.</p>
@@ -171,6 +173,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </section>
         </article>
+        </ScrollReveal>
       </div>
     </main>
   )

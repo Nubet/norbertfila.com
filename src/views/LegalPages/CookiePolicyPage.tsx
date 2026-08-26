@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { CookiePreferencesButton } from '@/features/cookies/CookiePreferencesButton'
 import { CookiePolicyTable } from '@/features/cookies/CookiePolicyTable'
 import styles from './LegalPages.module.css'
@@ -14,6 +15,7 @@ export default function CookiePolicyPage() {
           </Link>
         </nav>
 
+        <ScrollReveal>
         <article className={styles.content}>
           <h1 className={styles.title}>Polityka Cookies</h1>
           <p className={styles.lastUpdated}>Ostatnia aktualizacja: Maj 2026</p>
@@ -74,6 +76,7 @@ export default function CookiePolicyPage() {
             </p>
           </section>
         </article>
+        </ScrollReveal>
       </div>
     </main>
   )
