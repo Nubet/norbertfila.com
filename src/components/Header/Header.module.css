@@ -1,11 +1,13 @@
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   padding: 2rem 0;
-  z-index: 100;
-  background: transparent;
+  z-index: 1000;
+  background: color-mix(in srgb, var(--bg-primary) 88%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: var(--border-thin);
 }
 
 .container {
