@@ -6,6 +6,7 @@ import styles from './ParallaxBackground.module.css'
 
 interface ParallaxBackgroundProps {
   videoSrc: string
+  webmSrc?: string
   posterSrc: string
   overlayVariant?: 'minimal' | 'studio' | 'editorial' | 'none'
   children?: React.ReactNode
@@ -14,6 +15,7 @@ interface ParallaxBackgroundProps {
 
 export function ParallaxBackground({
   videoSrc,
+  webmSrc,
   posterSrc,
   overlayVariant = 'minimal',
   children,
@@ -76,6 +78,7 @@ export function ParallaxBackground({
           preload="metadata"
           poster={posterSrc}
         >
+          {webmSrc && <source src={webmSrc} type="video/webm" />}
           <source src={videoSrc} type="video/mp4" />
         </video>
         {overlayVariant !== 'none' && (
