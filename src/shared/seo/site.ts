@@ -11,7 +11,6 @@ export const indexedRoutes = [
   '/',
   '/contact',
   '/projects',
-  '/cv',
   '/privacy-policy',
   '/cookie-policy',
 ] as const

@@ -5,7 +5,6 @@ const routePriorities: Record<(typeof indexedRoutes)[number], number> = {
   '/': 1,
   '/contact': 0.9,
   '/projects': 0.8,
-  '/cv': 0.7,
   '/privacy-policy': 0.5,
   '/cookie-policy': 0.5,
 }
