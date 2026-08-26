@@ -173,6 +173,7 @@
   width: 100%;
   max-width: 35rem;
   aspect-ratio: 3/4;
+  border-radius: 0.35rem 0.35rem 4rem 0.35rem;
 }
 
 .image {
@@ -184,6 +185,7 @@
   position: relative;
   z-index: 2;
   filter: grayscale(100%) contrast(120%);
+  border-radius: inherit;
 }
 
 .portraitFrame {
@@ -195,6 +197,7 @@
   background-color: var(--color-yellow);
   border: var(--border-thick);
   z-index: 1;
+  border-radius: inherit;
 }
 
 @media (max-width: 900px) {
