@@ -7,7 +7,7 @@ import { submitContactForm, ContactFormError } from '@/features/contact/submitCo
 import styles from './ContactPage.module.css'
 
 export default function ContactPage() {
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(-1)
   const [projectType, setProjectType] = useState('')
   const [budget, setBudget] = useState('')
   const [materials, setMaterials] = useState('')
@@ -49,7 +49,7 @@ export default function ContactPage() {
 
   const prevStep = () => {
     setStepError(null)
-    setStep((s) => Math.max(0, s - 1))
+    setStep((s) => Math.max(-1, s - 1))
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -97,12 +97,31 @@ export default function ContactPage() {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        {step < 3 && (
+        {step === -1 && (
+          <div className={styles.premiumIntro}>
+            <h1 className={styles.premiumTitle}>Porozmawiajmy.</h1>
+            <div className={styles.premiumActions}>
+              <a 
+                href="https://calendly.com/kontakt-norbertfila/30min" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.premiumBtn}
+              >
+                Zarezerwuj rozmowę
+              </a>
+              <button onClick={() => setStep(0)} className={styles.premiumBtn}>
+                Napisz wiadomość
+              </button>
+            </div>
+          </div>
+        )}
+
+        {step >= 0 && step < 3 && (
           <header className={styles.header}>
             <div className={styles.headerTop}>
-              <Link href="/" className={styles.backLink}>
+              <button onClick={prevStep} className={styles.backLink}>
                 <ArrowLeft size={16} /> Powrót
-              </Link>
+              </button>
               <a href="mailto:kontakt@norbertfila.com" className={styles.directEmail}>
                 kontakt@norbertfila.com
               </a>
