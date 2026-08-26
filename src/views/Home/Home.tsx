@@ -144,6 +144,7 @@ export default function Home() {
             preload="metadata"
             poster="/home/hero/poster.jpg"
           >
+            <source src="/home/hero/background.webm" type="video/webm" />
             <source src="/home/hero/background.mp4" type="video/mp4" />
           </video>
           <div className={`${styles.heroOverlay} ${styles.heroOverlayMinimal}`} />
