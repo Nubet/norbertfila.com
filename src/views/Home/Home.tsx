@@ -140,7 +140,7 @@ export default function Home() {
               </p>
               <div className={styles.signatureSmall}>
                 <Image 
-                  src="/fila-signature/signature-fila-transparent.svg" 
+                  src="/fila-signature/signature-fila-gold.svg" 
                   alt="Norbert Fila" 
                   width={260} 
                   height={117} 

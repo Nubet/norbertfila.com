@@ -13,7 +13,7 @@ export function Footer() {
           <div className={styles.brand}>
             <Link href="/" className={styles.brandName}>
               <Image 
-                src="/fila-signature/signature-fila-transparent.svg" 
+                src="/fila-signature/signature-fila-red.svg" 
                 alt="Norbert Fila" 
                 width={260} 
                 height={117} 

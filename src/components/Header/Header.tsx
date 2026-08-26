@@ -17,7 +17,7 @@ export function Header() {
       <div className={styles.container}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
           <Image 
-            src="/fila-signature/signature-fila-transparent.svg" 
+            src="/fila-signature/signature-fila-green.svg" 
             alt="Norbert Fila" 
             width={200} 
             height={90} 
