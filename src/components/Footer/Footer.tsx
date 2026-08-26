@@ -1,5 +1,7 @@
 import Link from 'next/link'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import Image from 'next/image'
+import { Linkedin, Mail } from 'lucide-react'
+import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import styles from './Footer.module.css'
 
 export function Footer() {
@@ -8,78 +10,85 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.topSection}>
-          <div className={styles.brand}>
-            <Link href="/" className={styles.brandName}>
-              Norbert Fila
-            </Link>
-            <p className={styles.brandRole}>ZAMIEŃ ODWIEDZINY W KLIENTÓW</p>
-            <p className={styles.brandMission}>
-              Projektuję i koduję dedykowane strony internetowe nastawione na realny zysk.
-            </p>
-          </div>
-
-          <nav className={styles.linksGrid} aria-label="Nawigacja stopki">
-            <div className={styles.linkGroup}>
-              <span className={styles.groupLabel}>Na skróty</span>
-              <ul className={styles.linkList}>
-                <li>
-                  <Link href="/">Strona Główna</Link>
-                </li>
-                <li>
-                  <Link href="/cv">Doświadczenie (CV)</Link>
-                </li>
-                <li>
-                  <Link href="/contact">Darmowa Wycena</Link>
-                </li>
-              </ul>
+        <ScrollReveal>
+          <div className={styles.topSection}>
+            <div className={styles.brand}>
+              <Link href="/" className={styles.brandName}>
+                <div className={styles.logoWrapper}>
+                  <Image
+                    src="/fila-signature/signature-fila-red.svg"
+                    alt="Norbert Fila"
+                    width={260}
+                    height={117}
+                    className={styles.logoDefault}
+                  />
+                  <Image
+                    src="/fila-signature/signature-fila-gold.svg"
+                    alt=""
+                    width={260}
+                    height={117}
+                    className={styles.logoHover}
+                  />
+                </div>
+              </Link>
+              <p className={styles.brandMission}>
+                Strony szyte na miarę. Zaprojektowane, by wyróżniać Cię estetyką i generować zysk.
+              </p>
             </div>
 
-            <div className={styles.linkGroup}>
-              <span className={styles.groupLabel}>Legalne</span>
-              <ul className={styles.linkList}>
-                <li>
-                  <Link href="/privacy-policy">Polityka Prywatności</Link>
-                </li>
-                <li>
-                  <Link href="/cookie-policy">Polityka Cookies</Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className={styles.linkGroup}>
-              <span className={styles.groupLabel}>Kontakt</span>
-              <div className={styles.socialIcons}>
-                <a
-                  href="https://www.linkedin.com/in/norbert-fila/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Profil LinkedIn"
-                >
-                  <Linkedin size={22} />
-                </a>
-                <a
-                  href="https://github.com/nubet"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Profil GitHub"
-                >
-                  <Github size={22} />
-                </a>
-                <Link href="/contact" aria-label="Przejdź do formularza kontaktowego">
-                  <Mail size={22} />
-                </Link>
+            <nav className={styles.linksGrid} aria-label="Nawigacja stopki">
+              <div className={styles.linkGroup}>
+                <span className={styles.groupLabel}>Eksploruj</span>
+                <ul className={styles.linkList}>
+                  <li>
+                    <Link href="/">Strona Główna</Link>
+                  </li>
+                  <li>
+                    <Link href="/contact">Umów Konsultację</Link>
+                  </li>
+                </ul>
               </div>
-            </div>
-          </nav>
-        </div>
 
-        <div className={styles.bottomSection}>
-          <p className={styles.copyright}>
-            &copy; {currentYear} Norbert Fila. Wszelkie prawa zastrzeżone.
-          </p>
-          <p className={styles.location}>Czas na lepsze efekty.</p>
-        </div>
+              <div className={styles.linkGroup}>
+                <span className={styles.groupLabel}>Informacje Legalne</span>
+                <ul className={styles.linkList}>
+                  <li>
+                    <Link href="/privacy-policy">Polityka Prywatności</Link>
+                  </li>
+                  <li>
+                    <Link href="/cookie-policy">Polityka Cookies</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className={styles.linkGroup}>
+                <span className={styles.groupLabel}>Kontakt</span>
+                <div className={styles.socialIcons}>
+                  <a
+                    href="https://www.linkedin.com/in/norbert-fila/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Profil LinkedIn"
+                  >
+                    <Linkedin size={20} strokeWidth={1.5} />
+                  </a>
+                  <a href="mailto:kontakt@norbertfila.com" aria-label="Napisz maila">
+                    <Mail size={20} strokeWidth={1.5} />
+                  </a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={100}>
+          <div className={styles.bottomSection}>
+            <p className={styles.copyright}>
+              &copy; {currentYear} Norbert Fila. Wszelkie prawa zastrzeżone.
+            </p>
+            <p className={styles.location}>Czas na lepsze efekty.</p>
+          </div>
+        </ScrollReveal>
       </div>
     </footer>
   )

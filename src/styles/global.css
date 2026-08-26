@@ -15,7 +15,7 @@ body.lightbox-open {
 }
 
 :root {
-  --font-sans: var(--font-outfit), Arial, Helvetica, sans-serif;
+  --font-sans: var(--font-body);
 }
 
 body {
@@ -33,20 +33,8 @@ body {
 
 .neo-brutalist-theme {
   min-height: 100vh;
-  background-image: none;
-  background-size: 3.75rem 3.75rem;
-  background-position: center top;
-  background-attachment: fixed;
+  background-color: var(--bg-primary);
   position: relative;
-}
-
-.neo-brutalist-theme::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: var(--bg-primary);
-  opacity: 0.92;
-  z-index: -1;
 }
 
 h1,
@@ -55,25 +43,20 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-family: var(--font-heading);
+  font-weight: 400;
   margin: 0;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
 }
 
 .neo-brutalist-theme h2 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  color: var(--color-black);
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  background: var(--color-yellow);
-  padding: 0.5rem 1rem;
-  border: var(--border-thick);
-  box-shadow: var(--shadow-solid);
-  transform: rotate(-2deg);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-accent);
+  margin-bottom: 2rem;
 }
 
 a {
@@ -89,65 +72,36 @@ img {
 
 .page {
   position: relative;
-  max-width: 75rem;
+  max-width: 80rem;
   margin: 0 auto;
   padding: 5rem 1.5rem 8rem;
   display: flex;
   flex-direction: column;
-  gap: 10rem;
+  gap: 8rem;
 }
 
 .section {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
   position: relative;
 }
 
 .section-heading {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   position: relative;
 }
 
 .neo-brutalist-theme .section-heading h2 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  color: var(--color-black);
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  background: var(--color-yellow);
-  padding: 0.5rem 1rem;
-  border: var(--border-thick);
-  box-shadow: var(--shadow-solid);
-  transform: rotate(-2deg);
-}
-
-.shape-circle {
-  width: 7.5rem;
-  height: 7.5rem;
-  border-radius: 50%;
-  background-color: var(--color-red);
-  border: var(--border-thick);
-}
-
-.shape-square {
-  width: 6.25rem;
-  height: 6.25rem;
-  background-color: var(--color-blue);
-  border: var(--border-thick);
-}
-
-.shape-triangle {
-  width: 0;
-  height: 0;
-  border-left: 3.75rem solid transparent;
-  border-right: 3.75rem solid transparent;
-  border-bottom: 6.5rem solid var(--color-yellow);
-  filter: drop-shadow(0.25rem 0.25rem 0px var(--color-black));
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-accent);
 }
 
 .page > .section {

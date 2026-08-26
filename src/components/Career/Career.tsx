@@ -14,8 +14,8 @@ const career = [
   },
   {
     company: 'Freelance',
-    subtitle: 'useme.com',
-    role: 'React Web Developer',
+    subtitle: '',
+    role: 'Web Developer & Designer',
     dates: 'Marzec 2026 - Obecnie',
     details: [
       'Realizuję dedykowane rozwiązania webowe, w tym landing page, one-pagery i cyfrowe wizytówki.',

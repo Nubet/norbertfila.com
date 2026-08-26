@@ -1,9 +1,9 @@
 .page {
   min-height: 100vh;
-  background-color: var(--bg-white, #f4f4f0);
-  color: var(--text-main, #0f0f0f);
-  padding: 8rem 0 6rem;
-  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 10rem 0 8rem;
+  font-family: var(--font-body);
 }
 
 .container {
@@ -20,56 +20,61 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--text-main, #0f0f0f);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
   text-decoration: none;
-  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: color var(--duration-fast) var(--ease-sharp);
 }
 
 .backLink:hover {
-  transform: translateX(-4px);
+  color: var(--color-accent);
 }
 
 .content {
-  background: #fff;
-  border: 2px solid var(--text-main, #0f0f0f);
-  padding: 4rem;
-  box-shadow: 8px 8px 0 var(--text-main, #0f0f0f);
+  background: transparent;
 }
 
 .title {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  margin: 0 0 0.5rem;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  margin: 0 0 1rem;
+  color: var(--color-accent);
 }
 
 .lastUpdated {
-  color: #666;
-  font-size: 0.95rem;
-  margin: 0 0 3rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  margin: 0 0 4rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(47, 79, 64, 0.15);
 }
 
 .content section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
 }
 
 .content h2 {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 1.5rem;
-  margin: 0 0 1rem;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem;
 }
 
 .content p,
 .content ul {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: #333;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.content p {
+  margin-bottom: 1.5rem;
 }
 
 .content ul {
@@ -77,89 +82,84 @@
 }
 
 .content li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .content a {
-  color: var(--text-main, #0f0f0f);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(47, 79, 64, 0.3);
+  transition: all 0.3s ease;
 }
 
 .content a:hover {
-  color: var(--accent-color, #ffd100);
+  color: var(--color-gold);
+  border-bottom-color: var(--color-gold);
 }
 
 .manageButton {
   margin-top: 1rem;
-  border: var(--border-thin, 0.125rem solid #0f0f0f);
-  box-shadow: 4px 4px 0 var(--text-main, #0f0f0f);
-  background: var(--color-yellow, #ffd100);
-  color: var(--text-main, #0f0f0f);
-  padding: 0.75rem 1rem;
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  border: 1px solid rgba(47, 79, 64, 0.2);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.1em;
   cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .manageButton:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--text-main, #0f0f0f);
-  background: var(--color-red, #e31837);
-  color: #fff;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-accent);
 }
 
 .cookieTableTitle {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 1.1rem;
-  margin: 1.25rem 0 0.6rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin: 2rem 0 1rem;
 }
 
 .cookieTableWrap {
   overflow-x: auto;
+  margin-bottom: 2rem;
 }
 
 .cookieTable {
   width: 100%;
   border-collapse: collapse;
-  border: var(--border-thin, 0.125rem solid #0f0f0f);
   font-size: 0.95rem;
-  background: #fff;
-  box-shadow: 4px 4px 0 var(--text-main, #0f0f0f);
+  border-top: 1px solid rgba(47, 79, 64, 0.15);
 }
 
 .cookieTable th,
 .cookieTable td {
-  border: 1px solid var(--text-main, #0f0f0f);
+  padding: 1rem;
   text-align: left;
-  vertical-align: top;
-  padding: 0.65rem;
+  border-bottom: 1px solid rgba(47, 79, 64, 0.1);
+  color: var(--text-secondary);
 }
 
 .cookieTable th {
-  background: var(--bg-secondary, #ebebe6);
-  font-weight: 700;
-  font-family: var(--font-space-grotesk), sans-serif;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
   .page {
     padding: 6rem 0 4rem;
-  }
-  .container {
-    padding: 0 1rem;
-  }
-  .content {
-    padding: 2rem 1.5rem;
-    box-shadow: 4px 4px 0 var(--text-main, #0f0f0f);
   }
 }

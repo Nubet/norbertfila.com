@@ -1,11 +1,9 @@
 .footer {
-  background-color: var(--color-black, #0f0f0f);
-  color: var(--color-white, #ffffff);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   padding: 6rem 0 2rem;
-  border-top: 2px solid var(--text-main, #0f0f0f);
-  font-family: var(--font-sans);
-  position: relative;
-  z-index: 10;
+  border-top: 1px solid rgba(47, 79, 64, 0.1);
+  font-family: var(--font-body);
 }
 
 .container {
@@ -19,7 +17,7 @@
   grid-template-columns: 1fr 2fr;
   gap: 4rem;
   padding-bottom: 5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(47, 79, 64, 0.1);
 }
 
 .brand {
@@ -27,36 +25,52 @@
 }
 
 .brandName {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 700;
-  color: #fff;
+  font-family: var(--font-signature);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--color-accent-secondary);
   text-decoration: none;
-  letter-spacing: -0.04em;
   display: inline-block;
   margin-bottom: 1rem;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease;
 }
 
-.brandName:hover {
-  opacity: 0.8;
+.logoWrapper {
+  position: relative;
+  width: 180px;
+  height: auto;
+  margin: -0.5rem 0 -0.5rem -0.5rem;
 }
 
-.brandRole {
-  font-family: var(--font-space-grotesk), sans-serif;
-  color: var(--accent-color, #ffd100);
-  font-weight: 700;
-  font-size: 1.1rem;
-  margin: 0 0 0.75rem 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.logoDefault,
+.logoHover {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.5s ease;
+}
+
+.logoHover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.brandName:hover .logoDefault {
+  opacity: 0;
+}
+
+.brandName:hover .logoHover {
+  opacity: 1;
 }
 
 .brandMission {
-  color: #a0a0a0;
-  font-size: 1rem;
-  line-height: 1.6;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.8;
   margin: 0;
+  font-weight: 300;
 }
 
 .linksGrid {
@@ -71,12 +85,10 @@
 }
 
 .groupLabel {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--color-accent);
   margin-bottom: 1.5rem;
   display: block;
 }
@@ -91,56 +103,56 @@
 }
 
 .linkList a {
-  color: #d0d0d0;
+  color: var(--text-secondary);
   text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 300;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   position: relative;
 }
 
+.linkList a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-gold);
+  transition: width 0.3s ease;
+}
+
 .linkList a:hover {
-  color: #fff;
+  color: var(--text-primary);
+  transform: translateX(4px);
 }
 
-.linkList a svg {
-  opacity: 0.5;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
-.linkList a:hover svg {
-  opacity: 1;
-  transform: translate(2px, -2px);
-  color: var(--accent-color, #ffd100);
+.linkList a:hover::after {
+  width: 100%;
 }
 
 .socialIcons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .socialIcons a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  color: var(--text-secondary);
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .socialIcons a:hover {
-  background: var(--accent-color, #ffd100);
-  color: var(--color-black, #0f0f0f);
+  color: var(--color-gold);
   transform: translateY(-2px);
 }
 
@@ -155,8 +167,9 @@
 
 .copyright,
 .location {
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 300;
   margin: 0;
 }
 

@@ -1,17 +1,55 @@
-import { Outfit, Space_Grotesk } from 'next/font/google'
+import localFont from 'next/font/local'
+import { Montserrat, Great_Vibes } from 'next/font/google'
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin', 'latin-ext'],
-  weight: 'variable',
+const theSeasons = localFont({
+  src: [
+    {
+      path: './assets/fonts/the-seasons/The Seasons Light.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './assets/fonts/the-seasons/The Seasons Light Italic.ttf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: './assets/fonts/the-seasons/The Seasons Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './assets/fonts/the-seasons/The Seasons Italic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: './assets/fonts/the-seasons/The Seasons Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './assets/fonts/the-seasons/The Seasons Bold Italic.ttf',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
   display: 'swap',
-  variable: '--font-space-grotesk',
+  variable: '--font-the-seasons',
 })
 
-const outfit = Outfit({
+const montserrat = Montserrat({
   subsets: ['latin', 'latin-ext'],
-  weight: 'variable',
+  weight: ['300', '400', '500', '600'],
   display: 'swap',
-  variable: '--font-outfit',
+  variable: '--font-montserrat',
 })
 
-export { spaceGrotesk, outfit }
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+  variable: '--font-great-vibes',
+})
+
+export { theSeasons, montserrat, greatVibes }

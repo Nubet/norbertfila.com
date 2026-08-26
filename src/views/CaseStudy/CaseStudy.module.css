@@ -1,0 +1,393 @@
+.pageWrapper {
+  padding-top: 140px; /* Base for mobile */
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+@media (min-width: 900px) {
+  .pageWrapper {
+    padding-top: 200px; /* Generous spacing on desktop */
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hero {
+  margin-bottom: 6rem;
+}
+
+.projectTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 0;
+  line-height: 1.1;
+}
+
+.openingImageWrapper {
+  width: 100%;
+  max-width: 1360px;
+  aspect-ratio: 1360 / 860;
+  margin: 0 auto 4rem auto;
+  border-radius: 20px;
+  border: 4px solid rgba(47, 79, 64, 0.08);
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+}
+
+.openingImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.titleColumn {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 900px) {
+  .heroGrid {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .titleColumn {
+    margin-bottom: 0;
+  }
+}
+
+.contentColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.projectGoal {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+.projectDataHorizontal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4rem;
+  border-top: 1px solid rgba(47, 79, 64, 0.15);
+  padding-top: 2rem;
+}
+
+.dataGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dataLabel {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-secondary);
+}
+
+.dataValue {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid rgba(47, 79, 64, 0.15);
+  margin: 5rem 0;
+}
+
+.overviewSection {
+  margin-bottom: 3rem;
+}
+
+.overviewTitle {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.overviewText {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 100%;
+}
+
+.asymmetricGallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 8rem;
+}
+
+@media (min-width: 768px) {
+  .asymmetricGallery {
+    grid-template-columns: 1.35fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+}
+
+.mockupFull {
+  width: 100%;
+  height: auto;
+  background-color: rgba(47, 79, 64, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.mockupCropped {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 79, 64, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.galleryImageFull {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.galleryImageCropped {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+}
+
+.approachSection {
+  max-width: 800px;
+  margin: 0 auto 8rem;
+}
+
+.sectionLabel {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.approachText {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.projectNav {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(47, 79, 64, 0.15);
+  border-bottom: 1px solid rgba(47, 79, 64, 0.15);
+  padding: 3rem 0;
+  margin-bottom: 8rem;
+}
+
+.navLink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.navLink:hover {
+  opacity: 0.6;
+}
+
+.navLink.next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.navDirection {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.navProjectName {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.finalCtaSection {
+  background-color: var(--color-accent);
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.finalCtaTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  margin-bottom: 2rem;
+  color: var(--color-white);
+}
+
+.finalCtaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 3rem;
+  background-color: var(--color-white);
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+.finalCtaButton:hover {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+}
+
+.scrollingMockupSection {
+  max-width: 1500px;
+  margin: 0 auto 10rem;
+  padding: 0 1.5rem;
+}
+
+.mockupHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mockupTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.mockupDesc {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.monitorWrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.monitorFrame {
+  background: #111;
+  padding: 1.5rem 1.5rem 4rem 1.5rem;
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 2px #222 inset,
+    0 30px 60px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.monitorFrame::after {
+  content: '';
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mockupWindow {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 85vh;
+  background-color: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+.mockupWindow::-webkit-scrollbar {
+  width: 6px;
+}
+.mockupWindow::-webkit-scrollbar-track {
+  background: transparent;
+}
+.mockupWindow::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.monitorStand {
+  width: 140px;
+  height: 60px;
+  background: linear-gradient(to bottom, #d5d5d5, #a3a3a3);
+  margin: 0 auto;
+  position: relative;
+  z-index: -1;
+  margin-top: -5px;
+}
+
+.monitorBase {
+  width: 320px;
+  height: 12px;
+  background: linear-gradient(to right, #b3b3b3, #e6e6e6, #b3b3b3);
+  margin: 0 auto;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.mockupImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}

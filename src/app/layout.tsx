@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { siteConfig } from '@/shared/seo/site'
-import { spaceGrotesk, outfit } from '@/shared/fonts'
+import { theSeasons, montserrat, greatVibes } from '@/shared/fonts'
 import '../styles/variables.css'
 import '../styles/global.css'
+import { CustomCursor } from '@/components/CustomCursor/CustomCursor'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: '/profile/avatar.webp',
+        url: '/profile/avatar-light.webp',
         width: 1200,
         height: 630,
         alt: 'Norbert Fila',
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ['/profile/avatar.webp'],
+    images: ['/profile/avatar-light.webp'],
   },
   robots: {
     index: true,
@@ -58,9 +60,14 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="pl" className={`${spaceGrotesk.variable} ${outfit.variable}`}>
+    <html
+      lang="pl"
+      className={`${theSeasons.variable} ${montserrat.variable} ${greatVibes.variable}`}
+    >
       <body>
+        <CustomCursor />
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Header />
           <main style={{ flex: 1 }}>{children}</main>
           <Footer />
           <CookieConsentManager />
