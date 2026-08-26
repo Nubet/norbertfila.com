@@ -21,7 +21,7 @@ export default function Home() {
 
   const [comingSoonId, setComingSoonId] = useState<string | null>(null)
 
-  const handleReadMoreClick = (e: React.MouseEvent, project: typeof portfolioProjects[0]) => {
+  const handleReadMoreClick = (e: React.MouseEvent, project: (typeof portfolioProjects)[0]) => {
     if (!project.isReady) {
       e.preventDefault()
       setComingSoonId(project.id)
@@ -149,12 +149,17 @@ export default function Home() {
                 akcji. Tworzę estetykę, która naturalnie konwertuje i buduje autorytet.
               </p>
               <div className={styles.signatureSmall}>
-                <Image 
-                  src="/fila-signature/signature-fila-gold.svg" 
-                  alt="Norbert Fila" 
-                  width={260} 
-                  height={117} 
-                  style={{ width: '180px', height: 'auto', display: 'block', margin: '0 0 -1rem 0' }}
+                <Image
+                  src="/fila-signature/signature-fila-gold.svg"
+                  alt="Norbert Fila"
+                  width={260}
+                  height={117}
+                  style={{
+                    width: '180px',
+                    height: 'auto',
+                    display: 'block',
+                    margin: '0 0 -1rem 0',
+                  }}
                 />
               </div>
             </div>
@@ -292,17 +297,26 @@ export default function Home() {
                     <div className={styles.portfolioInfo}>
                       <h3 className={styles.portfolioTitle}>{project.title}</h3>
                       <p className={styles.portfolioDesc}>{project.shortDescription}</p>
-                      <Link 
-                        href={`/portfolio#${project.id}`} 
+                      <Link
+                        href={`/portfolio#${project.id}`}
                         className={styles.readMoreBtn}
                         onClick={(e) => handleReadMoreClick(e, project)}
                       >
                         {comingSoonId === project.id ? (
-                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--color-gold)' }}>
+                          <span
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.35rem',
+                              color: 'var(--color-gold)',
+                            }}
+                          >
                             Wkrótce dostępne <Clock size={18} />
                           </span>
                         ) : (
-                          <>Czytaj dalej <ArrowRight size={18} /></>
+                          <>
+                            Czytaj dalej <ArrowRight size={18} />
+                          </>
                         )}
                       </Link>
                     </div>

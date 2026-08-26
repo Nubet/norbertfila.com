@@ -108,10 +108,10 @@ export default function ContactPage() {
           <div className={styles.premiumIntro}>
             <h1 className={styles.premiumTitle}>Porozmawiajmy.</h1>
             <div className={styles.premiumActions}>
-              <a 
-                href="https://calendly.com/kontakt-norbertfila/30min" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://calendly.com/kontakt-norbertfila/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.premiumBtn}
               >
                 Zarezerwuj rozmowę

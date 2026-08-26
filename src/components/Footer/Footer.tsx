@@ -13,18 +13,18 @@ export function Footer() {
           <div className={styles.brand}>
             <Link href="/" className={styles.brandName}>
               <div className={styles.logoWrapper}>
-                <Image 
-                  src="/fila-signature/signature-fila-red.svg" 
-                  alt="Norbert Fila" 
-                  width={260} 
-                  height={117} 
+                <Image
+                  src="/fila-signature/signature-fila-red.svg"
+                  alt="Norbert Fila"
+                  width={260}
+                  height={117}
                   className={styles.logoDefault}
                 />
-                <Image 
-                  src="/fila-signature/signature-fila-gold.svg" 
-                  alt="" 
-                  width={260} 
-                  height={117} 
+                <Image
+                  src="/fila-signature/signature-fila-gold.svg"
+                  alt=""
+                  width={260}
+                  height={117}
                   className={styles.logoHover}
                 />
               </div>

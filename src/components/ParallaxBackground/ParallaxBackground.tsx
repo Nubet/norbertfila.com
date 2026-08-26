@@ -53,22 +53,15 @@ export function ParallaxBackground({
     overlayVariant === 'none'
       ? ''
       : overlayVariant === 'studio'
-      ? styles.overlayStudio
-      : overlayVariant === 'editorial'
-      ? styles.overlayEditorial
-      : styles.overlayMinimal
+        ? styles.overlayStudio
+        : overlayVariant === 'editorial'
+          ? styles.overlayEditorial
+          : styles.overlayMinimal
 
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.mediaContainer} aria-hidden="true" ref={mediaRef}>
-        <Image
-          src={posterSrc}
-          alt=""
-          fill
-          priority
-          className={styles.poster}
-          sizes="100vw"
-        />
+        <Image src={posterSrc} alt="" fill priority className={styles.poster} sizes="100vw" />
         <video
           className={styles.video}
           autoPlay
@@ -81,9 +74,7 @@ export function ParallaxBackground({
           {webmSrc && <source src={webmSrc} type="video/webm" />}
           <source src={videoSrc} type="video/mp4" />
         </video>
-        {overlayVariant !== 'none' && (
-          <div className={`${styles.overlay} ${overlayClass}`} />
-        )}
+        {overlayVariant !== 'none' && <div className={`${styles.overlay} ${overlayClass}`} />}
       </div>
       <div className={styles.content}>{children}</div>
     </div>

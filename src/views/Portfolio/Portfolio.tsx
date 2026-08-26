@@ -14,7 +14,7 @@ export function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('Wszystko')
   const [comingSoonId, setComingSoonId] = useState<string | null>(null)
 
-  const handleReadMoreClick = (e: React.MouseEvent, project: typeof portfolioProjects[0]) => {
+  const handleReadMoreClick = (e: React.MouseEvent, project: (typeof portfolioProjects)[0]) => {
     if (!project.isReady) {
       e.preventDefault()
       setComingSoonId(project.id)
@@ -90,17 +90,26 @@ export function Portfolio() {
                   <div className={styles.portfolioInfo}>
                     <h3 className={styles.portfolioTitle}>{project.title}</h3>
                     <p className={styles.portfolioDesc}>{project.description}</p>
-                    <Link 
-                      href={`#${project.id}`} 
+                    <Link
+                      href={`#${project.id}`}
                       className={styles.readMoreBtn}
                       onClick={(e) => handleReadMoreClick(e, project)}
                     >
                       {comingSoonId === project.id ? (
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: 'var(--color-gold)' }}>
+                        <span
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.35rem',
+                            color: 'var(--color-gold)',
+                          }}
+                        >
                           Wkrótce dostępne <Clock size={18} />
                         </span>
                       ) : (
-                        <>Czytaj dalej <ArrowRight size={18} /></>
+                        <>
+                          Czytaj dalej <ArrowRight size={18} />
+                        </>
                       )}
                     </Link>
                   </div>

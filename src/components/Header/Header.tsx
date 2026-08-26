@@ -17,19 +17,19 @@ export function Header() {
       <div className={styles.container}>
         <Link href="/" className={styles.logo} onClick={closeMenu}>
           <div className={styles.logoWrapper}>
-            <Image 
-              src="/fila-signature/signature-fila-green.svg" 
-              alt="Norbert Fila" 
-              width={200} 
-              height={90} 
+            <Image
+              src="/fila-signature/signature-fila-green.svg"
+              alt="Norbert Fila"
+              width={200}
+              height={90}
               className={styles.logoDefault}
               priority
             />
-            <Image 
-              src="/fila-signature/signature-fila-gold.svg" 
-              alt="" 
-              width={200} 
-              height={90} 
+            <Image
+              src="/fila-signature/signature-fila-gold.svg"
+              alt=""
+              width={200}
+              height={90}
               className={styles.logoHover}
               priority
             />
@@ -52,10 +52,10 @@ export function Header() {
         <Link href="/contact" className={styles.ctaButton}>
           Współpraca
         </Link>
-        <button 
-          className={styles.mobileMenuBtn} 
+        <button
+          className={styles.mobileMenuBtn}
           onClick={toggleMenu}
-          aria-label={isMobileMenuOpen ? "Zamknij menu" : "Otwórz menu"}
+          aria-label={isMobileMenuOpen ? 'Zamknij menu' : 'Otwórz menu'}
         >
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -63,11 +63,21 @@ export function Header() {
 
       <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
         <nav className={styles.mobileNav}>
-          <Link href="/about" className={styles.mobileNavLink} onClick={closeMenu}>O mnie</Link>
-          <Link href="/#oferta" className={styles.mobileNavLink} onClick={closeMenu}>Oferta</Link>
-          <Link href="/#portfolio" className={styles.mobileNavLink} onClick={closeMenu}>Portfolio</Link>
-          <Link href="/#proces" className={styles.mobileNavLink} onClick={closeMenu}>Proces</Link>
-          <Link href="/contact" className={styles.mobileCtaButton} onClick={closeMenu}>Współpraca</Link>
+          <Link href="/about" className={styles.mobileNavLink} onClick={closeMenu}>
+            O mnie
+          </Link>
+          <Link href="/#oferta" className={styles.mobileNavLink} onClick={closeMenu}>
+            Oferta
+          </Link>
+          <Link href="/#portfolio" className={styles.mobileNavLink} onClick={closeMenu}>
+            Portfolio
+          </Link>
+          <Link href="/#proces" className={styles.mobileNavLink} onClick={closeMenu}>
+            Proces
+          </Link>
+          <Link href="/contact" className={styles.mobileCtaButton} onClick={closeMenu}>
+            Współpraca
+          </Link>
         </nav>
       </div>
     </header>

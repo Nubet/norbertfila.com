@@ -59,7 +59,8 @@
   margin: -0.5rem 0;
 }
 
-.logoDefault, .logoHover {
+.logoDefault,
+.logoHover {
   width: 100%;
   height: auto;
   display: block;
