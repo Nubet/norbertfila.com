@@ -70,9 +70,9 @@ export function Footer() {
                 >
                   <Linkedin size={20} strokeWidth={1.5} />
                 </a>
-                <Link href="/contact" aria-label="Przejdź do formularza kontaktowego">
+                <a href="mailto:kontakt@norbertfila.com" aria-label="Napisz maila">
                   <Mail size={20} strokeWidth={1.5} />
-                </Link>
+                </a>
               </div>
             </div>
           </nav>
