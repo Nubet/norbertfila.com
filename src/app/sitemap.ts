@@ -3,6 +3,7 @@ import { indexedRoutes, siteConfig } from '@/shared/seo/site'
 
 const routePriorities: Record<(typeof indexedRoutes)[number], number> = {
   '/': 1,
+  '/portfolio': 0.9,
   '/contact': 0.9,
   '/projects': 0.8,
   '/privacy-policy': 0.5,

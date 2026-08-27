@@ -9,6 +9,7 @@ export const siteConfig = {
 
 export const indexedRoutes = [
   '/',
+  '/portfolio',
   '/contact',
   '/projects',
   '/privacy-policy',
