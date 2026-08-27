@@ -29,20 +29,24 @@ export function About() {
               <h2 className={styles.sectionTitle}>Filozofia Rzemiosła</h2>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <div className={styles.bioText}>
-                <p>
-                  Dobre oprogramowanie przypomina mi luksusowy zegarek. Większość ludzi widzi tylko
-                  piękną tarczę, ale to precyzyjnie zaprojektowany mechanizm wewnątrz decyduje o
-                  jego prawdziwej wartości. W wolnym czasie hobbystycznie składam zegarki
-                  mechaniczne, co nauczyło mnie jednej ważnej rzeczy – cierpliwości i dbałości o
-                  każdy, najmniejszy trybik.
-                </p>
-                <p>
-                  To samo podejście stosuję podczas kodowania. Od analizy fal mózgowych (EEG) w
-                  projekcie Koła Naukowego, po budowę skalowalnych systemów w Javie i nowoczesnych
-                  stron internetowych. Kocham proces budowania – dlatego często można mnie spotkać
-                  na hackathonach, gdzie przesuwam limity tego, co da się stworzyć w 24 godziny.
-                </p>
+              <div className={styles.signatureSection}>
+                <div className={styles.signatureMark} aria-hidden="true" />
+                <div className={styles.bioText}>
+                  <p>
+                    Dobre oprogramowanie przypomina mi luksusowy zegarek. Większość ludzi widzi
+                    tylko piękną tarczę, ale to precyzyjnie zaprojektowany mechanizm wewnątrz
+                    decyduje o jego prawdziwej wartości. W wolnym czasie hobbystycznie składam
+                    zegarki mechaniczne, co nauczyło mnie jednej ważnej rzeczy – cierpliwości i
+                    dbałości o każdy, najmniejszy trybik.
+                  </p>
+                  <p>
+                    To samo podejście stosuję podczas kodowania. Od analizy fal mózgowych (EEG) w
+                    projekcie Koła Naukowego, po budowę skalowalnych systemów w Javie i
+                    nowoczesnych stron internetowych. Kocham proces budowania – dlatego często można
+                    mnie spotkać na hackathonach, gdzie przesuwam limity tego, co da się stworzyć w
+                    24 godziny.
+                  </p>
+                </div>
               </div>
             </ScrollReveal>
           </div>

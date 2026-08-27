@@ -63,6 +63,31 @@
   gap: 3rem;
 }
 
+.signatureSection {
+  position: relative;
+  isolation: isolate;
+}
+
+.signatureMark {
+  position: absolute;
+  right: -2rem;
+  bottom: -1.5rem;
+  width: clamp(260px, 34vw, 420px);
+  aspect-ratio: 900 / 1165;
+  background: color-mix(in srgb, var(--color-gold) 68%, var(--color-accent) 32%);
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: url('/fila-signature/head.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url('/fila-signature/head.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
 .sectionTitle {
   font-family: var(--font-heading);
   font-size: 2.5rem;
@@ -75,6 +100,12 @@
   font-size: 1.25rem;
   line-height: 1.8;
   color: var(--text-secondary);
+}
+
+.bioText {
+  position: relative;
+  z-index: 1;
+  max-width: 38rem;
 }
 
 .experienceItem {
@@ -162,4 +193,17 @@
 .ctaButton:hover {
   background-color: var(--color-gold);
   color: var(--color-white);
+}
+
+@media (max-width: 899px) {
+  .signatureMark {
+    right: 0;
+    bottom: -2rem;
+    width: min(72vw, 320px);
+    opacity: 0.06;
+  }
+
+  .bioText {
+    max-width: 100%;
+  }
 }
