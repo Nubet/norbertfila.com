@@ -41,10 +41,9 @@ export function About() {
                   </p>
                   <p>
                     To samo podejście stosuję podczas kodowania. Od analizy fal mózgowych (EEG) w
-                    projekcie Koła Naukowego, po budowę skalowalnych systemów w Javie i
-                    nowoczesnych stron internetowych. Kocham proces budowania – dlatego często można
-                    mnie spotkać na hackathonach, gdzie przesuwam limity tego, co da się stworzyć w
-                    24 godziny.
+                    projekcie Koła Naukowego, po budowę skalowalnych systemów w Javie i nowoczesnych
+                    stron internetowych. Kocham proces budowania – dlatego często można mnie spotkać
+                    na hackathonach, gdzie przesuwam limity tego, co da się stworzyć w 24 godziny.
                   </p>
                 </div>
               </div>
