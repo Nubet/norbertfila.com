@@ -285,16 +285,40 @@
     padding: 7rem 1.25rem 4.5rem;
   }
 
+  .heroTitle {
+    font-size: clamp(2.15rem, 10vw, 2.75rem);
+    margin-bottom: 1.5rem;
+  }
+
   .heroContentMinimal {
     padding-top: 2.75rem;
   }
 
   .heroSub {
-    margin-bottom: 2.25rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
   }
 
   .heroCtaButtonMinimal {
-    padding: 0.9rem 2.25rem;
+    padding: 0.85rem 2rem;
+    font-size: 0.82rem;
+  }
+
+  .manifestoLayout {
+    gap: 3rem;
+  }
+
+  .manifestoText {
+    margin-bottom: 0;
+  }
+
+  .signatureSmall {
+    display: none;
+  }
+
+  .portraitFrame {
+    display: none;
   }
 }
 .portfolioHeaderTitles {
@@ -304,6 +328,12 @@
 .carouselControls {
   display: flex;
   gap: 1rem;
+}
+
+@media (max-width: 767px) {
+  .carouselControls {
+    display: none;
+  }
 }
 .controlBtn {
   display: flex;
@@ -329,6 +359,15 @@
   background-color: var(--bg-primary);
   padding: 4rem 0;
   text-align: center;
+}
+
+.processSection {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-primary) 45%, var(--bg-secondary) 55%) 0%,
+    var(--bg-secondary) 100%
+  );
+  border-top: 1px solid rgba(47, 79, 64, 0.08);
 }
 
 .statementText {
@@ -471,6 +510,17 @@
   outline: none; /* Hide focus outline when using keyboard */
 }
 
+@media (max-width: 767px) {
+  .carouselWrapper {
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    cursor: default;
+  }
+}
+
 .carouselWrapper.dragging {
   scroll-behavior: auto;
   scroll-snap-type: none;
@@ -494,6 +544,14 @@
   width: max-content;
 }
 
+@media (max-width: 767px) {
+  .carouselTrack {
+    display: grid;
+    gap: 3rem;
+    width: 100%;
+  }
+}
+
 @media (min-width: 900px) {
   .carouselTrack {
     gap: 4rem;
@@ -507,6 +565,14 @@
   width: 90vw;
   max-width: 900px;
   scroll-snap-align: center;
+}
+
+@media (max-width: 767px) {
+  .portfolioCard {
+    width: 100%;
+    max-width: none;
+    scroll-snap-align: unset;
+  }
 }
 
 @media (min-width: 900px) {

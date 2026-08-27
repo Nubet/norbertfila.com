@@ -221,26 +221,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATEMENT / PHILOSOPHY */}
-      <section className={styles.statementSection}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <div style={{ textAlign: 'center' }}>
-              <span
-                className={styles.sectionLabel}
-                style={{ marginBottom: '1.5rem', display: 'block' }}
-              >
-                Filozofia Projektowa
-              </span>
-              <h2 className={styles.statementText}>
-                Skuteczna strona nie rozprasza. Skupia całą uwagę klienta wyłącznie na{' '}
-                <i>wartości</i>, którą mu dostarczasz.
-              </h2>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
       {/* PORTFOLIO GALLERY */}
       <section className={styles.portfolioSection} id="portfolio">
         <div className={styles.container}>
@@ -336,42 +316,64 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.container} id="proces">
-        <ScrollReveal>
-          <span className={styles.sectionLabel}>Organizacja pracy</span>
-          <h2 className={styles.sectionTitle}>Jak wygląda współpraca?</h2>
-        </ScrollReveal>
-        <div className={styles.processSteps}>
-          <ScrollReveal delay={0}>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>I.</div>
-              <h3>Rozmowa</h3>
-              <p>
-                Poznaję Twój biznes, docelowych klientów i cele. Ustalamy wspólnie, jakie podstrony
-                i funkcje są faktycznie niezbędne.
-              </p>
+      {/* STATEMENT / PHILOSOPHY */}
+      <section className={styles.statementSection}>
+        <div className={styles.container}>
+          <ScrollReveal>
+            <div style={{ textAlign: 'center' }}>
+              <span
+                className={styles.sectionLabel}
+                style={{ marginBottom: '1.5rem', display: 'block' }}
+              >
+                Filozofia Projektowa
+              </span>
+              <h2 className={styles.statementText}>
+                Skuteczna strona nie rozprasza. Skupia całą uwagę klienta wyłącznie na{' '}
+                <i>wartości</i>, którą mu dostarczasz.
+              </h2>
             </div>
           </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>II.</div>
-              <h3>Projektowanie</h3>
-              <p>
-                Przedstawiam pierwsze makiety wizualne. Dopracowujemy je do momentu, w którym
-                idealnie odpowiadają Twoim potrzebom.
-              </p>
-            </div>
+        </div>
+      </section>
+
+      <section className={styles.processSection} id="proces">
+        <div className={styles.container}>
+          <ScrollReveal>
+            <span className={styles.sectionLabel}>Organizacja pracy</span>
+            <h2 className={styles.sectionTitle}>Jak wygląda współpraca?</h2>
           </ScrollReveal>
-          <ScrollReveal delay={200}>
-            <div className={styles.step}>
-              <div className={styles.stepNumber}>III.</div>
-              <h3>Wdrożenie</h3>
-              <p>
-                Programuję stronę, przeprowadzam testy na telefonach i komputerach, a na koniec
-                uruchamiam ją pod Twoją domeną.
-              </p>
-            </div>
-          </ScrollReveal>
+          <div className={styles.processSteps}>
+            <ScrollReveal delay={0}>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>I.</div>
+                <h3>Rozmowa</h3>
+                <p>
+                  Poznaję Twój biznes, docelowych klientów i cele. Ustalamy wspólnie, jakie
+                  podstrony i funkcje są faktycznie niezbędne.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>II.</div>
+                <h3>Projektowanie</h3>
+                <p>
+                  Przedstawiam pierwsze makiety wizualne. Dopracowujemy je do momentu, w którym
+                  idealnie odpowiadają Twoim potrzebom.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <div className={styles.step}>
+                <div className={styles.stepNumber}>III.</div>
+                <h3>Wdrożenie</h3>
+                <p>
+                  Programuję stronę, przeprowadzam testy na telefonach i komputerach, a na koniec
+                  uruchamiam ją pod Twoją domeną.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
