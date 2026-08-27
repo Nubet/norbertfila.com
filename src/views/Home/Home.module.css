@@ -201,8 +201,14 @@
 .introSection {
   position: relative;
   z-index: 1;
-  margin-top: clamp(-4rem, -8vw, -6rem);
+  margin-top: 0;
   padding-top: 0;
+}
+
+@media (min-width: 768px) {
+  .introSection {
+    margin-top: clamp(-4rem, -8vw, -6rem);
+  }
 }
 
 .introSection > * {
@@ -274,7 +280,21 @@
 
 @media (max-width: 767px) {
   .hero {
-    padding: 7rem 1.25rem 3rem;
+    min-height: auto;
+    justify-content: flex-start;
+    padding: 7rem 1.25rem 4.5rem;
+  }
+
+  .heroContentMinimal {
+    padding-top: 2.75rem;
+  }
+
+  .heroSub {
+    margin-bottom: 2.25rem;
+  }
+
+  .heroCtaButtonMinimal {
+    padding: 0.9rem 2.25rem;
   }
 }
 .portfolioHeaderTitles {
