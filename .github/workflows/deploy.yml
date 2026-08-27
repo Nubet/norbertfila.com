@@ -390,6 +390,22 @@ jobs:
               exit 1
             fi
 
+            status_local_portfolio=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/portfolio)
+            if [ "$status_local_portfolio" != "200" ]; then
+              echo "Unexpected local portfolio status code: $status_local_portfolio"
+              echo "---- debug: local portfolio headers ----"
+              curl -sS -D - -o /dev/null http://127.0.0.1:3000/portfolio || true
+              exit 1
+            fi
+
+            status_public_portfolio=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/portfolio)
+            if [ "$status_public_portfolio" != "200" ]; then
+              echo "Unexpected public portfolio status code: $status_public_portfolio"
+              echo "---- debug: public portfolio headers ----"
+              curl -sS -D - -o /dev/null https://norbertfila.com/portfolio || true
+              exit 1
+            fi
+
             status_robots=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/robots.txt)
             if [ "$status_robots" != "200" ]; then
               echo "Unexpected robots.txt status code: $status_robots"
