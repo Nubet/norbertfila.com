@@ -113,6 +113,19 @@
   font-size: 1.1rem;
 }
 
+.inlineLink {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-gold) 70%, transparent);
+  text-underline-offset: 0.18em;
+  transition: color 0.3s var(--ease-sharp), text-decoration-color 0.3s var(--ease-sharp);
+}
+
+.inlineLink:hover {
+  color: var(--color-gold);
+  text-decoration-color: var(--color-gold);
+}
+
 .introParagraph::first-letter {
   font-family: var(--font-heading);
   float: left;

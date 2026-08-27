@@ -1,6 +1,43 @@
+import type { ReactNode } from 'react'
 import Link from 'next/link'
 import type { ContentSection } from '@/data/editorial'
 import styles from './EditorialPage.module.css'
+
+const inlineLinkPattern = /\[([^\]]+)\]\((\/[^)]+)\)/g
+
+function renderParagraphContent(paragraph: string) {
+  const matches = [...paragraph.matchAll(inlineLinkPattern)]
+
+  if (matches.length === 0) {
+    return paragraph
+  }
+
+  const parts: Array<string | ReactNode> = []
+  let lastIndex = 0
+
+  for (const match of matches) {
+    const [fullMatch, label, href] = match
+    const matchIndex = match.index ?? 0
+
+    if (matchIndex > lastIndex) {
+      parts.push(paragraph.slice(lastIndex, matchIndex))
+    }
+
+    parts.push(
+      <Link key={`${href}-${matchIndex}`} href={href} className={styles.inlineLink}>
+        {label}
+      </Link>
+    )
+
+    lastIndex = matchIndex + fullMatch.length
+  }
+
+  if (lastIndex < paragraph.length) {
+    parts.push(paragraph.slice(lastIndex))
+  }
+
+  return parts
+}
 
 type EditorialHubItem = {
   title: string
@@ -66,7 +103,7 @@ export function EditorialPage({
             <h2 className={styles.sectionTitle}>{section.title}</h2>
             {section.body.map((paragraph) => (
               <p key={paragraph} className={styles.paragraph}>
-                {paragraph}
+                {renderParagraphContent(paragraph)}
               </p>
             ))}
             {section.points ? (
