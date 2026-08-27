@@ -8,8 +8,14 @@ import { FAQ } from '@/components/FAQ/FAQ'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
 import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
+import { blogPosts } from '@/data/blogPosts'
 import { portfolioProjects } from '@/data/portfolio'
 import styles from './Home.module.css'
+
+const featuredBlogSlugs = [
+  'ile-kosztuje-strona-internetowa-w-lodzi',
+  'strony-internetowe-lodz-jak-wybrac-wykonawce-dla-firmy-uslugowej',
+]
 
 export default function Home() {
   const [ebookEmail, setEbookEmail] = useState('')
@@ -111,6 +117,10 @@ export default function Home() {
     }
   }
 
+  const featuredBlogPosts = featuredBlogSlugs
+    .map((slug) => blogPosts.find((post) => post.slug === slug))
+    .filter((post): post is (typeof blogPosts)[number] => Boolean(post))
+
   return (
     <div className={styles.home}>
       <section className={styles.hero}>
@@ -177,6 +187,45 @@ export default function Home() {
             </div>
           </div>
         </ScrollReveal>
+      </section>
+
+      <section className={styles.blogEntrySection}>
+        <div className={styles.container}>
+          <ScrollReveal>
+            <div className={styles.blogEntryHeader}>
+              <span className={styles.sectionLabel}>Blog</span>
+              <h2 className={styles.sectionTitle}>
+                Jeśli porównujesz oferty, zacznij od tych dwóch wpisów.
+              </h2>
+              <p className={styles.blogEntryIntro}>
+                To najlepszy punkt wejścia, jeśli chcesz zrozumieć koszt strony, sposób myślenia
+                wykonawcy i różnicę między ładnym projektem a stroną, która naprawdę pracuje na
+                biznes.
+              </p>
+            </div>
+
+            <div className={styles.blogEntryGrid}>
+              {featuredBlogPosts.map((post) => (
+                <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.blogEntryCard}>
+                  <span
+                    className={styles.blogEntryMeta}
+                  >{`${post.category} • ${post.readingTime}`}</span>
+                  <h3 className={styles.blogEntryTitle}>{post.title}</h3>
+                  <p className={styles.blogEntryText}>{post.excerpt}</p>
+                  <span className={styles.blogEntryLink}>
+                    Czytaj wpis <ArrowRight size={18} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className={styles.blogEntryFooter}>
+              <Link href="/blog" className={styles.blogEntryAllLink}>
+                Przejdź do całego bloga
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
       </section>
 
       <section className={styles.servicesListSection} id="oferta">

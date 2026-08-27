@@ -320,6 +320,10 @@
   .portraitFrame {
     display: none;
   }
+
+  .blogEntryGrid {
+    grid-template-columns: 1fr;
+  }
 }
 .portfolioHeaderTitles {
   display: flex;
@@ -442,6 +446,118 @@
 }
 
 /* SERVICES LIST */
+.blogEntrySection {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-primary) 72%, transparent) 0%,
+    var(--bg-secondary) 100%
+  );
+  border-top: 1px solid rgba(47, 79, 64, 0.08);
+  border-bottom: 1px solid rgba(47, 79, 64, 0.08);
+}
+
+.blogEntryHeader {
+  max-width: 52rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.blogEntryIntro {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.blogEntryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.blogEntryCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  text-decoration: none;
+  background: var(--color-white);
+  border: 1px solid rgba(47, 79, 64, 0.12);
+  box-shadow: 0 18px 44px rgba(16, 24, 20, 0.06);
+  transition:
+    transform 0.35s var(--ease-sharp),
+    border-color 0.35s var(--ease-sharp),
+    box-shadow 0.35s var(--ease-sharp);
+}
+
+.blogEntryCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(181, 162, 109, 0.5);
+  box-shadow: 0 24px 54px rgba(16, 24, 20, 0.1);
+}
+
+.blogEntryMeta {
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.blogEntryTitle {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.blogEntryText {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  flex: 1;
+}
+
+.blogEntryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.blogEntryFooter {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.blogEntryAllLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(47, 79, 64, 0.2);
+  padding-bottom: 0.3rem;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.blogEntryAllLink:hover {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
 .servicesListSection {
   background-color: var(--bg-secondary);
   padding: 8rem 0;

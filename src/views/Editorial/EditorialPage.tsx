@@ -46,6 +46,12 @@ type EditorialHubItem = {
   meta: string
 }
 
+type EditorialHubCategory = {
+  label: string
+  href: string
+  active?: boolean
+}
+
 type EditorialPageProps = {
   eyebrow: string
   title: string
@@ -150,6 +156,8 @@ type EditorialHubProps = {
   title: string
   description: string
   items: EditorialHubItem[]
+  featuredItems?: EditorialHubItem[]
+  categories?: EditorialHubCategory[]
   plainTitle?: boolean
 }
 
@@ -158,6 +166,8 @@ export function EditorialHub({
   title,
   description,
   items,
+  featuredItems,
+  categories,
   plainTitle,
 }: EditorialHubProps) {
   return (
@@ -167,6 +177,38 @@ export function EditorialHub({
         <h1 className={plainTitle ? styles.plainTitle : styles.title}>{title}</h1>
         <p className={styles.description}>{description}</p>
       </header>
+
+      {featuredItems && featuredItems.length > 0 ? (
+        <section className={styles.featuredSection}>
+          <div className={styles.featuredHeader}>
+            <p className={styles.featuredEyebrow}>Kluczowa wiedza</p>
+            <h2 className={styles.featuredTitle}>Wyróżnione publikacje</h2>
+          </div>
+          <div className={styles.featuredGrid}>
+            {featuredItems.map((item) => (
+              <Link key={item.href} href={item.href} className={styles.featuredCard}>
+                <span className={styles.featuredMeta}>{item.meta}</span>
+                <h3 className={styles.featuredCardTitle}>{item.title}</h3>
+                <p className={styles.featuredText}>{item.description}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {categories && categories.length > 0 ? (
+        <nav className={styles.categoryNav} aria-label="Kategorie bloga">
+          {categories.map((category) => (
+            <Link
+              key={category.href}
+              href={category.href}
+              className={category.active ? styles.categoryChipActive : styles.categoryChip}
+            >
+              {category.label}
+            </Link>
+          ))}
+        </nav>
+      ) : null}
 
       <div className={styles.hubGrid}>
         {items.map((item) => (

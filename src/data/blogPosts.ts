@@ -15,6 +15,69 @@ export type BlogPost = {
   ctaDescription: string
 }
 
+const relatedPostSlugs: Record<string, string[]> = {
+  'ile-kosztuje-strona-internetowa-w-lodzi': [
+    'strony-internetowe-lodz-jak-wybrac-wykonawce-dla-firmy-uslugowej',
+    'landing-page-dla-lokalnej-uslugi-kiedy-ma-sens-a-kiedy-nie',
+    'wordpress-czy-strona-kodowana-od-podstaw-dla-firmy-uslugowej',
+  ],
+  'strona-internetowa-dla-szkoly-jezykowej-co-musi-zawierac': [
+    'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania',
+    'landing-page-dla-lokalnej-uslugi-kiedy-ma-sens-a-kiedy-nie',
+    'wordpress-czy-strona-kodowana-od-podstaw-dla-firmy-uslugowej',
+  ],
+  'wordpress-czy-strona-kodowana-od-podstaw-dla-firmy-uslugowej': [
+    'landing-page-dla-lokalnej-uslugi-kiedy-ma-sens-a-kiedy-nie',
+    'ile-kosztuje-strona-internetowa-w-lodzi',
+    'marka-premium-potrzebuje-strony-ktora-sprzedaje-standard-nie-tylko-usluge',
+  ],
+  'strony-internetowe-lodz-jak-wybrac-wykonawce-dla-firmy-uslugowej': [
+    'ile-kosztuje-strona-internetowa-w-lodzi',
+    'wordpress-czy-strona-kodowana-od-podstaw-dla-firmy-uslugowej',
+    'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania',
+  ],
+  'landing-page-dla-lokalnej-uslugi-kiedy-ma-sens-a-kiedy-nie': [
+    'ile-kosztuje-strona-internetowa-w-lodzi',
+    'wordpress-czy-strona-kodowana-od-podstaw-dla-firmy-uslugowej',
+    'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania',
+  ],
+  'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania': [
+    'landing-page-dla-lokalnej-uslugi-kiedy-ma-sens-a-kiedy-nie',
+    'strona-internetowa-dla-szkoly-jezykowej-co-musi-zawierac',
+    'strony-internetowe-lodz-jak-wybrac-wykonawce-dla-firmy-uslugowej',
+  ],
+  'strona-internetowa-dla-logopedy-co-buduje-zaufanie-rodzica': [
+    'strona-dla-psychologa-lub-terapeuty-jak-nie-odstraszyc-klienta',
+    'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania',
+    'strona-internetowa-dla-szkoly-jezykowej-co-musi-zawierac',
+  ],
+  'strona-dla-psychologa-lub-terapeuty-jak-nie-odstraszyc-klienta': [
+    'strona-internetowa-dla-logopedy-co-buduje-zaufanie-rodzica',
+    'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania',
+    'strona-dla-biura-rachunkowego-jak-pokazac-oferte-jasno-i-profesjonalnie',
+  ],
+  'strona-dla-biura-rachunkowego-jak-pokazac-oferte-jasno-i-profesjonalnie': [
+    'wordpress-czy-strona-kodowana-od-podstaw-dla-firmy-uslugowej',
+    'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania',
+    'ile-kosztuje-strona-internetowa-w-lodzi',
+  ],
+  'strona-internetowa-dla-marki-beauty-dlaczego-instagram-nie-wystarcza': [
+    'strona-dla-salonu-beauty-co-powinna-zawierac-zeby-domykac-klientki',
+    'marka-premium-potrzebuje-strony-ktora-sprzedaje-standard-nie-tylko-usluge',
+    'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania',
+  ],
+  'strona-dla-salonu-beauty-co-powinna-zawierac-zeby-domykac-klientki': [
+    'strona-internetowa-dla-marki-beauty-dlaczego-instagram-nie-wystarcza',
+    'marka-premium-potrzebuje-strony-ktora-sprzedaje-standard-nie-tylko-usluge',
+    'najczestsze-bledy-na-stronach-firm-uslugowych-przez-ktore-tracisz-zapytania',
+  ],
+  'marka-premium-potrzebuje-strony-ktora-sprzedaje-standard-nie-tylko-usluge': [
+    'strona-internetowa-dla-marki-beauty-dlaczego-instagram-nie-wystarcza',
+    'strona-dla-salonu-beauty-co-powinna-zawierac-zeby-domykac-klientki',
+    'wordpress-czy-strona-kodowana-od-podstaw-dla-firmy-uslugowej',
+  ],
+}
+
 export const blogPosts: BlogPost[] = [
   {
     slug: 'ile-kosztuje-strona-internetowa-w-lodzi',
@@ -829,4 +892,39 @@ export const blogPosts: BlogPost[] = [
 
 export function getBlogPostBySlug(slug: string) {
   return blogPosts.find((post) => post.slug === slug)
+}
+
+export function getBlogCategories() {
+  return [...new Set(blogPosts.map((post) => post.category))]
+}
+
+export function getRelatedBlogPosts(slug: string) {
+  const manualOrder = relatedPostSlugs[slug] ?? []
+  const manualMatches = manualOrder
+    .map((relatedSlug) => getBlogPostBySlug(relatedSlug))
+    .filter((post): post is BlogPost => Boolean(post))
+
+  if (manualMatches.length > 0) {
+    return manualMatches
+  }
+
+  const currentPost = getBlogPostBySlug(slug)
+
+  if (!currentPost) {
+    return []
+  }
+
+  return blogPosts
+    .filter((post) => post.slug !== slug)
+    .sort((left, right) => {
+      const leftScore = Number(left.category === currentPost.category)
+      const rightScore = Number(right.category === currentPost.category)
+
+      if (leftScore !== rightScore) {
+        return rightScore - leftScore
+      }
+
+      return left.title.localeCompare(right.title, 'pl')
+    })
+    .slice(0, 3)
 }
