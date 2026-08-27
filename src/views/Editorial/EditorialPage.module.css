@@ -138,6 +138,49 @@
   color: var(--color-gold);
 }
 
+.relatedGrid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.relatedCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+  background: color-mix(in srgb, var(--bg-secondary) 65%, transparent);
+  text-decoration: none;
+  transition: border-color 0.3s var(--ease-sharp), transform 0.3s var(--ease-sharp);
+}
+
+.relatedCard:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.relatedMeta {
+  color: var(--color-gold);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+
+.relatedTitle {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 1.35rem;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+.relatedText {
+  margin: 0;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
 .ctaBox {
   margin-top: 3rem;
   padding: 4rem 3rem;

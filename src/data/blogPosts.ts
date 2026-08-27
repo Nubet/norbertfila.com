@@ -25,7 +25,7 @@ export const blogPosts: BlogPost[] = [
       'Konkretny przewodnik dla firm z Łodzi, które porównują oferty i chcą zrozumieć, skąd biorą się różnice w cenach stron internetowych.',
     category: 'Lokalne SEO',
     publishedAt: '2026-08-27',
-    readingTime: '10 min',
+    readingTime: '4 min',
     targetKeyword: 'ile kosztuje strona internetowa łódź',
     intro:
       'To jedno z najlepszych pytań, jakie może zadać właściciel firmy przed zleceniem nowej strony. Osoba wpisująca w Google hasło „ile kosztuje strona internetowa w Łodzi” zwykle nie szuka ogólników. Chce wiedzieć, jakie są realne widełki, co wpływa na cenę i skąd biorą się różnice między prostą stroną-wizytówką a dopracowaną witryną, która ma budować zaufanie i generować zapytania.',
@@ -100,7 +100,7 @@ export const blogPosts: BlogPost[] = [
       'Praktyczny wpis dla szkół językowych, które chcą lepiej pokazać ofertę, metodę nauczania i zwiększyć liczbę zapisów ze strony.',
     category: 'Branża edukacyjna',
     publishedAt: '2026-08-27',
-    readingTime: '11 min',
+    readingTime: '3 min',
     targetKeyword: 'strona internetowa dla szkoły językowej',
     intro:
       'Dobra strona szkoły językowej nie polega na tym, żeby zmieścić wszystkie informacje na jednej długiej podstronie. Jej zadaniem jest poprowadzić rodzica, kursanta albo osobę szukającą zajęć dla siebie od pierwszego pytania do konkretnej decyzji: kontaktu, zapisu albo umówienia rozmowy. Im szybciej użytkownik rozumie ofertę i czuje, że trafił do właściwego miejsca, tym większa szansa, że przejdzie dalej.',
@@ -167,7 +167,7 @@ export const blogPosts: BlogPost[] = [
       'Praktyczne porównanie dla firm usługowych, które rozważają stronę na WordPressie albo bardziej dopasowaną realizację od podstaw.',
     category: 'Decyzja zakupowa',
     publishedAt: '2026-08-27',
-    readingTime: '11 min',
+    readingTime: '3 min',
     targetKeyword: 'wordpress czy strona kodowana od podstaw',
     intro:
       'To pytanie wraca bardzo często, bo dla wielu firm strona internetowa jest jednocześnie wizytówką, źródłem zapytań i ważnym elementem budowania marki. Dobra odpowiedź nie polega na bezmyślnym krytykowaniu WordPressa. Chodzi raczej o uczciwe pokazanie, kiedy szablon jest rozsądnym wyborem, a kiedy zaczyna ograniczać jakość komunikacji, możliwości rozwoju i wyróżnienie się na tle konkurencji.',
@@ -232,7 +232,7 @@ export const blogPosts: BlogPost[] = [
       'Praktyczny wpis dla właścicieli firm z Łodzi, którzy porównują wykonawców i nie chcą przepłacić za stronę, która niczego nie zmienia.',
     category: 'Lokalne SEO',
     publishedAt: '2026-08-27',
-    readingTime: '10 min',
+    readingTime: '3 min',
     targetKeyword: 'strony internetowe łódź',
     intro:
       'Wybór wykonawcy strony internetowej bywa trudniejszy niż sama decyzja o zleceniu projektu. Na pierwszy rzut oka wiele ofert wygląda podobnie: nowoczesny design, responsywność, szybkie wdrożenie, SEO. Problem w tym, że za tymi samymi hasłami mogą stać zupełnie różne podejścia do pracy. Jeśli prowadzisz firmę usługową w Łodzi, warto patrzeć nie tylko na cenę i estetykę portfolio, ale przede wszystkim na to, czy wykonawca rozumie, jak Twoja strona ma pracować na biznes.',
@@ -298,7 +298,7 @@ export const blogPosts: BlogPost[] = [
       'Wpis dla lokalnych firm usługowych, które zastanawiają się, czy wystarczy im landing page, czy potrzebują pełnej strony z ofertą i blogiem.',
     category: 'Decyzja zakupowa',
     publishedAt: '2026-08-27',
-    readingTime: '9 min',
+    readingTime: '3 min',
     targetKeyword: 'landing page dla lokalnej usługi',
     intro:
       'Landing page brzmi kusząco, bo kojarzy się z prostszą, szybszą i tańszą realizacją. W wielu przypadkach to rzeczywiście dobry wybór. Problem zaczyna się wtedy, gdy firma oczekuje od jednej strony, że jednocześnie pokaże całą ofertę, zbuduje zaufanie, wesprze SEO i zamieni ruch w zapytania. Wtedy trzeba bardzo uczciwie ocenić, czy landing page nie będzie zbyt ciasnym formatem.',
@@ -368,7 +368,7 @@ export const blogPosts: BlogPost[] = [
       'Wpis dla firm usługowych, które mają ruch na stronie, ale nie widzą proporcjonalnej liczby kontaktów i zapytań.',
     category: 'Konwersja',
     publishedAt: '2026-08-27',
-    readingTime: '10 min',
+    readingTime: '3 min',
     targetKeyword: 'błędy na stronach firm usługowych',
     intro:
       'Wiele firm zakłada, że jeśli strona wygląda „w miarę nowocześnie”, to powinna działać. Tymczasem problem zwykle nie tkwi w jednym dużym błędzie, ale w kilku mniejszych rzeczach, które razem obniżają zaufanie i utrudniają przejście do kontaktu. Klient wchodzi na stronę, przegląda ją przez chwilę i nie znajduje wystarczająco mocnego powodu, żeby zrobić kolejny krok. To właśnie tam najczęściej uciekają zapytania.',
@@ -441,7 +441,7 @@ export const blogPosts: BlogPost[] = [
       'Wpis dla logopedów i gabinetów, które chcą, by strona budziła większy spokój, zaufanie i skuteczniej zamieniała odwiedziny w kontakt.',
     category: 'Zdrowie i terapia',
     publishedAt: '2026-08-27',
-    readingTime: '10 min',
+    readingTime: '3 min',
     targetKeyword: 'strona internetowa dla logopedy',
     intro:
       'Rodzic szukający logopedy nie kupuje pojedynczej usługi – wybiera partnera na miesiące, a czasem lata cotygodniowej pracy. Dlatego decyzja nie zależy wyłącznie od ceny czy lokalizacji. Rodzic musi od pierwszej chwili poczuć, że powierza rozwój dziecka właściwej osobie. Dobra strona internetowa nie może być tylko wizytówką z adresem. Powinna natychmiast budować zaufanie, spokój i pewność, że ta długa wspólna droga przyniesie realne efekty.',
@@ -507,7 +507,7 @@ export const blogPosts: BlogPost[] = [
       'Wpis dla psychologów i terapeutów, którzy chcą, by strona była spokojna, wiarygodna i ułatwiała klientowi decyzję o pierwszym kontakcie.',
     category: 'Zdrowie i terapia',
     publishedAt: '2026-08-27',
-    readingTime: '10 min',
+    readingTime: '3 min',
     targetKeyword: 'strona dla psychologa',
     intro:
       'Strona psychologa lub terapeuty pełni inną rolę niż większość stron usługowych. Tutaj klient nie szuka tylko opisu oferty. Szuka poczucia bezpieczeństwa, zrozumienia i sygnału, że po drugiej stronie jest osoba, której można zaufać. Dlatego nawet drobne błędy w komunikacji albo estetyce potrafią bardzo mocno obniżyć skuteczność witryny.',
@@ -573,7 +573,7 @@ export const blogPosts: BlogPost[] = [
       'Wpis dla biur rachunkowych i doradców podatkowych, którzy chcą wyglądać bardziej profesjonalnie i ułatwiać klientowi decyzję o kontakcie.',
     category: 'Prawo i finanse',
     publishedAt: '2026-08-27',
-    readingTime: '10 min',
+    readingTime: '3 min',
     targetKeyword: 'strona dla biura rachunkowego',
     intro:
       'Biuro rachunkowe sprzedaje przede wszystkim spokój, porządek i zaufanie. Klient nie musi rozumieć wszystkich szczegółów księgowych, ale musi od razu poczuć, że trafia do kompetentnej i dobrze zorganizowanej firmy. Dlatego dobra strona dla biura rachunkowego nie powinna być przeładowana żargonem. Powinna tłumaczyć ofertę jasno i prowadzić klienta do kontaktu bez chaosu.',
@@ -639,7 +639,7 @@ export const blogPosts: BlogPost[] = [
       'Wpis dla marek beauty, salonów i specjalistek, które świetnie wyglądają w social mediach, ale chcą lepiej domykać klientki i budować bardziej premium odbiór.',
     category: 'Premium i beauty',
     publishedAt: '2026-08-27',
-    readingTime: '10 min',
+    readingTime: '3 min',
     targetKeyword: 'strona internetowa dla marki beauty',
     intro:
       'Instagram i TikTok potrafią świetnie przyciągać uwagę. Dają zasięg, pokazują estetykę marki i pomagają budować emocje wokół usługi. Problem pojawia się wtedy, gdy cały proces sprzedaży kończy się właśnie tam. Dla marek beauty to często oznacza chaos w wiadomościach, trudniejsze domykanie klientek i utratę profesjonalnego odbioru w momencie, w którym decyzja o zakupie ma już zapaść. Dlatego dobrze zaprojektowana strona internetowa nie konkuruje z social mediami. Ona domyka to, czego Instagram sam nie dowozi.',
@@ -705,7 +705,7 @@ export const blogPosts: BlogPost[] = [
       'Praktyczny wpis dla salonów beauty, studiów estetyki i specjalistek, które chcą, by strona wspierała rezerwacje i lepiej pokazywała wartość usług.',
     category: 'Premium i beauty',
     publishedAt: '2026-08-27',
-    readingTime: '10 min',
+    readingTime: '3 min',
     targetKeyword: 'strona dla salonu beauty',
     intro:
       'Dobra strona salonu beauty nie ma tylko wyglądać ładnie. Ma pomagać klientce podjąć decyzję. W praktyce oznacza to, że witryna powinna nie tylko pokazywać estetykę marki, ale też porządkować ofertę, wzmacniać zaufanie i prowadzić do rezerwacji bez zbędnego tarcia. Jeśli tego nie robi, nawet świetny profil na Instagramie nie wykorzysta pełnego potencjału marki.',
@@ -770,7 +770,7 @@ export const blogPosts: BlogPost[] = [
       'Wpis dla marek premium, które chcą, by strona internetowa wzmacniała poziom marki i pomagała uzasadniać wyższą wartość usług.',
     category: 'Premium i beauty',
     publishedAt: '2026-08-27',
-    readingTime: '9 min',
+    readingTime: '3 min',
     targetKeyword: 'strona internetowa dla marki premium',
     intro:
       'Marka premium bardzo rzadko sprzedaje wyłącznie samą usługę. Sprzedaje też standard, atmosferę, dbałość o detale i poczucie, że klient trafia do miejsca, które jest wyraźnie lepsze niż przeciętna alternatywa. Właśnie dlatego strona internetowa w tym segmencie ma dużo większe znaczenie niż zwykła wizytówka. Powinna nie tylko informować, ale też potwierdzać poziom marki na każdym etapie kontaktu.',

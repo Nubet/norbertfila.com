@@ -2,6 +2,13 @@ import Link from 'next/link'
 import type { ContentSection } from '@/data/editorial'
 import styles from './EditorialPage.module.css'
 
+type EditorialHubItem = {
+  title: string
+  description: string
+  href: string
+  meta: string
+}
+
 type EditorialPageProps = {
   eyebrow: string
   title: string
@@ -9,6 +16,7 @@ type EditorialPageProps = {
   intro: string
   meta?: string[]
   sections: ContentSection[]
+  relatedPosts?: EditorialHubItem[]
   plainTitle?: boolean
   ctaTitle?: string
   ctaDescription?: string
@@ -23,6 +31,7 @@ export function EditorialPage({
   intro,
   meta,
   sections,
+  relatedPosts,
   plainTitle,
   ctaTitle,
   ctaDescription,
@@ -79,16 +88,24 @@ export function EditorialPage({
             </Link>
           </section>
         ) : null}
+
+        {relatedPosts && relatedPosts.length > 0 ? (
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Powiązane wpisy</h2>
+            <div className={styles.relatedGrid}>
+              {relatedPosts.map((post) => (
+                <Link key={post.href} href={post.href} className={styles.relatedCard}>
+                  <span className={styles.relatedMeta}>{post.meta}</span>
+                  <h3 className={styles.relatedTitle}>{post.title}</h3>
+                  <p className={styles.relatedText}>{post.description}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
     </article>
   )
-}
-
-type EditorialHubItem = {
-  title: string
-  description: string
-  href: string
-  meta: string
 }
 
 type EditorialHubProps = {

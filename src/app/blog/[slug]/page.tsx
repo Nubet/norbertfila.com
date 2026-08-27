@@ -39,6 +39,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound()
   }
 
+  const relatedPosts = blogPosts
+    .filter((candidate) => candidate.slug !== post.slug)
+    .sort((left, right) => {
+      const leftScore = Number(left.category === post.category)
+      const rightScore = Number(right.category === post.category)
+
+      if (leftScore !== rightScore) {
+        return rightScore - leftScore
+      }
+
+      return left.title.localeCompare(right.title, 'pl')
+    })
+    .slice(0, 3)
+    .map((candidate) => ({
+      title: candidate.title,
+      description: candidate.excerpt,
+      href: `/blog/${candidate.slug}`,
+      meta: `${candidate.category} • ${candidate.readingTime}`,
+    }))
+
   return (
     <EditorialPage
       eyebrow={post.category}
@@ -48,6 +68,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       intro={post.intro}
       meta={[`Fraza: ${post.targetKeyword}`, `Publikacja: ${post.publishedAt}`, post.readingTime]}
       sections={post.sections}
+      relatedPosts={relatedPosts}
       ctaTitle={post.ctaTitle}
       ctaDescription={post.ctaDescription}
       ctaLabel="Przejdź do kontaktu"
