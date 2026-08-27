@@ -42,6 +42,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <EditorialPage
       eyebrow={post.category}
+      plainTitle
       title={post.title}
       description={post.description}
       intro={post.intro}

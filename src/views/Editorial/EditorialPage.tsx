@@ -9,6 +9,7 @@ type EditorialPageProps = {
   intro: string
   meta?: string[]
   sections: ContentSection[]
+  plainTitle?: boolean
   ctaTitle?: string
   ctaDescription?: string
   ctaLabel?: string
@@ -22,6 +23,7 @@ export function EditorialPage({
   intro,
   meta,
   sections,
+  plainTitle,
   ctaTitle,
   ctaDescription,
   ctaLabel,
@@ -31,7 +33,7 @@ export function EditorialPage({
     <article className={styles.page}>
       <header className={styles.hero}>
         <p className={styles.eyebrow}>{eyebrow}</p>
-        <h1 className={styles.title}>{title}</h1>
+        <h1 className={plainTitle ? styles.plainTitle : styles.title}>{title}</h1>
         <p className={styles.description}>{description}</p>
         {meta && meta.length > 0 ? (
           <div className={styles.meta}>
