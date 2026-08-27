@@ -1,0 +1,138 @@
+import Link from 'next/link'
+import type { ContentSection } from '@/data/editorial'
+import styles from './EditorialPage.module.css'
+
+type EditorialPageProps = {
+  eyebrow: string
+  title: string
+  description: string
+  intro: string
+  meta?: string[]
+  sections: ContentSection[]
+  ctaTitle?: string
+  ctaDescription?: string
+  ctaLabel?: string
+  ctaHref?: string
+}
+
+export function EditorialPage({
+  eyebrow,
+  title,
+  description,
+  intro,
+  meta,
+  sections,
+  ctaTitle,
+  ctaDescription,
+  ctaLabel,
+  ctaHref,
+}: EditorialPageProps) {
+  return (
+    <article className={styles.page}>
+      <header className={styles.hero}>
+        <p className={styles.eyebrow}>{eyebrow}</p>
+        <h1 className={styles.title}>{title}</h1>
+        <p className={styles.description}>{description}</p>
+        {meta && meta.length > 0 ? (
+          <div className={styles.meta}>
+            {meta.map((item) => (
+              <span key={item} className={styles.metaItem}>
+                {item}
+              </span>
+            ))}
+          </div>
+        ) : null}
+      </header>
+
+      <div className={styles.content}>
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Dlaczego ten temat ma znaczenie</h2>
+          <p className={`${styles.paragraph} ${styles.introParagraph}`}>{intro}</p>
+        </section>
+
+        {sections.map((section) => (
+          <section key={section.title} className={styles.section}>
+            <h2 className={styles.sectionTitle}>{section.title}</h2>
+            {section.body.map((paragraph) => (
+              <p key={paragraph} className={styles.paragraph}>
+                {paragraph}
+              </p>
+            ))}
+            {section.points ? (
+              <ul className={styles.list}>
+                {section.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            ) : null}
+          </section>
+        ))}
+
+        {ctaLabel && ctaHref ? (
+          <section className={styles.ctaBox}>
+            <h2 className={styles.sectionTitle}>{ctaTitle ?? 'Porozmawiajmy o Twojej stronie'}</h2>
+            {ctaDescription ? <p className={styles.paragraph}>{ctaDescription}</p> : null}
+            <Link href={ctaHref} className={styles.ctaLink}>
+              {ctaLabel}
+            </Link>
+          </section>
+        ) : null}
+      </div>
+    </article>
+  )
+}
+
+type EditorialHubItem = {
+  title: string
+  description: string
+  href: string
+  meta: string
+}
+
+type EditorialHubProps = {
+  eyebrow: string
+  title: string
+  description: string
+  items: EditorialHubItem[]
+  plainTitle?: boolean
+}
+
+export function EditorialHub({
+  eyebrow,
+  title,
+  description,
+  items,
+  plainTitle,
+}: EditorialHubProps) {
+  return (
+    <section className={styles.hub}>
+      <header className={styles.hubHeader}>
+        <p className={styles.eyebrow}>{eyebrow}</p>
+        <h1 className={plainTitle ? styles.plainTitle : styles.title}>{title}</h1>
+        <p className={styles.description}>{description}</p>
+      </header>
+
+      <div className={styles.hubGrid}>
+        {items.map((item) => (
+          <Link key={item.href} href={item.href} className={styles.cardLinkWrapper}>
+            <article className={styles.card}>
+              <div className={styles.cardMetaWrapper}>
+                <span className={styles.cardMeta}>{item.meta.split(' • ')[0]}</span>
+                <span className={styles.cardMeta} style={{ color: 'var(--color-gold)' }}>
+                  {item.meta.split(' • ')[1]}
+                </span>
+              </div>
+              <div className={styles.cardMain}>
+                <h2 className={styles.cardTitle}>{item.title}</h2>
+                <p className={styles.cardText}>{item.description}</p>
+              </div>
+              <div className={styles.cardArrow}>
+                <span>→</span>
+              </div>
+            </article>
+          </Link>
+        ))}
+      </div>
+    </section>
+  )
+}

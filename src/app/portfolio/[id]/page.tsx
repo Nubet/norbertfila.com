@@ -8,8 +8,13 @@ export function generateStaticParams() {
   }))
 }
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  const data = getCaseStudyById(params.id)
+type ProjectPageProps = {
+  params: Promise<{ id: string }>
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { id } = await params
+  const data = getCaseStudyById(id)
 
   if (!data) {
     notFound()

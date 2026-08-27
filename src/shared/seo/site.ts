@@ -7,11 +7,13 @@ export const siteConfig = {
   locale: 'pl_PL',
 } as const
 
-export const indexedRoutes = [
+export const staticIndexedRoutes = [
   '/',
+  '/about',
   '/portfolio',
   '/contact',
   '/projects',
+  '/blog',
   '/privacy-policy',
   '/cookie-policy',
 ] as const
