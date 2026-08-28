@@ -96,13 +96,26 @@ export const blogPosts: BlogPost[] = [
     readingTime: '4 min',
     targetKeyword: 'ile kosztuje strona internetowa łódź',
     intro:
-      'To jedno z najlepszych pytań, jakie może zadać właściciel firmy przed zleceniem nowej strony. Osoba wpisująca w Google hasło „ile kosztuje strona internetowa w Łodzi” zwykle nie szuka ogólników. Chce wiedzieć, jakie są realne widełki, co wpływa na cenę i skąd biorą się różnice między prostą stroną-wizytówką a dopracowaną witryną, która ma budować zaufanie i generować zapytania.',
+      'To jedno z najlepszych pytań, jakie może zadać właściciel firmy przed zleceniem nowej strony. Osoba wpisująca w Google hasło „ile kosztuje strona internetowa w Łodzi” zwykle nie szuka ogólników. Chce wiedzieć, jakie są realne widełki, co wpływa na cenę i skąd biorą się różnice między prostą stroną-wizytówką a dopracowaną witryną, która ma budować zaufanie, działać szybko na telefonie i generować zapytania.',
     sections: [
       {
         title: 'Nie ma jednej ceny, bo nie ma jednego typu strony',
         body: [
           'Najczęstszy błąd przy porównywaniu ofert polega na tym, że pod jednym słowem „strona internetowa” kryją się zupełnie różne realizacje. Inaczej wycenia się prostą stronę dla małej firmy, inaczej landing page pod konkretną usługę, a jeszcze inaczej rozbudowaną witrynę z kilkoma podstronami, blogiem i dopracowaną strukturą treści. Jeśli zastanawiasz się, kiedy faktycznie wystarczy jedna strona ofertowa, zobacz też wpis [Landing page dla lokalnej usługi: kiedy ma sens, a kiedy nie?](/blog/landing-page-dla-lokalnej-uslugi-kiedy-ma-sens-a-kiedy-nie).',
           'Sama cena bez kontekstu niewiele mówi. Dwie strony mogą kosztować podobnie, a mieć zupełnie inną jakość. Jedna będzie tylko obecnością w sieci. Druga pomoże klientowi szybko zrozumieć ofertę, zaufać marce i przejść do kontaktu.',
+        ],
+      },
+      {
+        title: 'Strona musi działać szybko',
+        body: [
+          'Według danych [GUS](https://stat.gov.pl/dla-mediow/informacje-prasowe/polacy-online-niemal-bez-przerwy-tak-korzystamy-z-internetu,44,1.html) z 2025 roku prawie 85% osób w wieku 16-74 lata korzysta z internetu codziennie lub prawie codziennie, a 87,3% łączy się z siecią przez smartfon. Do tego 66% użytkowników szuka online informacji o towarach i usługach. To oznacza, że klient bardzo często trafia na stronę właśnie z telefonu, w trakcie szybkiego porównywania ofert.',
+          'W praktyce wolna albo źle zrobiona strona przegrywa jeszcze zanim użytkownik zdąży przeczytać ofertę. Jeśli treść ładuje się długo, układ skacze albo formularz jest niewygodny na telefonie, część osób po prostu wraca do wyników wyszukiwania i wybiera konkurencję.',
+        ],
+        points: [
+          'mobile-first zamiast projektowania najpierw na desktop',
+          'krótka ścieżka do kontaktu i zapytania',
+          'lekka strona, która nie marnuje czasu użytkownika',
+          'czytelna oferta od razu po wejściu',
         ],
       },
       {
@@ -183,7 +196,7 @@ export const blogPosts: BlogPost[] = [
           headers: ['Element', 'Orientacyjny koszt roczny'],
           rows: [
             ['Domena .pl', 'ok. 50-65 zł netto przy odnowieniu'],
-            ['Domena .com w Spaceship', 'ok. 9-11 USD rocznie'],
+            ['Domena .com', 'ok. 9-11 USD rocznie'],
             ['Hosting statycznej strony', 'od 0 zł'],
             ['Podstawowy VPS', 'od kilku euro miesięcznie'],
             ['Certyfikat SSL', 'często 0 zł'],
