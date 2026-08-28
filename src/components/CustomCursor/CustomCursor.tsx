@@ -3,29 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './CustomCursor.module.css'
 
-const isElementDark = (el: HTMLElement | null): boolean => {
-  if (!el || el === document.body || el === document.documentElement) return false
 
-  const bg = window.getComputedStyle(el).backgroundColor
-
-  const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
-  if (match) {
-    const r = parseInt(match[1])
-    const g = parseInt(match[2])
-    const b = parseInt(match[3])
-
-    const alphaMatch = bg.match(/rgba?\([^,]+,[^,]+,[^,]+,\s*([0-9.]+)\)/)
-    const a = alphaMatch ? parseFloat(alphaMatch[1]) : 1
-
-    if (a > 0.5) {
-      const luminance = (r * 299 + g * 587 + b * 114) / 1000
-      if (luminance < 128) return true
-      if (luminance >= 128) return false
-    }
-  }
-
-  return isElementDark(el.parentElement)
-}
 
 export const CustomCursor = () => {
   const dotRef = useRef<HTMLDivElement>(null)
@@ -38,8 +16,6 @@ export const CustomCursor = () => {
   const requestRef = useRef<number>(0)
 
   const isHovering = useRef(false)
-  const isDarkSection = useRef(false)
-  const lastTarget = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
@@ -68,22 +44,6 @@ export const CustomCursor = () => {
         isHovering.current = false
         circleRef.current?.classList.remove(styles.hovered)
         dotRef.current?.classList.remove(styles.hoveredDot)
-      }
-
-      // Update dark background state only when target changes
-      if (target !== lastTarget.current) {
-        lastTarget.current = target
-        const isDark = isElementDark(target)
-
-        if (isDark && !isDarkSection.current) {
-          isDarkSection.current = true
-          circleRef.current?.classList.add(styles.onDark)
-          dotRef.current?.classList.add(styles.onDarkDot)
-        } else if (!isDark && isDarkSection.current) {
-          isDarkSection.current = false
-          circleRef.current?.classList.remove(styles.onDark)
-          dotRef.current?.classList.remove(styles.onDarkDot)
-        }
       }
     }
 
