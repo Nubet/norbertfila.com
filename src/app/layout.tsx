@@ -3,6 +3,10 @@ import type { ReactNode } from 'react'
 import Script from 'next/script'
 import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
+import {
+  GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT,
+  GOOGLE_ANALYTICS_SRC,
+} from '@/features/analytics/googleAnalytics'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { siteConfig } from '@/shared/seo/site'
 import { theSeasons, montserrat, greatVibes } from '@/shared/fonts'
@@ -128,6 +132,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       className={`${theSeasons.variable} ${montserrat.variable} ${greatVibes.variable}`}
     >
       <body>
+        <Script id="google-analytics-consent" strategy="beforeInteractive">
+          {GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT}
+        </Script>
+        <Script id="google-analytics" src={GOOGLE_ANALYTICS_SRC} strategy="afterInteractive" />
         <Script id="scroll-tracking" strategy="afterInteractive">
           {scrollTrackingScript}
         </Script>
