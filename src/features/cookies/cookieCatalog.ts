@@ -24,6 +24,19 @@ export const analyticsCookies: CookieDefinition[] = [
     description: 'Google Analytics: rozróżnianie użytkowników w ciągu 24 godzin.',
     expiration: '24 godziny',
   },
+  {
+    name: '_clck',
+    domain: 'norbertfila.com',
+    description: 'Microsoft Clarity: zapisuje identyfikator użytkownika i preferencje analityczne.',
+    expiration: '1 rok',
+  },
+  {
+    name: '_clsk',
+    domain: 'norbertfila.com',
+    description:
+      'Microsoft Clarity: łączy odsłony w jedną sesję i wspiera mapy kliknięć oraz nagrania.',
+    expiration: '1 dzień',
+  },
 ]
 
 export const strictlyNecessaryCookies: CookieDefinition[] = [
