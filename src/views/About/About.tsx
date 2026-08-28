@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
+import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
 import styles from './About.module.css'
 
 export function About() {
@@ -179,7 +180,16 @@ export function About() {
         <section className={styles.ctaSection}>
           <ScrollReveal>
             <h2 className={styles.ctaTitle}>Masz pomysł na projekt?</h2>
-            <Link href="/contact" className={styles.ctaButton}>
+            <Link
+              href="/contact"
+              className={styles.ctaButton}
+              onClick={() =>
+                trackAnalyticsEvent('contact_clicked', {
+                  location: 'about_cta',
+                  label: 'Porozmawiajmy o współpracy',
+                })
+              }
+            >
               Porozmawiajmy o współpracy <ArrowRight size={20} />
             </Link>
           </ScrollReveal>

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
+import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
 import styles from './Header.module.css'
 
 export function Header() {
@@ -11,6 +12,9 @@ export function Header() {
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
   const closeMenu = () => setIsMobileMenuOpen(false)
+  const trackContactClick = (location: string) => {
+    trackAnalyticsEvent('contact_clicked', { location })
+  }
 
   return (
     <header className={styles.header}>
@@ -52,7 +56,11 @@ export function Header() {
             Proces
           </Link>
         </nav>
-        <Link href="/contact" className={styles.ctaButton}>
+        <Link
+          href="/contact"
+          className={styles.ctaButton}
+          onClick={() => trackContactClick('header_desktop')}
+        >
           Współpraca
         </Link>
         <button
@@ -81,7 +89,14 @@ export function Header() {
           <Link href="/#proces" className={styles.mobileNavLink} onClick={closeMenu}>
             Proces
           </Link>
-          <Link href="/contact" className={styles.mobileCtaButton} onClick={closeMenu}>
+          <Link
+            href="/contact"
+            className={styles.mobileCtaButton}
+            onClick={() => {
+              trackContactClick('header_mobile')
+              closeMenu()
+            }}
+          >
             Współpraca
           </Link>
         </nav>

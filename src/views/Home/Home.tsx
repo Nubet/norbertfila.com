@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight, Clock } from 'luci
 import { FAQ } from '@/components/FAQ/FAQ'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
+import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
 import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
 import { blogPosts } from '@/data/blogPosts'
 import { portfolioProjects } from '@/data/portfolio'
@@ -28,6 +29,13 @@ export default function Home() {
   const [comingSoonId, setComingSoonId] = useState<string | null>(null)
 
   const handleReadMoreClick = (e: React.MouseEvent, project: (typeof portfolioProjects)[0]) => {
+    trackAnalyticsEvent('portfolio_project_clicked', {
+      location: 'portfolio_section',
+      project_id: project.id,
+      project_title: project.title,
+      project_ready: project.isReady,
+    })
+
     if (!project.isReady) {
       e.preventDefault()
       setComingSoonId(project.id)
@@ -140,6 +148,13 @@ export default function Home() {
             <Link
               href="/#portfolio"
               className={`${styles.ctaButton} ${styles.heroCtaButtonMinimal}`}
+              onClick={() =>
+                trackAnalyticsEvent('cta_clicked', {
+                  location: 'hero',
+                  label: 'Zobacz moje prace',
+                  destination: '/#portfolio',
+                })
+              }
             >
               Zobacz moje prace
             </Link>
@@ -196,32 +211,86 @@ export default function Home() {
             <h2 className={styles.sectionTitle}>Co mogę dla Ciebie zrobić?</h2>
 
             <div className={styles.servicesList}>
-              <Link href="/contact" className={styles.serviceItem}>
+              <Link
+                href="/contact"
+                className={styles.serviceItem}
+                onClick={() =>
+                  trackAnalyticsEvent('contact_clicked', {
+                    location: 'home_service_01',
+                    service: 'Strona, która buduje zaufanie do marki',
+                  })
+                }
+              >
                 <span className={styles.serviceIconNumber}>01</span>
                 <span>Strona, która buduje zaufanie do marki</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
-              <Link href="/contact" className={styles.serviceItem}>
+              <Link
+                href="/contact"
+                className={styles.serviceItem}
+                onClick={() =>
+                  trackAnalyticsEvent('contact_clicked', {
+                    location: 'home_service_02',
+                    service: 'Landing page, który zamienia ruch w zapytania',
+                  })
+                }
+              >
                 <span className={styles.serviceIconNumber}>02</span>
                 <span>Landing page, który zamienia ruch w zapytania</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
-              <Link href="/contact" className={styles.serviceItem}>
+              <Link
+                href="/contact"
+                className={styles.serviceItem}
+                onClick={() =>
+                  trackAnalyticsEvent('contact_clicked', {
+                    location: 'home_service_03',
+                    service: 'Oferta usług pokazana jasno i bez chaosu',
+                  })
+                }
+              >
                 <span className={styles.serviceIconNumber}>03</span>
                 <span>Oferta usług pokazana jasno i bez chaosu</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
-              <Link href="/contact" className={styles.serviceItem}>
+              <Link
+                href="/contact"
+                className={styles.serviceItem}
+                onClick={() =>
+                  trackAnalyticsEvent('contact_clicked', {
+                    location: 'home_service_04',
+                    service: 'Formularze i CTA, które prowadzą klienta do kontaktu',
+                  })
+                }
+              >
                 <span className={styles.serviceIconNumber}>04</span>
                 <span>Formularze i CTA, które prowadzą klienta do kontaktu</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
-              <Link href="/contact" className={styles.serviceItem}>
+              <Link
+                href="/contact"
+                className={styles.serviceItem}
+                onClick={() =>
+                  trackAnalyticsEvent('contact_clicked', {
+                    location: 'home_service_05',
+                    service: 'Integracje i funkcje na zamówienie',
+                  })
+                }
+              >
                 <span className={styles.serviceIconNumber}>05</span>
                 <span>Integracje i funkcje na zamówienie</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
-              <Link href="/contact" className={styles.serviceItem}>
+              <Link
+                href="/contact"
+                className={styles.serviceItem}
+                onClick={() =>
+                  trackAnalyticsEvent('contact_clicked', {
+                    location: 'home_service_06',
+                    service: 'Doradztwo w wyborze hostingu i domeny',
+                  })
+                }
+              >
                 <span className={styles.serviceIconNumber}>06</span>
                 <span>Doradztwo w wyborze hostingu i domeny</span>
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
@@ -242,14 +311,26 @@ export default function Home() {
               </div>
               <div className={styles.carouselControls}>
                 <button
-                  onClick={() => scrollCarousel('left')}
+                  onClick={() => {
+                    scrollCarousel('left')
+                    trackAnalyticsEvent('carousel_control_clicked', {
+                      location: 'portfolio_section',
+                      direction: 'left',
+                    })
+                  }}
                   className={styles.controlBtn}
                   aria-label="Poprzedni projekt"
                 >
                   <ChevronLeft size={24} />
                 </button>
                 <button
-                  onClick={() => scrollCarousel('right')}
+                  onClick={() => {
+                    scrollCarousel('right')
+                    trackAnalyticsEvent('carousel_control_clicked', {
+                      location: 'portfolio_section',
+                      direction: 'right',
+                    })
+                  }}
                   className={styles.controlBtn}
                   aria-label="Następny projekt"
                 >
@@ -318,7 +399,16 @@ export default function Home() {
 
           <div style={{ textAlign: 'center', marginTop: '5rem' }}>
             <ScrollReveal>
-              <Link href="/portfolio" className={`${styles.ctaButton} ${styles.ctaButtonSolid}`}>
+              <Link
+                href="/portfolio"
+                className={`${styles.ctaButton} ${styles.ctaButtonSolid}`}
+                onClick={() =>
+                  trackAnalyticsEvent('portfolio_all_clicked', {
+                    location: 'portfolio_section',
+                    label: 'Zobacz wszystkie projekty',
+                  })
+                }
+              >
                 Zobacz wszystkie projekty
               </Link>
             </ScrollReveal>
@@ -404,7 +494,18 @@ export default function Home() {
 
             <div className={styles.blogEntryGrid}>
               {featuredBlogPosts.map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.blogEntryCard}>
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className={styles.blogEntryCard}
+                  onClick={() =>
+                    trackAnalyticsEvent('blog_post_clicked', {
+                      location: 'home_blog_section',
+                      slug: post.slug,
+                      title: post.title,
+                    })
+                  }
+                >
                   <div className={styles.blogEntryCardMain}>
                     <span className={styles.blogEntryMeta}>
                       {`${post.category} • ${post.readingTime}`}
@@ -422,7 +523,16 @@ export default function Home() {
             </div>
 
             <div className={styles.blogEntryFooter}>
-              <Link href="/blog" className={styles.blogEntryAllLink}>
+              <Link
+                href="/blog"
+                className={styles.blogEntryAllLink}
+                onClick={() =>
+                  trackAnalyticsEvent('blog_index_clicked', {
+                    location: 'home_blog_section',
+                    label: 'Przejdź do całego bloga',
+                  })
+                }
+              >
                 Przejdź do całego bloga
               </Link>
             </div>
@@ -488,7 +598,16 @@ export default function Home() {
             <p className={styles.finalCtaText}>
               Napisz do mnie i opowiedz o swoim biznesie. Wspólnie sprawdzimy, jak mogę Ci pomóc.
             </p>
-            <Link href="/contact" className={styles.finalCtaButton}>
+            <Link
+              href="/contact"
+              className={styles.finalCtaButton}
+              onClick={() =>
+                trackAnalyticsEvent('contact_clicked', {
+                  location: 'home_final_cta',
+                  label: 'Przejdź do formularza',
+                })
+              }
+            >
               Przejdź do formularza
             </Link>
           </ScrollReveal>

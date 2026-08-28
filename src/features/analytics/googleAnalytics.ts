@@ -5,6 +5,7 @@ type GtagCommand =
   | ['js', Date]
   | ['config', string, Record<string, unknown>?]
   | ['consent', 'update', Record<string, 'granted' | 'denied'>]
+  | ['event', string, Record<string, unknown>?]
 
 type AnalyticsWindow = Window & {
   dataLayer?: unknown[]
@@ -120,4 +121,12 @@ export function updateAnalyticsConsent(granted: boolean) {
     ad_user_data: 'denied',
     ad_personalization: 'denied',
   })
+}
+
+export function trackAnalyticsEvent(eventName: string, params: Record<string, unknown> = {}) {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  getAnalyticsWindow().gtag?.('event', eventName, params)
 }

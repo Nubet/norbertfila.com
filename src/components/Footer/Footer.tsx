@@ -1,7 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { Linkedin, Mail } from 'lucide-react'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
+import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
 import styles from './Footer.module.css'
 
 export function Footer() {
@@ -47,7 +50,12 @@ export function Footer() {
                     <Link href="/blog">Blog</Link>
                   </li>
                   <li>
-                    <Link href="/contact">Umów Konsultację</Link>
+                    <Link
+                      href="/contact"
+                      onClick={() => trackAnalyticsEvent('contact_clicked', { location: 'footer' })}
+                    >
+                      Umów Konsultację
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -72,10 +80,20 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Profil LinkedIn"
+                    onClick={() =>
+                      trackAnalyticsEvent('social_link_clicked', {
+                        location: 'footer',
+                        network: 'linkedin',
+                      })
+                    }
                   >
                     <Linkedin size={20} strokeWidth={1.5} />
                   </a>
-                  <a href="mailto:kontakt@norbertfila.com" aria-label="Napisz maila">
+                  <a
+                    href="mailto:kontakt@norbertfila.com"
+                    aria-label="Napisz maila"
+                    onClick={() => trackAnalyticsEvent('email_clicked', { location: 'footer' })}
+                  >
                     <Mail size={20} strokeWidth={1.5} />
                   </a>
                 </div>

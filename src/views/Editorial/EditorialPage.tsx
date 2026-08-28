@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 import type { ContentSection } from '@/data/editorial'
+import { TrackedLink } from '@/components/TrackedLink/TrackedLink'
 import styles from './EditorialPage.module.css'
 
 const inlineLinkPattern = /\[([^\]]+)\]\(((?:\/|https?:\/\/)[^)]+)\)/g
@@ -160,9 +161,18 @@ export function EditorialPage({
           <section className={styles.ctaBox}>
             <h2 className={styles.sectionTitle}>{ctaTitle ?? 'Porozmawiajmy o Twojej stronie'}</h2>
             {ctaDescription ? <p className={styles.paragraph}>{ctaDescription}</p> : null}
-            <Link href={ctaHref} className={styles.ctaLink}>
+            <TrackedLink
+              href={ctaHref}
+              className={styles.ctaLink}
+              eventName="blog_cta_clicked"
+              eventParams={{
+                article_title: title,
+                destination: ctaHref,
+                label: ctaLabel,
+              }}
+            >
               {ctaLabel}
-            </Link>
+            </TrackedLink>
           </section>
         ) : null}
 
@@ -171,11 +181,21 @@ export function EditorialPage({
             <h2 className={styles.sectionTitle}>Powiązane wpisy</h2>
             <div className={styles.relatedGrid}>
               {relatedPosts.map((post) => (
-                <Link key={post.href} href={post.href} className={styles.relatedCard}>
+                <TrackedLink
+                  key={post.href}
+                  href={post.href}
+                  className={styles.relatedCard}
+                  eventName="blog_related_post_clicked"
+                  eventParams={{
+                    article_title: title,
+                    destination: post.href,
+                    related_title: post.title,
+                  }}
+                >
                   <span className={styles.relatedMeta}>{post.meta}</span>
                   <h3 className={styles.relatedTitle}>{post.title}</h3>
                   <p className={styles.relatedText}>{post.description}</p>
-                </Link>
+                </TrackedLink>
               ))}
             </div>
           </section>
@@ -220,11 +240,21 @@ export function EditorialHub({
           </div>
           <div className={styles.featuredGrid}>
             {featuredItems.map((item) => (
-              <Link key={item.href} href={item.href} className={styles.featuredCard}>
+              <TrackedLink
+                key={item.href}
+                href={item.href}
+                className={styles.featuredCard}
+                eventName="blog_post_clicked"
+                eventParams={{
+                  location: 'blog_featured',
+                  destination: item.href,
+                  title: item.title,
+                }}
+              >
                 <span className={styles.featuredMeta}>{item.meta}</span>
                 <h3 className={styles.featuredCardTitle}>{item.title}</h3>
                 <p className={styles.featuredText}>{item.description}</p>
-              </Link>
+              </TrackedLink>
             ))}
           </div>
         </section>
@@ -233,20 +263,36 @@ export function EditorialHub({
       {categories && categories.length > 0 ? (
         <nav className={styles.categoryNav} aria-label="Kategorie bloga">
           {categories.map((category) => (
-            <Link
+            <TrackedLink
               key={category.href}
               href={category.href}
               className={category.active ? styles.categoryChipActive : styles.categoryChip}
+              eventName="blog_category_clicked"
+              eventParams={{
+                label: category.label,
+                destination: category.href,
+                active: category.active ?? false,
+              }}
             >
               {category.label}
-            </Link>
+            </TrackedLink>
           ))}
         </nav>
       ) : null}
 
       <div className={styles.hubGrid}>
         {items.map((item) => (
-          <Link key={item.href} href={item.href} className={styles.cardLinkWrapper}>
+          <TrackedLink
+            key={item.href}
+            href={item.href}
+            className={styles.cardLinkWrapper}
+            eventName="blog_post_clicked"
+            eventParams={{
+              location: 'blog_index',
+              destination: item.href,
+              title: item.title,
+            }}
+          >
             <article className={styles.card}>
               <div className={styles.cardMetaWrapper}>
                 <span className={styles.cardMeta}>{item.meta.split(' • ')[0]}</span>
@@ -262,7 +308,7 @@ export function EditorialHub({
                 <span>→</span>
               </div>
             </article>
-          </Link>
+          </TrackedLink>
         ))}
       </div>
     </section>

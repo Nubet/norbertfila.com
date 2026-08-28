@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
 import { submitContactForm, ContactFormError } from '@/features/contact/submitContactForm'
 import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
@@ -21,9 +22,7 @@ export default function ContactPage() {
   )
   const [stepError, setStepError] = useState<string | null>(null)
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [step])
+  const scrollToTop = () => window.scrollTo(0, 0)
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -38,6 +37,12 @@ export default function ContactPage() {
     if (!budget) return setStepError('Proszę określić planowany budżet.')
     setStepError(null)
     setStep(1)
+    scrollToTop()
+    trackAnalyticsEvent('contact_step_completed', {
+      step: 1,
+      project_type: projectType,
+      budget,
+    })
   }
 
   const handleNextStep2 = () => {
@@ -47,11 +52,19 @@ export default function ContactPage() {
     if (!pagesCount) return setStepError('Proszę określić szacowaną wielkość strony.')
     setStepError(null)
     setStep(2)
+    scrollToTop()
+    trackAnalyticsEvent('contact_step_completed', {
+      step: 2,
+      materials,
+      pages_count: pagesCount,
+    })
   }
 
   const prevStep = () => {
     setStepError(null)
     setStep((s) => Math.max(-1, s - 1))
+    scrollToTop()
+    trackAnalyticsEvent('contact_back_clicked', { step })
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -66,6 +79,12 @@ export default function ContactPage() {
     setIsSubmitting(true)
     setStepError(null)
     setFeedback(null)
+    trackAnalyticsEvent('contact_form_submit_started', {
+      project_type: projectType,
+      budget,
+      materials,
+      pages_count: pagesCount,
+    })
 
     const payload = {
       projectType,
@@ -82,7 +101,20 @@ export default function ContactPage() {
     try {
       await submitContactForm(payload)
       setStep(3) // Success step
+      scrollToTop()
+      trackAnalyticsEvent('contact_form_submitted', {
+        project_type: projectType,
+        budget,
+        materials,
+        pages_count: pagesCount,
+      })
     } catch (error) {
+      trackAnalyticsEvent('contact_form_submit_failed', {
+        project_type: projectType,
+        budget,
+        materials,
+        pages_count: pagesCount,
+      })
       if (error instanceof ContactFormError) {
         setFeedback({ type: 'error', message: error.message })
       } else {
@@ -115,10 +147,20 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.premiumBtn}
+                  onClick={() =>
+                    trackAnalyticsEvent('contact_clicked', { location: 'contact_calendly' })
+                  }
                 >
                   Zarezerwuj rozmowę
                 </a>
-                <button onClick={() => setStep(0)} className={styles.premiumBtn}>
+                <button
+                  onClick={() => {
+                    setStep(0)
+                    scrollToTop()
+                    trackAnalyticsEvent('contact_clicked', { location: 'contact_message' })
+                  }}
+                  className={styles.premiumBtn}
+                >
                   Napisz wiadomość
                 </button>
               </div>
@@ -130,10 +172,21 @@ export default function ContactPage() {
           <ScrollReveal>
             <header className={styles.header}>
               <div className={styles.headerTop}>
-                <button onClick={prevStep} className={styles.backLink}>
+                <button
+                  onClick={() => {
+                    prevStep()
+                  }}
+                  className={styles.backLink}
+                >
                   <ArrowLeft size={16} /> Powrót
                 </button>
-                <a href="mailto:kontakt@norbertfila.com" className={styles.directEmail}>
+                <a
+                  href="mailto:kontakt@norbertfila.com"
+                  className={styles.directEmail}
+                  onClick={() =>
+                    trackAnalyticsEvent('email_clicked', { location: 'contact_header' })
+                  }
+                >
                   kontakt@norbertfila.com
                 </a>
               </div>
@@ -166,7 +219,13 @@ export default function ContactPage() {
                       <button
                         key={type}
                         type="button"
-                        onClick={() => setProjectType(type)}
+                        onClick={() => {
+                          setProjectType(type)
+                          trackAnalyticsEvent('contact_option_selected', {
+                            field: 'project_type',
+                            value: type,
+                          })
+                        }}
                         className={`${styles.luxuryPill} ${projectType === type ? styles.activePill : ''}`}
                       >
                         {type}
@@ -181,7 +240,13 @@ export default function ContactPage() {
                         <button
                           key={amount}
                           type="button"
-                          onClick={() => setBudget(amount)}
+                          onClick={() => {
+                            setBudget(amount)
+                            trackAnalyticsEvent('contact_option_selected', {
+                              field: 'budget',
+                              value: amount,
+                            })
+                          }}
                           className={`${styles.luxuryPill} ${budget === amount ? styles.activePill : ''}`}
                         >
                           {amount}
@@ -225,7 +290,13 @@ export default function ContactPage() {
                       <select
                         name="materials"
                         value={materials}
-                        onChange={(e) => setMaterials(e.target.value)}
+                        onChange={(e) => {
+                          setMaterials(e.target.value)
+                          trackAnalyticsEvent('contact_option_selected', {
+                            field: 'materials',
+                            value: e.target.value,
+                          })
+                        }}
                         className={styles.select}
                       >
                         <option value="" disabled>
@@ -241,7 +312,13 @@ export default function ContactPage() {
                       <select
                         name="pagesCount"
                         value={pagesCount}
-                        onChange={(e) => setPagesCount(e.target.value)}
+                        onChange={(e) => {
+                          setPagesCount(e.target.value)
+                          trackAnalyticsEvent('contact_option_selected', {
+                            field: 'pages_count',
+                            value: e.target.value,
+                          })
+                        }}
                         className={styles.select}
                       >
                         <option value="" disabled>
@@ -256,7 +333,13 @@ export default function ContactPage() {
                   </div>
 
                   <div className={styles.actionRowSpace}>
-                    <button type="button" onClick={prevStep} className={styles.prevBtn}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        prevStep()
+                      }}
+                      className={styles.prevBtn}
+                    >
                       Wstecz
                     </button>
                     <div className={styles.actionRowRight}>
@@ -327,7 +410,16 @@ export default function ContactPage() {
                     </button>
                     <div className={styles.actionRowRight}>
                       {stepError && <div className={styles.errorMsgInline}>{stepError}</div>}
-                      <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={styles.submitBtn}
+                        onClick={() =>
+                          trackAnalyticsEvent('contact_submit_clicked', {
+                            location: 'contact_form',
+                          })
+                        }
+                      >
                         {isSubmitting ? 'Wysyłanie...' : 'Wyślij projekt'} <Check size={18} />
                       </button>
                     </div>
