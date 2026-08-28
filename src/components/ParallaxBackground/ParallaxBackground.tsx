@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from './ParallaxBackground.module.css'
 
@@ -9,6 +9,7 @@ interface ParallaxBackgroundProps {
   webmSrc?: string
   posterSrc: string
   overlayVariant?: 'minimal' | 'studio' | 'editorial' | 'none'
+  disableVideoOnMobile?: boolean
   children?: React.ReactNode
   className?: string
 }
@@ -18,10 +19,25 @@ export function ParallaxBackground({
   webmSrc,
   posterSrc,
   overlayVariant = 'minimal',
+  disableVideoOnMobile = false,
   children,
   className = '',
 }: ParallaxBackgroundProps) {
   const mediaRef = useRef<HTMLDivElement>(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(!disableVideoOnMobile)
+
+  useEffect(() => {
+    if (disableVideoOnMobile) {
+      const checkScreenSize = () => {
+        if (window.innerWidth >= 768) {
+          setShouldLoadVideo(true)
+        }
+      }
+      checkScreenSize()
+      window.addEventListener('resize', checkScreenSize)
+      return () => window.removeEventListener('resize', checkScreenSize)
+    }
+  }, [disableVideoOnMobile])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -62,18 +78,20 @@ export function ParallaxBackground({
     <div className={`${styles.container} ${className}`}>
       <div className={styles.mediaContainer} aria-hidden="true" ref={mediaRef}>
         <Image src={posterSrc} alt="" fill priority className={styles.poster} sizes="100vw" />
-        <video
-          className={styles.video}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={posterSrc}
-        >
-          {webmSrc && <source src={webmSrc} type="video/webm" />}
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+        {shouldLoadVideo && (
+          <video
+            className={styles.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={posterSrc}
+          >
+            {webmSrc && <source src={webmSrc} type="video/webm" />}
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        )}
         {overlayVariant !== 'none' && <div className={`${styles.overlay} ${overlayClass}`} />}
       </div>
       <div className={styles.content}>{children}</div>
