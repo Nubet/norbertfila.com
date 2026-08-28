@@ -24,8 +24,27 @@ export function ParallaxBackground({
   className = '',
 }: ParallaxBackgroundProps) {
   const mediaRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const [shouldLoadVideo, setShouldLoadVideo] = useState(!disableVideoOnMobile)
   const [isVideoReady, setIsVideoReady] = useState(false)
+
+  const syncVideoReadiness = () => {
+    const video = videoRef.current
+
+    if (!video || !Number.isFinite(video.duration) || video.duration <= 0 || video.buffered.length === 0) {
+      return
+    }
+
+    const bufferedEnd = video.buffered.end(video.buffered.length - 1)
+
+    if (bufferedEnd < video.duration - 0.25) {
+      return
+    }
+
+    video.currentTime = 0
+    void video.play().catch(() => undefined)
+    setIsVideoReady(true)
+  }
 
   useEffect(() => {
     if (disableVideoOnMobile) {
@@ -39,6 +58,10 @@ export function ParallaxBackground({
       return () => window.removeEventListener('resize', checkScreenSize)
     }
   }, [disableVideoOnMobile])
+
+  useEffect(() => {
+    setIsVideoReady(false)
+  }, [videoSrc, webmSrc, shouldLoadVideo])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -89,15 +112,17 @@ export function ParallaxBackground({
         />
         {shouldLoadVideo && (
           <video
+            ref={videoRef}
             className={styles.video}
             style={{ display: isVideoReady ? 'block' : 'none' }}
-            autoPlay
             muted
             loop
             playsInline
             preload="auto"
             poster={posterSrc}
-            onCanPlayThrough={() => setIsVideoReady(true)}
+            onLoadedMetadata={syncVideoReadiness}
+            onCanPlayThrough={syncVideoReadiness}
+            onProgress={syncVideoReadiness}
           >
             {webmSrc && <source src={webmSrc} type="video/webm" />}
             <source src={videoSrc} type="video/mp4" />
