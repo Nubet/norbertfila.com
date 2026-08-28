@@ -44,6 +44,9 @@ export function Footer() {
                     <Link href="/">Strona Główna</Link>
                   </li>
                   <li>
+                    <Link href="/blog">Blog</Link>
+                  </li>
+                  <li>
                     <Link href="/contact">Umów Konsultację</Link>
                   </li>
                 </ul>
