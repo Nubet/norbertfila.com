@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { ContentSection } from '@/data/editorial'
 import styles from './EditorialPage.module.css'
 
-const inlineLinkPattern = /\[([^\]]+)\]\((\/[^)]+)\)/g
+const inlineLinkPattern = /\[([^\]]+)\]\(((?:\/|https?:\/\/)[^)]+)\)/g
 
 function renderParagraphContent(paragraph: string) {
   const matches = [...paragraph.matchAll(inlineLinkPattern)]
@@ -24,9 +24,21 @@ function renderParagraphContent(paragraph: string) {
     }
 
     parts.push(
-      <Link key={`${href}-${matchIndex}`} href={href} className={styles.inlineLink}>
-        {label}
-      </Link>
+      href.startsWith('/') ? (
+        <Link key={`${href}-${matchIndex}`} href={href} className={styles.inlineLink}>
+          {label}
+        </Link>
+      ) : (
+        <a
+          key={`${href}-${matchIndex}`}
+          href={href}
+          className={styles.inlineLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {label}
+        </a>
+      )
     )
 
     lastIndex = matchIndex + fullMatch.length
@@ -118,6 +130,28 @@ export function EditorialPage({
                   <li key={point}>{point}</li>
                 ))}
               </ul>
+            ) : null}
+            {section.table ? (
+              <div className={styles.tableWrapper}>
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      {section.table.headers.map((header) => (
+                        <th key={header}>{header}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {section.table.rows.map((row) => (
+                      <tr key={row.join('|')}>
+                        {row.map((cell, index) => (
+                          <td key={`${cell}-${index}`}>{renderParagraphContent(cell)}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ) : null}
           </section>
         ))}

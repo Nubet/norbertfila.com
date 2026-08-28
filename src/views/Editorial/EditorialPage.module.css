@@ -153,6 +153,44 @@
   color: var(--color-gold);
 }
 
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid rgba(47, 79, 64, 0.12);
+  background: color-mix(in srgb, var(--bg-secondary) 55%, transparent);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 36rem;
+}
+
+.table th,
+.table td {
+  padding: 1rem 1.1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(47, 79, 64, 0.1);
+  vertical-align: top;
+  line-height: 1.7;
+}
+
+.table th {
+  color: var(--color-accent);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--bg-primary) 84%, transparent);
+}
+
+.table td {
+  color: var(--text-primary);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
 .relatedGrid {
   display: grid;
   gap: 1.25rem;
