@@ -25,6 +25,7 @@ export function ParallaxBackground({
 }: ParallaxBackgroundProps) {
   const mediaRef = useRef<HTMLDivElement>(null)
   const [shouldLoadVideo, setShouldLoadVideo] = useState(!disableVideoOnMobile)
+  const [isVideoReady, setIsVideoReady] = useState(false)
 
   useEffect(() => {
     if (disableVideoOnMobile) {
@@ -77,16 +78,26 @@ export function ParallaxBackground({
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.mediaContainer} aria-hidden="true" ref={mediaRef}>
-        <Image src={posterSrc} alt="" fill priority className={styles.poster} sizes="100vw" />
+        <Image
+          src={posterSrc}
+          alt=""
+          fill
+          priority
+          className={styles.poster}
+          style={{ display: isVideoReady ? 'none' : undefined }}
+          sizes="100vw"
+        />
         {shouldLoadVideo && (
           <video
             className={styles.video}
+            style={{ display: isVideoReady ? 'block' : 'none' }}
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             poster={posterSrc}
+            onCanPlayThrough={() => setIsVideoReady(true)}
           >
             {webmSrc && <source src={webmSrc} type="video/webm" />}
             <source src={videoSrc} type="video/mp4" />
