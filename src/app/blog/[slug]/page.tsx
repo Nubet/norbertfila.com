@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const relatedPosts = getRelatedBlogPosts(post.slug).map((candidate) => ({
-    title: candidate.title,
+    title: candidate.displayTitle || candidate.title,
     description: candidate.excerpt,
     href: `/blog/${candidate.slug}`,
     meta: `${candidate.category} • ${candidate.readingTime}`,

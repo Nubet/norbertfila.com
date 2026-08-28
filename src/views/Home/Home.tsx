@@ -189,45 +189,6 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
-      <section className={styles.blogEntrySection}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <div className={styles.blogEntryHeader}>
-              <span className={styles.sectionLabel}>Blog</span>
-              <h2 className={styles.sectionTitle}>
-                Jeśli porównujesz oferty, zacznij od tych dwóch wpisów.
-              </h2>
-              <p className={styles.blogEntryIntro}>
-                To najlepszy punkt wejścia, jeśli chcesz zrozumieć koszt strony, sposób myślenia
-                wykonawcy i różnicę między ładnym projektem a stroną, która naprawdę pracuje na
-                biznes.
-              </p>
-            </div>
-
-            <div className={styles.blogEntryGrid}>
-              {featuredBlogPosts.map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.blogEntryCard}>
-                  <span
-                    className={styles.blogEntryMeta}
-                  >{`${post.category} • ${post.readingTime}`}</span>
-                  <h3 className={styles.blogEntryTitle}>{post.title}</h3>
-                  <p className={styles.blogEntryText}>{post.excerpt}</p>
-                  <span className={styles.blogEntryLink}>
-                    Czytaj wpis <ArrowRight size={18} />
-                  </span>
-                </Link>
-              ))}
-            </div>
-
-            <div className={styles.blogEntryFooter}>
-              <Link href="/blog" className={styles.blogEntryAllLink}>
-                Przejdź do całego bloga
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
       <section className={styles.servicesListSection} id="oferta">
         <div className={styles.container}>
           <ScrollReveal>
@@ -426,6 +387,50 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={styles.blogEntrySection}>
+        <div className={styles.container}>
+          <ScrollReveal>
+            <div className={styles.blogEntryHeader}>
+              <span className={styles.sectionLabel}>Blog</span>
+              <h2 className={styles.sectionTitle}>
+                Jeśli porównujesz oferty, zacznij od tych dwóch wpisów.
+              </h2>
+              <p className={styles.blogEntryIntro}>
+                To najlepszy punkt wejścia, jeśli chcesz zrozumieć koszt strony, sposób myślenia
+                wykonawcy i różnicę między ładnym projektem a stroną, która naprawdę pracuje na
+                biznes.
+              </p>
+            </div>
+
+            <div className={styles.blogEntryGrid}>
+              {featuredBlogPosts.map((post) => (
+                <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.blogEntryCard}>
+                  <div className={styles.blogEntryCardMain}>
+                    <span className={styles.blogEntryMeta}>
+                      {`${post.category} • ${post.readingTime}`}
+                    </span>
+                    <h3 className={styles.blogEntryTitle}>{post.displayTitle || post.title}</h3>
+                  </div>
+                  <div className={styles.blogEntryCardSide}>
+                    <p className={styles.blogEntryText}>{post.excerpt}</p>
+                    <span className={styles.blogEntryLink}>
+                      Czytaj wpis <ArrowRight size={18} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className={styles.blogEntryFooter}>
+              <Link href="/blog" className={styles.blogEntryAllLink}>
+                Przejdź do całego bloga
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* TYMCZASOWO UKRYTA SEKCJA E-BOOKA
       <section className={styles.ebookSection}>
         <div className={styles.container}>
           <ScrollReveal>
@@ -470,6 +475,7 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
+      */}
 
       <ScrollReveal>
         <FAQ />

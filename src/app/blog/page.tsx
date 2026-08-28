@@ -31,7 +31,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     .map((slug) => blogPosts.find((post) => post.slug === slug))
     .filter((post): post is (typeof blogPosts)[number] => Boolean(post))
     .map((post) => ({
-      title: post.title,
+      title: post.displayTitle || post.title,
       description: post.excerpt,
       href: `/blog/${post.slug}`,
       meta: `${post.category} • ${post.readingTime}`,
@@ -55,7 +55,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       featuredItems={activeCategory ? undefined : featuredItems}
       categories={categoryItems}
       items={visiblePosts.map((post) => ({
-        title: post.title,
+        title: post.displayTitle || post.title,
         description: post.excerpt,
         href: `/blog/${post.slug}`,
         meta: `${post.category} • ${post.readingTime}`,

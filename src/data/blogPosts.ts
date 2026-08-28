@@ -3,6 +3,7 @@ import type { ContentSection } from '@/data/editorial'
 export type BlogPost = {
   slug: string
   title: string
+  displayTitle?: string
   description: string
   excerpt: string
   category: string
@@ -87,10 +88,11 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'ile-kosztuje-strona-internetowa-w-lodzi',
     title: 'Ile kosztuje strona internetowa w Łodzi?',
+    displayTitle: 'Ile kosztuje profesjonalna strona internetowa?',
     description:
       'Ile kosztuje strona internetowa w Łodzi i od czego naprawdę zależy wycena? Sprawdź, co wpływa na koszt strony firmowej, landing page’a i bardziej dopracowanej realizacji.',
     excerpt:
-      'Konkretny przewodnik dla firm z Łodzi, które porównują oferty i chcą zrozumieć, skąd biorą się różnice w cenach stron internetowych.',
+      'Konkretny przewodnik dla przedsiębiorców, którzy porównują oferty i chcą zrozumieć, z czego faktycznie wynikają ogromne różnice w wycenach stron.',
     category: 'Lokalne SEO',
     publishedAt: '2026-08-27',
     readingTime: '4 min',
@@ -518,10 +520,11 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'strony-internetowe-lodz-jak-wybrac-wykonawce-dla-firmy-uslugowej',
     title: 'Strony internetowe Łódź: jak wybrać wykonawcę dla firmy usługowej?',
+    displayTitle: 'Jak wybrać wykonawcę strony dla firmy usługowej?',
     description:
       'Jak wybrać wykonawcę strony internetowej w Łodzi? Sprawdź, na co zwrócić uwagę, jeśli prowadzisz firmę usługową i zależy Ci na stronie, która buduje zaufanie i zdobywa zapytania.',
     excerpt:
-      'Praktyczny wpis dla właścicieli firm z Łodzi, którzy porównują wykonawców i nie chcą przepłacić za stronę, która niczego nie zmienia.',
+      'Jak mądrze wybrać agencję lub freelancera i na co uważać, by nie przepalić budżetu na projekt, który nie przynosi zapytań od klientów.',
     category: 'Lokalne SEO',
     publishedAt: '2026-08-27',
     readingTime: '3 min',
