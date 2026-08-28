@@ -539,10 +539,17 @@
 }
 
 .blogEntryText {
+  display: none;
   margin: 0;
   color: color-mix(in srgb, var(--color-white) 85%, transparent);
   line-height: 1.8;
   font-size: 1.1rem;
+}
+
+@media (min-width: 900px) {
+  .blogEntryText {
+    display: block;
+  }
 }
 
 .blogEntryLink {
