@@ -3,8 +3,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './CustomCursor.module.css'
 
-
-
 export const CustomCursor = () => {
   const dotRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
