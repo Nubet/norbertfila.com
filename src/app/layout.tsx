@@ -33,10 +33,10 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: '/profile/avatar-light.webp',
+        url: '/og/og-img.webp',
         width: 1200,
         height: 630,
-        alt: 'Norbert Fila',
+        alt: 'Norbert Fila - Web Developer dla Biznesu',
       },
     ],
   },
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ['/profile/avatar-light.webp'],
+    images: ['/og/og-img.webp'],
   },
   robots: {
     index: true,

@@ -3,7 +3,7 @@ export const siteConfig = {
   url: 'https://norbertfila.com',
   title: 'Norbert Fila - Web Developer dla Biznesu',
   description:
-    'Projektuje i koduje od podstaw szybkie strony internetowe oraz landing page nastawione na konwersje.',
+    "Tworzę strony internetowe i landing page'e, które zamieniają ruch w zapytania. Zobacz portfolio i zacznijmy współpracę.",
   locale: 'pl_PL',
 } as const
 

@@ -2,11 +2,24 @@ import type { Metadata } from 'next'
 import ContactPage from '@/views/ContactPage/ContactPage'
 
 export const metadata: Metadata = {
-  title: 'Kontakt i wycena',
+  title: 'Porozmawiajmy o Twojej stronie internetowej',
   description:
-    'Zbudujmy cos swietnego. Napisz, jakiego projektu potrzebujesz, a przygotuje propozycje.',
+    'Masz pomysł na stronę lub chcesz odświeżyć obecną? Napisz, a przygotuję kierunek i wstępną propozycję.',
   alternates: {
     canonical: '/contact',
+  },
+  openGraph: {
+    images: [
+      {
+        url: '/og-image-contact.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Porozmawiajmy o Twojej stronie internetowej - Kontakt',
+      },
+    ],
+  },
+  twitter: {
+    images: ['/og-image-contact.jpg'],
   },
 }
 

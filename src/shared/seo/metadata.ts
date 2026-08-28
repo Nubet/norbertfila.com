@@ -30,7 +30,7 @@ export function createPageMetadata({
       siteName: siteConfig.name,
       images: [
         {
-          url: '/profile/avatar-light.webp',
+          url: '/og/og-img.webp',
           width: 1200,
           height: 630,
           alt: title,
@@ -41,7 +41,7 @@ export function createPageMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: ['/profile/avatar-light.webp'],
+      images: ['/og/og-img.webp'],
     },
   }
 }
