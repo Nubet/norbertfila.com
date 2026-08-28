@@ -24,9 +24,12 @@ function loadClarity() {
     }
 
   const script = document.createElement('script')
+  const footer = document.querySelector('footer')
+
+  script.id = 'microsoft-clarity'
   script.async = true
   script.src = CLARITY_SRC
-  document.head.appendChild(script)
+  ;(footer ?? document.body).appendChild(script)
 
   clarityWindow.__nfClarityLoaded = true
 }
