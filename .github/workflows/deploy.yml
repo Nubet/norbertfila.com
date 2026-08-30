@@ -47,6 +47,7 @@ jobs:
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
           envs: APP_DIR,NEXT_PUBLIC_CONTACT_FORM_ENDPOINT,CERTBOT_EMAIL
           command_timeout: 30m
+          request_pty: true
           script: |
             set -euo pipefail
             export NEXT_TELEMETRY_DISABLED=1
@@ -83,13 +84,25 @@ jobs:
             fi
 
             cd "$APP_DIR"
+            echo STEP_GIT_START
             git checkout main
             git pull --ff-only origin main
+            echo STEP_GIT_DONE
 
             printf 'NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=%s\n' "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" > .env.production
+            echo STEP_ENV_DONE
 
-            bun install --frozen-lockfile
-            bun run build
+            bun install --frozen-lockfile >/tmp/nf-bun-install.log 2>&1 || {
+              cat /tmp/nf-bun-install.log
+              exit 1
+            }
+            echo STEP_INSTALL_DONE
+
+            bun run build >/tmp/nf-build.log 2>&1 || {
+              cat /tmp/nf-build.log
+              exit 1
+            }
+            echo STEP_BUILD_DONE
 
             if [ ! -f /etc/nginx/sites-available/norbertfila.com ]; then
               cat > /tmp/norbertfila.com <<'EOF'
@@ -140,7 +153,8 @@ jobs:
               pm2 start npm --name nf-portfolio --cwd "$APP_DIR" -- start -- --hostname 127.0.0.1 --port 3000
             fi
 
-            pm2 save
+            echo STEP_PM2_DONE
+            pm2 save >/dev/null
             sudo env PATH="$PATH" pm2 startup systemd -u "$USER" --hp "$HOME" >/tmp/nf-pm2-startup.log 2>&1 || true
 
       - name: Verify deployed app
