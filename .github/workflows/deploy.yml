@@ -35,20 +35,28 @@ jobs:
           NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
         run: bun run build
 
-      - name: Deploy application over SSH
-        uses: appleboy/ssh-action@v1.2.2
+      - name: Prepare SSH key
         env:
+          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
+          chmod 600 ~/.ssh/oracle_key
+
+      - name: Deploy application over SSH
+        env:
+          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           APP_DIR: ${{ secrets.APP_DIR || vars.APP_DIR }}
           NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
           CERTBOT_EMAIL: ${{ secrets.CERTBOT_EMAIL || vars.CERTBOT_EMAIL }}
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          envs: APP_DIR,NEXT_PUBLIC_CONTACT_FORM_ENDPOINT,CERTBOT_EMAIL
-          command_timeout: 30m
-          request_pty: true
-          script: |
+        run: |
+          ssh -tt -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" \
+            APP_DIR="$APP_DIR" \
+            NEXT_PUBLIC_CONTACT_FORM_ENDPOINT="$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" \
+            CERTBOT_EMAIL="$CERTBOT_EMAIL" \
+            'bash -se' <<'EOF'
             set -euo pipefail
             export NEXT_TELEMETRY_DISABLED=1
 
@@ -156,14 +164,14 @@ jobs:
             echo STEP_PM2_DONE
             pm2 save >/dev/null
             sudo env PATH="$PATH" pm2 startup systemd -u "$USER" --hp "$HOME" >/tmp/nf-pm2-startup.log 2>&1 || true
+            EOF
 
       - name: Verify deployed app
-        uses: appleboy/ssh-action@v1.2.2
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          script: |
+        env:
+          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+        run: |
+          ssh -tt -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'bash -se' <<'EOF'
             set -euo pipefail
 
             if ! pm2 describe nf-portfolio >/dev/null 2>&1; then
@@ -192,6 +200,7 @@ jobs:
               curl -sS -D - -o /dev/null https://norbertfila.com/sitemap.xml || true
               exit 1
             fi
+            EOF
 
       - name: Cleanup on failure
         if: failure()
