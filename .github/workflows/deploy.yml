@@ -47,11 +47,6 @@ jobs:
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
         run: |
-          if ! command -v rsync >/dev/null 2>&1; then
-            sudo apt-get update
-            sudo apt-get install -y rsync
-          fi
-
           mkdir -p ~/.ssh
           printf '%s\n' "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
           chmod 600 ~/.ssh/oracle_key
@@ -63,10 +58,9 @@ jobs:
           ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
         run: |
-          rsync -az --delete --partial --info=progress2,stats1 -e "ssh -i ~/.ssh/oracle_key" .next/standalone/ "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone/"
-          rsync -az --delete --partial --info=progress2,stats1 -e "ssh -i ~/.ssh/oracle_key" .next/standalone/.next/ "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone/.next/"
-          rsync -az --delete --partial --info=progress2,stats1 -e "ssh -i ~/.ssh/oracle_key" .next/static/ "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/static/"
-          rsync -az --delete --partial --info=progress2,stats1 -e "ssh -i ~/.ssh/oracle_key" public/ "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/public/"
+          tar -C .next/standalone -cf - . | ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'tar -xf - -C /tmp/nf-next-upload/standalone'
+          tar -C .next/static -cf - . | ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'tar -xf - -C /tmp/nf-next-upload/static'
+          tar -C public -cf - . | ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'tar -xf - -C /tmp/nf-next-upload/public'
 
       - name: Configure and restart Next service
         uses: appleboy/ssh-action@master
@@ -91,7 +85,7 @@ jobs:
             sudo mkdir -p /opt/nf-portfolio
             sudo chown -R $USER:$USER /opt/nf-portfolio
 
-            rm -rf /opt/nf-portfolio/*
+            find /opt/nf-portfolio -mindepth 1 -maxdepth 1 -exec rm -rf {} +
             cp -R /tmp/nf-next-upload/standalone/. /opt/nf-portfolio/
             mkdir -p /opt/nf-portfolio/.next
             cp -R /tmp/nf-next-upload/static /opt/nf-portfolio/.next/
