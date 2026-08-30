@@ -68,16 +68,47 @@ jobs:
         run: |
           set -euo pipefail
 
-          scp -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/standalone.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone.tar"
-          scp -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/static.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/static.tar"
-          scp -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/public.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/public.tar"
+          scp -O -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/standalone.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone.tar"
+          scp -O -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/static.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/static.tar"
+          scp -O -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/public.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/public.tar"
 
-          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" '
-            set -e
+          ssh -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" '
+            cat > /tmp/nf-unpack.sh <<"EOF"
+            #!/usr/bin/env bash
+            set -euo pipefail
+            trap 'code=$?; printf "%s" "$code" > /tmp/nf-unpack.exit' EXIT
+            rm -f /tmp/nf-unpack.exit
+            rm -rf /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public
+            mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public
             tar -xf /tmp/nf-next-upload/standalone.tar -C /tmp/nf-next-upload/standalone
             tar -xf /tmp/nf-next-upload/static.tar -C /tmp/nf-next-upload/static
             tar -xf /tmp/nf-next-upload/public.tar -C /tmp/nf-next-upload/public
             rm -f /tmp/nf-next-upload/standalone.tar /tmp/nf-next-upload/static.tar /tmp/nf-next-upload/public.tar
+            EOF
+            chmod +x /tmp/nf-unpack.sh
+            nohup /tmp/nf-unpack.sh >/tmp/nf-unpack.log 2>&1 < /dev/null &
+          '
+
+          for _ in $(seq 1 120); do
+            if ssh -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'test -f /tmp/nf-unpack.exit'; then
+              break
+            fi
+
+            sleep 5
+          done
+
+          ssh -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" '
+            test -f /tmp/nf-unpack.exit || {
+              echo "Timed out waiting for remote unpack"
+              tail -n 200 /tmp/nf-unpack.log || true
+              exit 1
+            }
+
+            test "$(cat /tmp/nf-unpack.exit)" = "0" || {
+              echo "Remote unpack failed"
+              tail -n 200 /tmp/nf-unpack.log || true
+              exit 1
+            }
           '
 
       - name: Configure and restart Next service
