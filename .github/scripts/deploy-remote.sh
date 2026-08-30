@@ -94,10 +94,32 @@ if [ ! -d /etc/letsencrypt/live/norbertfila.com ]; then
   sudo certbot --nginx --non-interactive --agree-tos --redirect -m "$CERTBOT_EMAIL" -d norbertfila.com -d www.norbertfila.com
 fi
 
+if sudo test -f /etc/systemd/system/nf-portfolio.service; then
+  sudo systemctl disable --now nf-portfolio.service >/dev/null 2>&1 || true
+  sudo rm -f /etc/systemd/system/nf-portfolio.service
+  sudo systemctl daemon-reload
+fi
+
+# Old deployments ran the standalone server directly under systemd.
+# Kill that legacy process so pm2 can own port 3000.
+legacy_pids=$(pgrep -f '/opt/nf-portfolio/server.js' || true)
+if [ -n "$legacy_pids" ]; then
+  sudo kill $legacy_pids || true
+  sleep 2
+fi
+
 if pm2 describe nf-portfolio >/dev/null 2>&1; then
-  pm2 reload nf-portfolio --update-env
-else
-  pm2 start npm --name nf-portfolio --cwd "$APP_DIR" -- start -- --hostname 127.0.0.1 --port 3000
+  pm2 delete nf-portfolio
+fi
+
+PORT=3000 HOSTNAME=127.0.0.1 pm2 start .next/standalone/server.js --name nf-portfolio --cwd "$APP_DIR"
+
+sleep 3
+
+if ! pm2 describe nf-portfolio >/dev/null 2>&1; then
+  echo "nf-portfolio process is missing in pm2 after deploy"
+  pm2 list || true
+  exit 1
 fi
 
 echo STEP_PM2_DONE
