@@ -41,55 +41,19 @@ jobs:
           test -d .next/static
           test -d public
 
-      - name: Copy Next standalone server to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: '.next/standalone/*'
-          target: '/tmp/nf-next-upload/standalone'
-          strip_components: 2
+      - name: Package deployment archive
+        run: |
+          mkdir -p .deploy
+          tar -czf .deploy/nf-deploy.tar.gz .next/standalone .next/static public server/ebook-subscribe/*.mjs
 
-      - name: Copy Next standalone hidden .next files to Oracle
+      - name: Copy deployment archive to Oracle
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: '.next/standalone/.next/*'
-          target: '/tmp/nf-next-upload/standalone/.next'
-          strip_components: 3
-
-      - name: Copy Next static assets to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: '.next/static/*'
-          target: '/tmp/nf-next-upload/static'
-          strip_components: 2
-
-      - name: Copy public assets to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: 'public/*'
-          target: '/tmp/nf-next-upload/public'
-          strip_components: 1
-
-      - name: Copy ebook API files to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: 'server/ebook-subscribe/*.mjs'
-          target: '/tmp/nf-api-upload'
-          strip_components: 2
+          source: '.deploy/nf-deploy.tar.gz'
+          target: '/tmp/nf-deploy-upload'
 
       - name: Configure and restart Next and ebook services
         uses: appleboy/ssh-action@master
@@ -123,14 +87,19 @@ jobs:
               exit 1
             fi
 
+            rm -rf /tmp/nf-deploy
+            mkdir -p /tmp/nf-deploy
+            tar -xzf /tmp/nf-deploy-upload/nf-deploy.tar.gz -C /tmp/nf-deploy
+            rm -rf /tmp/nf-deploy-upload
+
             sudo mkdir -p /opt/nf-portfolio
             sudo chown -R $USER:$USER /opt/nf-portfolio
 
             rm -rf /opt/nf-portfolio/*
-            cp -R /tmp/nf-next-upload/standalone/. /opt/nf-portfolio/
+            cp -R /tmp/nf-deploy/.next/standalone/. /opt/nf-portfolio/
             mkdir -p /opt/nf-portfolio/.next
-            cp -R /tmp/nf-next-upload/static /opt/nf-portfolio/.next/
-            cp -R /tmp/nf-next-upload/public /opt/nf-portfolio/
+            cp -R /tmp/nf-deploy/.next/static /opt/nf-portfolio/.next/
+            cp -R /tmp/nf-deploy/public /opt/nf-portfolio/
 
             if [ ! -f /opt/nf-portfolio/.next/BUILD_ID ]; then
               echo "Missing /opt/nf-portfolio/.next/BUILD_ID after copy"
@@ -167,7 +136,7 @@ jobs:
             sudo mkdir -p /opt/nf-api
             sudo chown -R $USER:$USER /opt/nf-api
 
-            cp /tmp/nf-api-upload/*.mjs /opt/nf-api/
+            cp /tmp/nf-deploy/server/ebook-subscribe/*.mjs /opt/nf-api/
 
             cat > /opt/nf-api/.env <<EOF
             MAILERLITE_API_KEY=$MAILERLITE_API_KEY
