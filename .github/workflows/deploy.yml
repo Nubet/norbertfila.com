@@ -49,7 +49,6 @@ jobs:
           command_timeout: 30m
           script: |
             set -euo pipefail
-            export PATH="$HOME/.bun/bin:$PATH"
             export NEXT_TELEMETRY_DISABLED=1
 
             if [ -z "${APP_DIR:-}" ]; then
@@ -77,9 +76,10 @@ jobs:
 
             sudo mkdir -p "$APP_DIR"
             sudo chown -R "$USER:$USER" "$APP_DIR"
+            git config --global --add safe.directory "$APP_DIR"
 
             if [ ! -d "$APP_DIR/.git" ]; then
-              git clone https://github.com/Nubet/norbertfila.com.git "$APP_DIR"
+              git clone --depth 1 https://github.com/Nubet/norbertfila.com.git "$APP_DIR"
             fi
 
             cd "$APP_DIR"
