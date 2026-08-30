@@ -41,107 +41,45 @@ jobs:
           test -d .next/static
           test -d public
 
-      - name: Prepare SSH access to Oracle
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-        run: |
-          set -euo pipefail
+      - name: Copy Next standalone server to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: '.next/standalone/*'
+          target: '/tmp/nf-next-upload/standalone'
+          strip_components: 2
 
-          mkdir -p ~/.ssh
-          printf '%s\n' "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
-          chmod 600 ~/.ssh/oracle_key
-          ssh-keyscan -H "$ORACLE_HOST" >> ~/.ssh/known_hosts
+      - name: Copy Next standalone hidden .next files to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: '.next/standalone/.next/*'
+          target: '/tmp/nf-next-upload/standalone/.next'
+          strip_components: 3
 
-          mkdir -p /tmp/nf-deploy-archives
-          tar -C .next/standalone -cf /tmp/nf-deploy-archives/standalone.tar .
-          tar -C .next/static -cf /tmp/nf-deploy-archives/static.tar .
-          tar -C public -cf /tmp/nf-deploy-archives/public.tar .
-          split -b 32m -d -a 3 /tmp/nf-deploy-archives/standalone.tar /tmp/nf-deploy-archives/standalone.tar.part-
-          split -b 32m -d -a 3 /tmp/nf-deploy-archives/static.tar /tmp/nf-deploy-archives/static.tar.part-
-          split -b 32m -d -a 3 /tmp/nf-deploy-archives/public.tar /tmp/nf-deploy-archives/public.tar.part-
+      - name: Copy Next static assets to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: '.next/static/*'
+          target: '/tmp/nf-next-upload/static'
+          strip_components: 2
 
-          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public /tmp/nf-next-upload/parts/standalone /tmp/nf-next-upload/parts/static /tmp/nf-next-upload/parts/public'
-
-      - name: Upload Next.js artifacts to Oracle
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-          shopt -s nullglob
-
-          upload_parts() {
-            local pattern=$1
-            local remote_dir=$2
-
-            for file in $pattern; do
-              echo "Uploading $(basename "$file")"
-
-              local attempt=1
-              while [ "$attempt" -le 4 ]; do
-                if scp -O -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$file" "$ORACLE_USER@$ORACLE_HOST:$remote_dir/"; then
-                  break
-                fi
-
-                if [ "$attempt" -eq 4 ]; then
-                  echo "Failed to upload $file after $attempt attempts"
-                  exit 1
-                fi
-
-                sleep 5
-                attempt=$((attempt + 1))
-              done
-            done
-          }
-
-          upload_parts "/tmp/nf-deploy-archives/standalone.tar.part-*" "/tmp/nf-next-upload/parts/standalone"
-          upload_parts "/tmp/nf-deploy-archives/static.tar.part-*" "/tmp/nf-next-upload/parts/static"
-          upload_parts "/tmp/nf-deploy-archives/public.tar.part-*" "/tmp/nf-next-upload/parts/public"
-
-          ssh -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" '
-            cat > /tmp/nf-unpack.sh <<"EOF"
-            #!/usr/bin/env bash
-            set -euo pipefail
-            trap 'code=$?; printf "%s" "$code" > /tmp/nf-unpack.exit' EXIT
-            rm -f /tmp/nf-unpack.exit
-            rm -rf /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public
-            mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public
-            cat /tmp/nf-next-upload/parts/standalone/standalone.tar.part-* > /tmp/nf-next-upload/standalone.tar
-            cat /tmp/nf-next-upload/parts/static/static.tar.part-* > /tmp/nf-next-upload/static.tar
-            cat /tmp/nf-next-upload/parts/public/public.tar.part-* > /tmp/nf-next-upload/public.tar
-            tar -xf /tmp/nf-next-upload/standalone.tar -C /tmp/nf-next-upload/standalone
-            tar -xf /tmp/nf-next-upload/static.tar -C /tmp/nf-next-upload/static
-            tar -xf /tmp/nf-next-upload/public.tar -C /tmp/nf-next-upload/public
-            rm -rf /tmp/nf-next-upload/parts
-            rm -f /tmp/nf-next-upload/standalone.tar /tmp/nf-next-upload/static.tar /tmp/nf-next-upload/public.tar
-            EOF
-            chmod +x /tmp/nf-unpack.sh
-            nohup /tmp/nf-unpack.sh >/tmp/nf-unpack.log 2>&1 < /dev/null &
-          '
-
-          for _ in $(seq 1 120); do
-            if ssh -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'test -f /tmp/nf-unpack.exit'; then
-              break
-            fi
-
-            sleep 5
-          done
-
-          ssh -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" '
-            test -f /tmp/nf-unpack.exit || {
-              echo "Timed out waiting for remote unpack"
-              tail -n 200 /tmp/nf-unpack.log || true
-              exit 1
-            }
-
-            test "$(cat /tmp/nf-unpack.exit)" = "0" || {
-              echo "Remote unpack failed"
-              tail -n 200 /tmp/nf-unpack.log || true
-              exit 1
-            }
-          '
+      - name: Copy public assets to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: 'public/*'
+          target: '/tmp/nf-next-upload/public'
+          strip_components: 1
 
       - name: Configure and restart Next service
         uses: appleboy/ssh-action@master
@@ -375,8 +313,4 @@ jobs:
 
       - name: Cleanup on failure
         if: failure()
-        run: rm -rf /tmp/nf-deploy-archives && echo "Deployment failed - Check the logs above."
-
-      - name: Cleanup local deploy archives
-        if: always()
-        run: rm -rf /tmp/nf-deploy-archives
+        run: echo "Deployment failed - Check the logs above."
