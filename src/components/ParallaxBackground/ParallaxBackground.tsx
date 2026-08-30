@@ -26,7 +26,9 @@ export function ParallaxBackground({
   const mediaRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [shouldLoadVideo, setShouldLoadVideo] = useState(!disableVideoOnMobile)
-  const [isVideoReady, setIsVideoReady] = useState(false)
+  const [readyVideoKey, setReadyVideoKey] = useState<string | null>(null)
+  const videoKey = shouldLoadVideo ? `${videoSrc}::${webmSrc ?? ''}` : null
+  const isVideoReady = readyVideoKey === videoKey
 
   const syncVideoReadiness = () => {
     const video = videoRef.current
@@ -48,7 +50,7 @@ export function ParallaxBackground({
 
     video.currentTime = 0
     void video.play().catch(() => undefined)
-    setIsVideoReady(true)
+    setReadyVideoKey(videoKey)
   }
 
   useEffect(() => {
@@ -63,10 +65,6 @@ export function ParallaxBackground({
       return () => window.removeEventListener('resize', checkScreenSize)
     }
   }, [disableVideoOnMobile])
-
-  useEffect(() => {
-    setIsVideoReady(false)
-  }, [videoSrc, webmSrc, shouldLoadVideo])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -117,6 +115,7 @@ export function ParallaxBackground({
         />
         {shouldLoadVideo && (
           <video
+            key={videoKey ?? 'poster-only'}
             ref={videoRef}
             className={styles.video}
             style={{ display: isVideoReady ? 'block' : 'none' }}
