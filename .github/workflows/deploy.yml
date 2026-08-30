@@ -41,12 +41,7 @@ jobs:
           test -d .next/static
           test -d public
 
-      - name: Package deployment archive
-        run: |
-          mkdir -p .deploy
-          tar -czf .deploy/nf-deploy.tar.gz .next/standalone .next/static public server/ebook-subscribe/*.mjs
-
-      - name: Copy deployment archive to Oracle
+      - name: Copy deployment files to Oracle
         env:
           ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
@@ -63,8 +58,11 @@ jobs:
           printf '%s\n' "$ORACLE_SSH_KEY" > /tmp/oracle_ssh_key
           chmod 600 /tmp/oracle_ssh_key
 
-          ssh -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no "$ORACLE_USER@$ORACLE_HOST" "rm -rf /tmp/nf-deploy-upload && mkdir -p /tmp/nf-deploy-upload"
-          scp -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no .deploy/nf-deploy.tar.gz "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-deploy-upload/nf-deploy.tar.gz"
+          ssh -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no "$ORACLE_USER@$ORACLE_HOST" "rm -rf /tmp/nf-next-upload /tmp/nf-api-upload && mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public /tmp/nf-api-upload"
+          scp -r -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no .next/standalone/. "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone/"
+          scp -r -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no .next/static/. "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/static/"
+          scp -r -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no public/. "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/public/"
+          scp -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no server/ebook-subscribe/*.mjs "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-api-upload/"
 
       - name: Configure and restart Next and ebook services
         env:
@@ -116,19 +114,14 @@ jobs:
             exit 1
           fi
 
-          rm -rf /tmp/nf-deploy
-          mkdir -p /tmp/nf-deploy
-          tar -xzf /tmp/nf-deploy-upload/nf-deploy.tar.gz -C /tmp/nf-deploy
-          rm -rf /tmp/nf-deploy-upload
-
           sudo mkdir -p /opt/nf-portfolio
           sudo chown -R $USER:$USER /opt/nf-portfolio
 
           rm -rf /opt/nf-portfolio/*
-          cp -R /tmp/nf-deploy/.next/standalone/. /opt/nf-portfolio/
+          cp -R /tmp/nf-next-upload/standalone/. /opt/nf-portfolio/
           mkdir -p /opt/nf-portfolio/.next
-          cp -R /tmp/nf-deploy/.next/static /opt/nf-portfolio/.next/
-          cp -R /tmp/nf-deploy/public /opt/nf-portfolio/
+          cp -R /tmp/nf-next-upload/static /opt/nf-portfolio/.next/
+          cp -R /tmp/nf-next-upload/public /opt/nf-portfolio/
 
           if [ ! -f /opt/nf-portfolio/.next/BUILD_ID ]; then
             echo "Missing /opt/nf-portfolio/.next/BUILD_ID after copy"
@@ -165,7 +158,7 @@ jobs:
           sudo mkdir -p /opt/nf-api
           sudo chown -R $USER:$USER /opt/nf-api
 
-          cp /tmp/nf-deploy/server/ebook-subscribe/*.mjs /opt/nf-api/
+          cp /tmp/nf-api-upload/*.mjs /opt/nf-api/
 
           cat > /opt/nf-api/.env <<ENV_EOF
           MAILERLITE_API_KEY=$MAILERLITE_API_KEY
@@ -304,6 +297,8 @@ jobs:
 
           sudo nginx -t
           sudo systemctl reload nginx
+          rm -rf /tmp/nf-api-upload
+          rm -rf /tmp/nf-next-upload
           EOF
 
       - name: Verify ebook API endpoint
