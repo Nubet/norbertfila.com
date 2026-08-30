@@ -47,13 +47,24 @@ jobs:
           tar -czf .deploy/nf-deploy.tar.gz .next/standalone .next/static public server/ebook-subscribe/*.mjs
 
       - name: Copy deployment archive to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: '.deploy/nf-deploy.tar.gz'
-          target: '/tmp/nf-deploy-upload'
+        env:
+          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+        run: |
+          set -euo pipefail
+          trap 'rm -f /tmp/oracle_ssh_key' EXIT
+
+          if [ -z "$ORACLE_SSH_KEY" ]; then
+            echo "ORACLE_SSH_KEY_NORBERTFILA secret is missing"
+            exit 1
+          fi
+
+          printf '%s\n' "$ORACLE_SSH_KEY" > /tmp/oracle_ssh_key
+          chmod 600 /tmp/oracle_ssh_key
+
+          ssh -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no "$ORACLE_USER@$ORACLE_HOST" "rm -rf /tmp/nf-deploy-upload && mkdir -p /tmp/nf-deploy-upload"
+          scp -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no .deploy/nf-deploy.tar.gz "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-deploy-upload/nf-deploy.tar.gz"
 
       - name: Configure and restart Next and ebook services
         uses: appleboy/ssh-action@master
