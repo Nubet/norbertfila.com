@@ -53,8 +53,53 @@ bun run build >/tmp/nf-build.log 2>&1 || {
 }
 echo STEP_BUILD_DONE
 
-if [ ! -f /etc/nginx/sites-available/norbertfila.com ]; then
-  sudo tee /etc/nginx/sites-available/norbertfila.com >/dev/null <<'NGINX_CONF'
+write_nginx_config() {
+  if [ -d /etc/letsencrypt/live/norbertfila.com ]; then
+    sudo tee /etc/nginx/sites-available/norbertfila.com >/dev/null <<'NGINX_CONF'
+server {
+    listen [::]:443 ssl ipv6only=on;
+    listen 443 ssl;
+    server_name norbertfila.com www.norbertfila.com;
+
+    if ($host = www.norbertfila.com) {
+        return 301 https://norbertfila.com$request_uri;
+    }
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+    add_header Cross-Origin-Resource-Policy "same-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://cdn.jsdelivr.net https://cdn.norbertfila.com; media-src 'self' https://cdn.norbertfila.com; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; upgrade-insecure-requests" always;
+
+    ssl_certificate /etc/letsencrypt/live/norbertfila.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/norbertfila.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name norbertfila.com www.norbertfila.com;
+
+    return 301 https://norbertfila.com$request_uri;
+}
+NGINX_CONF
+  else
+    sudo tee /etc/nginx/sites-available/norbertfila.com >/dev/null <<'NGINX_CONF'
 server {
     listen 80;
     listen [::]:80;
@@ -65,6 +110,7 @@ server {
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
     add_header Cross-Origin-Resource-Policy "same-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://cdn.jsdelivr.net https://cdn.norbertfila.com; media-src 'self' https://cdn.norbertfila.com; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; upgrade-insecure-requests" always;
 
     location / {
         proxy_pass http://127.0.0.1:3000;
@@ -78,7 +124,10 @@ server {
     }
 }
 NGINX_CONF
-fi
+  fi
+}
+
+write_nginx_config
 
 sudo rm -f /etc/nginx/sites-enabled/default
 sudo ln -sfn /etc/nginx/sites-available/norbertfila.com /etc/nginx/sites-enabled/norbertfila.com
@@ -92,6 +141,9 @@ if [ ! -d /etc/letsencrypt/live/norbertfila.com ]; then
   fi
 
   sudo certbot --nginx --non-interactive --agree-tos --redirect -m "$CERTBOT_EMAIL" -d norbertfila.com -d www.norbertfila.com
+  write_nginx_config
+  sudo nginx -t
+  sudo systemctl reload nginx
 fi
 
 if sudo test -f /etc/systemd/system/nf-portfolio.service; then
