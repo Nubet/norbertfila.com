@@ -54,7 +54,7 @@ bun run build >/tmp/nf-build.log 2>&1 || {
 echo STEP_BUILD_DONE
 
 write_nginx_config() {
-  if [ -d /etc/letsencrypt/live/norbertfila.com ]; then
+  if sudo test -d /etc/letsencrypt/live/norbertfila.com; then
     sudo tee /etc/nginx/sites-available/norbertfila.com >/dev/null <<'NGINX_CONF'
 server {
     listen [::]:443 ssl ipv6only=on;
@@ -134,7 +134,7 @@ sudo ln -sfn /etc/nginx/sites-available/norbertfila.com /etc/nginx/sites-enabled
 sudo nginx -t
 sudo systemctl reload nginx
 
-if [ ! -d /etc/letsencrypt/live/norbertfila.com ]; then
+if ! sudo test -d /etc/letsencrypt/live/norbertfila.com; then
   if [ -z "${CERTBOT_EMAIL:-}" ]; then
     echo "CERTBOT_EMAIL secret is required for first certificate issuance"
     exit 1
