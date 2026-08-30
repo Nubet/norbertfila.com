@@ -7,6 +7,7 @@ import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
 import { submitContactForm, ContactFormError } from '@/features/contact/submitContactForm'
 import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
+import { media } from '@/shared/config/media'
 import styles from './ContactPage.module.css'
 
 export default function ContactPage() {
@@ -131,9 +132,9 @@ export default function ContactPage() {
   return (
     <main className={styles.page}>
       <ParallaxBackground
-        videoSrc="/home/contact/contact-background.mp4"
-        webmSrc="/home/contact/contact-background.webm"
-        posterSrc="/home/contact/contact-poster.jpg"
+        videoSrc={media.home.contact.mp4}
+        webmSrc={media.home.contact.webm}
+        posterSrc={media.home.contact.poster}
         overlayVariant="studio"
       />
       <div className={styles.container}>

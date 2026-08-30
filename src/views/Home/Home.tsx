@@ -10,6 +10,7 @@ import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBack
 import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
 import { blogPosts } from '@/data/blogPosts'
 import { portfolioProjects } from '@/data/portfolio'
+import { media } from '@/shared/config/media'
 import styles from './Home.module.css'
 
 const featuredBlogSlugs = [
@@ -99,9 +100,9 @@ export default function Home() {
     <div className={styles.home}>
       <section className={styles.hero}>
         <ParallaxBackground
-          videoSrc="/home/hero/background.mp4"
-          webmSrc="/home/hero/background.webm"
-          posterSrc="/home/hero/poster.jpg"
+          videoSrc={media.home.hero.mp4}
+          webmSrc={media.home.hero.webm}
+          posterSrc={media.home.hero.poster}
           overlayVariant="minimal"
         />
 
