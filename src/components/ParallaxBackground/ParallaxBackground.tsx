@@ -31,7 +31,12 @@ export function ParallaxBackground({
   const syncVideoReadiness = () => {
     const video = videoRef.current
 
-    if (!video || !Number.isFinite(video.duration) || video.duration <= 0 || video.buffered.length === 0) {
+    if (
+      !video ||
+      !Number.isFinite(video.duration) ||
+      video.duration <= 0 ||
+      video.buffered.length === 0
+    ) {
       return
     }
 
