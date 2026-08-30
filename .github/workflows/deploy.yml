@@ -35,256 +35,154 @@ jobs:
           NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
         run: bun run build
 
-      - name: Verify Next standalone artifacts
-        run: |
-          test -f .next/standalone/server.js
-          test -d .next/static
-          test -d public
-
-      - name: Prepare SSH access to Oracle
+      - name: Deploy application over SSH
+        uses: appleboy/ssh-action@v1.2.2
         env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-
-          mkdir -p ~/.ssh
-          printf '%s\n' "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
-          chmod 600 ~/.ssh/oracle_key
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload'
-
-      - name: Copy Next.js artifacts to Oracle
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-
-          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .next/standalone "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
-          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .next/static "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
-          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key public "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
-
-      - name: Configure and restart Next service
-        uses: appleboy/ssh-action@master
-        env:
-          SECURITY_CSP_MODE: ${{ secrets.SECURITY_CSP_MODE }}
+          APP_DIR: ${{ secrets.APP_DIR || vars.APP_DIR }}
+          NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
+          CERTBOT_EMAIL: ${{ secrets.CERTBOT_EMAIL || vars.CERTBOT_EMAIL }}
         with:
           host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          envs: SECURITY_CSP_MODE
+          envs: APP_DIR,NEXT_PUBLIC_CONTACT_FORM_ENDPOINT,CERTBOT_EMAIL
           script: |
-            set -e
+            set -euo pipefail
+            export PATH="$HOME/.bun/bin:$PATH"
+
+            if [ -z "${APP_DIR:-}" ]; then
+              echo "APP_DIR secret is missing"
+              exit 1
+            fi
+
+            export NVM_DIR="$HOME/.nvm"
+            if [ -s "$NVM_DIR/nvm.sh" ]; then
+              . "$NVM_DIR/nvm.sh"
+            fi
+
+            if ! command -v git >/dev/null 2>&1; then
+              sudo apt-get update
+              sudo apt-get install -y git
+            fi
 
             if ! command -v node >/dev/null 2>&1; then
               curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
               sudo apt-get install -y nodejs
             fi
 
-            node -v
-            npm -v
-
-            sudo mkdir -p /opt/nf-portfolio
-            sudo chown -R $USER:$USER /opt/nf-portfolio
-
-            find /opt/nf-portfolio -mindepth 1 -maxdepth 1 -exec rm -rf {} +
-            cp -R /tmp/nf-next-upload/standalone/. /opt/nf-portfolio/
-            mkdir -p /opt/nf-portfolio/.next
-            cp -R /tmp/nf-next-upload/static /opt/nf-portfolio/.next/
-            cp -R /tmp/nf-next-upload/public /opt/nf-portfolio/
-
-            if [ ! -f /opt/nf-portfolio/.next/BUILD_ID ]; then
-              echo "Missing /opt/nf-portfolio/.next/BUILD_ID after copy"
-              ls -la /opt/nf-portfolio || true
-              ls -la /opt/nf-portfolio/.next || true
-              exit 1
+            if ! command -v bun >/dev/null 2>&1; then
+              curl -fsSL https://bun.sh/install | bash
+              export PATH="$HOME/.bun/bin:$PATH"
             fi
 
-            cat > /tmp/nf-portfolio.service <<'EOF'
-            [Unit]
-            Description=NF Portfolio Next.js App
-            After=network.target
+            if ! command -v pm2 >/dev/null 2>&1; then
+              sudo npm install -g pm2
+            fi
 
-            [Service]
-            User=ubuntu
-            WorkingDirectory=/opt/nf-portfolio
-            Environment=NODE_ENV=production
-            Environment=PORT=3000
-            ExecStart=/usr/bin/env node /opt/nf-portfolio/server.js
-            Restart=always
-            RestartSec=3
+            if ! command -v nginx >/dev/null 2>&1; then
+              sudo apt-get update
+              sudo apt-get install -y nginx
+            fi
 
-            [Install]
-            WantedBy=multi-user.target
+            if ! command -v certbot >/dev/null 2>&1; then
+              sudo apt-get update
+              sudo apt-get install -y certbot python3-certbot-nginx
+            fi
+
+            sudo mkdir -p "$APP_DIR"
+            sudo chown -R "$USER:$USER" "$APP_DIR"
+
+            if [ ! -d "$APP_DIR/.git" ]; then
+              git clone https://github.com/Nubet/norbertfila.com.git "$APP_DIR"
+            fi
+
+            cd "$APP_DIR"
+            git checkout main
+            git pull --ff-only origin main
+
+            printf 'NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=%s\n' "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" > .env.production
+
+            bun install --frozen-lockfile
+            bun run build
+
+            if [ ! -f /etc/nginx/sites-available/norbertfila.com ]; then
+              cat > /tmp/norbertfila.com <<'EOF'
+            server {
+                listen 80;
+                listen [::]:80;
+                server_name norbertfila.com www.norbertfila.com;
+
+                add_header X-Content-Type-Options "nosniff" always;
+                add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+                add_header X-Frame-Options "SAMEORIGIN" always;
+                add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+                add_header Cross-Origin-Resource-Policy "same-origin" always;
+
+                location / {
+                    proxy_pass http://127.0.0.1:3000;
+                    proxy_http_version 1.1;
+                    proxy_set_header Host $host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header X-Forwarded-Proto $scheme;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection "upgrade";
+                }
+            }
             EOF
 
-            sudo mv /tmp/nf-portfolio.service /etc/systemd/system/nf-portfolio.service
-            sudo chmod 644 /etc/systemd/system/nf-portfolio.service
-            sudo systemctl daemon-reload
-            sudo systemctl enable nf-portfolio
-            sudo systemctl restart nf-portfolio
-            sudo systemctl is-active --quiet nf-portfolio
-
-            if sudo systemctl list-unit-files | grep -q '^nf-ebook-api\.service'; then
-              sudo systemctl disable --now nf-ebook-api || true
-              sudo rm -f /etc/systemd/system/nf-ebook-api.service
-              sudo systemctl daemon-reload
+              sudo mv /tmp/norbertfila.com /etc/nginx/sites-available/norbertfila.com
             fi
 
-            CSP_MODE=${SECURITY_CSP_MODE:-enforce}
-            if [ "$CSP_MODE" != "report-only" ] && [ "$CSP_MODE" != "enforce" ]; then
-              echo "Invalid SECURITY_CSP_MODE: $CSP_MODE (allowed: report-only, enforce)"
-              exit 1
-            fi
-
-            export CSP_MODE
-            sudo -E python3 <<'PY'
-            import os
-            import re
-            from pathlib import Path
-
-            p = Path('/etc/nginx/sites-available/norbertfila.com')
-            c = p.read_text()
-
-            c = re.sub(r"\n\s*# BEGIN nf-next-app\n(?:\s+.*\n)*?\s*# END nf-next-app\n", "\n", c)
-            c = re.sub(r"\n\s*# BEGIN nf-ebook-api\n(?:\s+.*\n)*?\s*# END nf-ebook-api\n", "\n", c)
-            c = re.sub(r"\n\s*# BEGIN nf-security-headers\n(?:\s+.*\n)*?\s*# END nf-security-headers\n", "\n", c)
-            c = re.sub(r"\n\s*# BEGIN nf-next-static\n(?:\s+.*\n)*?\s*# END nf-next-static\n", "\n", c)
-            c = re.sub(r"\n\s*location /api/ebook-subscribe \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c)
-            c = re.sub(r"\n\s*location / \{\n(?:\s+.*\n)*?\s*\}\n", "\n", c, count=1)
-
-            # Remove rogue regex location blocks that might be intercepting fonts or images
-            c = re.sub(r"\n\s*location\s+~\*?\s+[^\{]+\{\s*[^}]*\}\n", "\n", c)
-
-            csp_value = (
-                "default-src 'self'; "
-                "base-uri 'self'; "
-                "object-src 'none'; "
-                "frame-ancestors 'none'; "
-                "img-src 'self' data: https://cdn.jsdelivr.net; "
-                "font-src 'self' https://fonts.gstatic.com data:; "
-                "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
-                "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; "
-                "connect-src 'self' https://formspree.io https://www.google-analytics.com https://region1.google-analytics.com https://www.clarity.ms https://c.clarity.ms; "
-                "form-action 'self'; "
-                "upgrade-insecure-requests"
-            )
-
-            csp_header_name = 'Content-Security-Policy' if os.environ.get('CSP_MODE') == 'enforce' else 'Content-Security-Policy-Report-Only'
-
-            security_block = (
-                "    # BEGIN nf-security-headers\n"
-                "    add_header Strict-Transport-Security \"max-age=31536000; includeSubDomains\" always;\n"
-                "    add_header X-Frame-Options \"SAMEORIGIN\" always;\n"
-                "    add_header X-Content-Type-Options \"nosniff\" always;\n"
-                "    add_header Referrer-Policy \"strict-origin-when-cross-origin\" always;\n"
-                "    add_header Permissions-Policy \"accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()\" always;\n"
-                "    add_header Cross-Origin-Resource-Policy \"same-origin\" always;\n"
-                f"    add_header {csp_header_name} \"{csp_value}\" always;\n"
-                "    # END nf-security-headers\n\n"
-            )
-
-            next_static_block = (
-                "    # BEGIN nf-next-static\n"
-                "    location ^~ /_next/static/ {\n"
-                "        alias /opt/nf-portfolio/.next/static/;\n"
-                "        access_log off;\n"
-                "        expires 365d;\n"
-                "        add_header Cache-Control \"public, max-age=31536000, immutable\";\n"
-                "    }\n"
-                "    # END nf-next-static\n\n"
-            )
-
-            next_block = (
-                "    # BEGIN nf-next-app\n"
-                "    location / {\n"
-                "        proxy_pass http://127.0.0.1:3000;\n"
-                "        proxy_http_version 1.1;\n"
-                "        proxy_set_header Host $host;\n"
-                "        proxy_set_header X-Real-IP $remote_addr;\n"
-                "        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n"
-                "        proxy_set_header X-Forwarded-Proto $scheme;\n"
-                "        proxy_set_header Upgrade $http_upgrade;\n"
-                "        proxy_set_header Connection \"upgrade\";\n"
-                "    }\n"
-                "    # END nf-next-app\n\n"
-            )
-
-            server_open = c.find('server {')
-            if server_open == -1:
-                raise SystemExit('Cannot find nginx server block')
-
-            insert_at = c.find('\n}', server_open)
-            if insert_at == -1:
-                raise SystemExit('Cannot find nginx server block end')
-
-            blocks = security_block + next_static_block + next_block
-            p.write_text(c[:insert_at] + '\n' + blocks + c[insert_at:])
-            PY
-
+            sudo rm -f /etc/nginx/sites-enabled/default
+            sudo ln -sfn /etc/nginx/sites-available/norbertfila.com /etc/nginx/sites-enabled/norbertfila.com
             sudo nginx -t
             sudo systemctl reload nginx
 
-            rm -rf /tmp/nf-next-upload
+            if [ ! -d /etc/letsencrypt/live/norbertfila.com ]; then
+              if [ -z "${CERTBOT_EMAIL:-}" ]; then
+                echo "CERTBOT_EMAIL secret is required for first certificate issuance"
+                exit 1
+              fi
 
-      - name: Verify Next.js app endpoint
-        uses: appleboy/ssh-action@master
+              sudo certbot --nginx --non-interactive --agree-tos --redirect -m "$CERTBOT_EMAIL" -d norbertfila.com -d www.norbertfila.com
+            fi
+
+            if pm2 describe nf-portfolio >/dev/null 2>&1; then
+              pm2 reload nf-portfolio --update-env
+            else
+              pm2 start npm --name nf-portfolio --cwd "$APP_DIR" -- start -- --hostname 127.0.0.1 --port 3000
+            fi
+
+            pm2 save
+            sudo env PATH="$PATH" pm2 startup systemd -u "$USER" --hp "$HOME" >/tmp/nf-pm2-startup.log 2>&1 || true
+
+      - name: Verify deployed app
+        uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
           script: |
-            set -e
+            set -euo pipefail
 
-            if ! sudo systemctl is-active --quiet nf-portfolio; then
-              echo "nf-portfolio service is not active"
-              echo "---- debug: nf-portfolio status ----"
-              sudo systemctl --no-pager --full status nf-portfolio || true
-              echo "---- debug: nf-portfolio logs ----"
-              sudo journalctl -u nf-portfolio -n 120 --no-pager || true
+            if ! pm2 describe nf-portfolio >/dev/null 2>&1; then
+              echo "nf-portfolio process is missing in pm2"
+              pm2 list || true
               exit 1
             fi
 
             status_local=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/)
             if [ "$status_local" != "200" ]; then
-              echo "Unexpected local Next app status code: $status_local"
-              echo "---- debug: nf-portfolio status ----"
-              sudo systemctl --no-pager --full status nf-portfolio || true
-              echo "---- debug: nf-portfolio logs ----"
-              sudo journalctl -u nf-portfolio -n 120 --no-pager || true
-              echo "---- debug: local headers ----"
-              curl -sS -D - -o /dev/null http://127.0.0.1:3000/ || true
+              echo "Unexpected local status code: $status_local"
+              pm2 logs nf-portfolio --lines 120 --nostream || true
               exit 1
             fi
 
             status_public=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/)
             if [ "$status_public" != "200" ]; then
-              echo "Unexpected public Next app status code: $status_public"
-              echo "---- debug: public headers ----"
+              echo "Unexpected public status code: $status_public"
               curl -sS -D - -o /dev/null https://norbertfila.com/ || true
-              exit 1
-            fi
-
-            status_local_portfolio=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/portfolio)
-            if [ "$status_local_portfolio" != "200" ]; then
-              echo "Unexpected local portfolio status code: $status_local_portfolio"
-              echo "---- debug: local portfolio headers ----"
-              curl -sS -D - -o /dev/null http://127.0.0.1:3000/portfolio || true
-              exit 1
-            fi
-
-            status_public_portfolio=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/portfolio)
-            if [ "$status_public_portfolio" != "200" ]; then
-              echo "Warning: public portfolio status code is $status_public_portfolio"
-              echo "---- debug: public portfolio headers ----"
-              curl -sS -D - -o /dev/null https://norbertfila.com/portfolio || true
-            fi
-
-            status_robots=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/robots.txt)
-            if [ "$status_robots" != "200" ]; then
-              echo "Unexpected robots.txt status code: $status_robots"
-              curl -sS -D - -o /dev/null https://norbertfila.com/robots.txt || true
               exit 1
             fi
 
