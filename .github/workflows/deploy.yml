@@ -58,8 +58,11 @@ jobs:
           tar -C .next/standalone -cf /tmp/nf-deploy-archives/standalone.tar .
           tar -C .next/static -cf /tmp/nf-deploy-archives/static.tar .
           tar -C public -cf /tmp/nf-deploy-archives/public.tar .
+          split -b 32m -d -a 3 /tmp/nf-deploy-archives/standalone.tar /tmp/nf-deploy-archives/standalone.tar.part-
+          split -b 32m -d -a 3 /tmp/nf-deploy-archives/static.tar /tmp/nf-deploy-archives/static.tar.part-
+          split -b 32m -d -a 3 /tmp/nf-deploy-archives/public.tar /tmp/nf-deploy-archives/public.tar.part-
 
-          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public'
+          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public /tmp/nf-next-upload/parts/standalone /tmp/nf-next-upload/parts/static /tmp/nf-next-upload/parts/public'
 
       - name: Upload Next.js artifacts to Oracle
         env:
@@ -67,10 +70,35 @@ jobs:
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
         run: |
           set -euo pipefail
+          shopt -s nullglob
 
-          scp -O -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/standalone.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone.tar"
-          scp -O -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/static.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/static.tar"
-          scp -O -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/public.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/public.tar"
+          upload_parts() {
+            local pattern=$1
+            local remote_dir=$2
+
+            for file in $pattern; do
+              echo "Uploading $(basename "$file")"
+
+              local attempt=1
+              while [ "$attempt" -le 4 ]; do
+                if scp -O -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$file" "$ORACLE_USER@$ORACLE_HOST:$remote_dir/"; then
+                  break
+                fi
+
+                if [ "$attempt" -eq 4 ]; then
+                  echo "Failed to upload $file after $attempt attempts"
+                  exit 1
+                fi
+
+                sleep 5
+                attempt=$((attempt + 1))
+              done
+            done
+          }
+
+          upload_parts "/tmp/nf-deploy-archives/standalone.tar.part-*" "/tmp/nf-next-upload/parts/standalone"
+          upload_parts "/tmp/nf-deploy-archives/static.tar.part-*" "/tmp/nf-next-upload/parts/static"
+          upload_parts "/tmp/nf-deploy-archives/public.tar.part-*" "/tmp/nf-next-upload/parts/public"
 
           ssh -o ServerAliveInterval=15 -o ServerAliveCountMax=8 -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" '
             cat > /tmp/nf-unpack.sh <<"EOF"
@@ -80,9 +108,13 @@ jobs:
             rm -f /tmp/nf-unpack.exit
             rm -rf /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public
             mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public
+            cat /tmp/nf-next-upload/parts/standalone/standalone.tar.part-* > /tmp/nf-next-upload/standalone.tar
+            cat /tmp/nf-next-upload/parts/static/static.tar.part-* > /tmp/nf-next-upload/static.tar
+            cat /tmp/nf-next-upload/parts/public/public.tar.part-* > /tmp/nf-next-upload/public.tar
             tar -xf /tmp/nf-next-upload/standalone.tar -C /tmp/nf-next-upload/standalone
             tar -xf /tmp/nf-next-upload/static.tar -C /tmp/nf-next-upload/static
             tar -xf /tmp/nf-next-upload/public.tar -C /tmp/nf-next-upload/public
+            rm -rf /tmp/nf-next-upload/parts
             rm -f /tmp/nf-next-upload/standalone.tar /tmp/nf-next-upload/static.tar /tmp/nf-next-upload/public.tar
             EOF
             chmod +x /tmp/nf-unpack.sh
