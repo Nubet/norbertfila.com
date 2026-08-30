@@ -47,20 +47,38 @@ jobs:
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
           ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
         run: |
+          set -euo pipefail
+
           mkdir -p ~/.ssh
           printf '%s\n' "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
           chmod 600 ~/.ssh/oracle_key
           ssh-keyscan -H "$ORACLE_HOST" >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload/standalone/.next /tmp/nf-next-upload/static /tmp/nf-next-upload/public'
+
+          mkdir -p /tmp/nf-deploy-archives
+          tar -C .next/standalone -cf /tmp/nf-deploy-archives/standalone.tar .
+          tar -C .next/static -cf /tmp/nf-deploy-archives/static.tar .
+          tar -C public -cf /tmp/nf-deploy-archives/public.tar .
+
+          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public'
 
       - name: Upload Next.js artifacts to Oracle
         env:
           ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
         run: |
-          tar -C .next/standalone -cf - . | ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'tar -xf - -C /tmp/nf-next-upload/standalone'
-          tar -C .next/static -cf - . | ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'tar -xf - -C /tmp/nf-next-upload/static'
-          tar -C public -cf - . | ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'tar -xf - -C /tmp/nf-next-upload/public'
+          set -euo pipefail
+
+          scp -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/standalone.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone.tar"
+          scp -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/static.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/static.tar"
+          scp -i ~/.ssh/oracle_key /tmp/nf-deploy-archives/public.tar "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/public.tar"
+
+          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" '
+            set -e
+            tar -xf /tmp/nf-next-upload/standalone.tar -C /tmp/nf-next-upload/standalone
+            tar -xf /tmp/nf-next-upload/static.tar -C /tmp/nf-next-upload/static
+            tar -xf /tmp/nf-next-upload/public.tar -C /tmp/nf-next-upload/public
+            rm -f /tmp/nf-next-upload/standalone.tar /tmp/nf-next-upload/static.tar /tmp/nf-next-upload/public.tar
+          '
 
       - name: Configure and restart Next service
         uses: appleboy/ssh-action@master
@@ -294,4 +312,8 @@ jobs:
 
       - name: Cleanup on failure
         if: failure()
-        run: echo "Deployment failed - Check the logs above."
+        run: rm -rf /tmp/nf-deploy-archives && echo "Deployment failed - Check the logs above."
+
+      - name: Cleanup local deploy archives
+        if: always()
+        run: rm -rf /tmp/nf-deploy-archives
