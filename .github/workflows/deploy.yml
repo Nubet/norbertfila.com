@@ -56,7 +56,7 @@ jobs:
             APP_DIR="$APP_DIR" \
             NEXT_PUBLIC_CONTACT_FORM_ENDPOINT="$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" \
             CERTBOT_EMAIL="$CERTBOT_EMAIL" \
-            'bash -se' <<'EOF'
+            'bash -se' <<'REMOTE_SCRIPT'
             set -euo pipefail
             export NEXT_TELEMETRY_DISABLED=1
 
@@ -113,7 +113,7 @@ jobs:
             echo STEP_BUILD_DONE
 
             if [ ! -f /etc/nginx/sites-available/norbertfila.com ]; then
-              cat > /tmp/norbertfila.com <<'EOF'
+              cat > /tmp/norbertfila.com <<'NGINX_CONF'
             server {
                 listen 80;
                 listen [::]:80;
@@ -136,7 +136,7 @@ jobs:
                     proxy_set_header Connection "upgrade";
                 }
             }
-            EOF
+            NGINX_CONF
 
               sudo mv /tmp/norbertfila.com /etc/nginx/sites-available/norbertfila.com
             fi
@@ -164,14 +164,14 @@ jobs:
             echo STEP_PM2_DONE
             pm2 save >/dev/null
             sudo env PATH="$PATH" pm2 startup systemd -u "$USER" --hp "$HOME" >/tmp/nf-pm2-startup.log 2>&1 || true
-            EOF
+            REMOTE_SCRIPT
 
       - name: Verify deployed app
         env:
           ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
         run: |
-          ssh -tt -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'bash -se' <<'EOF'
+          ssh -tt -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'bash -se' <<'REMOTE_VERIFY'
             set -euo pipefail
 
             if ! pm2 describe nf-portfolio >/dev/null 2>&1; then
@@ -200,7 +200,7 @@ jobs:
               curl -sS -D - -o /dev/null https://norbertfila.com/sitemap.xml || true
               exit 1
             fi
-            EOF
+            REMOTE_VERIFY
 
       - name: Cleanup on failure
         if: failure()
