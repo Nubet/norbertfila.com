@@ -41,45 +41,32 @@ jobs:
           test -d .next/static
           test -d public
 
-      - name: Copy Next standalone server to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: '.next/standalone/*'
-          target: '/tmp/nf-next-upload/standalone'
-          strip_components: 2
+      - name: Prepare SSH access to Oracle
+        env:
+          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+        run: |
+          if ! command -v rsync >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y rsync
+          fi
 
-      - name: Copy Next standalone hidden .next files to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: '.next/standalone/.next/*'
-          target: '/tmp/nf-next-upload/standalone/.next'
-          strip_components: 3
+          mkdir -p ~/.ssh
+          printf '%s\n' "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
+          chmod 600 ~/.ssh/oracle_key
+          ssh-keyscan -H "$ORACLE_HOST" >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload/standalone/.next /tmp/nf-next-upload/static /tmp/nf-next-upload/public'
 
-      - name: Copy Next static assets to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: '.next/static/*'
-          target: '/tmp/nf-next-upload/static'
-          strip_components: 2
-
-      - name: Copy public assets to Oracle
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          source: 'public/*'
-          target: '/tmp/nf-next-upload/public'
-          strip_components: 1
+      - name: Upload Next.js artifacts to Oracle
+        env:
+          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+        run: |
+          rsync -az --delete --partial --info=progress2,stats1 -e "ssh -i ~/.ssh/oracle_key" .next/standalone/ "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone/"
+          rsync -az --delete --partial --info=progress2,stats1 -e "ssh -i ~/.ssh/oracle_key" .next/standalone/.next/ "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone/.next/"
+          rsync -az --delete --partial --info=progress2,stats1 -e "ssh -i ~/.ssh/oracle_key" .next/static/ "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/static/"
+          rsync -az --delete --partial --info=progress2,stats1 -e "ssh -i ~/.ssh/oracle_key" public/ "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/public/"
 
       - name: Configure and restart Next service
         uses: appleboy/ssh-action@master
