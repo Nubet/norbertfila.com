@@ -52,8 +52,7 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
           chmod 600 ~/.ssh/oracle_key
-          ssh-keyscan -H "$ORACLE_HOST" >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload'
+          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'rm -rf /tmp/nf-next-upload && mkdir -p /tmp/nf-next-upload'
 
       - name: Copy Next.js artifacts to Oracle
         env:
@@ -62,9 +61,9 @@ jobs:
         run: |
           set -euo pipefail
 
-          scp -r -i ~/.ssh/oracle_key .next/standalone "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
-          scp -r -i ~/.ssh/oracle_key .next/static "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
-          scp -r -i ~/.ssh/oracle_key public "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
+          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .next/standalone "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
+          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .next/static "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
+          scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key public "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/"
 
       - name: Configure and restart Next service
         uses: appleboy/ssh-action@master
