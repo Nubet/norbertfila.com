@@ -41,165 +41,121 @@ jobs:
           test -d .next/static
           test -d public
 
-      - name: Copy deployment files to Oracle
+      - name: Copy Next standalone server to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: '.next/standalone/*'
+          target: '/tmp/nf-next-upload/standalone'
+          strip_components: 2
+
+      - name: Copy Next standalone hidden .next files to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: '.next/standalone/.next/*'
+          target: '/tmp/nf-next-upload/standalone/.next'
+          strip_components: 3
+
+      - name: Copy Next static assets to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: '.next/static/*'
+          target: '/tmp/nf-next-upload/static'
+          strip_components: 2
+
+      - name: Copy public assets to Oracle
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          source: 'public/*'
+          target: '/tmp/nf-next-upload/public'
+          strip_components: 1
+
+      - name: Configure and restart Next service
+        uses: appleboy/ssh-action@master
         env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-          trap 'rm -f /tmp/oracle_ssh_key' EXIT
-
-          if [ -z "$ORACLE_SSH_KEY" ]; then
-            echo "ORACLE_SSH_KEY_NORBERTFILA secret is missing"
-            exit 1
-          fi
-
-          printf '%s\n' "$ORACLE_SSH_KEY" > /tmp/oracle_ssh_key
-          chmod 600 /tmp/oracle_ssh_key
-
-          ssh -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no "$ORACLE_USER@$ORACLE_HOST" "rm -rf /tmp/nf-next-upload /tmp/nf-api-upload && mkdir -p /tmp/nf-next-upload/standalone /tmp/nf-next-upload/static /tmp/nf-next-upload/public /tmp/nf-api-upload"
-          scp -r -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no .next/standalone/. "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/standalone/"
-          scp -r -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no .next/static/. "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/static/"
-          scp -r -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no public/. "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-next-upload/public/"
-          scp -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no server/ebook-subscribe/*.mjs "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-api-upload/"
-
-      - name: Configure and restart Next and ebook services
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-          MAILERLITE_API_KEY: ${{ secrets.MAILERLITE_API_KEY }}
-          MAILERLITE_GROUP_ID: ${{ secrets.MAILERLITE_GROUP_ID }}
           SECURITY_CSP_MODE: ${{ secrets.SECURITY_CSP_MODE }}
-        run: |
-          set -euo pipefail
-          trap 'rm -f /tmp/oracle_ssh_key' EXIT
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          envs: SECURITY_CSP_MODE
+          script: |
+            set -e
 
-          if [ -z "$ORACLE_SSH_KEY" ]; then
-            echo "ORACLE_SSH_KEY_NORBERTFILA secret is missing"
-            exit 1
-          fi
+            if ! command -v node >/dev/null 2>&1; then
+              curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+            fi
 
-          printf '%s\n' "$ORACLE_SSH_KEY" > /tmp/oracle_ssh_key
-          chmod 600 /tmp/oracle_ssh_key
+            node -v
+            npm -v
 
-          MAILERLITE_API_KEY_B64=$(printf '%s' "$MAILERLITE_API_KEY" | base64 -w0)
-          MAILERLITE_GROUP_ID_B64=$(printf '%s' "$MAILERLITE_GROUP_ID" | base64 -w0)
-          SECURITY_CSP_MODE_B64=$(printf '%s' "$SECURITY_CSP_MODE" | base64 -w0)
+            sudo mkdir -p /opt/nf-portfolio
+            sudo chown -R $USER:$USER /opt/nf-portfolio
 
-          ssh -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no "$ORACLE_USER@$ORACLE_HOST" \
-            "MAILERLITE_API_KEY_B64='$MAILERLITE_API_KEY_B64' MAILERLITE_GROUP_ID_B64='$MAILERLITE_GROUP_ID_B64' SECURITY_CSP_MODE_B64='$SECURITY_CSP_MODE_B64' bash -s" <<'EOF'
-          set -euo pipefail
+            rm -rf /opt/nf-portfolio/*
+            cp -R /tmp/nf-next-upload/standalone/. /opt/nf-portfolio/
+            mkdir -p /opt/nf-portfolio/.next
+            cp -R /tmp/nf-next-upload/static /opt/nf-portfolio/.next/
+            cp -R /tmp/nf-next-upload/public /opt/nf-portfolio/
 
-          MAILERLITE_API_KEY=$(printf '%s' "$MAILERLITE_API_KEY_B64" | base64 -d)
-          MAILERLITE_GROUP_ID=$(printf '%s' "$MAILERLITE_GROUP_ID_B64" | base64 -d)
-          SECURITY_CSP_MODE=$(printf '%s' "$SECURITY_CSP_MODE_B64" | base64 -d)
+            if [ ! -f /opt/nf-portfolio/.next/BUILD_ID ]; then
+              echo "Missing /opt/nf-portfolio/.next/BUILD_ID after copy"
+              ls -la /opt/nf-portfolio || true
+              ls -la /opt/nf-portfolio/.next || true
+              exit 1
+            fi
 
-          if ! command -v node >/dev/null 2>&1; then
-            curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-            sudo apt-get install -y nodejs
-          fi
+            cat > /tmp/nf-portfolio.service <<'EOF'
+            [Unit]
+            Description=NF Portfolio Next.js App
+            After=network.target
 
-          node -v
-          npm -v
+            [Service]
+            User=ubuntu
+            WorkingDirectory=/opt/nf-portfolio
+            Environment=NODE_ENV=production
+            Environment=PORT=3000
+            ExecStart=/usr/bin/env node /opt/nf-portfolio/server.js
+            Restart=always
+            RestartSec=3
 
-          if [ -z "$MAILERLITE_API_KEY" ]; then
-            echo "MAILERLITE_API_KEY secret is missing"
-            exit 1
-          fi
+            [Install]
+            WantedBy=multi-user.target
+            EOF
 
-          if [ -z "$MAILERLITE_GROUP_ID" ]; then
-            echo "MAILERLITE_GROUP_ID secret is missing"
-            exit 1
-          fi
+            sudo mv /tmp/nf-portfolio.service /etc/systemd/system/nf-portfolio.service
+            sudo chmod 644 /etc/systemd/system/nf-portfolio.service
+            sudo systemctl daemon-reload
+            sudo systemctl enable nf-portfolio
+            sudo systemctl restart nf-portfolio
+            sudo systemctl is-active --quiet nf-portfolio
 
-          sudo mkdir -p /opt/nf-portfolio
-          sudo chown -R $USER:$USER /opt/nf-portfolio
+            if sudo systemctl list-unit-files | grep -q '^nf-ebook-api\.service'; then
+              sudo systemctl disable --now nf-ebook-api || true
+              sudo rm -f /etc/systemd/system/nf-ebook-api.service
+              sudo systemctl daemon-reload
+            fi
 
-          rm -rf /opt/nf-portfolio/*
-          cp -R /tmp/nf-next-upload/standalone/. /opt/nf-portfolio/
-          mkdir -p /opt/nf-portfolio/.next
-          cp -R /tmp/nf-next-upload/static /opt/nf-portfolio/.next/
-          cp -R /tmp/nf-next-upload/public /opt/nf-portfolio/
+            CSP_MODE=${SECURITY_CSP_MODE:-enforce}
+            if [ "$CSP_MODE" != "report-only" ] && [ "$CSP_MODE" != "enforce" ]; then
+              echo "Invalid SECURITY_CSP_MODE: $CSP_MODE (allowed: report-only, enforce)"
+              exit 1
+            fi
 
-          if [ ! -f /opt/nf-portfolio/.next/BUILD_ID ]; then
-            echo "Missing /opt/nf-portfolio/.next/BUILD_ID after copy"
-            ls -la /opt/nf-portfolio || true
-            ls -la /opt/nf-portfolio/.next || true
-            exit 1
-          fi
-
-          cat > /tmp/nf-portfolio.service <<'SERVICE_EOF'
-          [Unit]
-          Description=NF Portfolio Next.js App
-          After=network.target
-
-          [Service]
-          User=ubuntu
-          WorkingDirectory=/opt/nf-portfolio
-          Environment=NODE_ENV=production
-          Environment=PORT=3000
-          ExecStart=/usr/bin/env node /opt/nf-portfolio/server.js
-          Restart=always
-          RestartSec=3
-
-          [Install]
-          WantedBy=multi-user.target
-          SERVICE_EOF
-
-          sudo mv /tmp/nf-portfolio.service /etc/systemd/system/nf-portfolio.service
-          sudo chmod 644 /etc/systemd/system/nf-portfolio.service
-          sudo systemctl daemon-reload
-          sudo systemctl enable nf-portfolio
-          sudo systemctl restart nf-portfolio
-          sudo systemctl is-active --quiet nf-portfolio
-
-          sudo mkdir -p /opt/nf-api
-          sudo chown -R $USER:$USER /opt/nf-api
-
-          cp /tmp/nf-api-upload/*.mjs /opt/nf-api/
-
-          cat > /opt/nf-api/.env <<ENV_EOF
-          MAILERLITE_API_KEY=$MAILERLITE_API_KEY
-          MAILERLITE_GROUP_ID=$MAILERLITE_GROUP_ID
-          ALLOWED_ORIGIN=https://norbertfila.com
-          PORT=8787
-          ENV_EOF
-
-          cat > /tmp/nf-ebook-api.service <<'SERVICE_EOF'
-          [Unit]
-          Description=NF Ebook Subscribe API
-          After=network.target
-
-          [Service]
-          User=ubuntu
-          WorkingDirectory=/opt/nf-api
-          EnvironmentFile=/opt/nf-api/.env
-          ExecStart=/usr/bin/env node /opt/nf-api/server.mjs
-          Restart=always
-          RestartSec=3
-
-          [Install]
-          WantedBy=multi-user.target
-          SERVICE_EOF
-
-          sudo mv /tmp/nf-ebook-api.service /etc/systemd/system/nf-ebook-api.service
-          sudo chmod 644 /etc/systemd/system/nf-ebook-api.service
-
-          sudo systemctl daemon-reload
-          sudo systemctl enable nf-ebook-api
-          sudo systemctl restart nf-ebook-api
-          sudo systemctl is-active --quiet nf-ebook-api
-
-          CSP_MODE=${SECURITY_CSP_MODE:-enforce}
-          if [ "$CSP_MODE" != "report-only" ] && [ "$CSP_MODE" != "enforce" ]; then
-            echo "Invalid SECURITY_CSP_MODE: $CSP_MODE (allowed: report-only, enforce)"
-            exit 1
-          fi
-
-          export CSP_MODE
-          sudo -E python3 <<'PY'
+            export CSP_MODE
+            sudo -E python3 <<'PY'
             import os
             import re
             from pathlib import Path
@@ -245,16 +201,15 @@ jobs:
                 "    # END nf-security-headers\n\n"
             )
 
-            api_block = (
-                "    # BEGIN nf-ebook-api\n"
-                "    location /api/ebook-subscribe {\n"
-                "        proxy_pass http://127.0.0.1:8787/api/ebook-subscribe;\n"
-                "        proxy_http_version 1.1;\n"
-                "        proxy_set_header Host $host;\n"
-                "        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n"
-                "        proxy_set_header X-Forwarded-Proto $scheme;\n"
+            next_static_block = (
+                "    # BEGIN nf-next-static\n"
+                "    location ^~ /_next/static/ {\n"
+                "        alias /opt/nf-portfolio/.next/static/;\n"
+                "        access_log off;\n"
+                "        expires 365d;\n"
+                "        add_header Cache-Control \"public, max-age=31536000, immutable\";\n"
                 "    }\n"
-                "    # END nf-ebook-api\n\n"
+                "    # END nf-next-static\n\n"
             )
 
             next_block = (
@@ -272,17 +227,6 @@ jobs:
                 "    # END nf-next-app\n\n"
             )
 
-            next_static_block = (
-                "    # BEGIN nf-next-static\n"
-                "    location ^~ /_next/static/ {\n"
-                "        alias /opt/nf-portfolio/.next/static/;\n"
-                "        access_log off;\n"
-                "        expires 365d;\n"
-                "        add_header Cache-Control \"public, max-age=31536000, immutable\";\n"
-                "    }\n"
-                "    # END nf-next-static\n\n"
-            )
-
             server_open = c.find('server {')
             if server_open == -1:
                 raise SystemExit('Cannot find nginx server block')
@@ -291,138 +235,81 @@ jobs:
             if insert_at == -1:
                 raise SystemExit('Cannot find nginx server block end')
 
-            blocks = security_block + api_block + next_static_block + next_block
+            blocks = security_block + next_static_block + next_block
             p.write_text(c[:insert_at] + '\n' + blocks + c[insert_at:])
             PY
 
-          sudo nginx -t
-          sudo systemctl reload nginx
-          rm -rf /tmp/nf-api-upload
-          rm -rf /tmp/nf-next-upload
-          EOF
+            sudo nginx -t
+            sudo systemctl reload nginx
 
-      - name: Verify ebook API endpoint
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-          trap 'rm -f /tmp/oracle_ssh_key' EXIT
-
-          printf '%s\n' "$ORACLE_SSH_KEY" > /tmp/oracle_ssh_key
-          chmod 600 /tmp/oracle_ssh_key
-
-          ssh -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no "$ORACLE_USER@$ORACLE_HOST" 'bash -s' <<'EOF'
-          set -euo pipefail
-
-          status_local=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8787/api/ebook-subscribe)
-          if [ "$status_local" != "405" ]; then
-            echo "Unexpected local API status code: $status_local"
-            echo "---- debug: local GET headers ----"
-            curl -sS -D - -o /dev/null http://127.0.0.1:8787/api/ebook-subscribe || true
-            exit 1
-          fi
-
-          status_public=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://norbertfila.com/api/ebook-subscribe" -H "Content-Type: application/json" -d '{"email":"invalid-email"}')
-          case "$status_public" in
-            200|400|429|500|502)
-              exit 0
-              ;;
-            *)
-              echo "Unexpected public API status code: $status_public"
-              echo "---- debug: systemd status ----"
-              sudo systemctl --no-pager --full status nf-ebook-api || true
-              echo "---- debug: last service logs ----"
-              sudo journalctl -u nf-ebook-api -n 120 --no-pager || true
-              echo "---- debug: nginx security/header snippet ----"
-              sudo sed -n '/BEGIN nf-security-headers/,/END nf-security-headers/p' /etc/nginx/sites-available/norbertfila.com || true
-              echo "---- debug: nginx location snippet ----"
-              sudo sed -n '/BEGIN nf-ebook-api/,/END nf-ebook-api/p' /etc/nginx/sites-available/norbertfila.com || true
-              echo "---- debug: local POST (invalid payload) ----"
-              curl -sS -i -X POST "http://127.0.0.1:8787/api/ebook-subscribe" -H "Content-Type: application/json" -d '{"email":"invalid-email"}' || true
-              echo "---- debug: public POST (invalid payload) ----"
-              curl -sS -i -X POST "https://norbertfila.com/api/ebook-subscribe" -H "Content-Type: application/json" -d '{"email":"invalid-email"}' || true
-              echo "---- debug: public GET headers ----"
-              curl -sS -D - -o /dev/null "https://norbertfila.com/api/ebook-subscribe" || true
-              exit 1
-              ;;
-          esac
-          EOF
+            rm -rf /tmp/nf-next-upload
 
       - name: Verify Next.js app endpoint
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-          trap 'rm -f /tmp/oracle_ssh_key' EXIT
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.ORACLE_IP_NORBERTFILA }}
+          username: ${{ secrets.ORACLE_USER_NORBERTFILA }}
+          key: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
+          script: |
+            set -e
 
-          printf '%s\n' "$ORACLE_SSH_KEY" > /tmp/oracle_ssh_key
-          chmod 600 /tmp/oracle_ssh_key
+            if ! sudo systemctl is-active --quiet nf-portfolio; then
+              echo "nf-portfolio service is not active"
+              echo "---- debug: nf-portfolio status ----"
+              sudo systemctl --no-pager --full status nf-portfolio || true
+              echo "---- debug: nf-portfolio logs ----"
+              sudo journalctl -u nf-portfolio -n 120 --no-pager || true
+              exit 1
+            fi
 
-          ssh -i /tmp/oracle_ssh_key -o StrictHostKeyChecking=no "$ORACLE_USER@$ORACLE_HOST" 'bash -s' <<'EOF'
-          set -euo pipefail
+            status_local=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/)
+            if [ "$status_local" != "200" ]; then
+              echo "Unexpected local Next app status code: $status_local"
+              echo "---- debug: nf-portfolio status ----"
+              sudo systemctl --no-pager --full status nf-portfolio || true
+              echo "---- debug: nf-portfolio logs ----"
+              sudo journalctl -u nf-portfolio -n 120 --no-pager || true
+              echo "---- debug: local headers ----"
+              curl -sS -D - -o /dev/null http://127.0.0.1:3000/ || true
+              exit 1
+            fi
 
-          if ! sudo systemctl is-active --quiet nf-portfolio; then
-            echo "nf-portfolio service is not active"
-            echo "---- debug: nf-portfolio status ----"
-            sudo systemctl --no-pager --full status nf-portfolio || true
-            echo "---- debug: nf-portfolio logs ----"
-            sudo journalctl -u nf-portfolio -n 120 --no-pager || true
-            exit 1
-          fi
+            status_public=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/)
+            if [ "$status_public" != "200" ]; then
+              echo "Unexpected public Next app status code: $status_public"
+              echo "---- debug: public headers ----"
+              curl -sS -D - -o /dev/null https://norbertfila.com/ || true
+              exit 1
+            fi
 
-          status_local=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/)
-          if [ "$status_local" != "200" ]; then
-            echo "Unexpected local Next app status code: $status_local"
-            echo "---- debug: nf-portfolio status ----"
-            sudo systemctl --no-pager --full status nf-portfolio || true
-            echo "---- debug: nf-portfolio logs ----"
-            sudo journalctl -u nf-portfolio -n 120 --no-pager || true
-            echo "---- debug: local headers ----"
-            curl -sS -D - -o /dev/null http://127.0.0.1:3000/ || true
-            exit 1
-          fi
+            status_local_portfolio=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/portfolio)
+            if [ "$status_local_portfolio" != "200" ]; then
+              echo "Unexpected local portfolio status code: $status_local_portfolio"
+              echo "---- debug: local portfolio headers ----"
+              curl -sS -D - -o /dev/null http://127.0.0.1:3000/portfolio || true
+              exit 1
+            fi
 
-          status_public=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/)
-          if [ "$status_public" != "200" ]; then
-            echo "Unexpected public Next app status code: $status_public"
-            echo "---- debug: public headers ----"
-            curl -sS -D - -o /dev/null https://norbertfila.com/ || true
-            exit 1
-          fi
+            status_public_portfolio=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/portfolio)
+            if [ "$status_public_portfolio" != "200" ]; then
+              echo "Warning: public portfolio status code is $status_public_portfolio"
+              echo "---- debug: public portfolio headers ----"
+              curl -sS -D - -o /dev/null https://norbertfila.com/portfolio || true
+            fi
 
-          status_local_portfolio=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/portfolio)
-          if [ "$status_local_portfolio" != "200" ]; then
-            echo "Unexpected local portfolio status code: $status_local_portfolio"
-            echo "---- debug: local portfolio headers ----"
-            curl -sS -D - -o /dev/null http://127.0.0.1:3000/portfolio || true
-            exit 1
-          fi
+            status_robots=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/robots.txt)
+            if [ "$status_robots" != "200" ]; then
+              echo "Unexpected robots.txt status code: $status_robots"
+              curl -sS -D - -o /dev/null https://norbertfila.com/robots.txt || true
+              exit 1
+            fi
 
-          status_public_portfolio=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/portfolio)
-          if [ "$status_public_portfolio" != "200" ]; then
-            echo "Warning: public portfolio status code is $status_public_portfolio"
-            echo "---- debug: public portfolio headers ----"
-            curl -sS -D - -o /dev/null https://norbertfila.com/portfolio || true
-          fi
-
-          status_robots=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/robots.txt)
-          if [ "$status_robots" != "200" ]; then
-            echo "Unexpected robots.txt status code: $status_robots"
-            curl -sS -D - -o /dev/null https://norbertfila.com/robots.txt || true
-            exit 1
-          fi
-
-          status_sitemap=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/sitemap.xml)
-          if [ "$status_sitemap" != "200" ]; then
-            echo "Unexpected sitemap.xml status code: $status_sitemap"
-            curl -sS -D - -o /dev/null https://norbertfila.com/sitemap.xml || true
-            exit 1
-          fi
-          EOF
+            status_sitemap=$(curl -s -o /dev/null -w "%{http_code}" https://norbertfila.com/sitemap.xml)
+            if [ "$status_sitemap" != "200" ]; then
+              echo "Unexpected sitemap.xml status code: $status_sitemap"
+              curl -sS -D - -o /dev/null https://norbertfila.com/sitemap.xml || true
+              exit 1
+            fi
 
       - name: Cleanup on failure
         if: failure()

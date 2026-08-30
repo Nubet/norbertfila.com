@@ -1,16 +1,13 @@
 'use client'
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useRef, type FormEvent } from 'react'
+import { useState, useRef } from 'react'
 import { ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight, Clock } from 'lucide-react'
 import { FAQ } from '@/components/FAQ/FAQ'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
 import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
-import { subscribeToEbook, EbookSubscribeError } from '@/features/ebook/subscribeToEbook'
 import { blogPosts } from '@/data/blogPosts'
 import { portfolioProjects } from '@/data/portfolio'
 import styles from './Home.module.css'
@@ -21,13 +18,6 @@ const featuredBlogSlugs = [
 ]
 
 export default function Home() {
-  const [ebookEmail, setEbookEmail] = useState('')
-  const [ebookLoading, setEbookLoading] = useState(false)
-  const [ebookFeedback, setEbookFeedback] = useState<{
-    type: 'success' | 'error'
-    message: string
-  } | null>(null)
-
   const [comingSoonId, setComingSoonId] = useState<string | null>(null)
 
   const handleReadMoreClick = (e: React.MouseEvent, project: (typeof portfolioProjects)[0]) => {
@@ -98,32 +88,6 @@ export default function Home() {
     } else if (e.key === 'ArrowRight') {
       e.preventDefault()
       scrollCarousel('right')
-    }
-  }
-
-  const handleEbookSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (ebookLoading) return
-    const form = event.currentTarget
-    const formData = new FormData(form)
-    const honeypot = String(formData.get('company') ?? '')
-
-    setEbookFeedback(null)
-    setEbookLoading(true)
-
-    try {
-      await subscribeToEbook({ email: ebookEmail, honeypot })
-      setEbookFeedback({ type: 'success', message: 'Wysłano. Sprawdź swoją skrzynkę e-mail.' })
-      setEbookEmail('')
-      form.reset()
-    } catch (error) {
-      if (error instanceof EbookSubscribeError) {
-        setEbookFeedback({ type: 'error', message: error.message })
-      } else {
-        setEbookFeedback({ type: 'error', message: 'Wystąpił błąd. Spróbuj ponownie później.' })
-      }
-    } finally {
-      setEbookLoading(false)
     }
   }
 
@@ -541,53 +505,6 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
-
-      {/* TYMCZASOWO UKRYTA SEKCJA E-BOOKA
-      <section className={styles.ebookSection}>
-        <div className={styles.container}>
-          <ScrollReveal>
-            <div className={styles.ebookBox}>
-              <span className={styles.sectionLabel} style={{ color: 'var(--color-gold)' }}>
-                Darmowy E-book
-              </span>
-              <h3 className={styles.ebookTitle}>Jakich błędów unikać na stronie?</h3>
-              <p className={styles.ebookText}>
-                Zostaw swój e-mail i odbierz krótki plik PDF z analizą najczęstszych błędów, przez
-                które strony internetowe tracą klientów.
-              </p>
-
-              <form className={styles.ebookForm} onSubmit={handleEbookSubmit} noValidate>
-                <div className={styles.ebookHoneypot} aria-hidden="true">
-                  <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
-                </div>
-                <div className={styles.ebookControls}>
-                  <input
-                    type="email"
-                    className={styles.ebookInput}
-                    placeholder="Wpisz adres e-mail"
-                    value={ebookEmail}
-                    onChange={(e) => setEbookEmail(e.target.value)}
-                    required
-                  />
-                  <button type="submit" className={styles.ctaButton} disabled={ebookLoading}>
-                    {ebookLoading ? 'Wysyłanie...' : 'Pobierz e-book'}
-                  </button>
-                </div>
-              </form>
-              {ebookFeedback && (
-                <p
-                  className={
-                    ebookFeedback.type === 'success' ? styles.ebookSuccess : styles.ebookError
-                  }
-                >
-                  {ebookFeedback.message}
-                </p>
-              )}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-      */}
 
       <ScrollReveal>
         <FAQ />
