@@ -9,9 +9,9 @@ const faqs = [
       'Cena zależy od specyfikacji projektu, a najprostsze, dedykowane strony startują od około 800 zł - napisz do mnie, a darmową wycenę otrzymasz zazwyczaj w ciągu 12 godzin.',
   },
   {
-    question: 'Jak długo trwa realizacja strony internetowej?',
+    question: 'Kiedy zobaczę gotowy projekt?',
     answer:
-      'Tworzenie autorskiej witryny trwa zazwyczaj od 7 do 21 dni roboczych, w zależności od skomplikowania projektu oraz sprawności naszej komunikacji.',
+      'Proste strony oddaję nawet w 4 dni robocze, a standardowe witryny firmowe w około 6 dni. Skomplikowane zlecenia (rozbudowane serwisy, aplikacje webowe i mobilne) zamykam zazwyczaj w 12 dni - mój nieprzekraczalny limit to 15 dni. Szybkie wdrożenie to gwarancja, że inwestycja błyskawicznie zacznie dla Ciebie zarabiać.',
   },
   {
     question: 'Czy pomagasz z domeną, hostingiem i instalacją?',
