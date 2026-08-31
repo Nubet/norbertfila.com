@@ -408,3 +408,29 @@
   height: auto;
   display: block;
 }
+
+@media (max-width: 768px) {
+  .monitorFrame {
+    padding: 0;
+    border-radius: 12px;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .monitorFrame::after {
+    display: none;
+  }
+
+  .monitorStand,
+  .monitorBase {
+    display: none;
+  }
+
+  .mockupWindow {
+    aspect-ratio: auto;
+    height: 70vh;
+    border-radius: 12px;
+    border: 1px solid rgba(47, 79, 64, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+}
