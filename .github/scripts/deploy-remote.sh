@@ -53,6 +53,12 @@ bun run build >/tmp/nf-build.log 2>&1 || {
 }
 echo STEP_BUILD_DONE
 
+mkdir -p .next/standalone/.next
+rm -rf .next/standalone/public .next/standalone/.next/static
+cp -R public .next/standalone/public
+cp -R .next/static .next/standalone/.next/static
+echo STEP_STANDALONE_ASSETS_DONE
+
 write_nginx_config() {
   if sudo test -d /etc/letsencrypt/live/norbertfila.com; then
     sudo tee /etc/nginx/sites-available/norbertfila.com >/dev/null <<'NGINX_CONF'
