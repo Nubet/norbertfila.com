@@ -4,32 +4,32 @@ import { Montserrat, Great_Vibes } from 'next/font/google'
 const theSeasons = localFont({
   src: [
     {
-      path: './assets/fonts/the-seasons/The Seasons Light.ttf',
+      path: './assets/fonts/the-seasons/The Seasons Light.woff2',
       weight: '300',
       style: 'normal',
     },
     {
-      path: './assets/fonts/the-seasons/The Seasons Light Italic.ttf',
+      path: './assets/fonts/the-seasons/The Seasons Light Italic.woff2',
       weight: '300',
       style: 'italic',
     },
     {
-      path: './assets/fonts/the-seasons/The Seasons Regular.ttf',
+      path: './assets/fonts/the-seasons/The Seasons Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: './assets/fonts/the-seasons/The Seasons Italic.ttf',
+      path: './assets/fonts/the-seasons/The Seasons Italic.woff2',
       weight: '400',
       style: 'italic',
     },
     {
-      path: './assets/fonts/the-seasons/The Seasons Bold.ttf',
+      path: './assets/fonts/the-seasons/The Seasons Bold.woff2',
       weight: '700',
       style: 'normal',
     },
     {
-      path: './assets/fonts/the-seasons/The Seasons Bold Italic.ttf',
+      path: './assets/fonts/the-seasons/The Seasons Bold Italic.woff2',
       weight: '700',
       style: 'italic',
     },
