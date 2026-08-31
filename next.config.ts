@@ -1,10 +1,11 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  output: 'export',
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    unoptimized: true,
     qualities: [100],
     remotePatterns: [
       {
