@@ -93,7 +93,7 @@ export function Portfolio() {
                     <h3 className={styles.portfolioTitle}>{project.title}</h3>
                     <p className={styles.portfolioDesc}>{project.description}</p>
                     <Link
-                      href={`#${project.id}`}
+                      href={`/portfolio/${project.id}`}
                       className={styles.readMoreBtn}
                       onClick={(e) => handleReadMoreClick(e, project)}
                     >

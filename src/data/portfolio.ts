@@ -57,6 +57,7 @@ export const portfolioProjects: PortfolioProject[] = [
       width: 2560,
       height: 1287,
     },
+    isReady: true,
   },
   {
     id: 'santoro',
@@ -71,6 +72,7 @@ export const portfolioProjects: PortfolioProject[] = [
       width: 2560,
       height: 1287,
     },
+    isReady: true,
   },
   {
     id: 'abc-centrum',
