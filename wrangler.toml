@@ -1,0 +1,7 @@
+"$schema" = "./node_modules/wrangler/config-schema.json"
+name = "norbertfila-com"
+compatibility_date = "2026-08-31"
+
+[assets]
+directory = "./out"
+not_found_handling = "404-page"

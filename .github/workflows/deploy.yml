@@ -1,16 +1,17 @@
-name: Deploy Portfolio to Oracle Cloud
+name: Validate Portfolio Build
 
 on:
   push:
     branches:
       - main
+  pull_request:
 
 concurrency:
-  group: deploy-production
+  group: validate-production
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  validate:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,52 +35,13 @@ jobs:
             exit 1
           fi
 
+      - name: Lint project
+        run: bun run lint
+
+      - name: Typecheck project
+        run: bun run typecheck
+
       - name: Build project
         env:
           NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
         run: bun run build
-
-      - name: Prepare SSH key
-        env:
-          ORACLE_SSH_KEY: ${{ secrets.ORACLE_SSH_KEY_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-          mkdir -p ~/.ssh
-          printf '%s\n' "$ORACLE_SSH_KEY" > ~/.ssh/oracle_key
-          chmod 600 ~/.ssh/oracle_key
-
-      - name: Upload remote scripts
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-          scp -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .github/scripts/deploy-remote.sh "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-deploy-remote.sh"
-          scp -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .github/scripts/verify-remote.sh "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-verify-remote.sh"
-          ssh -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" "chmod 700 /tmp/nf-deploy-remote.sh /tmp/nf-verify-remote.sh"
-
-      - name: Deploy application over SSH
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-          APP_DIR: ${{ secrets.APP_DIR || vars.APP_DIR }}
-          NEXT_PUBLIC_CONTACT_FORM_ENDPOINT: ${{ secrets.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT || vars.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT }}
-          CERTBOT_EMAIL: ${{ secrets.CERTBOT_EMAIL || vars.CERTBOT_EMAIL }}
-        run: |
-          set -euo pipefail
-          APP_DIR_TRIMMED=$(printf '%s' "$APP_DIR" | tr -d '\r')
-          CONTACT_ENDPOINT_TRIMMED=$(printf '%s' "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" | sed 's/[[:space:]]*$//')
-          CERTBOT_EMAIL_TRIMMED=$(printf '%s' "$CERTBOT_EMAIL" | sed 's/[[:space:]]*$//')
-          ssh -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" "APP_DIR=$(printf '%q' "$APP_DIR_TRIMMED") NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=$(printf '%q' "$CONTACT_ENDPOINT_TRIMMED") CERTBOT_EMAIL=$(printf '%q' "$CERTBOT_EMAIL_TRIMMED") timeout --foreground 20m bash /tmp/nf-deploy-remote.sh"
-
-      - name: Verify deployed app
-        env:
-          ORACLE_HOST: ${{ secrets.ORACLE_IP_NORBERTFILA }}
-          ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
-        run: |
-          set -euo pipefail
-          ssh -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'timeout --foreground 2m bash /tmp/nf-verify-remote.sh'
-
-      - name: Cleanup on failure
-        if: failure()
-        run: echo "Deployment failed - Check the logs above."

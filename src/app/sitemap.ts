@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next'
 import { blogPosts } from '@/data/blogPosts'
 import { siteConfig, staticIndexedRoutes } from '@/shared/seo/site'
 
+export const dynamic = 'force-static'
+
 const routePriorities: Record<(typeof staticIndexedRoutes)[number], number> = {
   '/': 1,
   '/about': 0.7,
