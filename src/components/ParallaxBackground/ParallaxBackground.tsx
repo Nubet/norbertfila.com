@@ -33,18 +33,7 @@ export function ParallaxBackground({
   const syncVideoReadiness = () => {
     const video = videoRef.current
 
-    if (
-      !video ||
-      !Number.isFinite(video.duration) ||
-      video.duration <= 0 ||
-      video.buffered.length === 0
-    ) {
-      return
-    }
-
-    const bufferedEnd = video.buffered.end(video.buffered.length - 1)
-
-    if (bufferedEnd < video.duration - 0.25) {
+    if (!video || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
       return
     }
 
@@ -125,6 +114,8 @@ export function ParallaxBackground({
             preload="auto"
             poster={posterSrc}
             onLoadedMetadata={syncVideoReadiness}
+            onLoadedData={syncVideoReadiness}
+            onCanPlay={syncVideoReadiness}
             onCanPlayThrough={syncVideoReadiness}
             onProgress={syncVideoReadiness}
           >
