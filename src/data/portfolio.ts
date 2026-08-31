@@ -25,7 +25,7 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       'Klub stawia na małe, stałe grupy i pełne zaangażowanie. Chciałem, żeby strona od razu budziła poczucie jakości z najwyższej półki. Połączyłem stonowane kolory i elegancką typografię, tworząc wizytówkę, która idealnie oddaje ekskluzywny charakter miejsca.',
     image: {
-      src: '/portfolio/db-club/butikowe-studio-ruchu-strona-www.webp',
+      src: '/client-projects/norbert-fila-db-club-projekt.ng.webp',
       width: 2560,
       height: 1287,
     },
