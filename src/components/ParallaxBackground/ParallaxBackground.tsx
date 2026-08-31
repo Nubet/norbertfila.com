@@ -32,18 +32,6 @@ export function ParallaxBackground({
   const videoKey = shouldLoadVideo ? preferredVideoSrc : null
   const isVideoReady = videoKey !== null && readyVideoKey === videoKey
 
-  const revealVideo = () => {
-    const video = videoRef.current
-
-    if (!video) {
-      return
-    }
-
-    video.currentTime = 0
-    void video.play().catch(() => undefined)
-    setReadyVideoKey(videoKey)
-  }
-
   const syncVideoReadiness = () => {
     const video = videoRef.current
 
@@ -51,7 +39,7 @@ export function ParallaxBackground({
       return
     }
 
-    revealVideo()
+    setReadyVideoKey(videoKey)
   }
 
   useEffect(() => {
@@ -147,7 +135,7 @@ export function ParallaxBackground({
             onLoadedMetadata={syncVideoReadiness}
             onCanPlayThrough={syncVideoReadiness}
             onProgress={syncVideoReadiness}
-            onPlaying={revealVideo}
+            onPlaying={() => setReadyVideoKey(videoKey)}
           >
             <source src={preferredVideoSrc} type={preferredVideoType} />
           </video>
