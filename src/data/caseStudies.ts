@@ -1,3 +1,9 @@
+type CaseStudyImage = {
+  src: string
+  width: number
+  height: number
+}
+
 export type CaseStudyData = {
   id: string
   title: string
@@ -5,11 +11,11 @@ export type CaseStudyData = {
   role: string
   industry: string
   year: string
-  openingImage: string
+  openingImage: CaseStudyImage
   overviewText: string
-  galleryImage1: string
-  galleryImage2: string
-  fullPageMockup: string
+  galleryImage1: CaseStudyImage
+  galleryImage2: CaseStudyImage
+  fullPageMockup: CaseStudyImage
   nextProjectSlug?: string
   prevProjectSlug?: string
   nextProjectName?: string
@@ -25,12 +31,28 @@ export const caseStudies: CaseStudyData[] = [
     role: 'Design & Development',
     industry: 'Premium E-commerce',
     year: '2025',
-    openingImage: '/zdj-otwierajace.jpg',
+    openingImage: {
+      src: '/zdj-otwierajace.jpg',
+      width: 2500,
+      height: 1459,
+    },
     overviewText:
       'Podczas pracy nad tym projektem skupiłem się na wyeliminowaniu szumu wizualnego. Zaprojektowałem architekturę informacji od zera, łącząc rygorystyczną typografię z dużą ilością negatywnej przestrzeni. Każda interakcja została zaprogramowana tak, aby potęgować wrażenie obcowania z produktem luksusowym.',
-    galleryImage1: '/mockup1.jpg',
-    galleryImage2: '/mockup2.jpg',
-    fullPageMockup: '/visual-projects/abc-centrum-logopedii/whole.webp',
+    galleryImage1: {
+      src: '/mockup1.jpg',
+      width: 1872,
+      height: 1260,
+    },
+    galleryImage2: {
+      src: '/mockup2.jpg',
+      width: 1872,
+      height: 1260,
+    },
+    fullPageMockup: {
+      src: '/visual-projects/abc-centrum-logopedii/whole.webp',
+      width: 2560,
+      height: 8228,
+    },
     prevProjectSlug: 'vellum-blanc',
     prevProjectName: 'Vellum Blanc',
     nextProjectSlug: 'aura-medical',

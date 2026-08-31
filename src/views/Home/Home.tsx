@@ -324,9 +324,10 @@ export default function Home() {
                   <article className={styles.portfolioCard}>
                     <div className={styles.portfolioImageWrapper}>
                       <Image
-                        src={project.image}
+                        src={project.image.src}
                         alt={project.title}
-                        fill
+                        width={project.image.width}
+                        height={project.image.height}
                         className={styles.projectImage}
                         sizes="(max-width: 768px) 90vw, 75vw"
                         draggable={false}

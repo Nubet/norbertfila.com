@@ -65,9 +65,10 @@ export function Portfolio() {
                       {project.images.map((img, i) => (
                         <div key={i} className={styles.mobileScreenshot}>
                           <Image
-                            src={img}
+                            src={img.src}
                             alt={`${project.title} screen ${i + 1}`}
-                            fill
+                            width={img.width}
+                            height={img.height}
                             className={styles.projectImage}
                             sizes="(max-width: 768px) 33vw, 20vw"
                           />
@@ -78,9 +79,10 @@ export function Portfolio() {
                   ) : (
                     <div className={styles.portfolioImageWrapper}>
                       <Image
-                        src={project.image}
+                        src={project.image.src}
                         alt={project.title}
-                        fill
+                        width={project.image.width}
+                        height={project.image.height}
                         className={styles.projectImage}
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />

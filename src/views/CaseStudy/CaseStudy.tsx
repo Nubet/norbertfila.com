@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import styles from './CaseStudy.module.css'
@@ -21,11 +22,13 @@ export function CaseStudy({ data }: CaseStudyProps) {
         <section className={styles.hero}>
           <ScrollReveal>
             <div className={styles.openingImageWrapper}>
-              <img
-                src={data.openingImage}
+              <Image
+                src={data.openingImage.src}
                 alt={data.title}
+                width={data.openingImage.width}
+                height={data.openingImage.height}
                 className={styles.openingImage}
-                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 1360px"
               />
             </div>
           </ScrollReveal>
@@ -74,21 +77,25 @@ export function CaseStudy({ data }: CaseStudyProps) {
         <section className={styles.asymmetricGallery}>
           <ScrollReveal>
             <div className={styles.mockupFull}>
-              <img
-                src={data.galleryImage1}
+              <Image
+                src={data.galleryImage1.src}
                 alt={`${data.title} - 1`}
+                width={data.galleryImage1.width}
+                height={data.galleryImage1.height}
                 className={styles.galleryImageFull}
-                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 60vw"
               />
             </div>
           </ScrollReveal>
           <ScrollReveal delay={200}>
             <div className={styles.mockupCropped}>
-              <img
-                src={data.galleryImage2}
+              <Image
+                src={data.galleryImage2.src}
                 alt={`${data.title} - 2`}
+                width={data.galleryImage2.width}
+                height={data.galleryImage2.height}
                 className={styles.galleryImageCropped}
-                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 40vw"
               />
             </div>
           </ScrollReveal>
@@ -105,14 +112,16 @@ export function CaseStudy({ data }: CaseStudyProps) {
           </div>
           <div className={styles.monitorWrapper}>
             <div className={styles.monitorFrame}>
-              <div className={styles.mockupWindow}>
-                <img
-                  src={data.fullPageMockup}
-                  alt={`Pełny podgląd ${data.title}`}
-                  className={styles.mockupImage}
-                  loading="lazy"
-                />
-              </div>
+                <div className={styles.mockupWindow}>
+                  <Image
+                    src={data.fullPageMockup.src}
+                    alt={`Pełny podgląd ${data.title}`}
+                    width={data.fullPageMockup.width}
+                    height={data.fullPageMockup.height}
+                    className={styles.mockupImage}
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                  />
+                </div>
             </div>
             <div className={styles.monitorStand}></div>
             <div className={styles.monitorBase}></div>
