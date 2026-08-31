@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { blogPosts } from '@/data/blogPosts'
+import { caseStudies } from '@/data/caseStudies'
 import { siteConfig, staticIndexedRoutes } from '@/shared/seo/site'
 
 export const dynamic = 'force-static'
@@ -24,6 +25,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: routePriorities[path],
   }))
 
+  const portfolioPages = caseStudies.map((study) => ({
+    url: `${siteConfig.url}/portfolio/${study.id}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
   const articlePages = blogPosts.map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}`,
     lastModified: new Date(post.publishedAt),
@@ -31,5 +39,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
-  return [...staticPages, ...articlePages]
+  return [...staticPages, ...portfolioPages, ...articlePages]
 }
