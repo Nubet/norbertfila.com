@@ -5,7 +5,7 @@ import Home from '@/views/Home/Home'
 
 export const metadata: Metadata = {
   description:
-    'Projektuje i tworze strony internetowe, ktore zdobywaja klientow. Polaczenie pasji programistycznej z biznesowym podejsciem.',
+    'Projektuję i tworzę strony internetowe, które zdobywają klientów. Połączenie pasji programistycznej z biznesowym podejściem.',
   alternates: {
     canonical: '/',
   },

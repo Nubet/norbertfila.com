@@ -45,7 +45,7 @@ export function Header() {
           <Link href="/blog" className={styles.navLink}>
             Blog
           </Link>
-          <Link href="/#oferta" className={styles.navLink}>
+          <Link href="/oferta" className={styles.navLink}>
             Oferta
           </Link>
           <Link href="/portfolio" className={styles.navLink}>
@@ -79,7 +79,7 @@ export function Header() {
           <Link href="/blog" className={styles.mobileNavLink} onClick={closeMenu}>
             Blog
           </Link>
-          <Link href="/#oferta" className={styles.mobileNavLink} onClick={closeMenu}>
+          <Link href="/oferta" className={styles.mobileNavLink} onClick={closeMenu}>
             Oferta
           </Link>
           <Link href="/portfolio" className={styles.mobileNavLink} onClick={closeMenu}>

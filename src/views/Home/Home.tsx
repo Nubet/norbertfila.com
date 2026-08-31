@@ -180,7 +180,7 @@ export default function Home() {
 
             <div className={styles.servicesList}>
               <Link
-                href="/contact"
+                href="/oferta#service-01"
                 className={styles.serviceItem}
                 onClick={() =>
                   trackAnalyticsEvent('contact_clicked', {
@@ -194,7 +194,7 @@ export default function Home() {
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link
-                href="/contact"
+                href="/oferta#service-02"
                 className={styles.serviceItem}
                 onClick={() =>
                   trackAnalyticsEvent('contact_clicked', {
@@ -208,7 +208,7 @@ export default function Home() {
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link
-                href="/contact"
+                href="/oferta#service-03"
                 className={styles.serviceItem}
                 onClick={() =>
                   trackAnalyticsEvent('contact_clicked', {
@@ -222,7 +222,7 @@ export default function Home() {
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link
-                href="/contact"
+                href="/oferta#service-04"
                 className={styles.serviceItem}
                 onClick={() =>
                   trackAnalyticsEvent('contact_clicked', {
@@ -236,7 +236,7 @@ export default function Home() {
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link
-                href="/contact"
+                href="/oferta#service-05"
                 className={styles.serviceItem}
                 onClick={() =>
                   trackAnalyticsEvent('contact_clicked', {
@@ -250,7 +250,7 @@ export default function Home() {
                 <ArrowUpRight size={28} className={styles.serviceArrow} />
               </Link>
               <Link
-                href="/contact"
+                href="/oferta#service-06"
                 className={styles.serviceItem}
                 onClick={() =>
                   trackAnalyticsEvent('contact_clicked', {
