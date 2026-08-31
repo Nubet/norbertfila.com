@@ -25,9 +25,11 @@ export function ParallaxBackground({
 }: ParallaxBackgroundProps) {
   const mediaRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(!disableVideoOnMobile)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
   const [readyVideoKey, setReadyVideoKey] = useState<string | null>(null)
-  const videoKey = shouldLoadVideo ? `${videoSrc}::${webmSrc ?? ''}` : null
+  const preferredVideoSrc = webmSrc ?? videoSrc
+  const preferredVideoType = webmSrc ? 'video/webm' : 'video/mp4'
+  const videoKey = shouldLoadVideo ? preferredVideoSrc : null
   const isVideoReady = readyVideoKey === videoKey
 
   const revealVideo = () => {
@@ -53,17 +55,35 @@ export function ParallaxBackground({
   }
 
   useEffect(() => {
-    if (disableVideoOnMobile) {
-      const checkScreenSize = () => {
-        if (window.innerWidth >= 768) {
-          setShouldLoadVideo(true)
-        }
+    const desktopMediaQuery = window.matchMedia('(min-width: 768px)')
+
+    const syncShouldLoadVideo = () => {
+      if (document.readyState !== 'complete') {
+        return
       }
-      checkScreenSize()
-      window.addEventListener('resize', checkScreenSize)
-      return () => window.removeEventListener('resize', checkScreenSize)
+
+      setShouldLoadVideo(!disableVideoOnMobile || desktopMediaQuery.matches)
+    }
+
+    syncShouldLoadVideo()
+
+    const handleLoad = () => syncShouldLoadVideo()
+    const handleViewportChange = () => syncShouldLoadVideo()
+
+    window.addEventListener('load', handleLoad)
+    desktopMediaQuery.addEventListener('change', handleViewportChange)
+
+    return () => {
+      window.removeEventListener('load', handleLoad)
+      desktopMediaQuery.removeEventListener('change', handleViewportChange)
     }
   }, [disableVideoOnMobile])
+
+  useEffect(() => {
+    if (!videoKey) {
+      setReadyVideoKey(null)
+    }
+  }, [videoKey])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -122,15 +142,14 @@ export function ParallaxBackground({
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             poster={posterSrc}
             onLoadedMetadata={syncVideoReadiness}
             onCanPlayThrough={syncVideoReadiness}
             onProgress={syncVideoReadiness}
             onPlaying={revealVideo}
           >
-            {webmSrc && <source src={webmSrc} type="video/webm" />}
-            <source src={videoSrc} type="video/mp4" />
+            <source src={preferredVideoSrc} type={preferredVideoType} />
           </video>
         )}
         {overlayVariant !== 'none' && <div className={`${styles.overlay} ${overlayClass}`} />}

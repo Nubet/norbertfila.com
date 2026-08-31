@@ -104,6 +104,7 @@ export default function Home() {
           webmSrc={media.home.hero.webm}
           posterSrc={media.home.hero.poster}
           overlayVariant="minimal"
+          disableVideoOnMobile
         />
 
         <ScrollReveal>

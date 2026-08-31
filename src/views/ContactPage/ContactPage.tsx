@@ -136,6 +136,7 @@ export default function ContactPage() {
         webmSrc={media.home.contact.webm}
         posterSrc={media.home.contact.poster}
         overlayVariant="studio"
+        disableVideoOnMobile
       />
       <div className={styles.container}>
         {step === -1 && (

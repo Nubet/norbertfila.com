@@ -12,7 +12,7 @@ import { siteConfig } from '@/shared/seo/site'
 import { theSeasons, montserrat, greatVibes } from '@/shared/fonts'
 import '../styles/variables.css'
 import '../styles/global.css'
-import { CustomCursor } from '@/components/CustomCursor/CustomCursor'
+import { CustomCursorLoader } from '@/components/CustomCursor/CustomCursorLoader'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -139,7 +139,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Script id="scroll-tracking" strategy="afterInteractive">
           {scrollTrackingScript}
         </Script>
-        <CustomCursor />
+        <CustomCursorLoader />
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Header />
           <main style={{ flex: 1 }}>{children}</main>
