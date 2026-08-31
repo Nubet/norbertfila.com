@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import Script from 'next/script'
 import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
+import { DisableAnimationOnMobile } from '@/components/DisableAnimationOnMobile/DisableAnimationOnMobile'
 import {
   GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT,
   GOOGLE_ANALYTICS_SRC,
@@ -142,8 +143,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <CustomCursorLoader />
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Header />
-          <main style={{ flex: 1 }}>{children}</main>
-          <Footer />
+          <DisableAnimationOnMobile>
+            <main style={{ flex: 1 }}>{children}</main>
+            <Footer />
+          </DisableAnimationOnMobile>
           <CookieConsentManager />
         </div>
       </body>

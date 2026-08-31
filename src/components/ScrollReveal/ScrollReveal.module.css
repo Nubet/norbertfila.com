@@ -19,3 +19,11 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 767.98px) {
+  :global(.disable-animation-on-mobile) .reveal {
+    transition: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
