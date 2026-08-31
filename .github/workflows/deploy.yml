@@ -54,9 +54,9 @@ jobs:
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
         run: |
           set -euo pipefail
-          scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .github/scripts/deploy-remote.sh "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-deploy-remote.sh"
-          scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .github/scripts/verify-remote.sh "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-verify-remote.sh"
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" "chmod 700 /tmp/nf-deploy-remote.sh /tmp/nf-verify-remote.sh"
+          scp -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .github/scripts/deploy-remote.sh "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-deploy-remote.sh"
+          scp -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key .github/scripts/verify-remote.sh "$ORACLE_USER@$ORACLE_HOST:/tmp/nf-verify-remote.sh"
+          ssh -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" "chmod 700 /tmp/nf-deploy-remote.sh /tmp/nf-verify-remote.sh"
 
       - name: Deploy application over SSH
         env:
@@ -70,7 +70,7 @@ jobs:
           APP_DIR_TRIMMED=$(printf '%s' "$APP_DIR" | tr -d '\r')
           CONTACT_ENDPOINT_TRIMMED=$(printf '%s' "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" | sed 's/[[:space:]]*$//')
           CERTBOT_EMAIL_TRIMMED=$(printf '%s' "$CERTBOT_EMAIL" | sed 's/[[:space:]]*$//')
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" "APP_DIR=$(printf '%q' "$APP_DIR_TRIMMED") NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=$(printf '%q' "$CONTACT_ENDPOINT_TRIMMED") CERTBOT_EMAIL=$(printf '%q' "$CERTBOT_EMAIL_TRIMMED") bash /tmp/nf-deploy-remote.sh"
+          ssh -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" "APP_DIR=$(printf '%q' "$APP_DIR_TRIMMED") NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=$(printf '%q' "$CONTACT_ENDPOINT_TRIMMED") CERTBOT_EMAIL=$(printf '%q' "$CERTBOT_EMAIL_TRIMMED") timeout --foreground 20m bash /tmp/nf-deploy-remote.sh"
 
       - name: Verify deployed app
         env:
@@ -78,7 +78,7 @@ jobs:
           ORACLE_USER: ${{ secrets.ORACLE_USER_NORBERTFILA }}
         run: |
           set -euo pipefail
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'bash /tmp/nf-verify-remote.sh'
+          ssh -o ConnectTimeout=15 -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ~/.ssh/oracle_key "$ORACLE_USER@$ORACLE_HOST" 'timeout --foreground 2m bash /tmp/nf-verify-remote.sh'
 
       - name: Cleanup on failure
         if: failure()

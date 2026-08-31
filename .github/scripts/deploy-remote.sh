@@ -76,13 +76,15 @@ echo STEP_GIT_DONE
 printf 'NEXT_PUBLIC_CONTACT_FORM_ENDPOINT=%s\n' "$NEXT_PUBLIC_CONTACT_FORM_ENDPOINT" > .env.production
 echo STEP_ENV_DONE
 
-bun install --frozen-lockfile >/tmp/nf-bun-install.log 2>&1 || {
+echo STEP_INSTALL_START
+timeout --foreground 10m bun install --frozen-lockfile >/tmp/nf-bun-install.log 2>&1 || {
   cat /tmp/nf-bun-install.log
   exit 1
 }
 echo STEP_INSTALL_DONE
 
-bun run build >/tmp/nf-build.log 2>&1 || {
+echo STEP_BUILD_START
+timeout --foreground 15m bun run build >/tmp/nf-build.log 2>&1 || {
   cat /tmp/nf-build.log
   exit 1
 }
