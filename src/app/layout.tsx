@@ -1,14 +1,12 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import Script from 'next/script'
 import { defaultMetadata } from '@/shared/seo/defaultSeo'
 import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
 import { DisableAnimationOnMobile } from '@/components/DisableAnimationOnMobile/DisableAnimationOnMobile'
-import {
-  GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT,
-  GOOGLE_ANALYTICS_SRC,
-} from '@/features/analytics/googleAnalytics'
+import { GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT, GOOGLE_ANALYTICS_ID } from '@/features/analytics/googleAnalytics'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { theSeasons, montserrat, greatVibes } from '@/shared/fonts'
 import '../styles/variables.css'
@@ -93,7 +91,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Script id="google-analytics-consent" strategy="beforeInteractive">
           {GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT}
         </Script>
-        <Script id="google-analytics" src={GOOGLE_ANALYTICS_SRC} strategy="afterInteractive" />
         <Script id="scroll-tracking" strategy="afterInteractive">
           {scrollTrackingScript}
         </Script>
@@ -107,6 +104,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <CookieConsentManager />
         </div>
       </body>
+      <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
     </html>
   )
 }

@@ -1,5 +1,6 @@
+import { sendGAEvent } from '@next/third-parties/google'
+
 export const GOOGLE_ANALYTICS_ID = 'G-85DP6VRY9K'
-export const GOOGLE_ANALYTICS_SRC = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`
 
 export const GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT = `
 window.dataLayer = window.dataLayer || [];
@@ -11,10 +12,6 @@ window.gtag('consent', 'default', {
   ad_user_data: 'denied',
   ad_personalization: 'denied',
   wait_for_update: 500
-});
-window.gtag('js', new Date());
-window.gtag('config', '${GOOGLE_ANALYTICS_ID}', {
-  send_page_view: false
 });
 `
 
@@ -54,7 +51,7 @@ function trackPageView() {
   }
 
   analyticsWindow.__nfGaLastPath = currentPath
-  analyticsWindow.gtag('config', GOOGLE_ANALYTICS_ID, {
+  sendGAEvent('event', 'page_view', {
     page_path: currentPath,
     page_title: document.title,
     page_location: window.location.href,
@@ -95,6 +92,7 @@ function loadAnalytics() {
 function disableAnalytics() {
   const analyticsWindow = getAnalyticsWindow()
   analyticsWindow.__nfAnalyticsConsentGranted = false
+  analyticsWindow.__nfGaLastPath = undefined
   analyticsWindow.gtag?.('consent', 'update', {
     analytics_storage: 'denied',
     ad_storage: 'denied',
@@ -136,5 +134,5 @@ export function trackAnalyticsEvent(eventName: string, params: Record<string, un
     return
   }
 
-  analyticsWindow.gtag?.('event', eventName, params)
+  sendGAEvent('event', eventName, params)
 }
