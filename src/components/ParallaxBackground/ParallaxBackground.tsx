@@ -30,7 +30,7 @@ export function ParallaxBackground({
   const preferredVideoSrc = webmSrc ?? videoSrc
   const preferredVideoType = webmSrc ? 'video/webm' : 'video/mp4'
   const videoKey = shouldLoadVideo ? preferredVideoSrc : null
-  const isVideoReady = readyVideoKey === videoKey
+  const isVideoReady = videoKey !== null && readyVideoKey === videoKey
 
   const revealVideo = () => {
     const video = videoRef.current
