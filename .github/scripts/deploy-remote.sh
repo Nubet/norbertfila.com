@@ -67,6 +67,8 @@ fi
 
 cd "$APP_DIR"
 echo STEP_GIT_START
+git reset --hard HEAD
+git clean -fd
 git checkout main
 git pull --ff-only origin main
 echo STEP_GIT_DONE
