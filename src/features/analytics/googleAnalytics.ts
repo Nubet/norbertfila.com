@@ -25,8 +25,6 @@ type GtagCommand =
 type AnalyticsWindow = Window & {
   dataLayer?: unknown[]
   gtag?: (...args: GtagCommand) => void
-  __nfGaTrackingInstalled?: boolean
-  __nfGaLastPath?: string
   __nfAnalyticsConsentGranted?: boolean
 }
 
@@ -34,65 +32,9 @@ function getAnalyticsWindow() {
   return window as unknown as AnalyticsWindow
 }
 
-function getCurrentPath() {
-  return `${window.location.pathname}${window.location.search}`
-}
-
-function trackPageView() {
-  const analyticsWindow = getAnalyticsWindow()
-  const currentPath = getCurrentPath()
-
-  if (
-    !analyticsWindow.gtag ||
-    !analyticsWindow.__nfAnalyticsConsentGranted ||
-    analyticsWindow.__nfGaLastPath === currentPath
-  ) {
-    return
-  }
-
-  analyticsWindow.__nfGaLastPath = currentPath
-  sendGAEvent('event', 'page_view', {
-    page_path: currentPath,
-    page_title: document.title,
-    page_location: window.location.href,
-  })
-}
-
-function installNavigationTracking() {
-  const analyticsWindow = getAnalyticsWindow()
-
-  if (analyticsWindow.__nfGaTrackingInstalled) {
-    return
-  }
-
-  const pushState = window.history.pushState.bind(window.history)
-  const replaceState = window.history.replaceState.bind(window.history)
-
-  window.history.pushState = (...args) => {
-    pushState(...args)
-    queueMicrotask(trackPageView)
-  }
-
-  window.history.replaceState = (...args) => {
-    replaceState(...args)
-    queueMicrotask(trackPageView)
-  }
-
-  window.addEventListener('popstate', trackPageView)
-  analyticsWindow.__nfGaTrackingInstalled = true
-}
-
-function loadAnalytics() {
-  const analyticsWindow = getAnalyticsWindow()
-
-  installNavigationTracking()
-  trackPageView()
-}
-
 function disableAnalytics() {
   const analyticsWindow = getAnalyticsWindow()
   analyticsWindow.__nfAnalyticsConsentGranted = false
-  analyticsWindow.__nfGaLastPath = undefined
   analyticsWindow.gtag?.('consent', 'update', {
     analytics_storage: 'denied',
     ad_storage: 'denied',
@@ -119,8 +61,6 @@ export function updateAnalyticsConsent(granted: boolean) {
     ad_user_data: 'denied',
     ad_personalization: 'denied',
   })
-
-  loadAnalytics()
 }
 
 export function trackAnalyticsEvent(eventName: string, params: Record<string, unknown> = {}) {

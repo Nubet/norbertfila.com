@@ -87,13 +87,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="pl"
       className={`${theSeasons.variable} ${montserrat.variable} ${greatVibes.variable}`}
     >
+      <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
       <body>
-        <Script id="google-analytics-consent" strategy="beforeInteractive">
-          {GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT}
-        </Script>
-        <Script id="scroll-tracking" strategy="afterInteractive">
-          {scrollTrackingScript}
-        </Script>
+        <Script 
+          id="google-analytics-consent" 
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT }}
+        />
+        <Script 
+          id="scroll-tracking" 
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{ __html: scrollTrackingScript }}
+        />
         <CustomCursorLoader />
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Header />
@@ -104,7 +109,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <CookieConsentManager />
         </div>
       </body>
-      <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
     </html>
   )
 }
