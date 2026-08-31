@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { BreadcrumbJsonLd } from 'next-seo'
+import { createBreadcrumbItems } from '@/shared/seo/jsonLd'
 import ContactPage from '@/views/ContactPage/ContactPage'
 
 export const metadata: Metadata = {
@@ -24,5 +26,15 @@ export const metadata: Metadata = {
 }
 
 export default function ContactRoutePage() {
-  return <ContactPage />
+  return (
+    <>
+      <BreadcrumbJsonLd
+        items={createBreadcrumbItems([
+          { name: 'Start', path: '/' },
+          { name: 'Kontakt', path: '/contact' },
+        ])}
+      />
+      <ContactPage />
+    </>
+  )
 }

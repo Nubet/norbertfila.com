@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
-import { professionalServiceStructuredData } from '@/shared/seo/structuredData'
+import { LocalBusinessJsonLd } from 'next-seo'
+import { professionalServiceJsonLd } from '@/shared/seo/jsonLd'
 import Home from '@/views/Home/Home'
 
 export const metadata: Metadata = {
-  title: 'Norbert Fila - Web Developer dla Biznesu',
   description:
     'Projektuje i tworze strony internetowe, ktore zdobywaja klientow. Polaczenie pasji programistycznej z biznesowym podejsciem.',
   alternates: {
@@ -15,10 +14,18 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <Script
-        id="professional-service-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceStructuredData) }}
+      <LocalBusinessJsonLd
+        scriptId="professional-service-jsonld"
+        type={professionalServiceJsonLd.type}
+        name={professionalServiceJsonLd.name}
+        url={professionalServiceJsonLd.url}
+        image={professionalServiceJsonLd.image}
+        description={professionalServiceJsonLd.description}
+        email={professionalServiceJsonLd.email}
+        sameAs={professionalServiceJsonLd.sameAs}
+        address={professionalServiceJsonLd.address}
+        areaServed={professionalServiceJsonLd.areaServed}
+        priceRange={professionalServiceJsonLd.priceRange}
       />
       <Home />
     </>

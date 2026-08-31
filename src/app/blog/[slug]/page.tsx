@@ -1,5 +1,13 @@
+import { ArticleJsonLd, BreadcrumbJsonLd } from 'next-seo'
 import { notFound } from 'next/navigation'
 import { blogPosts, getBlogPostBySlug, getRelatedBlogPosts } from '@/data/blogPosts'
+import {
+  absoluteUrl,
+  createBreadcrumbItems,
+  defaultArticleImage,
+  organizationJsonLd,
+  personJsonLd,
+} from '@/shared/seo/jsonLd'
 import { createPageMetadata } from '@/shared/seo/metadata'
 import { EditorialPage } from '@/views/Editorial/EditorialPage'
 
@@ -47,19 +55,41 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }))
 
   return (
-    <EditorialPage
-      eyebrow={post.category}
-      plainTitle
-      title={post.title}
-      description={post.description}
-      intro={post.intro}
-      meta={[`Fraza: ${post.targetKeyword}`, `Publikacja: ${post.publishedAt}`, post.readingTime]}
-      sections={post.sections}
-      relatedPosts={relatedPosts}
-      ctaTitle={post.ctaTitle}
-      ctaDescription={post.ctaDescription}
-      ctaLabel="Przejdź do kontaktu"
-      ctaHref="/contact"
-    />
+    <>
+      <BreadcrumbJsonLd
+        items={createBreadcrumbItems([
+          { name: 'Start', path: '/' },
+          { name: 'Blog', path: '/blog' },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ])}
+      />
+      <ArticleJsonLd
+        type="BlogPosting"
+        headline={post.title}
+        url={absoluteUrl(`/blog/${post.slug}`)}
+        author={personJsonLd}
+        publisher={organizationJsonLd}
+        datePublished={post.publishedAt}
+        dateModified={post.publishedAt}
+        image={defaultArticleImage}
+        description={post.description}
+        isAccessibleForFree
+        mainEntityOfPage={absoluteUrl(`/blog/${post.slug}`)}
+      />
+      <EditorialPage
+        eyebrow={post.category}
+        plainTitle
+        title={post.title}
+        description={post.description}
+        intro={post.intro}
+        meta={[`Fraza: ${post.targetKeyword}`, `Publikacja: ${post.publishedAt}`, post.readingTime]}
+        sections={post.sections}
+        relatedPosts={relatedPosts}
+        ctaTitle={post.ctaTitle}
+        ctaDescription={post.ctaDescription}
+        ctaLabel="Przejdź do kontaktu"
+        ctaHref="/contact"
+      />
+    </>
   )
 }

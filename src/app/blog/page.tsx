@@ -1,4 +1,6 @@
 import { Suspense } from 'react'
+import { BreadcrumbJsonLd } from 'next-seo'
+import { createBreadcrumbItems } from '@/shared/seo/jsonLd'
 import { createPageMetadata } from '@/shared/seo/metadata'
 import { BlogHub } from '@/views/Blog/BlogHub'
 
@@ -13,6 +15,12 @@ export const metadata = createPageMetadata({
 export default function BlogPage() {
   return (
     <Suspense>
+      <BreadcrumbJsonLd
+        items={createBreadcrumbItems([
+          { name: 'Start', path: '/' },
+          { name: 'Blog', path: '/blog' },
+        ])}
+      />
       <BlogHub />
     </Suspense>
   )
