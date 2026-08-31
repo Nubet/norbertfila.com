@@ -30,16 +30,26 @@ export function ParallaxBackground({
   const videoKey = shouldLoadVideo ? `${videoSrc}::${webmSrc ?? ''}` : null
   const isVideoReady = readyVideoKey === videoKey
 
-  const syncVideoReadiness = () => {
+  const revealVideo = () => {
     const video = videoRef.current
 
-    if (!video || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+    if (!video) {
       return
     }
 
     video.currentTime = 0
     void video.play().catch(() => undefined)
     setReadyVideoKey(videoKey)
+  }
+
+  const syncVideoReadiness = () => {
+    const video = videoRef.current
+
+    if (!video || video.readyState < HTMLMediaElement.HAVE_ENOUGH_DATA) {
+      return
+    }
+
+    revealVideo()
   }
 
   useEffect(() => {
@@ -108,16 +118,16 @@ export function ParallaxBackground({
             ref={videoRef}
             className={styles.video}
             style={{ display: isVideoReady ? 'block' : 'none' }}
+            autoPlay
             muted
             loop
             playsInline
             preload="auto"
             poster={posterSrc}
             onLoadedMetadata={syncVideoReadiness}
-            onLoadedData={syncVideoReadiness}
-            onCanPlay={syncVideoReadiness}
             onCanPlayThrough={syncVideoReadiness}
             onProgress={syncVideoReadiness}
+            onPlaying={revealVideo}
           >
             {webmSrc && <source src={webmSrc} type="video/webm" />}
             <source src={videoSrc} type="video/mp4" />
