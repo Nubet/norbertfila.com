@@ -1,6 +1,39 @@
 set -euo pipefail
 export NEXT_TELEMETRY_DISABLED=1
 
+LOCK_DIR="${TMPDIR:-/tmp}/nf-portfolio-deploy.lock"
+LOCK_PID_FILE="$LOCK_DIR/pid"
+
+cleanup_lock() {
+  rm -rf "$LOCK_DIR"
+}
+
+if mkdir "$LOCK_DIR" 2>/dev/null; then
+  printf '%s\n' "$$" > "$LOCK_PID_FILE"
+  trap cleanup_lock EXIT INT TERM
+else
+  existing_pid=""
+
+  if [ -f "$LOCK_PID_FILE" ]; then
+    existing_pid=$(cat "$LOCK_PID_FILE" 2>/dev/null || true)
+  fi
+
+  if [ -n "$existing_pid" ] && kill -0 "$existing_pid" 2>/dev/null; then
+    echo "Another deploy is already running with pid $existing_pid"
+    exit 1
+  fi
+
+  rm -rf "$LOCK_DIR"
+
+  if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+    echo "Could not acquire deploy lock at $LOCK_DIR"
+    exit 1
+  fi
+
+  printf '%s\n' "$$" > "$LOCK_PID_FILE"
+  trap cleanup_lock EXIT INT TERM
+fi
+
 if [ -z "${APP_DIR:-}" ]; then
   echo "APP_DIR secret is missing"
   exit 1
@@ -77,7 +110,7 @@ server {
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
     add_header Cross-Origin-Resource-Policy "same-origin" always;
-    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://cdn.jsdelivr.net https://cdn.norbertfila.com; media-src 'self' https://cdn.norbertfila.com; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; connect-src 'self' https://formspree.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms; form-action 'self' https://formspree.io; upgrade-insecure-requests" always;
+    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://cdn.jsdelivr.net https://cdn.norbertfila.com; media-src 'self' https://cdn.norbertfila.com; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms; connect-src 'self' https://formspree.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms; form-action 'self' https://formspree.io; upgrade-insecure-requests" always;
 
     ssl_certificate /etc/letsencrypt/live/norbertfila.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/norbertfila.com/privkey.pem;
@@ -116,7 +149,7 @@ server {
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
     add_header Cross-Origin-Resource-Policy "same-origin" always;
-    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://cdn.jsdelivr.net https://cdn.norbertfila.com; media-src 'self' https://cdn.norbertfila.com; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms; connect-src 'self' https://formspree.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms; form-action 'self' https://formspree.io; upgrade-insecure-requests" always;
+    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https://cdn.jsdelivr.net https://cdn.norbertfila.com; media-src 'self' https://cdn.norbertfila.com; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms; connect-src 'self' https://formspree.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms; form-action 'self' https://formspree.io; upgrade-insecure-requests" always;
 
     location / {
         proxy_pass http://127.0.0.1:3000;
