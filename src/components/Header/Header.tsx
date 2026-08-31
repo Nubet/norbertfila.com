@@ -35,7 +35,6 @@ export function Header() {
               width={200}
               height={90}
               className={styles.logoHover}
-              priority
             />
           </div>
         </Link>

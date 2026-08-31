@@ -5,7 +5,7 @@ export const media = {
     hero: {
       mp4: `${cdnBaseUrl}/home/hero/background.mp4`,
       webm: `${cdnBaseUrl}/home/hero/background.webm`,
-      poster: '/home/hero/poster.jpg',
+      poster: '/home/hero/poster.webp',
     },
     contact: {
       mp4: `${cdnBaseUrl}/home/contact/contact-background.mp4`,
