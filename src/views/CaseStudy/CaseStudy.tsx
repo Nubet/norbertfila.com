@@ -21,6 +21,12 @@ export function CaseStudy({ data }: CaseStudyProps) {
       <div className={styles.container}>
         <section className={styles.hero}>
           <ScrollReveal>
+            <Link href="/portfolio" className={styles.backLink}>
+              <ArrowLeft size={18} /> Wróć do portfolio
+            </Link>
+          </ScrollReveal>
+
+          <ScrollReveal>
             <div className={styles.openingImageWrapper}>
               <Image
                 src={data.openingImage.src}
