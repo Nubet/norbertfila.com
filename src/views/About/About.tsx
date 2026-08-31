@@ -181,7 +181,7 @@ export function About() {
           <ScrollReveal>
             <h2 className={styles.ctaTitle}>Masz pomysł na projekt?</h2>
             <Link
-              href="/contact"
+              href="/kontakt"
               className={styles.ctaButton}
               onClick={() =>
                 trackAnalyticsEvent('contact_clicked', {

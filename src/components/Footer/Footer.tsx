@@ -51,7 +51,7 @@ export function Footer() {
                   </li>
                   <li>
                     <Link
-                      href="/contact"
+                      href="/kontakt"
                       onClick={() => trackAnalyticsEvent('contact_clicked', { location: 'footer' })}
                     >
                       Umów Konsultację

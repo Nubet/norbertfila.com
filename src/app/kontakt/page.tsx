@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     'Masz pomysł na stronę lub chcesz odświeżyć obecną? Napisz, a przygotuję kierunek i wstępną propozycję.',
   alternates: {
-    canonical: '/contact',
+    canonical: '/kontakt',
   },
   openGraph: {
     images: [
@@ -31,7 +31,7 @@ export default function ContactRoutePage() {
       <BreadcrumbJsonLd
         items={createBreadcrumbItems([
           { name: 'Start', path: '/' },
-          { name: 'Kontakt', path: '/contact' },
+          { name: 'Kontakt', path: '/kontakt' },
         ])}
       />
       <ContactPage />

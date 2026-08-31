@@ -56,7 +56,7 @@ export function Header() {
           </Link>
         </nav>
         <Link
-          href="/contact"
+          href="/kontakt"
           className={styles.ctaButton}
           onClick={() => trackContactClick('header_desktop')}
         >
@@ -89,7 +89,7 @@ export function Header() {
             Proces
           </Link>
           <Link
-            href="/contact"
+            href="/kontakt"
             className={styles.mobileCtaButton}
             onClick={() => {
               trackContactClick('header_mobile')

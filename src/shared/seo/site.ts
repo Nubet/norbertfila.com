@@ -11,7 +11,7 @@ export const staticIndexedRoutes = [
   '/',
   '/about',
   '/portfolio',
-  '/contact',
+  '/kontakt',
   '/blog',
   '/privacy-policy',
   '/cookie-policy',

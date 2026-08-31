@@ -521,7 +521,7 @@ export default function Home() {
               Napisz do mnie i opowiedz o swoim biznesie. Wspólnie sprawdzimy, jak mogę Ci pomóc.
             </p>
             <Link
-              href="/contact"
+              href="/kontakt"
               className={styles.finalCtaButton}
               onClick={() =>
                 trackAnalyticsEvent('contact_clicked', {

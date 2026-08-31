@@ -9,7 +9,7 @@ const routePriorities: Record<(typeof staticIndexedRoutes)[number], number> = {
   '/': 1,
   '/about': 0.7,
   '/portfolio': 0.9,
-  '/contact': 0.9,
+  '/kontakt': 0.9,
   '/blog': 0.85,
   '/privacy-policy': 0.5,
   '/cookie-policy': 0.5,

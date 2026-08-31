@@ -128,7 +128,7 @@ export function Offer() {
           <ScrollReveal delay={120}>
             <div className={styles.heroActions}>
               <Link
-                href="/contact"
+                href="/kontakt"
                 className={styles.primaryCta}
                 onClick={() =>
                   trackAnalyticsEvent('contact_clicked', {
@@ -189,7 +189,7 @@ export function Offer() {
                     ))}
                   </ul>
                   <Link
-                    href="/contact"
+                    href="/kontakt"
                     className={styles.inlineCta}
                     onClick={() =>
                       trackAnalyticsEvent('contact_clicked', {
@@ -236,7 +236,7 @@ export function Offer() {
                 Opowiedz mi o swoim projekcie. Przeanalizujemy Twoją sytuację i dobierzemy rozwiązanie idealnie dopasowane do Twoich biznesowych ambicji.
               </p>
               <Link
-                href="/contact"
+                href="/kontakt"
                 className={styles.primaryCta}
                 onClick={() =>
                   trackAnalyticsEvent('contact_clicked', {

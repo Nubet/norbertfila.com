@@ -51,7 +51,7 @@ export default function Hero() {
             >
               <Github size={28} strokeWidth={2.5} />
             </a>
-            <Link href="/contact" className={styles.socialIcon} aria-label="Kontakt">
+            <Link href="/kontakt" className={styles.socialIcon} aria-label="Kontakt">
               <Mail size={28} strokeWidth={2.5} />
             </Link>
             <a

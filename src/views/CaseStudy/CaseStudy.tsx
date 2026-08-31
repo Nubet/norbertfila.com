@@ -168,7 +168,7 @@ export function CaseStudy({ data }: CaseStudyProps) {
         <div className={styles.container}>
           <ScrollReveal>
             <h2 className={styles.finalCtaTitle}>Czas na Twój projekt.</h2>
-            <Link href="/contact" className={styles.finalCtaButton}>
+            <Link href="/kontakt" className={styles.finalCtaButton}>
               Porozmawiajmy o współpracy
             </Link>
           </ScrollReveal>

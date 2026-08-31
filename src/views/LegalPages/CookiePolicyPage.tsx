@@ -72,7 +72,7 @@ export default function CookiePolicyPage() {
               <h2>5. Kontakt</h2>
               <p>
                 W razie pytań dotyczących polityki cookies zapraszam do kontaktu przez{' '}
-                <Link href="/contact">formularz kontaktowy</Link>.
+                <Link href="/kontakt">formularz kontaktowy</Link>.
               </p>
             </section>
           </article>
