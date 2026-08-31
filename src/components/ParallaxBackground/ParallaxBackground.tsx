@@ -68,12 +68,6 @@ export function ParallaxBackground({
   }, [disableVideoOnMobile])
 
   useEffect(() => {
-    if (!videoKey) {
-      setReadyVideoKey(null)
-    }
-  }, [videoKey])
-
-  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!mediaRef.current) return
       const { clientX, clientY } = e

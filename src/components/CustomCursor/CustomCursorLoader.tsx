@@ -3,10 +3,9 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 
-const CustomCursor = dynamic(
-  () => import('./CustomCursor').then((module) => module.CustomCursor),
-  { ssr: false }
-)
+const CustomCursor = dynamic(() => import('./CustomCursor').then((module) => module.CustomCursor), {
+  ssr: false,
+})
 
 export function CustomCursorLoader() {
   const [shouldRenderCursor, setShouldRenderCursor] = useState(false)

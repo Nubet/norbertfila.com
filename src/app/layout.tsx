@@ -6,7 +6,10 @@ import { defaultMetadata } from '@/shared/seo/defaultSeo'
 import { Header } from '@/components/Header/Header'
 import { Footer } from '@/components/Footer/Footer'
 import { DisableAnimationOnMobile } from '@/components/DisableAnimationOnMobile/DisableAnimationOnMobile'
-import { GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT, GOOGLE_ANALYTICS_ID } from '@/features/analytics/googleAnalytics'
+import {
+  GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT,
+  GOOGLE_ANALYTICS_ID,
+} from '@/features/analytics/googleAnalytics'
 import { CookieConsentManager } from '@/features/cookies/CookieConsentManager'
 import { theSeasons, montserrat, greatVibes } from '@/shared/fonts'
 import '../styles/variables.css'
@@ -89,13 +92,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
       <body>
-        <Script 
-          id="google-analytics-consent" 
+        <Script
+          id="google-analytics-consent"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT }}
         />
-        <Script 
-          id="scroll-tracking" 
+        <Script
+          id="scroll-tracking"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: scrollTrackingScript }}
         />

@@ -118,16 +118,16 @@ export function CaseStudy({ data }: CaseStudyProps) {
           </div>
           <div className={styles.monitorWrapper}>
             <div className={styles.monitorFrame}>
-                <div className={styles.mockupWindow}>
-                  <Image
-                    src={data.fullPageMockup.src}
-                    alt={`Pełny podgląd ${data.title}`}
-                    width={data.fullPageMockup.width}
-                    height={data.fullPageMockup.height}
-                    className={styles.mockupImage}
-                    sizes="(max-width: 768px) 100vw, 1200px"
-                  />
-                </div>
+              <div className={styles.mockupWindow}>
+                <Image
+                  src={data.fullPageMockup.src}
+                  alt={`Pełny podgląd ${data.title}`}
+                  width={data.fullPageMockup.width}
+                  height={data.fullPageMockup.height}
+                  className={styles.mockupImage}
+                  sizes="(max-width: 768px) 100vw, 1200px"
+                />
+              </div>
             </div>
             <div className={styles.monitorStand}></div>
             <div className={styles.monitorBase}></div>

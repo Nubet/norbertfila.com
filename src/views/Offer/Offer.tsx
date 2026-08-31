@@ -118,10 +118,13 @@ export function Offer() {
         <section className={styles.hero}>
           <ScrollReveal>
             <span className={styles.eyebrow}>Oferta</span>
-            <h1 className={styles.title}>Strony internetowe, które pomagają klientowi podjąć decyzję.</h1>
+            <h1 className={styles.title}>
+              Strony internetowe, które pomagają klientowi podjąć decyzję.
+            </h1>
             <p className={styles.lead}>
-              Projektuję i wdrażam dopracowane strony dla firm usługowych. 
-              Dostarczam rozwiązania, które budują autorytet w oczach klientów i skutecznie zamieniają ich uwagę w realne zapytania.
+              Projektuję i wdrażam dopracowane strony dla firm usługowych. Dostarczam rozwiązania,
+              które budują autorytet w oczach klientów i skutecznie zamieniają ich uwagę w realne
+              zapytania.
             </p>
           </ScrollReveal>
 
@@ -149,9 +152,7 @@ export function Offer() {
         <section className={styles.signalSection}>
           <ScrollReveal>
             <div className={styles.signalCard}>
-              <div className={styles.signalHeader}>
-                Dostarczam wartość dla marek, którym:
-              </div>
+              <div className={styles.signalHeader}>Dostarczam wartość dla marek, którym:</div>
               <ul className={styles.signalList}>
                 {signalPoints.map((item) => (
                   <li key={item}>{item}</li>
@@ -231,9 +232,12 @@ export function Offer() {
           <ScrollReveal>
             <div className={styles.closingCard}>
               <span className={styles.sectionLabel}>Współpraca</span>
-              <h2 className={styles.closingTitle}>Gotowy na stronę, która pracuje na Twój wizerunek?</h2>
+              <h2 className={styles.closingTitle}>
+                Gotowy na stronę, która pracuje na Twój wizerunek?
+              </h2>
               <p className={styles.closingText}>
-                Opowiedz mi o swoim projekcie. Przeanalizujemy Twoją sytuację i dobierzemy rozwiązanie idealnie dopasowane do Twoich biznesowych ambicji.
+                Opowiedz mi o swoim projekcie. Przeanalizujemy Twoją sytuację i dobierzemy
+                rozwiązanie idealnie dopasowane do Twoich biznesowych ambicji.
               </p>
               <Link
                 href="/kontakt"

@@ -6,7 +6,7 @@ import { Offer } from '@/views/Offer/Offer'
 export const metadata: Metadata = {
   title: 'Oferta',
   description:
-    'Projektowanie i tworzenie stron internetowych, landing page\'ów, integracji oraz doradztwo techniczne dla marek usługowych.',
+    "Projektowanie i tworzenie stron internetowych, landing page'ów, integracji oraz doradztwo techniczne dla marek usługowych.",
   alternates: {
     canonical: '/oferta',
   },

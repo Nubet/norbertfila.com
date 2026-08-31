@@ -15,9 +15,7 @@ type BreakpointResult<T extends BreakpointKey> = Record<`is${Capitalize<T>}`, bo
 const getMediaQuery = (breakpoint: BreakpointKey) =>
   `(max-width: ${breakpoints[breakpoint] - 0.02}px)`
 
-export function useBreakpoint<T extends BreakpointKey>(
-  breakpoint: T
-): BreakpointResult<T> {
+export function useBreakpoint<T extends BreakpointKey>(breakpoint: T): BreakpointResult<T> {
   const subscribe = (onStoreChange: () => void) => {
     const mediaQuery = window.matchMedia(getMediaQuery(breakpoint))
 
@@ -30,5 +28,7 @@ export function useBreakpoint<T extends BreakpointKey>(
 
   const isBreakpoint = useSyncExternalStore(subscribe, getSnapshot, () => false)
 
-  return { [`is${breakpoint.charAt(0).toUpperCase()}${breakpoint.slice(1)}`]: isBreakpoint } as BreakpointResult<T>
+  return {
+    [`is${breakpoint.charAt(0).toUpperCase()}${breakpoint.slice(1)}`]: isBreakpoint,
+  } as BreakpointResult<T>
 }
