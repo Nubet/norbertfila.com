@@ -5,13 +5,16 @@ export const GOOGLE_ANALYTICS_CONSENT_BOOTSTRAP_SCRIPT = `
 window.dataLayer = window.dataLayer || [];
 window.gtag = window.gtag || function gtag(){window.dataLayer.push(arguments);};
 window.__nfAnalyticsConsentGranted = false;
-window['ga-disable-${GOOGLE_ANALYTICS_ID}'] = true;
 window.gtag('consent', 'default', {
   analytics_storage: 'denied',
   ad_storage: 'denied',
   ad_user_data: 'denied',
   ad_personalization: 'denied',
   wait_for_update: 500
+});
+window.gtag('js', new Date());
+window.gtag('config', '${GOOGLE_ANALYTICS_ID}', {
+  send_page_view: false
 });
 `
 
@@ -25,11 +28,9 @@ type GtagCommand =
 type AnalyticsWindow = Window & {
   dataLayer?: unknown[]
   gtag?: (...args: GtagCommand) => void
-  __nfGaLoaded?: boolean
   __nfGaTrackingInstalled?: boolean
   __nfGaLastPath?: string
   __nfAnalyticsConsentGranted?: boolean
-  [key: `ga-disable-${string}`]: boolean | undefined
 }
 
 function getAnalyticsWindow() {
@@ -87,22 +88,6 @@ function installNavigationTracking() {
 function loadAnalytics() {
   const analyticsWindow = getAnalyticsWindow()
 
-  if (analyticsWindow.__nfGaLoaded) {
-    analyticsWindow[`ga-disable-${GOOGLE_ANALYTICS_ID}`] = false
-    trackPageView()
-    return
-  }
-
-  analyticsWindow.dataLayer = analyticsWindow.dataLayer || []
-  analyticsWindow.gtag =
-    analyticsWindow.gtag ||
-    function gtag(...args: GtagCommand) {
-      analyticsWindow.dataLayer?.push(args)
-    }
-
-  analyticsWindow.gtag('js', new Date())
-  analyticsWindow.__nfGaLoaded = true
-  analyticsWindow[`ga-disable-${GOOGLE_ANALYTICS_ID}`] = false
   installNavigationTracking()
   trackPageView()
 }
@@ -110,7 +95,6 @@ function loadAnalytics() {
 function disableAnalytics() {
   const analyticsWindow = getAnalyticsWindow()
   analyticsWindow.__nfAnalyticsConsentGranted = false
-  analyticsWindow[`ga-disable-${GOOGLE_ANALYTICS_ID}`] = true
   analyticsWindow.gtag?.('consent', 'update', {
     analytics_storage: 'denied',
     ad_storage: 'denied',
@@ -131,14 +115,14 @@ export function updateAnalyticsConsent(granted: boolean) {
     return
   }
 
-  loadAnalytics()
-
   getAnalyticsWindow().gtag?.('consent', 'update', {
     analytics_storage: 'granted',
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
   })
+
+  loadAnalytics()
 }
 
 export function trackAnalyticsEvent(eventName: string, params: Record<string, unknown> = {}) {
