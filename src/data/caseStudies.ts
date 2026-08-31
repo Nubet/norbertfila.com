@@ -119,7 +119,7 @@ export const caseStudies: CaseStudyData[] = [
       height: 1260,
     },
     fullPageMockup: {
-      src: '/visual-projects/Santoro-szkola-jezykowa/whole.webp',
+      src: '/portfolio/santoro-szkola-jezykowa/strona-www-doradztwo-podatkowe-pelny-projekt.webp',
       width: 2560,
       height: 8000,
     },
