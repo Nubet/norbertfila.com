@@ -11,7 +11,7 @@ function printUsage() {
       '   or: npm run indexnow -- --since YYYY-MM-DD',
       'Example: npm run indexnow -- /blog/jak-przyspieszyc-indeksowanie-strony /blog/jak-tworzyc-tresci-ktore-ai-bedzie-cytowac',
       'Example: npm run indexnow -- --since 2026-09-01',
-    ].join('\n'),
+    ].join('\n')
   )
 }
 
@@ -83,7 +83,9 @@ async function submitUrls(urlList) {
 
   if (!response.ok) {
     const text = await response.text()
-    throw new Error(`IndexNow request failed with ${response.status}: ${text || response.statusText}`)
+    throw new Error(
+      `IndexNow request failed with ${response.status}: ${text || response.statusText}`
+    )
   }
 }
 
