@@ -144,7 +144,7 @@ export default function Home() {
               <div className={styles.signatureSmall}>
                 <Image
                   src="/fila-signature/signature-fila-gold.svg"
-                  alt="Norbert Fila"
+                  alt="Podpis Norberta Fili"
                   width={260}
                   height={117}
                   style={{
@@ -159,7 +159,7 @@ export default function Home() {
             <div className={styles.portraitFrame}>
               <Image
                 src="/profile/avatar-light.webp"
-                alt="Norbert Fila"
+                alt="Portret Norberta Fili"
                 className={styles.portraitImage}
                 width={720}
                 height={720}
@@ -325,7 +325,7 @@ export default function Home() {
                     <div className={styles.portfolioImageWrapper}>
                       <Image
                         src={project.image.src}
-                        alt={project.title}
+                        alt={`Projekt strony internetowej (widok z komputera): ${project.title}`}
                         width={project.image.width}
                         height={project.image.height}
                         className={styles.projectImage}

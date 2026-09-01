@@ -86,7 +86,7 @@ export function LocalOfferPage({ page }: LocalOfferPageProps) {
                     <div className={styles.showcaseImageWrap}>
                       <Image
                         src={project.image.src}
-                        alt={project.title}
+                        alt={`Projekt strony internetowej (widok z komputera): ${project.title}`}
                         width={project.image.width}
                         height={project.image.height}
                         className={styles.showcaseImage}
