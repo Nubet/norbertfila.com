@@ -8,6 +8,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "indexnow": "node ./scripts/submit-indexnow.mjs",
     "dev:worker": "bun run build:worker && npx wrangler dev",
     "build:worker": "bun run build",
     "preview:worker": "bun run build:worker && npx wrangler dev --remote",
