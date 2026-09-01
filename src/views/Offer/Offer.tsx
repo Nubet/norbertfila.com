@@ -111,6 +111,23 @@ const process = [
   },
 ] as const
 
+const localOfferLinks = [
+  {
+    href: '/oferta/lodz',
+    label: 'Łódź',
+    title: 'Strony internetowe Łódź dla marek o wysokim standardzie',
+    description:
+      'Dla klinik, stomatologii, kosmetologii i biznesów, w których strona ma budować standard marki.',
+  },
+  {
+    href: '/oferta/pabianice',
+    label: 'Pabianice',
+    title: 'Strony internetowe Pabianice dla firm usługowych',
+    description:
+      'Dla lokalnych specjalistów i usług, które potrzebują czytelnej oferty, lokalnego SEO i prostego kontaktu.',
+  },
+] as const
+
 export function Offer() {
   return (
     <main className={styles.page}>
@@ -160,6 +177,32 @@ export function Offer() {
               </ul>
             </div>
           </ScrollReveal>
+        </section>
+
+        <section className={styles.localSection}>
+          <ScrollReveal>
+            <div className={styles.sectionIntroLeft}>
+              <span className={styles.sectionLabel}>Podstrony lokalne</span>
+              <h2 className={styles.sectionTitleLeft}>
+                Oferta dopasowana do miasta i typu biznesu.
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          <div className={styles.localGrid}>
+            {localOfferLinks.map((item, index) => (
+              <ScrollReveal key={item.href} delay={index * 80}>
+                <article className={styles.localCard}>
+                  <span className={styles.localLabel}>{item.label}</span>
+                  <h3 className={styles.localTitle}>{item.title}</h3>
+                  <p className={styles.localDescription}>{item.description}</p>
+                  <Link href={item.href} className={styles.inlineCta}>
+                    Zobacz podstronę lokalną <ArrowRight size={16} />
+                  </Link>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
         </section>
 
         <section className={styles.servicesSection}>

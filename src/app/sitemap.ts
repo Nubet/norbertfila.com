@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { blogPosts } from '@/data/blogPosts'
 import { caseStudies } from '@/data/caseStudies'
+import { localOfferPages } from '@/data/localOfferPages'
 import { siteConfig, staticIndexedRoutes } from '@/shared/seo/site'
 
 export const dynamic = 'force-static'
@@ -39,5 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
-  return [...staticPages, ...portfolioPages, ...articlePages]
+  const localOfferRoutePages = localOfferPages.map((page) => ({
+    url: `${siteConfig.url}/oferta/${page.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
+  return [...staticPages, ...portfolioPages, ...articlePages, ...localOfferRoutePages]
 }
