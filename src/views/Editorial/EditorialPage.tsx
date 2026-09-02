@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import type { ContentSection } from '@/data/editorial'
@@ -81,6 +82,7 @@ type EditorialPageProps = {
   ctaDescription?: string
   ctaLabel?: string
   ctaHref?: string
+  showAuthor?: boolean
 }
 
 export function EditorialPage({
@@ -97,6 +99,7 @@ export function EditorialPage({
   ctaDescription,
   ctaLabel,
   ctaHref,
+  showAuthor,
 }: EditorialPageProps) {
   return (
     <article className={styles.page}>
@@ -194,6 +197,24 @@ export function EditorialPage({
             </section>
           ))
         )}
+
+        {showAuthor ? (
+          <section className={styles.authorBox}>
+            <div className={styles.authorImageWrapper}>
+              <Image
+                src="/profile/norbert-fila-1.webp"
+                alt="Norbert Fila"
+                width={80}
+                height={80}
+                className={styles.authorImage}
+              />
+            </div>
+            <div className={styles.authorContent}>
+              <p className={styles.authorName}>Norbert Fila</p>
+              <p className={styles.authorBio}>Projektuję i tworzę nowoczesne strony internetowe</p>
+            </div>
+          </section>
+        ) : null}
 
         {ctaLabel && ctaHref ? (
           <section className={styles.ctaBox}>

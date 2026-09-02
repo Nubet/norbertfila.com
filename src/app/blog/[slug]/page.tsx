@@ -89,6 +89,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ctaDescription={post.ctaDescription}
         ctaLabel="Przejdź do kontaktu"
         ctaHref="/kontakt"
+        showAuthor={true}
       />
     </>
   )
