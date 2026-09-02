@@ -91,13 +91,20 @@
   margin: 0 auto;
 }
 
+.markdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .section {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.sectionTitle {
+.sectionTitle,
+.markdown :where(h2) {
   font-size: clamp(2rem, 4vw, 2.8rem);
   color: var(--color-accent);
   font-weight: 300;
@@ -106,7 +113,16 @@
   margin-bottom: 0.5rem;
 }
 
-.paragraph {
+.markdown :where(h3) {
+  margin: 1rem 0 0;
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+.paragraph,
+.markdown :where(p) {
   margin: 0;
   color: var(--text-primary);
   line-height: 1.9;
@@ -149,7 +165,19 @@
   line-height: 1.8;
 }
 
-.list li::marker {
+.markdown :where(ul, ol) {
+  margin: 0;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.list li::marker,
+.markdown :where(li)::marker {
   color: var(--color-gold);
 }
 

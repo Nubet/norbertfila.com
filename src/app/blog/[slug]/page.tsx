@@ -1,6 +1,6 @@
 import { ArticleJsonLd, BreadcrumbJsonLd } from 'next-seo'
 import { notFound } from 'next/navigation'
-import { blogPosts, getBlogPostBySlug, getRelatedBlogPosts } from '@/data/blogPosts'
+import { getBlogPostBySlug, getBlogPosts, getRelatedBlogPosts } from '@/data/blog'
 import {
   absoluteUrl,
   createBreadcrumbItems,
@@ -12,7 +12,7 @@ import { createPageMetadata } from '@/shared/seo/metadata'
 import { EditorialPage } from '@/views/Editorial/EditorialPage'
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }))
+  return getBlogPosts().map((post) => ({ slug: post.slug }))
 }
 
 type BlogPostPageProps = {
@@ -83,7 +83,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         description={post.description}
         intro={post.intro}
         meta={[`Fraza: ${post.targetKeyword}`, `Publikacja: ${post.publishedAt}`, post.readingTime]}
-        sections={post.sections}
+        markdownBody={post.body}
         relatedPosts={relatedPosts}
         ctaTitle={post.ctaTitle}
         ctaDescription={post.ctaDescription}

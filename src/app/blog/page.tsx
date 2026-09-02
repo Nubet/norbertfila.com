@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { BreadcrumbJsonLd } from 'next-seo'
+import { featuredBlogSlugs, getBlogPosts } from '@/data/blog'
 import { createBreadcrumbItems } from '@/shared/seo/jsonLd'
 import { createPageMetadata } from '@/shared/seo/metadata'
 import { BlogHub } from '@/views/Blog/BlogHub'
@@ -13,6 +14,11 @@ export const metadata = createPageMetadata({
 })
 
 export default function BlogPage() {
+  const posts = getBlogPosts()
+  const featuredPosts = featuredBlogSlugs
+    .map((slug) => posts.find((post) => post.slug === slug))
+    .filter((post): post is (typeof posts)[number] => Boolean(post))
+
   return (
     <Suspense>
       <BreadcrumbJsonLd
@@ -21,7 +27,7 @@ export default function BlogPage() {
           { name: 'Blog', path: '/blog' },
         ])}
       />
-      <BlogHub />
+      <BlogHub posts={posts} featuredPosts={featuredPosts} />
     </Suspense>
   )
 }

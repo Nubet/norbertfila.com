@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import type { ContentSection } from '@/data/editorial'
 import { TrackedLink } from '@/components/TrackedLink/TrackedLink'
 import styles from './EditorialPage.module.css'
@@ -71,7 +73,8 @@ type EditorialPageProps = {
   description: string
   intro: string
   meta?: string[]
-  sections: ContentSection[]
+  sections?: ContentSection[]
+  markdownBody?: string
   relatedPosts?: EditorialHubItem[]
   plainTitle?: boolean
   ctaTitle?: string
@@ -87,6 +90,7 @@ export function EditorialPage({
   intro,
   meta,
   sections,
+  markdownBody,
   relatedPosts,
   plainTitle,
   ctaTitle,
@@ -117,45 +121,79 @@ export function EditorialPage({
           <p className={`${styles.paragraph} ${styles.introParagraph}`}>{intro}</p>
         </section>
 
-        {sections.map((section) => (
-          <section key={section.title} className={styles.section}>
-            <h2 className={styles.sectionTitle}>{section.title}</h2>
-            {section.body.map((paragraph) => (
-              <p key={paragraph} className={styles.paragraph}>
-                {renderParagraphContent(paragraph)}
-              </p>
-            ))}
-            {section.points ? (
-              <ul className={styles.list}>
-                {section.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            ) : null}
-            {section.table ? (
-              <div className={styles.tableWrapper}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      {section.table.headers.map((header) => (
-                        <th key={header}>{header}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {section.table.rows.map((row) => (
-                      <tr key={row.join('|')}>
-                        {row.map((cell, index) => (
-                          <td key={`${cell}-${index}`}>{renderParagraphContent(cell)}</td>
+        {markdownBody ? (
+          <div className={styles.markdown}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                a({ href, children }) {
+                  if (!href) {
+                    return <>{children}</>
+                  }
+
+                  return href.startsWith('/') ? (
+                    <Link href={href} className={styles.inlineLink}>
+                      {children}
+                    </Link>
+                  ) : (
+                    <a href={href} className={styles.inlineLink} target="_blank" rel="noreferrer">
+                      {children}
+                    </a>
+                  )
+                },
+                table({ children }) {
+                  return (
+                    <div className={styles.tableWrapper}>
+                      <table className={styles.table}>{children}</table>
+                    </div>
+                  )
+                },
+              }}
+            >
+              {markdownBody}
+            </ReactMarkdown>
+          </div>
+        ) : (
+          sections?.map((section) => (
+            <section key={section.title} className={styles.section}>
+              <h2 className={styles.sectionTitle}>{section.title}</h2>
+              {section.body.map((paragraph) => (
+                <p key={paragraph} className={styles.paragraph}>
+                  {renderParagraphContent(paragraph)}
+                </p>
+              ))}
+              {section.points ? (
+                <ul className={styles.list}>
+                  {section.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {section.table ? (
+                <div className={styles.tableWrapper}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        {section.table.headers.map((header) => (
+                          <th key={header}>{header}</th>
                         ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : null}
-          </section>
-        ))}
+                    </thead>
+                    <tbody>
+                      {section.table.rows.map((row) => (
+                        <tr key={row.join('|')}>
+                          {row.map((cell, index) => (
+                            <td key={`${cell}-${index}`}>{renderParagraphContent(cell)}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
+            </section>
+          ))
+        )}
 
         {ctaLabel && ctaHref ? (
           <section className={styles.ctaBox}>

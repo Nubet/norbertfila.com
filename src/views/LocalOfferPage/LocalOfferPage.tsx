@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { getBlogPostBySlug } from '@/data/blogPosts'
+import type { BlogPostPreview } from '@/data/blogTypes'
 import type { LocalOfferPageData } from '@/data/localOfferPages'
 import { portfolioProjects } from '@/data/portfolio'
 import { TrackedLink } from '@/components/TrackedLink/TrackedLink'
@@ -8,12 +8,10 @@ import styles from './LocalOfferPage.module.css'
 
 type LocalOfferPageProps = {
   page: LocalOfferPageData
+  relatedPosts: BlogPostPreview[]
 }
 
-export function LocalOfferPage({ page }: LocalOfferPageProps) {
-  const relatedPosts = page.relatedPostSlugs
-    .map((slug) => getBlogPostBySlug(slug))
-    .filter((post): post is NonNullable<typeof post> => Boolean(post))
+export function LocalOfferPage({ page, relatedPosts }: LocalOfferPageProps) {
   const showcaseProjects = (page.showcaseProjectIds ?? [])
     .map((id) => portfolioProjects.find((project) => project.id === id))
     .filter((project): project is NonNullable<typeof project> => Boolean(project))

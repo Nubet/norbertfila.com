@@ -1,5 +1,6 @@
 import { BreadcrumbJsonLd } from 'next-seo'
 import { notFound } from 'next/navigation'
+import { getBlogPostBySlug } from '@/data/blog'
 import { getLocalOfferPageBySlug, localOfferPages } from '@/data/localOfferPages'
 import { absoluteUrl, createBreadcrumbItems } from '@/shared/seo/jsonLd'
 import { createPageMetadata } from '@/shared/seo/metadata'
@@ -76,6 +77,10 @@ export default async function LocalOfferRoute({ params }: LocalOfferRouteProps) 
     })),
   }
 
+  const relatedPosts = page.relatedPostSlugs
+    .map((slug) => getBlogPostBySlug(slug))
+    .filter((post): post is NonNullable<typeof post> => Boolean(post))
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -93,7 +98,7 @@ export default async function LocalOfferRoute({ params }: LocalOfferRouteProps) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <LocalOfferPage page={page} />
+      <LocalOfferPage page={page} relatedPosts={relatedPosts} />
     </>
   )
 }

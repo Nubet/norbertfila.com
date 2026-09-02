@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { blogPosts } from '@/data/blogPosts'
+import { getBlogPosts } from '@/data/blog'
 import { caseStudies } from '@/data/caseStudies'
 import { localOfferPages } from '@/data/localOfferPages'
 import { siteConfig, staticIndexedRoutes } from '@/shared/seo/site'
@@ -18,6 +18,7 @@ const routePriorities: Record<(typeof staticIndexedRoutes)[number], number> = {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
+  const blogPosts = getBlogPosts()
 
   const staticPages = staticIndexedRoutes.map((path) => ({
     url: `${siteConfig.url}${path}`,

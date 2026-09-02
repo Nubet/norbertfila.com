@@ -8,17 +8,16 @@ import { FAQ } from '@/components/FAQ/FAQ'
 import { ScrollReveal } from '@/components/ScrollReveal/ScrollReveal'
 import { ParallaxBackground } from '@/components/ParallaxBackground/ParallaxBackground'
 import { trackAnalyticsEvent } from '@/features/analytics/googleAnalytics'
-import { blogPosts } from '@/data/blogPosts'
+import type { BlogPostPreview } from '@/data/blogTypes'
 import { portfolioProjects } from '@/data/portfolio'
 import { media } from '@/shared/config/media'
 import styles from './Home.module.css'
 
-const featuredBlogSlugs = [
-  'ile-kosztuje-strona-internetowa-w-lodzi',
-  'strony-internetowe-lodz-jak-wybrac-wykonawce-dla-firmy-uslugowej',
-]
+type HomeProps = {
+  featuredBlogPosts: BlogPostPreview[]
+}
 
-export default function Home() {
+export default function Home({ featuredBlogPosts }: HomeProps) {
   const [comingSoonId, setComingSoonId] = useState<string | null>(null)
 
   const handleReadMoreClick = (e: React.MouseEvent, project: (typeof portfolioProjects)[0]) => {
@@ -91,10 +90,6 @@ export default function Home() {
       scrollCarousel('right')
     }
   }
-
-  const featuredBlogPosts = featuredBlogSlugs
-    .map((slug) => blogPosts.find((post) => post.slug === slug))
-    .filter((post): post is (typeof blogPosts)[number] => Boolean(post))
 
   return (
     <div className={styles.home}>

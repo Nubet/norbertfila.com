@@ -1,0 +1,99 @@
+media:
+  - name: blog_images
+    label: Blog images
+    input: public/images/blog
+    output: /images/blog
+    rename: safe
+    categories: [image]
+
+settings:
+  hide: true
+  commit:
+    identity: app
+    templates:
+      create: "content(blog): create {filename}"
+      update: "content(blog): update {filename}"
+      delete: "content(blog): delete {filename}"
+      rename: "content(blog): rename {oldFilename} -> {newFilename}"
+
+content:
+  - name: blog
+    label: Blog
+    type: collection
+    path: content/blog
+    format: yaml-frontmatter
+    filename:
+      template: "{fields.slug}.md"
+      field: create
+    view:
+      primary: title
+      fields: [title, category, publishedAt, targetKeyword]
+      sort: [publishedAt, title, category]
+      search: [title, description, excerpt, targetKeyword, category, intro]
+      default:
+        sort: publishedAt
+        order: desc
+    fields:
+      - name: slug
+        label: Slug
+        type: string
+        required: true
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: displayTitle
+        label: Display title
+        type: string
+      - name: description
+        label: Meta description
+        type: text
+        required: true
+      - name: excerpt
+        label: Excerpt
+        type: text
+        required: true
+      - name: category
+        label: Category
+        type: string
+        required: true
+      - name: publishedAt
+        label: Published at
+        type: date
+        required: true
+      - name: readingTime
+        label: Reading time
+        type: string
+        required: true
+      - name: targetKeyword
+        label: Target keyword
+        type: string
+        required: true
+      - name: relatedPostSlugs
+        label: Related posts
+        type: reference
+        options:
+          collection: blog
+          multiple: true
+          value: "{slug}"
+          label: "{title}"
+      - name: ctaTitle
+        label: CTA title
+        type: string
+        required: true
+      - name: ctaDescription
+        label: CTA description
+        type: text
+        required: true
+      - name: intro
+        label: Intro
+        type: text
+        required: true
+      - name: body
+        label: Body
+        type: rich-text
+        options:
+          format: markdown
+          media: blog_images
+          path: public/images/blog
+          rename: true

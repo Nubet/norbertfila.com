@@ -1,26 +1,24 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { blogPosts, getBlogCategories } from '@/data/blogPosts'
+import type { BlogPostPreview } from '@/data/blogTypes'
 import { EditorialHub } from '@/views/Editorial/EditorialPage'
 
-const featuredSlugs = [
-  'ile-kosztuje-strona-internetowa-w-lodzi',
-  'strony-internetowe-lodz-jak-wybrac-wykonawce-dla-firmy-uslugowej',
-]
+type BlogHubProps = {
+  posts: BlogPostPreview[]
+  featuredPosts: BlogPostPreview[]
+}
 
-export function BlogHub() {
+export function BlogHub({ posts, featuredPosts }: BlogHubProps) {
   const searchParams = useSearchParams()
+  const categories = [...new Set(posts.map((post) => post.category))]
   const category = searchParams.get('category')
-  const categories = getBlogCategories()
   const activeCategory = categories.includes(category ?? '') ? category : undefined
   const visiblePosts = activeCategory
-    ? blogPosts.filter((post) => post.category === activeCategory)
-    : blogPosts
+    ? posts.filter((post) => post.category === activeCategory)
+    : posts
 
-  const featuredItems = featuredSlugs
-    .map((slug) => blogPosts.find((post) => post.slug === slug))
-    .filter((post): post is (typeof blogPosts)[number] => Boolean(post))
+  const featuredItems = featuredPosts
     .map((post) => ({
       title: post.displayTitle || post.title,
       description: post.excerpt,
