@@ -49,7 +49,8 @@ function parseBlogPost(fileName: string): BlogPost {
   return {
     slug,
     title,
-    displayTitle: typeof frontmatter.displayTitle === 'string' ? frontmatter.displayTitle : undefined,
+    displayTitle:
+      typeof frontmatter.displayTitle === 'string' ? frontmatter.displayTitle : undefined,
     description: requireString(frontmatter, 'description'),
     excerpt: requireString(frontmatter, 'excerpt'),
     category: requireString(frontmatter, 'category'),

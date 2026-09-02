@@ -18,13 +18,12 @@ export function BlogHub({ posts, featuredPosts }: BlogHubProps) {
     ? posts.filter((post) => post.category === activeCategory)
     : posts
 
-  const featuredItems = featuredPosts
-    .map((post) => ({
-      title: post.displayTitle || post.title,
-      description: post.excerpt,
-      href: `/blog/${post.slug}`,
-      meta: `${post.category} • ${post.readingTime}`,
-    }))
+  const featuredItems = featuredPosts.map((post) => ({
+    title: post.displayTitle || post.title,
+    description: post.excerpt,
+    href: `/blog/${post.slug}`,
+    meta: `${post.category} • ${post.readingTime}`,
+  }))
 
   const categoryItems = [
     { label: 'Wszystkie', href: '/blog', active: !activeCategory },
