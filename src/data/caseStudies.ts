@@ -4,6 +4,16 @@ type CaseStudyImage = {
   height: number
 }
 
+export type CaseStudyBlockType = 'text-only' | 'split-left' | 'split-right' | 'full-image'
+
+export type CaseStudyContentBlock = {
+  id: string
+  type: CaseStudyBlockType
+  title?: string
+  text?: string
+  image?: CaseStudyImage
+}
+
 export type CaseStudyData = {
   id: string
   title: string
@@ -12,10 +22,11 @@ export type CaseStudyData = {
   industry: string
   year: string
   openingImage: CaseStudyImage
-  overviewText: string
-  galleryImage1: CaseStudyImage
-  galleryImage2: CaseStudyImage
-  fullPageMockup: CaseStudyImage
+  overviewText?: string
+  contentBlocks?: CaseStudyContentBlock[]
+  galleryImage1?: CaseStudyImage
+  galleryImage2?: CaseStudyImage
+  fullPageMockup?: CaseStudyImage
   nextProjectSlug?: string
   prevProjectSlug?: string
   nextProjectName?: string
@@ -125,6 +136,122 @@ export const caseStudies: CaseStudyData[] = [
     prevProjectName: 'Doradztwo Podatkowe',
     nextProjectSlug: 'abc-centrum',
     nextProjectName: 'ABC Centrum Logopedii',
+  },
+  {
+    id: 'studymood',
+    title: 'StudyMood',
+    clientDescription:
+      'StudyMood to aplikacja mobilna stworzona z myślą o studentach, która łączy monitorowanie nauki z obserwowaniem własnego samopoczucia. Projekt powstał podczas realizacji przedmiotu Interdisciplinary Project Based Learning na International Faculty of Engineering (IFE) Politechniki Łódzkiej.',
+    role: 'App Dev / Product Dev / Research',
+    industry: 'Edukacja / Well-being',
+    year: '2025',
+    openingImage: {
+      src: '/portfolio/studymood/studymood-mood-tracker-ui-design-presentation.png',
+      width: 2560,
+      height: 1287,
+    },
+    contentBlocks: [
+      {
+        id: 'o-projekcie',
+        type: 'text-only',
+        title: 'O projekcie',
+        text: 'W projekcie uczestniczyli studenci różnych kierunków, a naszym zadaniem było stworzenie praktycznego rozwiązania odpowiadającego na problem związany z życiem studenckim.\n\nPunktem wyjścia był prosty pomysł na mood tracker. Chcieliśmy stworzyć sposób, który pozwala studentowi szybko określić swoje samopoczucie bez konieczności prowadzenia rozbudowanego dziennika. Pierwsza wersja opierała się na dwuwymiarowej mapie nastroju, wykorzystującej przyjemność i poziom energii.\n\nWraz z rozwojem projektu zaczęliśmy konfrontować ten pomysł z opiniami studentów. Przeprowadziliśmy 15 wywiadów, a zebrany feedback pokazał, że samo określenie nastroju nie zawsze wystarcza. Studenci potrzebowali również sposobu na lepsze nazwanie tego, co czują, oraz narzędzia pozwalającego spojrzeć na swoje samopoczucie w kontekście nauki. To właśnie te obserwacje zaczęły zmieniać pierwotny pomysł.',
+      },
+      {
+        id: 'full-mockup-1',
+        type: 'full-image',
+        image: {
+          src: '/portfolio/studymood/studymood-check-in-emotion-selection-screens.png',
+          width: 2560,
+          height: 1287,
+        },
+      },
+      {
+        id: 'od-mood-trackera',
+        type: 'text-only',
+        title: 'Od mood trackera do StudyMood',
+        text: 'Aplikacja rozwijała się etapami. Kolejne funkcje wynikały z problemów, które pojawiały się podczas rozmów ze studentami i dalszego researchu. Cały produkt zaczął działać według prostego schematu: Sprawdź → Nazwij → Ucz się → Znajdź wzorce → Zareaguj.',
+      },
+      {
+        id: 'mood-check',
+        type: 'split-right',
+        title: 'Mood Check',
+        text: 'Podstawą pozostała szybka mapa nastroju, ale dodaliśmy możliwość nazwania konkretnej emocji. Do nazw dodaliśmy również krótkie wyjaśnienia, ponieważ część określeń mogła być trudna do zrozumienia, poniewż aplikacjia projetkowana była w języku angielskim.',
+        image: {
+          src: '/portfolio/studymood/studymood-emotion-definitions-and-meanings.png',
+          width: 1080,
+          height: 1080,
+        },
+      },
+      {
+        id: 'study-tracker',
+        type: 'split-left',
+        title: 'Study Tracker',
+        text: 'Kolejnym krokiem było połączenie samopoczucia z rzeczywistą nauką. Sesje zaczęliśmy zapisywać z podziałem na konkretne przedmioty, dzięki czemu aplikacja mogła zbierać więcej informacji niż zwykły licznik czasu.',
+        image: {
+          src: '/portfolio/studymood/studymood-study-session-timer-and-summary.png',
+          width: 1080,
+          height: 1080,
+        },
+      },
+      {
+        id: 'analyze',
+        type: 'split-right',
+        title: 'Analyze',
+        text: 'Skoro mieliśmy już dane dotyczące zarówno samopoczucia, jak i nauki, kolejnym krokiem było pokazanie ich w czasie. Sekcja Analyze pozwala obserwować trendy i szukać własnych wzorców.',
+        image: {
+          src: '/portfolio/studymood/studymood-mood-analytics-and-insights-dashboard.png',
+          width: 1080,
+          height: 1080,
+        },
+      },
+      {
+        id: 'reframe',
+        type: 'split-left',
+        title: 'Reframe',
+        text: 'Ostatnim etapem było przejście od samego monitorowania do działania. Feedback od studentów pokazał potrzebę krótkich narzędzi, które można wykorzystać w momencie pojawienia się trudnych emocji. Tak powstała sekcja Reframe, która stała się praktycznym uzupełnieniem całego procesu: użytkownik nie tylko rejestruje, co czuje, ale może również spróbować coś z tym zrobić.',
+        image: {
+          src: '/portfolio/studymood/studymood-mind-tools-breathing-and-reframing-alt.png',
+          width: 1080,
+          height: 1080,
+        },
+      },
+      {
+        id: 'research',
+        type: 'text-only',
+        title: 'Research i dobór ćwiczeń',
+        text: 'Jednym z ważniejszych elementów projektu był research związany z tym, jak aplikacja może realnie wspierać pracę z emocjami, zamiast ograniczać się do ich zapisywania. Przy projektowaniu funkcji związanych z emocjami korzystaliśmy nie tylko z feedbacku studentów, ale również z materiałów naukowych i artykułów dotyczących emocji, stresu oraz samoregulacji.\n\nJednym z przykładów była funkcja affective labeling, czyli nazywanie własnych emocji. Research dotyczący tego zagadnienia wskazywał na związek pomiędzy nazwaniem emocji a zmniejszeniem jej natychmiastowego wpływu, co stało się jednym z powodów, dla których emotion labeling stał się istotną częścią Mood Check. Podobnie podeszliśmy do sekcji Reframe. Ćwiczenia nie zostały dobrane przypadkowo ani stworzone jako zbiór ogólnych porad motywacyjnych. Szukałem materiałów dotyczących technik, które mogą wspierać samoregulację, zmianę perspektywy i pracę z trudnymi emocjami, a następnie na tej podstawie dobierałem i opracowywałem krótkie ćwiczenia możliwe do wykonania w aplikacji.',
+      },
+      {
+        id: 'full-mockup-3',
+        type: 'full-image',
+        image: {
+          src: '/portfolio/studymood/studymood-self-talk-guided-exercise-screens.png',
+          width: 2560,
+          height: 1287,
+        },
+      },
+      {
+        id: 'feedback',
+        type: 'text-only',
+        title: 'Feedback, który zmienił projekt',
+        text: 'Feedback studentów miał wpływ zarówno na funkcje aplikacji, jak i na jej wygląd. Podczas 15 wywiadów studenci zwracali uwagę między innymi na trudności z nazwaniem emocji, potrzebę miejsca na refleksję oraz zainteresowanie krótkimi treściami poprawiającymi nastrój.\n\nJednym z konkretnych efektów feedbacku było dodanie wyjaśnień do nazw emocji. Chcieliśmy, żeby użytkownik nie musiał zgadywać znaczenia bardziej zaawansowanych określeń. Zmienił się również kierunek wizualny. Pierwsza wersja była bardziej niebieska i kliniczna. Feedback pokazał, że aplikacja powinna być cieplejsza i bardziej ludzka, dlatego zmieniliśmy język wizualny oraz sposób prezentowania emocji.',
+      },
+      {
+        id: 'tech-stack',
+        type: 'text-only',
+        title: 'Technologia i moja rola',
+        text: 'Od strony technicznej StudyMood został zbudowany przy użyciu Kotlin Multiplatform oraz Compose Multiplatform. Aplikacja działa offline-first – dane są przechowywane lokalnie na urządzeniu, bez kont użytkowników i bez konieczności korzystania z serwera. Była to świadoma decyzja projektowa z uwagi na prywatność.\n\nByłem odpowiedzialny za programistyczną realizację aplikacji, ale moja praca obejmowała również część researchową i produktową. Po stronie technicznej zbudowałem działającą aplikację mobilną, zaimplementowałem jej główne funkcje oraz testowałem na rzeczywistym urządzeniu. Poza tym pracowałem nad treścią aplikacji (w języku angielskim) i prowadziłem wspomniany research dotyczący emocji.',
+      },
+      {
+        id: 'podsumowanie',
+        type: 'text-only',
+        title: 'Efekt końcowy',
+        text: 'StudyMood zaczął się jako prosty pomysł na monitorowanie nastroju, a zakończył jako aplikacja łącząca samopoczucie, naukę, analizę własnych wzorców i praktyczne ćwiczenia wspierające samoregulację. Najważniejsza zmiana polegała na przejściu od prostego pytania „Jak się dzisiaj czuję?” do szerszego procesu: „Jak się czuję, jak to wiąże się z moją nauką i co mogę z tym zrobić?”.\n\nPodziękowania dla Natalii Augustyniak oraz Kasi Lerman za pomoc w procesie kreatywnym oraz przy zbieraniu feedbacku i przeprowadzaniu ankiet wśród studentów.',
+      },
+    ],
+    prevProjectSlug: 'santoro',
+    prevProjectName: 'Szkoła Językowa Santoro',
   },
 ]
 

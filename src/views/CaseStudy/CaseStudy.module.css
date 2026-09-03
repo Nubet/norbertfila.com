@@ -205,6 +205,82 @@
   display: block;
 }
 
+/* NEW CONTENT BLOCKS */
+
+.contentBlocks {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  margin-bottom: 8rem;
+}
+
+.textOnlyBlock {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.fullImageBlock {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: rgba(47, 79, 64, 0.05);
+}
+
+.fullImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.splitBlock,
+.splitBlockRight {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .splitBlock {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+  .splitBlockRight {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+}
+
+.splitImage {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: rgba(47, 79, 64, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splitMockupImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.splitText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.splitTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
 .approachSection {
   max-width: 800px;
   margin: 0 auto 8rem;
