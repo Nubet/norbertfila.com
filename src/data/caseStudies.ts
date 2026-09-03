@@ -146,7 +146,7 @@ export const caseStudies: CaseStudyData[] = [
     industry: 'Edukacja / Well-being',
     year: '2025',
     openingImage: {
-      src: '/portfolio/studymood/studymood-mood-tracker-ui-design-presentation.png',
+      src: '/portfolio/studymood/studymood-mood-tracker-ui-design-presentation.jpg',
       width: 2560,
       height: 1287,
     },
@@ -161,7 +161,7 @@ export const caseStudies: CaseStudyData[] = [
         id: 'full-mockup-1',
         type: 'full-image',
         image: {
-          src: '/portfolio/studymood/studymood-check-in-emotion-selection-screens.png',
+          src: '/portfolio/studymood/studymood-check-in-emotion-selection-screens.webp',
           width: 2560,
           height: 1287,
         },
@@ -178,7 +178,7 @@ export const caseStudies: CaseStudyData[] = [
         title: 'Mood Check',
         text: 'Podstawą pozostała szybka mapa nastroju, ale dodaliśmy możliwość nazwania konkretnej emocji. Do nazw dodaliśmy również krótkie wyjaśnienia, ponieważ część określeń mogła być trudna do zrozumienia, poniewż aplikacjia projetkowana była w języku angielskim.',
         image: {
-          src: '/portfolio/studymood/studymood-emotion-definitions-and-meanings.png',
+          src: '/portfolio/studymood/studymood-emotion-definitions-and-meanings.webp',
           width: 1080,
           height: 1080,
         },
@@ -189,7 +189,7 @@ export const caseStudies: CaseStudyData[] = [
         title: 'Study Tracker',
         text: 'Kolejnym krokiem było połączenie samopoczucia z rzeczywistą nauką. Sesje zaczęliśmy zapisywać z podziałem na konkretne przedmioty, dzięki czemu aplikacja mogła zbierać więcej informacji niż zwykły licznik czasu.',
         image: {
-          src: '/portfolio/studymood/studymood-study-session-timer-and-summary.png',
+          src: '/portfolio/studymood/studymood-study-session-timer-and-summary.jpg',
           width: 1080,
           height: 1080,
         },
@@ -200,7 +200,7 @@ export const caseStudies: CaseStudyData[] = [
         title: 'Analyze',
         text: 'Skoro mieliśmy już dane dotyczące zarówno samopoczucia, jak i nauki, kolejnym krokiem było pokazanie ich w czasie. Sekcja Analyze pozwala obserwować trendy i szukać własnych wzorców.',
         image: {
-          src: '/portfolio/studymood/studymood-mood-analytics-and-insights-dashboard.png',
+          src: '/portfolio/studymood/studymood-mood-analytics-and-insights-dashboard.webp',
           width: 1080,
           height: 1080,
         },
@@ -211,7 +211,7 @@ export const caseStudies: CaseStudyData[] = [
         title: 'Reframe',
         text: 'Ostatnim etapem było przejście od samego monitorowania do działania. Feedback od studentów pokazał potrzebę krótkich narzędzi, które można wykorzystać w momencie pojawienia się trudnych emocji. Tak powstała sekcja Reframe, która stała się praktycznym uzupełnieniem całego procesu: użytkownik nie tylko rejestruje, co czuje, ale może również spróbować coś z tym zrobić.',
         image: {
-          src: '/portfolio/studymood/studymood-mind-tools-breathing-and-reframing-alt.png',
+          src: '/portfolio/studymood/studymood-mind-tools-breathing-and-reframing-alt.webp',
           width: 1080,
           height: 1080,
         },
@@ -226,7 +226,7 @@ export const caseStudies: CaseStudyData[] = [
         id: 'full-mockup-3',
         type: 'full-image',
         image: {
-          src: '/portfolio/studymood/studymood-self-talk-guided-exercise-screens.png',
+          src: '/portfolio/studymood/studymood-self-talk-guided-exercise-screens.jpg',
           width: 2560,
           height: 1287,
         },
