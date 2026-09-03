@@ -195,5 +195,6 @@ export const portfolioProjects: PortfolioProject[] = [
         height: 2400,
       },
     ],
+    isReady: true,
   },
 ]
