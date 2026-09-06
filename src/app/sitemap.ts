@@ -8,7 +8,7 @@ export const dynamic = 'force-static'
 
 const routePriorities: Record<(typeof staticIndexedRoutes)[number], number> = {
   '/': 1,
-  '/about': 0.7,
+  '/o-mnie': 0.7,
   '/portfolio': 0.9,
   '/kontakt': 0.9,
   '/blog': 0.85,

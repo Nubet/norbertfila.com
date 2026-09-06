@@ -9,7 +9,7 @@ export const siteConfig = {
 
 export const staticIndexedRoutes = [
   '/',
-  '/about',
+  '/o-mnie',
   '/portfolio',
   '/kontakt',
   '/blog',

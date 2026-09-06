@@ -14,7 +14,7 @@ export default function AboutPage() {
       <BreadcrumbJsonLd
         items={createBreadcrumbItems([
           { name: 'Start', path: '/' },
-          { name: 'O mnie', path: '/about' },
+          { name: 'O mnie', path: '/o-mnie' },
         ])}
       />
       <ProfilePageJsonLd mainEntity={personJsonLd} />

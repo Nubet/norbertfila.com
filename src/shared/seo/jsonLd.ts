@@ -14,7 +14,7 @@ export const organizationJsonLd = {
 export const personJsonLd = {
   '@type': 'Person' as const,
   name: 'Norbert Fila',
-  url: `${siteConfig.url}/about`,
+  url: `${siteConfig.url}/o-mnie`,
   image: `${siteConfig.url}/profile/avatar.webp`,
   description:
     'Web developer i freelancer tworzacy strony internetowe ukierunkowane na konwersje, widocznosc i szybkie dzialanie.',

@@ -59,7 +59,7 @@ export default async function LocalOfferRoute({ params }: LocalOfferRouteProps) 
     provider: {
       '@type': 'Person',
       name: siteConfig.name,
-      url: absoluteUrl('/about'),
+      url: absoluteUrl('/o-mnie'),
     },
     url: absoluteUrl(`/oferta/${page.slug}`),
   }
