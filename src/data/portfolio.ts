@@ -128,23 +128,23 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       'Mobilna aplikacja do nauki do ISTQB CTFL z materiałem podzielonym na rozdziały, symulacją egzaminu, wyszukiwaniem w słowniczku i lokalnym śledzeniem postępu. Przejrzysty interfejs, czytelna nawigacja i dopracowane detale – tryb nauki, symulacja i system fiszek w jednym, spójnym doświadczeniu.',
     image: {
-      src: '/app-portfolio/istqb-tester/home.webp',
+      src: '/portfolio/istqb-tester/home.webp',
       width: 1179,
       height: 2556,
     },
     images: [
       {
-        src: '/app-portfolio/istqb-tester/home.webp',
+        src: '/portfolio/istqb-tester/home.webp',
         width: 1179,
         height: 2556,
       },
       {
-        src: '/app-portfolio/istqb-tester/learning-mode.webp',
+        src: '/portfolio/istqb-tester/learning-mode.webp',
         width: 1179,
         height: 2556,
       },
       {
-        src: '/app-portfolio/istqb-tester/flashcards.webp',
+        src: '/portfolio/istqb-tester/flashcards.webp',
         width: 1179,
         height: 2556,
       },
@@ -159,23 +159,23 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       'Narzędzie, które robi dokładnie to, czego potrzebujesz. Skaner i generator kodów QR w minimalistycznym, nowoczesnym wydaniu. Błyskawiczna detekcja linków na żywo, czytelna historia i udostępnianie jednym kliknięciem – zero zbędnych komplikacji.',
     image: {
-      src: '/app-portfolio/qraft/scan-detected.webp',
+      src: '/portfolio/qraft-mobile-app/scan-detected.webp',
       width: 1179,
       height: 2556,
     },
     images: [
       {
-        src: '/app-portfolio/qraft/scan-detected.webp',
+        src: '/portfolio/qraft-mobile-app/scan-detected.webp',
         width: 1179,
         height: 2556,
       },
       {
-        src: '/app-portfolio/qraft/url-creation.webp',
+        src: '/portfolio/qraft-mobile-app/url-creation.webp',
         width: 1179,
         height: 2556,
       },
       {
-        src: '/app-portfolio/qraft/history.webp',
+        src: '/portfolio/qraft-mobile-app/history.webp',
         width: 1179,
         height: 2556,
       },
@@ -191,23 +191,23 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       'Aplikacja multiplatformowa (Kotlin Multiplatform) łącząca produktywność z dbaniem o dobrostan psychiczny. Monitorowanie nastroju na mapie energii, timery nauki oraz szybkie narzędzia samoregulacji. Krótkie sesje relaksacyjne i statystyki pomagają wyrobić rutynę, a moduł śledzenia nauki to bonus dla produktywności.',
     image: {
-      src: '/app-portfolio/studymood/check-in-homepage.webp',
+      src: '/portfolio/studymood/check-in-homepage.webp',
       width: 1080,
       height: 2400,
     },
     images: [
       {
-        src: '/app-portfolio/studymood/check-in-homepage.webp',
+        src: '/portfolio/studymood/check-in-homepage.webp',
         width: 1080,
         height: 2400,
       },
       {
-        src: '/app-portfolio/studymood/check-in-form.webp',
+        src: '/portfolio/studymood/check-in-form.webp',
         width: 1080,
         height: 2400,
       },
       {
-        src: '/app-portfolio/studymood/monthly-analysis.webp',
+        src: '/portfolio/studymood/monthly-analysis.webp',
         width: 1080,
         height: 2400,
       },
