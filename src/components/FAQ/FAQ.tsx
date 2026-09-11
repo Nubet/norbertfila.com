@@ -24,9 +24,9 @@ const faqs = [
       'Oczywiście, wszystkie projekty tworzę w technologii RWD, co gwarantuje ich bezbłędne i automatyczne dopasowanie do ekranów smartfonów, tabletów oraz komputerów.',
   },
   {
-    question: 'Dlaczego kodujesz strony od podstaw, zamiast używać WordPressa?',
+    question: 'Czy tworzysz strony na WordPressie, czy kodujesz je od podstaw?',
     answer:
-      'Wiele stron na WordPressie powstaje przez szybkie składanie szablonu, co często ogranicza jakość i możliwości rozwoju. U mnie każda strona jest projektowana i kodowana pod konkretną firmę: pod Twoją ofertę, klientów i cele sprzedażowe. Efekt to większa szybkość, lepsze SEO, lepsza konwersja i pełna elastyczność — mogę wdrożyć praktycznie każdą funkcję, której potrzebujesz teraz lub w przyszłości. Przede wszystkim jednak dostajesz unikalną stronę, która wyróżnia Cię na tle konkurencji, zamiast kolejnej kopii z tego samego szablonu.',
+      'W przypadku tworzenia strony od zera, zazwyczaj odradzam WordPressa. Wybierając autorskie kodowanie, jesteśmy w stanie obniżyć koszty utrzymania strony, drastycznie zwiększyć szybkość i responsywność witryny, a Ty i tak otrzymujesz wygodny system CMS do samodzielnej edycji treści. Jeśli jednak interesuje Cię redesign starszej strony lub po prostu masz silne preferencje co do WordPressa – z przyjemnością zrealizuję Twój projekt również na tym systemie.',
   },
   {
     question: 'Czy mogę samodzielnie edytować treści na stronie?',
