@@ -208,6 +208,41 @@ export const caseStudies: CaseStudyData[] = [
     nextProjectName: 'ABC Centrum Logopedii',
   },
   {
+    id: 'abc-centrum',
+    title: 'ABC Centrum Logopedii',
+    clientDescription:
+      'ABC Centrum Logopedii w Ksawerowie to miejsce, które wyróżnia się niezwykle bogatą ofertą. Oprócz specjalistycznych terapii takich jak logopedia, SI, TUS czy terapia ręki, placówka organizuje zajęcia edukacyjne oraz angażujące eventy – od urodzin, "Piana Party" po warsztaty tematyczne. Celem tego koncepcyjnego projektu było stworzenie propozycji kierunku wizualnego, który w czytelny sposób uporządkuje tak rozbudowaną ofertę i zbuduje wiarygodny wizerunek placówki w sieci.',
+    role: 'Web Design / UI Concept',
+    industry: 'Zdrowie & Terapia',
+    year: '2026',
+    openingImage: {
+      src: '/portfolio/abc-centrum-logopedii/strona-www-abc-centrum-logopedii-ksawerow.webp',
+      width: 4500,
+      height: 3000,
+    },
+    overviewText:
+      'Głównym założeniem mojej propozycji wizualnej było trafienie do dwóch grup docelowych jednocześnie: rodziców szukających profesjonalnej pomocy dla swojego dziecka oraz samych najmłodszych, dla których wizyta ma kojarzyć się z pozytywnym doświadczeniem. Paleta barw oraz zaokrąglone, przyjazne formy miały na celu zakomunikowanie, że ABC to nie tylko rzetelna terapia, ale też bezpieczna zabawa. Zależało mi, by interfejs od razu komunikował ten unikalny balans – to miejsce, gdzie w jednym tygodniu można zorganizować wystrzałowe urodziny, a w kolejnym odbyć konsultację logopedyczną.\n\nPod kątem doświadczenie użytkownika ogromnym wyzwaniem było skondensowanie szerokiego zakresu działalności bez przytłaczania odbiorcy. Zastosowałem czytelne moduły, które grupują usługi na "Terapie Specjalistyczne", "Edukację" oraz "Eventy i Zabawę", pozwalając na szybkie zeskanowanie oferty. Główne Call-to-Action (CTA)  kieruje na bezpośredni kontakt telefoniczny. Zaprojektowany przeze mnie Landing Page świetnie pokazuje, jak dobrze strona mogłaby budować ekspercki wizerunek zespołu. Taka platforma skutecznie uporządkowałaby napływ nowych klientów i stanowiła doskonały fundament pod przyszłą rozbudowę o galerię zdjęć z eventów czy sekcje aktualności.',
+    galleryImage1: {
+      src: '/portfolio/abc-centrum-logopedii/oferta-terapia-logopedyczna-si-ksawerow.webp',
+      width: 6000,
+      height: 4500,
+    },
+    galleryImage2: {
+      src: '/portfolio/abc-centrum-logopedii/urodziny-eventy-terapia-zabawa-ksawerow.webp',
+      width: 6000,
+      height: 4500,
+    },
+    fullPageMockup: {
+      src: '/portfolio/abc-centrum-logopedii/strona-internetowa-abc-centrum-logopedii-pelny-projekt.webp',
+      width: 2560,
+      height: 8228,
+    },
+    prevProjectSlug: 'santoro',
+    prevProjectName: 'Szkoła Językowa Santoro',
+    nextProjectSlug: 'studymood',
+    nextProjectName: 'StudyMood',
+  },
+  {
     id: 'studymood',
     title: 'StudyMood',
     clientDescription:
@@ -320,8 +355,8 @@ export const caseStudies: CaseStudyData[] = [
         text: 'StudyMood zaczął się jako prosty pomysł na monitorowanie nastroju, a zakończył jako aplikacja łącząca samopoczucie, naukę, analizę własnych wzorców i praktyczne ćwiczenia wspierające samoregulację. Najważniejsza zmiana polegała na przejściu od prostego pytania „Jak się dzisiaj czuję?” do szerszego procesu: „Jak się czuję, jak to wiąże się z moją nauką i co mogę z tym zrobić?”.\n\nPodziękowania dla Natalii Augustyniak oraz Kasi Lerman za pomoc w procesie kreatywnym oraz przy zbieraniu feedbacku i przeprowadzaniu ankiet wśród studentów.',
       },
     ],
-    prevProjectSlug: 'santoro',
-    prevProjectName: 'Szkoła Językowa Santoro',
+    prevProjectSlug: 'abc-centrum',
+    prevProjectName: 'ABC Centrum Logopedii',
     nextProjectSlug: 'qraft',
     nextProjectName: 'Qraft QR',
   },

@@ -100,10 +100,11 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       'Stworzyłem projekt strony, który porządkuje szeroką ofertę placówki i ułatwia rodzicom szybkie znalezienie odpowiedniego wsparcia dla dziecka. Czytelny układ, spokojna kolorystyka i jasne ścieżki kontaktu budują zaufanie oraz pomagają lepiej zrozumieć zakres terapii i zajęć.',
     image: {
-      src: '/visual-projects/abc-centrum-logopedii/1.webp',
+      src: '/portfolio/abc-centrum-logopedii/abc-centrum-logopedii-portfolio-thumbnail.webp',
       width: 2560,
       height: 1287,
     },
+    isReady: true,
   },
   {
     id: 'vellum-blanc',
