@@ -44,6 +44,22 @@ export const portfolioProjects: PortfolioProject[] = [
       width: 2560,
       height: 1287,
     },
+    isReady: true,
+  },
+  {
+    id: 'filips-school',
+    category: 'Edukacja',
+    title: "Filip's School",
+    shortDescription:
+      'Nowoczesny landing page dla renomowanej szkoły językowej, łączący 20-letnią tradycję z nowym wizerunkiem i elegancką paletą barw.',
+    description:
+      'Filip\'s School to szkoła z ogromnym stażem i sukcesami (m.in. akredytacja Cambridge i Orły Edukacji). Stworzyłem od zera projekt logo oraz dedykowany landing page, który ma za zadanie wyeksponować najlepsze atuty placówki: imponujące osiągnięcia uczniów oraz autorskie wyjazdy do Londynu. Elegancka, kojarząca się z brytyjską klasyką paleta barw i przemyślane CTA (kontakt telefoniczny i Facebook) budują wizerunek profesjonalnej i godnej zaufania marki.',
+    image: {
+      src: '/portfolio/filips-school/strona-www-szkola-jezykowa-lomza.webp',
+      width: 2560,
+      height: 1287,
+    },
+    isReady: true,
   },
   {
     id: 'doradztwo-podatkowe',
