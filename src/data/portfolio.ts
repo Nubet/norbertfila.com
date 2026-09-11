@@ -180,6 +180,7 @@ export const portfolioProjects: PortfolioProject[] = [
         height: 2556,
       },
     ],
+    isReady: true,
   },
   {
     id: 'studymood',

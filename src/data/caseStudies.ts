@@ -322,6 +322,82 @@ export const caseStudies: CaseStudyData[] = [
     ],
     prevProjectSlug: 'santoro',
     prevProjectName: 'Szkoła Językowa Santoro',
+    nextProjectSlug: 'qraft',
+    nextProjectName: 'Qraft QR',
+  },
+  {
+    id: 'qraft',
+    title: 'Qraft QR',
+    clientDescription:
+      'Większość darmowych skanerów QR to toporne, przeładowane reklamami aplikacje, które skutecznie zniechęcają do korzystania. Sfrustrowany tym stanem rzeczy, postanowiłem zaprojektować i zbudować własną alternatywę od zera. Qraft to wieloplatformowa aplikacja mobilna, która rozwiązuje codzienny problem z odczytywaniem kodów, oferując w zamian czysty, minimalistyczny interfejs bez żadnego wizualnego chaosu. Projekt ten był dla mnie również doskonałym poligonem doświadczalnym do sprawdzenia w akcji technologii  Expo/React Native, a także zbudowania pełnej automatyzacji testów.',
+    role: 'Mobile App Dev / UI Design',
+    industry: 'Narzędzia użytkowe',
+    year: '2026',
+    openingImage: {
+      src: '/portfolio/qraft-mobile-app/qraft-aplikacja-mobilna-skaner-kodow-qr.webp',
+      width: 6000,
+      height: 4500,
+    },
+    contentBlocks: [
+      {
+        id: 'smart-scanning',
+        type: 'split-right',
+        title: 'Inteligentne skanowanie',
+        text: 'W Qraft postawiłem na inteligencję interfejsu. Skaner błyskawicznie analizuje odczytany kod i rozpoznaje, czy kryje się pod nim adres strony, zwykły tekst, e-mail, czy numer telefonu. Zamiast wyświetlać surowy ciąg znaków, aplikacja zdejmuje z użytkownika konieczność domyślania się "co z tym zrobić" i podsuwa jeden, najbardziej odpowiedni przycisk akcji – na przykład "Otwórz link" lub "Skopiuj". To ogromne ułatwienie w porównaniu do standardowych skanerów.',
+        image: {
+          src: '/portfolio/qraft-mobile-app/qraft-scan-link-detected.webp',
+          width: 2556,
+          height: 2556,
+        },
+      },
+      {
+        id: 'create-mode',
+        type: 'split-left',
+        title: 'Tworzenie bez błędów',
+        text: 'Wielokrotnie spotkałem się z sytuacją, gdzie darmowy generator pozwalał na utworzenie zepsutego kodu (np. linku bez poprawnego protokołu). W module tworzenia zaimplementowałem walidację na żywo. Aplikacja upewnia się na bieżąco, jeszcze podczas wpisywania danych, że struktura e-maila lub adresu WWW jest poprawna. Dzięki temu użytkownik dostaje gwarancję, że wygenerowany i udostępniony kod na pewno zadziała, a sam ekran tworzenia pozostaje spójny i minimalistyczny.',
+        image: {
+          src: '/portfolio/qraft-mobile-app/qraft-create-url.webp',
+          width: 2556,
+          height: 2556,
+        },
+      },
+      {
+        id: 'history',
+        type: 'split-right',
+        title: 'Prywatność i Historia lokalna',
+        text: 'Aplikacje użytkowe nie powinny zmuszać do zakładania kont, by oferować podstawowe funkcje. Dlatego historię skanowanych i tworzonych kodów oparłem na lokalnej bazie danych. Wszystkie informacje pozostają bezpieczne na urządzeniu. Estetyczny ekran historii pozwala na błyskawiczny powrót do wcześniejszych kodów nawet bez dostępu do internetu, wyraźnie oddzielając pozycje zeskanowane od tych, które utworzyliśmy sami.',
+        image: {
+          src: '/portfolio/qraft-mobile-app/qraft-history.webp',
+          width: 2556,
+          height: 2556,
+        },
+      },
+      {
+        id: 'learn-mode',
+        type: 'split-left',
+        title: 'Edukacja przez Design',
+        text: 'Chciałem, aby aplikacja dawała z siebie coś więcej. Aby samemu zbudować generator, musiałem dogłębnie zrozumieć anatomię kodów QR. Zdobytą wiedzę przekułem w moduł wewnątrz aplikacji. To krótki, wbudowany przewodnik, tłumaczący w bardzo przystępny sposób, z jakich elementów oraz wzorców składa się kod QR i dlaczego potrafi przetrwać nawet fizyczne uszkodzenia.',
+        image: {
+          src: '/portfolio/qraft-mobile-app/qraft-learn-intro.webp',
+          width: 2556,
+          height: 2556,
+        },
+      },
+      {
+        id: 'ci-cd',
+        type: 'text-only',
+        title: 'Automatyzacja i testowanie pod maską',
+        text: 'Wizualna warstwa aplikacji to nie wszystko. Istotną częścią tego projektu było dla mnie zbudowanie poprawnego środowiska pracy i wdrożenie automatyzacji testów. Korzystając z GitHub Actions oraz środowiska Bun, skonfigurowałem proces CI, który uruchamia się przy każdej zmianie w kodzie.\n\nMechanizm w pierwszej kolejności sprawdza poprawność składni oraz typów, aby odrzucać podstawowe błędy na jak najwcześniejszym etapie. Następnie uruchamiane są testy jednostkowe weryfikujące logikę rozpoznawania kodów oraz testy integracyjne lokalnej bazy danych. Na koniec sprawdzane jest procentowe pokrycie kodu testami. Dzięki temu mam pewność, że wprowadzane zmiany nie psują istniejących funkcji.',
+      },
+      {
+        id: 'podsumowanie',
+        type: 'text-only',
+        title: 'Podsumowanie eksperymentu',
+        text: 'Zamiana drobnej frustracji we własny projekt przyniosła świetne rezultaty. Oprócz zaprojektowania użytecznej na co dzień aplikacji, z powodzeniem wdrożyłem od zera kompletny proces automatyzacji CI dla środowiska mobilnego. Praca nad Qraft pozwoliła mi w pełni wykorzystać możliwości technologii Expo oraz React Native, a wypracowane i sprawdzone tutaj wzorce architektoniczne przenoszę teraz na kolejne projekty.',
+      },
+    ],
+    prevProjectSlug: 'studymood',
+    prevProjectName: 'StudyMood',
   },
 ]
 
